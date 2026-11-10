@@ -54,7 +54,7 @@ const translations = {
     fineArts: "美术学（版画）",
     bio: "踏踏实实，保持热爱",
     location: "中国 广州",
-    education: "深圳大学 本科",
+    education: "深圳大学 美术学本科",
     mengshouTitle: "《梦幻西游》手游巅峰联赛",
     danzaiTitle: "《蛋仔派对》全国总决赛",
     stageDesignTitle: "舞美设计",
@@ -67,6 +67,11 @@ const translations = {
     aboutPoint2: "负责主视觉 KV、角色海报、版本宣传物料、品牌 VI 及品牌联动视觉的创意与系列化延展",
     aboutPoint3: "围绕产品卖点、角色设定与内容主题提炼视觉概念，输出创意提案、Mood Board、视觉风格方案与设计规范",
     aboutPoint4: "将角色、场景及演出资产转化为营销传播视觉，并完成大屏、周边、舞美外场与宣发物料的多媒介落地",
+    otherTitle: "其他",
+    otherPoint1: "网易第二届 AIGC 应用分享大赛 AI 美术管线人气奖（3 项）",
+    otherPoint2: "微软 & 领英生成式 AI 职业要素专业认证",
+    otherPoint3: "深圳大学校级优秀学生干部奖学金、学习奖学金（专业前 9%）",
+    otherPoint4: "深圳大学社团联合活动中心学生会长（协调百人团队承办英雄联盟高校行、深圳市大学生歌手大奖赛半决赛、深圳大学彩色跑等千人规模高校活动）",
     toolsTitle: "我常用的工具",
     languageTitle: "我会说",
     languageList: "普通话（二甲）、粤语（母语）、英语（CET-4）、日语（JLPT-N3）",
@@ -118,7 +123,7 @@ const translations = {
     fineArts: "Fine Arts (Printmaking)",
     bio: "Stay grounded, stay passionate.",
     location: "Guangzhou, China",
-    education: "Shenzhen University / Bachelor's Degree",
+    education: "Shenzhen University / BFA",
     mengshouTitle: "Fantasy Westward Journey Mobile Peak League",
     danzaiTitle: "Eggy Party National Finals",
     stageDesignTitle: "Stage Design",
@@ -131,6 +136,11 @@ const translations = {
     aboutPoint2: "Create key visuals, character posters, version campaign assets, brand VI, and co-branding visuals with systematic extensions across deliverables.",
     aboutPoint3: "Translate product selling points, character settings, and content themes into visual concepts, creative proposals, mood boards, style directions, and design guidelines.",
     aboutPoint4: "Transform character, environment, and performance assets into marketing visuals across large screens, merchandise, stage environments, outdoor spaces, and campaign materials.",
+    otherTitle: "Additional Highlights",
+    otherPoint1: "People's Choice Award for AI Art Pipeline (3 entries), NetEase 2nd AIGC Application Sharing Competition",
+    otherPoint2: "Career Essentials in Generative AI Professional Certificate by Microsoft and LinkedIn",
+    otherPoint3: "Shenzhen University Outstanding Student Leader Scholarship and Academic Scholarship (top 9% of major)",
+    otherPoint4: "President of the Shenzhen University Student Union Activities Center; coordinated a 100-person team to deliver large campus events for 1,000+ attendees, including the League of Legends Campus Tour, Shenzhen Student Singer Competition Semifinal, and Shenzhen University Color Run.",
     toolsTitle: "Tools I Use",
     languageTitle: "Languages",
     languageList: "Mandarin (Level 2-A) · Cantonese (Native) · English (CET-4) · Japanese (JLPT N3)",
@@ -213,6 +223,10 @@ let dialogTrigger = null;
 
 const openContactDialog = () => {
   dialogTrigger = document.activeElement;
+  contactDialog.querySelectorAll("img[data-src]").forEach((image) => {
+    image.src = image.dataset.src;
+    image.removeAttribute("data-src");
+  });
   contactDialog.hidden = false;
   document.body.classList.add("dialog-open");
   contactDialog.focus();
