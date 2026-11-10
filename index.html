@@ -1,15 +1,236 @@
 <!DOCTYPE html>
-<html>
-<style>
-   .top-bar {
-      width: 100%; /* 宽度跟随浏览器窗口 */
-      height: 60px; /* 高度为60px */
-      background-color: black; /* 背景颜色为黑色 */
-    }
-</style>
-
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Shadowyli 的个人作品集。">
+  <title>Shadowyli - 个人作品集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20261110-50">
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <a class="skip-link" href="#portfolio" data-i18n="skip">跳到作品区</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Shadowyli 首页">SHADOWYLI</a>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a class="active" href="#portfolio" aria-current="location" data-i18n="work">作品</a>
+      <a href="#about" data-i18n="about">关于</a>
+    </nav>
+    <label class="search-box" for="search-input">
+      <i data-lucide="search" aria-hidden="true"></i>
+      <span class="sr-only" data-i18n="search">搜索作品</span>
+      <input id="search-input" type="search" placeholder="搜索作品…" autocomplete="off">
+    </label>
+    <div class="header-actions">
+      <button class="theme-toggle icon-button" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
+        <i data-lucide="sun" aria-hidden="true"></i>
+      </button>
+      <button class="language-toggle" type="button" aria-label="切换到英文" title="切换到英文">
+        <span>EN</span>
+      </button>
+      <button class="icon-button menu-button" type="button" aria-label="打开菜单" aria-expanded="false">
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" aria-label="移动端导航" hidden>
+    <a href="#portfolio" data-i18n="work">作品</a><a href="#about" data-i18n="about">关于</a>
+  </nav>
+
+  <main id="top">
+    <section class="profile-hero" aria-label="Shadowyli 个人封面">
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <p class="hero-kicker" data-i18n="eyebrow">VISUAL WORK / 2026</p>
+        <h1>PORTFOLIO</h1>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <aside class="profile-sidebar" aria-label="个人资料">
+        <img class="profile-avatar" src="assets/avatar.png" alt="李颖 LI YING 的头像" width="128" height="128">
+        <div class="identity">
+          <p class="availability"><span></span><span class="availability-text" data-i18n="availability">正在关注工作机会</span></p>
+          <h2>李颖 <span class="name-en">LI YING</span></h2>
+          <div class="role-row">
+            <p class="handle" data-i18n="role">高级视觉创意设计师</p>
+            <span class="experience-tag" data-i18n="experienceTag">工作3年+</span>
+          </div>
+          <button class="sidebar-contact" id="contact" type="button" aria-haspopup="dialog" aria-controls="contact-dialog">
+            <span data-i18n="contactMe">联系我</span>
+          </button>
+        </div>
+        <p class="bio" data-i18n="bio">踏踏实实，保持热爱</p>
+        <ul class="profile-meta" aria-label="个人信息">
+          <li><i data-lucide="map-pin" aria-hidden="true"></i><span data-i18n="location">中国 广州</span></li>
+          <li><i data-lucide="graduation-cap" aria-hidden="true"></i><span data-i18n="education">深圳大学 本科</span></li>
+          <li><i data-lucide="phone" aria-hidden="true"></i><span>19520523543</span></li>
+          <li><i data-lucide="mail" aria-hidden="true"></i><span>liv.ying.li@outlook.com</span></li>
+          <li><i data-lucide="cake-slice" aria-hidden="true"></i><span class="age" data-birth-year="2001"></span></li>
+        </ul>
+      </aside>
+
+      <section class="portfolio-content" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="content-toolbar">
+          <div class="tabs" role="tablist" aria-label="个人页内容">
+            <button id="tab-work" class="tab-button active" type="button" role="tab" aria-selected="true" aria-controls="panel-work" data-tab="work"><span class="tab-label" data-i18n="work">作品</span></button>
+            <button id="tab-about" class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="panel-about" data-tab="about"><span class="tab-label" data-i18n="intro">关于我</span></button>
+          </div>
+        </div>
+
+        <div id="panel-work" class="tab-panel" role="tabpanel" aria-labelledby="tab-work">
+          <h2 class="sr-only" id="portfolio-title" data-i18n="portfolioTitle">作品集</h2>
+          <p class="results-message" aria-live="polite"></p>
+          <div class="portfolio-section-heading">
+            <h3 data-i18n="featuredHeading">主要项目</h3>
+          </div>
+          <div class="featured-projects" aria-label="精选作品">
+            <article class="project-entry project-card" data-title="梦幻西游 手游 巅峰联赛 Fantasy Westward Journey Mobile Peak League" data-tags="游戏 赛事 品牌 视觉 game esports brand visual">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/mengshou-cover.png" alt="《梦幻西游》手游巅峰联赛赛事品牌美术规划封面" width="1552" height="872">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="mengshouTitle">《梦幻西游》手游巅峰联赛</h3>
+            </article>
+            <article class="project-entry project-card" data-title="蛋仔派对 第三届 全国总决赛 Eggy Party National Finals" data-tags="游戏 赛事 主KV 视觉 game esports key visual">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/danzai-cover.png" alt="第三届蛋仔派对全国总决赛主 KV" width="1920" height="1080">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="danzaiTitle">《蛋仔派对》全国总决赛</h3>
+            </article>
+          </div>
+          <div class="portfolio-section-heading portfolio-section-heading-secondary">
+            <h3 data-i18n="disciplineHeading">我的作品</h3>
+          </div>
+          <div class="project-grid placeholder-grid" aria-label="空白作品位">
+            <article class="project-entry project-card" data-title="舞美设计 Stage Design" data-tags="舞台 舞美 赛事 视觉 stage event visual">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/stage-design-cover.png" alt="蓝色电竞赛事舞台舞美设计" width="1552" height="872">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="stageDesignTitle">舞美设计</h3>
+            </article>
+            <article class="project-entry project-card" data-title="周边物料 Merchandise" data-tags="奖牌 周边 物料 游戏 medal merchandise game">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/merchandise-cover.png" alt="王牌竞速星芒争锋赛奖牌渲染三视图" width="1280" height="720">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="merchandiseTitle">周边物料</h3>
+            </article>
+            <article class="project-entry">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/campaign-cover.jfif" alt="COA 2025 全球总决赛冠军海报" width="1024" height="576">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="campaignTitle">宣发设计</h3>
+            </article>
+          </div>
+          <div class="project-grid additional-projects" aria-label="新建作品位">
+            <article class="project-entry project-card" data-title="大屏视觉 Large-Screen Visuals" data-tags="大屏 舞台 视觉 展示 large screen stage visual display">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/large-screen-cover.webp" alt="《全明星街球派对》DCDG 全球冠军赛大屏视觉舞台设计" width="1996" height="1120" loading="lazy" decoding="async">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="largeScreenTitle">大屏视觉</h3>
+            </article>
+            <article class="project-entry project-card" data-title="AI 管线开发 AI Pipeline Development" data-tags="AI 人工智能 管线 工作流 开发 pipeline workflow development">
+              <figure class="project-slot project-slot-filled">
+                <img src="assets/ai-pipeline-cover.webp" alt="ComfyUI AI 图像生成工作流管线开发界面" width="1920" height="1080" loading="lazy" decoding="async">
+              </figure>
+              <h3 class="project-slot-title" data-i18n="aiPipelineTitle">AI 管线开发</h3>
+            </article>
+          </div>
+        </div>
+
+        <div id="panel-about" class="tab-panel info-panel" role="tabpanel" aria-labelledby="tab-about" hidden>
+          <section class="career-timeline" id="about" aria-labelledby="timeline-title">
+            <h2 class="about-section-title" id="timeline-title" data-i18n="timelineTitle">工作经历</h2>
+            <div class="timeline-scroll-shell">
+              <div class="timeline-scroll" tabindex="0">
+                <div class="timeline-track">
+                  <article class="timeline-item current">
+                    <time>2025.12<span data-i18n="present">至今</span></time>
+                    <strong data-i18n="netease">网易互娱</strong>
+                    <span data-i18n="seniorRole">高级视觉创意设计师</span>
+                  </article>
+                  <article class="timeline-item">
+                    <time>2023.07</time>
+                    <strong data-i18n="netease">网易互娱</strong>
+                    <span data-i18n="designerRole">视觉设计师</span>
+                  </article>
+                  <article class="timeline-item">
+                    <time>2023.03</time>
+                    <strong data-i18n="netease">网易互娱</strong>
+                    <span data-i18n="visualIntern">视觉设计实习生</span>
+                  </article>
+                  <article class="timeline-item">
+                    <time>2022.09</time>
+                    <strong data-i18n="leiting">雷霆游戏</strong>
+                    <span data-i18n="brandIntern">品牌视觉设计实习生</span>
+                  </article>
+                  <article class="timeline-item">
+                    <time>2022.03</time>
+                    <strong data-i18n="tecdo">钛动科技</strong>
+                    <span data-i18n="graphicIntern">平面设计实习生</span>
+                  </article>
+                  <article class="timeline-item">
+                    <time>2019.09</time>
+                    <strong data-i18n="szu">深圳大学</strong>
+                    <span data-i18n="fineArts">美术学（版画）</span>
+                  </article>
+                </div>
+              </div>
+              <div class="timeline-scroll-hint" aria-hidden="true"><i data-lucide="chevron-right"></i></div>
+            </div>
+          </section>
+          <h2 class="about-section-title" data-i18n="workSummary">我的工作简介</h2>
+          <ol class="about-list">
+            <li data-i18n="aboutPoint1">3 年以上游戏赛事与品牌视觉创意经验，具备独立负责视觉项目、风格探索与系列化设计的能力</li>
+            <li data-i18n="aboutPoint2">负责主视觉 KV、角色海报、版本宣传物料、品牌 VI及品牌联动视觉的创意与系列化延展</li>
+            <li data-i18n="aboutPoint3">围绕产品卖点、角色设定与内容主题提炼视觉概念，输出创意提案、Mood Board、视觉风格方案与设计规范</li>
+            <li data-i18n="aboutPoint4">将角色、场景及演出资产转化为营销传播视觉，并完成大屏、周边、舞美外场与宣发物料的多媒介落地</li>
+          </ol>
+          <section class="tool-skills" aria-labelledby="tool-skills-title">
+            <h2 class="about-section-title" id="tool-skills-title" data-i18n="toolsTitle">我常用的工具</h2>
+            <div class="tool-tags">
+              <span class="tool-tag">Photoshop</span>
+              <span class="tool-tag">Illustrator</span>
+              <span class="tool-tag">Figma</span>
+              <span class="tool-tag">Cinema 4D</span>
+              <span class="tool-tag">Unreal Engine 5</span>
+              <span class="tool-tag">Blender</span>
+              <span class="tool-tag">Codex</span>
+              <span class="tool-tag">Cursor</span>
+              <span class="tool-tag">ComfyUI</span>
+              <span class="tool-tag">Stable Diffusion</span>
+            </div>
+          </section>
+          <section class="language-skills" aria-labelledby="language-skills-title">
+            <h2 class="about-section-title" id="language-skills-title" data-i18n="languageTitle">我会说</h2>
+            <div class="language-tags" aria-label="语言能力">
+              <span class="language-tag"><strong data-i18n="mandarin">普通话</strong><em data-i18n="mandarinLevel">二甲</em></span>
+              <span class="language-tag"><strong data-i18n="cantonese">粤语</strong><em data-i18n="cantoneseLevel">母语</em></span>
+              <span class="language-tag"><strong data-i18n="english">英语</strong><em>CET-4</em></span>
+              <span class="language-tag"><strong data-i18n="japanese">日语</strong><em>JLPT-N3</em></span>
+            </div>
+          </section>
+          <div class="about-facts">
+            <div><span data-i18n="focusLabel">专注方向</span><strong data-i18n="focusValue">品牌视觉 / 游戏营销</strong></div><div><span data-i18n="baseLabel">所在地</span><strong data-i18n="baseValue">中国 广州</strong></div><div><span data-i18n="targetCitiesLabel">意向城市</span><strong data-i18n="targetCitiesValue">广州/深圳</strong></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="contact-dialog" id="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title" tabindex="-1" hidden>
+    <div class="dialog-card">
+      <h2 class="sr-only" id="contact-dialog-title" data-i18n="wechatTitle">微信二维码</h2>
+      <img class="qr-image qr-dark" src="assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415">
+      <img class="qr-image qr-light" src="assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415">
+    </div>
+    <p class="dialog-hint" data-i18n="saveHint">长按图片保存二维码</p>
+  </div>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="script.js?v=20261110-39" defer></script>
 </body>
 </html>
