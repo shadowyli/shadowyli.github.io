@@ -1540,9 +1540,11 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-footer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 10px 16px;
   padding: 24px clamp(20px, 5vw, 64px) 40px;
   border-top: 1px solid var(--line);
   color: var(--text-muted);
