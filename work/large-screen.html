@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-42">
+  <link rel="stylesheet" href="../styles.css?v=20261111-44">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -140,7 +140,23 @@
 
   </main>
 
-  <footer class="case-footer">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">Shadowyli · 视觉设计作品集</span></footer>
+  <footer class="case-footer">
+    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
+    <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">Shadowyli · 视觉设计作品集</span></span>
+  </footer>
+
+  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
+    <div class="dialog-close-row">
+      <button class="dialog-close" type="button" aria-label="关闭">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div class="dialog-card">
+      <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+      <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+    </div>
+    <p class="dialog-hint">长按图片保存二维码</p>
+  </div>
   <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
   <script>
     (function () {
@@ -265,6 +281,7 @@
         zh: {
           skip: "跳到正文",
           back: "← 返回作品集",
+          contactMe: "联系我",
           navWork: "作品",
           navAbout: "关于",
           kicker: "Large-Screen Visuals / 赛事大屏",
@@ -310,6 +327,7 @@
         en: {
           skip: "Skip to content",
           back: "← Back to Work",
+          contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About",
           kicker: "Large-Screen Visuals / Tournament Stage",
@@ -500,6 +518,35 @@
           localStorage.setItem("portfolio-theme", next);
         } catch (error) { /* ignore */ }
         apply(next);
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var trigger = document.querySelector("#case-contact");
+      var dialog = document.querySelector("#case-contact-dialog");
+      if (!trigger || !dialog) return;
+      var closeButton = dialog.querySelector(".dialog-close");
+
+      function openDialog() {
+        dialog.hidden = false;
+        document.body.classList.add("dialog-open");
+        dialog.focus();
+      }
+
+      function closeDialog() {
+        dialog.hidden = true;
+        document.body.classList.remove("dialog-open");
+        trigger.focus();
+      }
+
+      trigger.addEventListener("click", openDialog);
+      if (closeButton) closeButton.addEventListener("click", closeDialog);
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog) closeDialog();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
     })();
   </script>
