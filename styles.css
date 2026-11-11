@@ -1443,7 +1443,9 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   aspect-ratio: 3328 / 1152;
 }
 
-.case-slot-video {
+.case-slot-media { position: relative; }
+
+.case-slot-cover {
   display: block;
   width: 100%;
   height: auto;
@@ -1451,6 +1453,18 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   object-fit: cover;
   background: var(--surface);
 }
+
+.case-slot-media .case-slot-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.case-slot-media.is-playing .case-slot-video { opacity: 1; }
 
 .case-media-grid img {
   display: block;
