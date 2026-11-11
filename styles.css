@@ -1385,6 +1385,10 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-hero-media { position: relative; }
 
+.case-hero-media--native { aspect-ratio: 1678 / 1080; }
+
+.case-section .case-frame + .case-frame { margin-top: 6px; }
+
 .case-hero-cover {
   display: block;
   width: 100%;
