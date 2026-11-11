@@ -1469,8 +1469,8 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-section-index {
   color: var(--yellow);
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  font-size: inherit;
+  letter-spacing: 0.04em;
 }
 
 .case-body h2::after { display: none; }
