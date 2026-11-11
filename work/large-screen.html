@@ -557,7 +557,7 @@
       if (!video) return;
       var figure = video.closest("figure");
       var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-      var introPlayed = false;
+      var inView = false;
 
       function showVideo() {
         if (figure) figure.classList.add("is-playing");
@@ -579,22 +579,21 @@
         hideVideo();
       }
 
-      var introObserver = new IntersectionObserver(function (entries, instance) {
+      var introObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (!entry.isIntersecting || introPlayed) return;
-          introPlayed = true;
-          instance.disconnect();
-          play();
+          if (entry.isIntersecting && !inView) {
+            inView = true;
+            play();
+          } else if (!entry.isIntersecting && inView) {
+            inView = false;
+            stop();
+          }
         });
       }, { threshold: 0.5 });
       introObserver.observe(video);
 
       if (canHover) {
-        figure.addEventListener("pointerenter", function () {
-          introPlayed = true;
-          introObserver.disconnect();
-          play();
-        });
+        figure.addEventListener("pointerenter", play);
         figure.addEventListener("pointerleave", stop);
       } else {
         video.addEventListener("click", function () {
