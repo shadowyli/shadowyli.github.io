@@ -1992,30 +1992,26 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .social-badge {
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 8px;
+  left: 8px;
   z-index: 3;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 6px;
+  gap: 0;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-  background: rgba(10, 9, 12, 0.78);
+  background: rgba(10, 9, 12, 0.7);
   color: #fff;
-  font-size: 8px;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1.2;
   letter-spacing: 0.02em;
   white-space: nowrap;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(10px);
 }
 
-.social-badge::before {
-  content: "";
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--yellow);
-}
+.social-badge::before { display: none; }
 
 .social-slot:nth-child(1) { --w: 95px; --rot: -4deg; --depth: 0.5; top: 30px; left: 0; z-index: 2; }
 .social-slot:nth-child(2) { --w: 85px; --rot: 3deg; --depth: 0.65; top: 95px; left: 120px; z-index: 3; }
@@ -2077,8 +2073,8 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
     right: auto;
     bottom: auto;
     left: auto;
-    width: 150px;
-    height: 210px;
+    width: 120px;
+    height: 150px;
     margin: 0;
     opacity: 1;
     z-index: 1;
