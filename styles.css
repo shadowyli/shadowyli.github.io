@@ -1404,6 +1404,10 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 .case-video-play svg { width: 26px; height: 26px; margin-left: 3px; }
 .case-frame-inner.is-paused .case-video-play { display: grid; }
 
+@media (max-width: 720px) {
+  .case-video-play { display: none !important; }
+}
+
 .case-body h2 {
   display: flex;
   align-items: baseline;

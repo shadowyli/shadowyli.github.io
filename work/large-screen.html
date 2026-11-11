@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-49">
+  <link rel="stylesheet" href="../styles.css?v=20261111-50">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -489,10 +489,12 @@
         video.addEventListener("playing", function () {
           frame.classList.remove("is-paused");
         });
-        video.addEventListener("click", function () {
-          if (video.paused) tryPlay();
-        });
-        if (playButton) playButton.addEventListener("click", tryPlay);
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          video.addEventListener("click", function () {
+            if (video.paused) tryPlay();
+          });
+          if (playButton) playButton.addEventListener("click", tryPlay);
+        }
         tryPlay();
       }
 
