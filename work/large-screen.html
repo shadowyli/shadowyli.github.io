@@ -48,7 +48,7 @@
         <p class="case-caption case-caption--below" data-i18n-key="liveCaption">3D ＆ 视觉设计：影子（李颖） | 动画设计：程禹涵</p>
         <figure class="case-frame">
           <div class="case-frame-inner">
-            <video class="case-frame-video" src="../assets/large-screen-live.mp4" poster="../assets/large-screen-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="DCDG 全球冠军赛大屏现场录制"></video>
+            <video class="case-frame-video" src="../assets/large-screen-live.mp4" poster="../assets/large-screen-poster.webp" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="DCDG 全球冠军赛大屏现场录制"></video>
             <button class="case-video-play" type="button" aria-label="播放视频">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
             </button>
@@ -57,21 +57,21 @@
         <div class="case-media-grid case-slots">
           <figure class="case-slot-media">
             <img class="case-slot-cover" src="../assets/large-screen-b1.webp" alt="DCDG 全球冠军赛主视觉延展 1-B1" width="3328" height="1152" loading="lazy" decoding="async">
-            <video class="case-slot-video" src="../assets/large-screen-1-b1.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 1-B1"></video>
+            <video class="case-slot-video" src="../assets/large-screen-1-b1.mp4" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 1-B1"></video>
           </figure>
           <figure class="case-slot-media">
             <img class="case-slot-cover" src="../assets/large-screen-b2.webp" alt="DCDG 全球冠军赛主视觉延展 1-B2" width="3328" height="1152" loading="lazy" decoding="async">
-            <video class="case-slot-video" src="../assets/large-screen-1-b2.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 1-B2"></video>
+            <video class="case-slot-video" src="../assets/large-screen-1-b2.mp4" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 1-B2"></video>
           </figure>
         </div>
         <div class="case-media-grid case-slots">
           <figure class="case-slot-media">
             <img class="case-slot-cover" src="../assets/large-screen-2-b1.webp" alt="DCDG 全球冠军赛主视觉延展 2-B1" width="3328" height="1152" loading="lazy" decoding="async">
-            <video class="case-slot-video" src="../assets/large-screen-2-b1.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 2-B1"></video>
+            <video class="case-slot-video" src="../assets/large-screen-2-b1.mp4" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 2-B1"></video>
           </figure>
           <figure class="case-slot-media">
             <img class="case-slot-cover" src="../assets/large-screen-2-b2.webp" alt="DCDG 全球冠军赛主视觉延展 2-B2" width="3328" height="1152" loading="lazy" decoding="async">
-            <video class="case-slot-video" src="../assets/large-screen-2-b2.mp4" muted playsinline webkit-playsinline preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 2-B2"></video>
+            <video class="case-slot-video" src="../assets/large-screen-2-b2.mp4" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 2-B2"></video>
           </figure>
         </div>
         <div class="case-media-grid case-slots">
@@ -489,12 +489,13 @@
         video.addEventListener("playing", function () {
           frame.classList.remove("is-paused");
         });
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-          video.addEventListener("click", function () {
-            if (video.paused) tryPlay();
-          });
-          if (playButton) playButton.addEventListener("click", tryPlay);
-        }
+        video.addEventListener("click", function () {
+          if (video.paused) tryPlay();
+        });
+        if (playButton) playButton.addEventListener("click", tryPlay);
+        document.addEventListener("WeixinJSBridgeReady", function () {
+          if (video.paused) tryPlay();
+        }, false);
         tryPlay();
       }
 
@@ -605,7 +606,15 @@
         if (canHover) {
           figure.addEventListener("pointerenter", play);
           figure.addEventListener("pointerleave", stop);
+        } else {
+          video.addEventListener("click", function () {
+            if (video.paused) play();
+          });
         }
+
+        document.addEventListener("WeixinJSBridgeReady", function () {
+          if (inView && video.paused) play();
+        }, false);
 
         video.addEventListener("ended", function () {
           video.currentTime = 0;
