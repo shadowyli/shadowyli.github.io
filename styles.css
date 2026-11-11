@@ -1587,7 +1587,9 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 }
 
 @media (max-width: 720px) {
-  .case-related-grid { grid-template-columns: 1fr; gap: 16px; }
+  .case-related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .case-related-card span { margin-top: 6px; font-size: 11px; }
+  .case-footer { padding-bottom: 96px; }
 }
 
 .case-media-grid img {
