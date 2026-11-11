@@ -688,6 +688,9 @@
         var frame = video.closest(".case-hero-media");
         var button = frame ? frame.querySelector(".case-hero-play") : null;
         var mobileSrc = video.getAttribute("data-mobile-src");
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          video.loop = true;
+        }
 
         if (mobileSrc && window.matchMedia("(max-width: 720px)").matches) {
           video.src = mobileSrc;
