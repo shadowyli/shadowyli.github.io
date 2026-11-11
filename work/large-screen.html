@@ -146,7 +146,7 @@
         <figure class="case-frame">
           <div class="case-frame-inner case-hero-media">
             <img class="case-hero-cover" src="../assets/ivl-opening-poster.webp" alt="《第五人格》2025 IVL 秋季总决赛开幕式大屏" width="1600" height="900" loading="lazy" decoding="async">
-            <video class="case-hero-video" data-mobile-src="../assets/ivl-opening-mobile.mp4" src="../assets/ivl-opening.mp4" autoplay muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="auto" aria-label="《第五人格》2025 IVL 秋季总决赛开幕式大屏展示"></video>
+            <video class="case-hero-video" data-mobile-src="../assets/ivl-opening-mobile.mp4" src="../assets/ivl-opening.mp4" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="auto" aria-label="《第五人格》2025 IVL 秋季总决赛开幕式大屏展示"></video>
             <button class="case-hero-play" type="button" aria-label="播放视频">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
             </button>
@@ -155,7 +155,7 @@
         <figure class="case-frame">
           <div class="case-frame-inner case-hero-media case-hero-media--native">
             <img class="case-hero-cover" src="../assets/ivl-growth-poster.webp" alt="《第五人格》2025 IVL 秋季总决赛生长动画" width="1440" height="927" loading="lazy" decoding="async">
-            <video class="case-hero-video" data-mobile-src="../assets/ivl-growth-mobile.mp4" src="../assets/ivl-growth.mp4" autoplay muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="auto" aria-label="《第五人格》2025 IVL 秋季总决赛生长动画"></video>
+            <video class="case-hero-video" data-mobile-src="../assets/ivl-growth-mobile.mp4" src="../assets/ivl-growth.mp4" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="auto" aria-label="《第五人格》2025 IVL 秋季总决赛生长动画"></video>
             <button class="case-hero-play" type="button" aria-label="播放视频">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
             </button>
@@ -690,6 +690,8 @@
         var mobileSrc = video.getAttribute("data-mobile-src");
         if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
           video.loop = true;
+        } else {
+          video.loop = false;
         }
 
         if (mobileSrc && window.matchMedia("(max-width: 720px)").matches) {
