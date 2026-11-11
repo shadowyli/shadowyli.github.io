@@ -200,7 +200,7 @@
       <section class="case-related" aria-labelledby="related-title">
         <h2 id="related-title" data-i18n-key="relatedTitle">查看更多</h2>
         <div class="case-related-grid">
-          <a class="case-related-card" href="../index.html#portfolio">
+          <a class="case-related-card" href="campaign.html">
             <img src="../assets/campaign-cover.webp" alt="宣发设计" width="1920" height="1077" loading="lazy" decoding="async">
             <span data-i18n-key="relatedCampaign">宣发设计</span>
           </a>
@@ -565,6 +565,7 @@
       if (video && frame) {
         if (window.matchMedia("(max-width: 720px)").matches) {
           video.src = "../assets/large-screen-live-mobile.mp4";
+          video.loop = false;
           video.load();
         }
 
@@ -578,7 +579,12 @@
         video.addEventListener("playing", function () {
           frame.classList.remove("is-paused");
         });
-        video.addEventListener("click", function () {
+        video.addEventListener("ended", function () {
+          video.currentTime = 0;
+          frame.classList.add("is-paused");
+        });
+        frame.addEventListener("click", function (event) {
+          if (event.target === playButton) return;
           if (video.paused) tryPlay();
         });
         if (playButton) playButton.addEventListener("click", tryPlay);
