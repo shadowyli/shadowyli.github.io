@@ -164,11 +164,6 @@
   </footer>
 
   <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
-    <div class="dialog-close-row">
-      <button class="dialog-close" type="button" aria-label="关闭">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
-      </button>
-    </div>
     <div class="dialog-card">
       <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
       <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
@@ -567,9 +562,7 @@
 
       trigger.addEventListener("click", openDialog);
       if (closeButton) closeButton.addEventListener("click", closeDialog);
-      dialog.addEventListener("click", function (event) {
-        if (event.target === dialog) closeDialog();
-      });
+      dialog.addEventListener("click", closeDialog);
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
