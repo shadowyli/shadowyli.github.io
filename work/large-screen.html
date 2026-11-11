@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-27">
+  <link rel="stylesheet" href="../styles.css?v=20261111-38">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -45,12 +45,20 @@
     <div class="case-body case-body--flush">
       <section class="case-section">
         <h2><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">《全明星街球派对》DCDG全球冠军赛</span></h2>
-        <p class="case-caption case-caption--below" data-i18n-key="liveCaption">视觉设计：影子（李颖） | 动画设计：纪云</p>
+        <p class="case-caption case-caption--below" data-i18n-key="liveCaption">3D ＆ 视觉设计：影子（李颖） | 动画设计：纪云</p>
         <figure class="case-frame">
           <div class="case-frame-inner">
             <video class="case-frame-video" src="../assets/large-screen-live.mp4" poster="../assets/large-screen-poster.webp" autoplay muted loop playsinline preload="metadata" aria-label="DCDG 全球冠军赛大屏现场录制"></video>
           </div>
         </figure>
+        <div class="case-media-grid case-slots">
+          <figure>
+            <img src="../assets/large-screen-b1.webp" alt="DCDG 全球冠军赛主视觉延展 B1" width="3328" height="1152" loading="lazy" decoding="async">
+          </figure>
+          <figure>
+            <img src="../assets/large-screen-b2.webp" alt="DCDG 全球冠军赛主视觉延展 B2" width="3328" height="1152" loading="lazy" decoding="async">
+          </figure>
+        </div>
       </section>
 
     </div>
@@ -221,7 +229,7 @@
           section2Body: "负责大屏视觉设计与舞台视觉呈现：环形主视觉的构图与节奏、灯带与地屏的画面延展，以及与灯光、舞美的整体配合。核心画面要在暗场环境中既撑得住直播画面，又不与球场灯光抢主体。",
           section3Title: "设计思路",
           section3Body: "以篮球运动的动势作为主线。环形主视觉围绕球场中心展开，用高饱和的紫、橙、蓝在暗场中拉开层次；灯带以放射状线条把中心能量向外延展，形成视觉纵深；地屏与主屏共用同一套色阶与运动节奏，让镜头从主屏摇到地面时不出现断裂。",
-          liveCaption: "视觉设计：影子（李颖） | 动画设计：纪云",
+          liveCaption: "3D ＆ 视觉设计：影子（李颖） | 动画设计：纪云",
           pagerNext: "查看其他项目 →",
           pagerLabel: "更多作品",
           footerNote: "Shadowyli · 视觉设计作品集",
@@ -266,7 +274,7 @@
           section2Body: "I owned the large-screen visual design and how it presented on stage: the composition and pacing of the circular main visual, how the imagery extends across the light band and floor screen, and how it sits with the lighting and stage design. In a dark arena the key frames had to read on broadcast without competing with the court lighting.",
           section3Title: "Design Approach",
           section3Body: "Basketball's movement drives the narrative. The circular main visual opens out around center court, using saturated purple, orange and blue to build depth in the dark; radial lines carry that energy outward along the light band; and the floor screen shares one color scale and rhythm with the main screen, so a camera move from the screen to the floor never breaks.",
-          liveCaption: "Visual design: Shadow (Li Ying) | Animation: Ji Yun",
+          liveCaption: "3D & visual design: Shadow (Li Ying) | Animation: Ji Yun",
           pagerNext: "More Work →",
           pagerLabel: "More work",
           footerNote: "Shadowyli · Visual Design Portfolio",
@@ -343,7 +351,6 @@
     (function () {
       var bar = document.querySelector(".case-progress");
       if (!bar) return;
-      var fill = bar.querySelector(".case-progress-fill");
       var ticking = false;
 
       function render() {
@@ -352,7 +359,7 @@
         var max = doc.scrollHeight - window.innerHeight;
         var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
         var percent = (progress * 100).toFixed(2) + "%";
-        fill.style.height = percent;
+        bar.style.setProperty("--progress", percent);
       }
 
       function request() {

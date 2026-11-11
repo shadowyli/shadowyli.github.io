@@ -238,6 +238,7 @@ const applyLocalizedAttributes = (language) => {
 const updateTimelineHint = () => {
   const maxScroll = timelineScroll.scrollWidth - timelineScroll.clientWidth;
   timelineShell.classList.toggle("no-overflow", maxScroll <= 2);
+  timelineShell.classList.toggle("at-start", timelineScroll.scrollLeft <= 2);
   timelineShell.classList.toggle("at-end", timelineScroll.scrollLeft >= maxScroll - 2);
 };
 
@@ -448,34 +449,14 @@ contactDialog.addEventListener("click", (event) => {
 });
 
 let timelineDrag = null;
-let timelineMomentumFrame = null;
-
-const stopTimelineMomentum = () => {
-  if (timelineMomentumFrame) cancelAnimationFrame(timelineMomentumFrame);
-  timelineMomentumFrame = null;
-};
-
-const applyTimelineMomentum = (velocity) => {
-  const step = () => {
-    velocity *= 0.92;
-    if (Math.abs(velocity) < 0.08) return;
-    timelineScroll.scrollLeft += velocity * 16;
-    timelineMomentumFrame = requestAnimationFrame(step);
-  };
-  timelineMomentumFrame = requestAnimationFrame(step);
-};
 
 timelineScroll.addEventListener("pointerdown", (event) => {
   if (event.pointerType === "mouse" && event.button !== 0) return;
-  stopTimelineMomentum();
   timelineDrag = {
     id: event.pointerId,
     startX: event.clientX,
     startY: event.clientY,
     startScroll: timelineScroll.scrollLeft,
-    lastX: event.clientX,
-    lastTime: performance.now(),
-    velocity: 0,
     active: false,
     cancelled: false
   };
@@ -498,25 +479,27 @@ timelineScroll.addEventListener("pointermove", (event) => {
   }
 
   if (event.cancelable) event.preventDefault();
-  const currentTime = performance.now();
-  const elapsed = Math.max(1, currentTime - timelineDrag.lastTime);
-  timelineDrag.velocity = -(event.clientX - timelineDrag.lastX) / elapsed;
-  timelineDrag.lastX = event.clientX;
-  timelineDrag.lastTime = currentTime;
   timelineScroll.scrollLeft = timelineDrag.startScroll - distanceX;
 });
 
 const stopTimelineDrag = (event) => {
   if (!timelineDrag || timelineDrag.id !== event.pointerId) return;
-  const { active, velocity } = timelineDrag;
   if (timelineScroll.hasPointerCapture(event.pointerId)) timelineScroll.releasePointerCapture(event.pointerId);
   timelineScroll.classList.remove("is-dragging");
   timelineDrag = null;
-  if (active) applyTimelineMomentum(velocity);
 };
 
 timelineScroll.addEventListener("pointerup", stopTimelineDrag);
 timelineScroll.addEventListener("pointercancel", stopTimelineDrag);
+
+document.querySelectorAll(".timeline-nav").forEach((button) => {
+  button.addEventListener("click", () => {
+    const direction = button.classList.contains("timeline-nav--prev") ? -1 : 1;
+    const step = Math.max(180, timelineScroll.clientWidth * 0.6);
+    timelineScroll.scrollBy({ left: direction * step, behavior: "smooth" });
+  });
+});
+
 timelineScroll.addEventListener("scroll", updateTimelineHint, { passive: true });
 window.addEventListener("resize", updateTimelineHint);
 
@@ -575,6 +558,8 @@ const activateTab = (selectedTab) => {
     if (active) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   });
+
+  window.requestAnimationFrame(updateTimelineHint);
 };
 
 tabButtons.forEach((button) => {
