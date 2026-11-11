@@ -62,6 +62,7 @@ const translations = {
     campaignTitle: "宣发设计",
     largeScreenTitle: "大屏视觉",
     aiPipelineTitle: "AI 管线开发",
+    videoPackagingTitle: "视频包装",
     aboutTitle: "保持对美的追求。",
     aboutPoint1: "3 年以上游戏赛事与品牌视觉创意经验，具备独立负责视觉项目、风格探索与系列化设计的能力",
     aboutPoint2: "负责主视觉 KV、角色海报、版本宣传物料、品牌 VI 及品牌联动视觉的创意与系列化延展",
@@ -131,6 +132,7 @@ const translations = {
     campaignTitle: "Campaign Design",
     largeScreenTitle: "Large-Screen Visuals",
     aiPipelineTitle: "AI Pipeline Development",
+    videoPackagingTitle: "Video Packaging",
     aboutTitle: "Keep pursuing beauty.",
     aboutPoint1: "3+ years of visual creative experience across game esports and brand projects, with the ability to independently lead visual projects, explore styles, and build cohesive design systems.",
     aboutPoint2: "Create key visuals, character posters, version campaign assets, brand VI, and co-branding visuals with systematic extensions across deliverables.",
@@ -187,7 +189,8 @@ const localizedAttributes = [
   { selector: 'img[src="assets/large-screen-cover-stage.webp"]', attribute: "alt", zh: "《全明星街球派对》DCDG 全球冠军赛现场：舞台大屏与紫色灯光", en: "All-Star Streetball Party DCDG Global Championship stage with large screens and purple lighting" },
   { selector: 'img[src="assets/merchandise-cover.webp"]', attribute: "alt", zh: "王牌竞速星芒争锋赛奖牌渲染三视图", en: "Ace Racer Star Radiance Championship medal render, three views" },
   { selector: 'img[src="assets/stage-design-cover.webp"]', attribute: "alt", zh: "蓝色电竞赛事舞台舞美设计", en: "Blue esports stage set design" },
-  { selector: 'img[src="assets/ai-pipeline-cover.webp"]', attribute: "alt", zh: "ComfyUI AI 图像生成工作流管线开发界面", en: "ComfyUI AI image generation workflow pipeline interface" }
+  { selector: 'img[src="assets/ai-pipeline-cover.webp"]', attribute: "alt", zh: "ComfyUI AI 图像生成工作流管线开发界面", en: "ComfyUI AI image generation workflow pipeline interface" },
+  { selector: 'img[src="assets/video-packaging-cover.webp"]', attribute: "alt", zh: "《蛋仔派对》节目片头「蛋仔麦克疯」视频包装", en: "Eggy Party show opener “Eggy Mic Check” video packaging" }
 ];
 
 const localizedTexts = [
