@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-50">
+  <link rel="stylesheet" href="../styles.css?v=20261111-52">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -142,6 +142,16 @@
 
       <section class="case-section">
         <h2><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="project2Title">《第五人格》2025IVL秋季总决赛</span></h2>
+        <p class="case-caption case-caption--below" data-i18n-key="ivlCredit">3D ＆ 视觉设计：影子（李颖） | 生长动画设计：影子（李颖） | 动画设计：郑斯锴</p>
+        <figure class="case-frame">
+          <div class="case-frame-inner case-hero-media">
+            <img class="case-hero-cover" src="../assets/ivl-opening-poster.webp" alt="《第五人格》2025 IVL 秋季总决赛开幕式大屏" width="1600" height="900" loading="lazy" decoding="async">
+            <video class="case-hero-video" data-mobile-src="../assets/ivl-opening-mobile.mp4" src="../assets/ivl-opening.mp4" autoplay muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="auto" aria-label="《第五人格》2025 IVL 秋季总决赛开幕式大屏展示"></video>
+            <button class="case-hero-play" type="button" aria-label="播放视频">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+          </div>
+        </figure>
       </section>
 
     </div>
@@ -321,6 +331,7 @@
           imageAlt: "《全明星街球派对》DCDG 全球冠军赛大屏视觉舞台设计：环形 LED 主视觉与放射状灯带",
           section1Title: "《全明星街球派对》DCDG全球冠军赛",
           project2Title: "《第五人格》2025IVL秋季总决赛",
+          ivlCredit: "3D ＆ 视觉设计：影子（李颖） | 生长动画设计：影子（李颖） | 动画设计：郑斯锴",
           section1Body: "DCDG 全球冠军赛是《全明星街球派对》的线下赛事舞台。场地采用环形 LED 主屏加环绕灯带的结构，观众席与直播机位围绕球场分布，视觉需要在任意角度、任意镜头切换中都保持完整。",
           section2Title: "我的工作",
           section2Body: "负责大屏视觉设计与舞台视觉呈现：环形主视觉的构图与节奏、灯带与地屏的画面延展，以及与灯光、舞美的整体配合。核心画面要在暗场环境中既撑得住直播画面，又不与球场灯光抢主体。",
@@ -368,6 +379,7 @@
           imageAlt: "Large-screen and stage visual design for the DCDG Global Championship of All-Star Streetball Party: circular LED main visual with radial light bands",
           section1Title: "All-Star Streetball Party · DCDG Global Championship",
           project2Title: "Identity V 2025 IVL Autumn Finals",
+          ivlCredit: "3D & visual design: Shadow (Li Ying) | Growth animation: Shadow (Li Ying) | Animation: Zheng Sikai",
           section1Body: "The DCDG Global Championship is the offline tournament stage for All-Star Streetball Party. The venue pairs a circular LED main screen with a wraparound light band, with seating and broadcast cameras arranged around the court, so the visuals have to hold up from any angle and through every camera cut.",
           section2Title: "My Role",
           section2Body: "I owned the large-screen visual design and how it presented on stage: the composition and pacing of the circular main visual, how the imagery extends across the light band and floor screen, and how it sits with the lighting and stage design. In a dark arena the key frames had to read on broadcast without competing with the court lighting.",
@@ -627,6 +639,44 @@
           hideVideo();
         });
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var video = document.querySelector(".case-hero-video");
+      if (!video) return;
+      var frame = video.closest(".case-hero-media");
+      var button = document.querySelector(".case-hero-play");
+      var mobileSrc = video.getAttribute("data-mobile-src");
+
+      if (mobileSrc && window.matchMedia("(max-width: 720px)").matches) {
+        video.src = mobileSrc;
+      }
+
+      function show() {
+        if (frame) frame.classList.add("is-playing");
+      }
+
+      function play() {
+        video.muted = true;
+        var promise = video.play();
+        if (promise && promise.then) {
+          promise.then(show).catch(function () {
+            if (frame) frame.classList.add("is-blocked");
+          });
+        } else {
+          show();
+        }
+      }
+
+      video.addEventListener("playing", function () {
+        show();
+        if (frame) frame.classList.remove("is-blocked");
+      });
+
+      if (button) button.addEventListener("click", play);
+      document.addEventListener("WeixinJSBridgeReady", play, false);
+      play();
     })();
   </script>
 </body>
