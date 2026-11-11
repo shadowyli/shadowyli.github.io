@@ -2,11 +2,11 @@ const searchInput = document.querySelector("#search-input");
 const searchBox = document.querySelector(".search-box");
 const projectCards = [...document.querySelectorAll(".project-card")];
 const resultsMessage = document.querySelector(".results-message");
-const emptyState = document.querySelector(".empty-state");
 const menuButton = document.querySelector(".menu-button");
 const mobileNav = document.querySelector(".mobile-nav");
 const tabButtons = [...document.querySelectorAll(".tab-button")];
 const tabPanels = [...document.querySelectorAll(".tab-panel")];
+const tabList = document.querySelector(".tabs");
 const primaryNavLinks = [...document.querySelectorAll(".desktop-nav a, .mobile-nav a")];
 const languageToggle = document.querySelector(".language-toggle");
 const themeToggle = document.querySelector(".theme-toggle");
@@ -166,6 +166,75 @@ let currentTheme = localStorage.getItem("portfolio-theme") === "light" ? "light"
 
 const translate = (key) => translations[currentLanguage][key] || key;
 
+// QA-02 / QA-05：英文模式下的属性层与局部文本（不改 HTML、不新增翻译键）
+const localizedAttributes = [
+  { selector: "a.brand", attribute: "aria-label", zh: "Shadowyli 首页", en: "Shadowyli home" },
+  { selector: "nav.desktop-nav", attribute: "aria-label", zh: "主导航", en: "Main navigation" },
+  { selector: "nav.mobile-nav", attribute: "aria-label", zh: "移动端导航", en: "Mobile navigation" },
+  { selector: ".profile-hero", attribute: "aria-label", zh: "Shadowyli 个人封面", en: "Shadowyli cover" },
+  { selector: ".profile-avatar", attribute: "alt", zh: "李颖 LI YING 的头像", en: "Li Ying (LI YING) avatar" },
+  { selector: ".profile-meta", attribute: "aria-label", zh: "个人信息", en: "Personal information" },
+  { selector: ".featured-projects", attribute: "aria-label", zh: "精选作品", en: "Featured projects" },
+  { selector: ".project-grid", attribute: "aria-label", zh: "作品列表", en: "Project list" },
+  { selector: ".project-card-link", attribute: "aria-label", zh: "查看项目案例：大屏视觉 · 《全明星街球派对》DCDG 全球冠军赛", en: "View case study: Large-Screen Visuals · All-Star Streetball Party DCDG Global Championship" },
+  { selector: ".language-tags", attribute: "aria-label", zh: "语言能力", en: "Languages" },
+  { selector: ".qr-image", attribute: "alt", zh: "影子的微信二维码", en: "Shadowyli WeChat QR code" },
+  { selector: ".dialog-close", attribute: "aria-label", zh: "关闭", en: "Close" },
+  { selector: 'img[src="assets/mengshou-cover.webp"]', attribute: "alt", zh: "《梦幻西游》手游巅峰联赛赛事品牌美术规划封面", en: "Fantasy Westward Journey Mobile Peak League brand art cover" },
+  { selector: 'img[src="assets/danzai-cover.webp"]', attribute: "alt", zh: "第三届蛋仔派对全国总决赛主 KV", en: "Eggy Party 3rd National Finals key visual" },
+  { selector: 'img[src="assets/campaign-cover.webp"]', attribute: "alt", zh: "COA 2025 全球总决赛冠军海报", en: "COA 2025 Global Finals championship poster" },
+  { selector: 'img[src="assets/large-screen-cover.webp"]', attribute: "alt", zh: "《全明星街球派对》DCDG 全球冠军赛大屏视觉舞台设计", en: "All-Star Streetball Party DCDG Global Championship large-screen stage design" },
+  { selector: 'img[src="assets/merchandise-cover.webp"]', attribute: "alt", zh: "王牌竞速星芒争锋赛奖牌渲染三视图", en: "Ace Racer Star Radiance Championship medal render, three views" },
+  { selector: 'img[src="assets/stage-design-cover.webp"]', attribute: "alt", zh: "蓝色电竞赛事舞台舞美设计", en: "Blue esports stage set design" },
+  { selector: 'img[src="assets/ai-pipeline-cover.webp"]', attribute: "alt", zh: "ComfyUI AI 图像生成工作流管线开发界面", en: "ComfyUI AI image generation workflow pipeline interface" }
+];
+
+const localizedTexts = [
+  { selector: ".project-card-cta", zh: "查看项目 →", en: "View project →" }
+];
+
+// QA-06：空状态元素由页面静态提供（#empty-state），这里只负责显隐与文案
+const getEmptyState = () => document.querySelector("#empty-state, .empty-state");
+
+const emptyStateCopy = {
+  zh: { title: "没有找到相关作品", hint: "换个关键词试试，或清空搜索框查看全部作品。" },
+  en: { title: "No projects found", hint: "Try another keyword, or clear the search to see all projects." }
+};
+
+const updateEmptyStateText = (language) => {
+  const container = getEmptyState();
+  if (!container) return;
+  const copy = emptyStateCopy[language] || emptyStateCopy.zh;
+  const titleNode = container.querySelector("[data-empty-title], h3, h2, strong");
+  const hintNode = container.querySelector("[data-empty-text], p");
+  if (!titleNode && !hintNode) {
+    if (container.childElementCount === 0) {
+      container.textContent = language === "zh"
+        ? `${copy.title}，${copy.hint}`
+        : `${copy.title}. ${copy.hint}`;
+    }
+    return;
+  }
+  if (titleNode) titleNode.textContent = copy.title;
+  if (hintNode) hintNode.textContent = copy.hint;
+};
+
+const applyLocalizedAttributes = (language) => {
+  localizedAttributes.forEach(({ selector, attribute, zh, en }) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.setAttribute(attribute, language === "zh" ? zh : en);
+    });
+  });
+
+  localizedTexts.forEach(({ selector, zh, en }) => {
+    document.querySelectorAll(selector).forEach((element) => {
+      element.textContent = language === "zh" ? zh : en;
+    });
+  });
+
+  updateEmptyStateText(language);
+};
+
 const updateTimelineHint = () => {
   const maxScroll = timelineScroll.scrollWidth - timelineScroll.clientWidth;
   timelineShell.classList.toggle("no-overflow", maxScroll <= 2);
@@ -188,10 +257,22 @@ const applyTheme = (theme) => {
 
 const updateAge = () => {
   const birthYear = Number(ageElement.dataset.birthYear);
-  const age = new Date().getFullYear() - birthYear;
+  if (!Number.isFinite(birthYear)) return;
+  const birthMonth = Number(ageElement.dataset.birthMonth);
+  const birthDay = Number(ageElement.dataset.birthDay);
+  const today = new Date();
+  let age = today.getFullYear() - birthYear;
+
+  // 生日已过与否：只有数据里带了月/日才能精确判断，缺字段时退化为按年计算
+  if (Number.isFinite(birthMonth) && Number.isFinite(birthDay) && birthMonth >= 1 && birthDay >= 1) {
+    const currentMonth = today.getMonth() + 1;
+    const hasHadBirthday = currentMonth > birthMonth || (currentMonth === birthMonth && today.getDate() >= birthDay);
+    if (!hasHadBirthday) age -= 1;
+  }
+
   ageElement.textContent = currentLanguage === "zh"
-    ? `${age}岁（2001年）`
-    : `${age} years old (Born 2001)`;
+    ? `${age}岁（${birthYear}年）`
+    : `${age} years old (Born ${birthYear})`;
 };
 
 const applyLanguage = (language) => {
@@ -213,6 +294,13 @@ const applyLanguage = (language) => {
   document.querySelector(".profile-sidebar").setAttribute("aria-label", language === "zh" ? "个人资料" : "Profile");
   timelineScroll.setAttribute("aria-label", translate("timelineScrollLabel"));
   document.title = language === "zh" ? "Shadowyli - 个人作品集" : "Shadowyli - Portfolio";
+  const metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute("content", language === "zh"
+      ? "Shadowyli 的个人作品集。"
+      : "Portfolio of Shadowyli — event screen design and visual creatives.");
+  }
+  applyLocalizedAttributes(language);
   localStorage.setItem("portfolio-language", language);
   applyTheme(currentTheme);
 };
@@ -220,6 +308,19 @@ const applyLanguage = (language) => {
 const normalize = (value) => value.trim().toLocaleLowerCase("zh-CN");
 
 let dialogTrigger = null;
+let dialogCloseBound = false;
+
+const getFocusableElements = (container) => [...container.querySelectorAll(
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+)].filter((element) => !element.hidden && element.getClientRects().length > 0);
+
+const bindDialogCloseButton = () => {
+  if (dialogCloseBound) return;
+  const closeButton = contactDialog.querySelector(".dialog-close");
+  if (!closeButton) return;
+  closeButton.addEventListener("click", closeContactDialog);
+  dialogCloseBound = true;
+};
 
 const openContactDialog = () => {
   dialogTrigger = document.activeElement;
@@ -229,7 +330,9 @@ const openContactDialog = () => {
   });
   contactDialog.hidden = false;
   document.body.classList.add("dialog-open");
-  contactDialog.focus();
+  bindDialogCloseButton();
+  const focusable = getFocusableElements(contactDialog);
+  (focusable[0] || contactDialog).focus();
 };
 
 const closeContactDialog = () => {
@@ -253,21 +356,62 @@ const filterProjects = () => {
     if (matched) visibleCount += 1;
   });
 
-  if (emptyState) {
-    emptyState.hidden = visibleCount !== 0;
+  const emptyStateElement = getEmptyState();
+  if (emptyStateElement) {
+    emptyStateElement.hidden = visibleCount !== 0;
+    if (visibleCount === 0 && query) updateEmptyStateText(currentLanguage);
   }
   resultsMessage.textContent = query
     ? currentLanguage === "zh"
       ? `找到 ${visibleCount} 个与“${searchInput.value.trim()}”相关的作品`
       : `${visibleCount} result${visibleCount === 1 ? "" : "s"} for "${searchInput.value.trim()}"`
     : "";
+
+  // 空状态已给出「没有找到」的视觉信息时，计数行只留给读屏，避免视觉重复。
+  // .results-message 自带 min-height/margin，这里补内联复位让 .sr-only 真正收起。
+  const hideCountForEmpty = Boolean(query) && visibleCount === 0 && Boolean(emptyStateElement);
+  resultsMessage.classList.toggle("sr-only", hideCountForEmpty);
+  if (hideCountForEmpty) {
+    resultsMessage.style.minHeight = "0";
+    resultsMessage.style.margin = "0";
+  } else {
+    resultsMessage.style.removeProperty("min-height");
+    resultsMessage.style.removeProperty("margin");
+  }
 };
 
 searchInput.addEventListener("input", filterProjects);
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Tab" && !contactDialog.hidden) {
+    const focusable = getFocusableElements(contactDialog);
+    if (focusable.length === 0) {
+      event.preventDefault();
+      contactDialog.focus();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const isInside = contactDialog.contains(document.activeElement);
+    if (event.shiftKey) {
+      if (!isInside || document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (!isInside || document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+    return;
+  }
+
   if (event.key === "Escape" && !contactDialog.hidden) {
     closeContactDialog();
+    return;
+  }
+
+  if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+    setMenuState(false);
     return;
   }
 
@@ -376,23 +520,35 @@ timelineScroll.addEventListener("pointercancel", stopTimelineDrag);
 timelineScroll.addEventListener("scroll", updateTimelineHint, { passive: true });
 window.addEventListener("resize", updateTimelineHint);
 
-menuButton.addEventListener("click", () => {
-  const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-  menuButton.setAttribute("aria-expanded", String(!isOpen));
-  menuButton.setAttribute("aria-label", isOpen ? translate("openMenu") : translate("closeMenu"));
-  mobileNav.hidden = isOpen;
-  menuButton.innerHTML = `<i data-lucide="${isOpen ? "menu" : "x"}" aria-hidden="true"></i>`;
+const setMenuState = (open) => {
+  menuButton.setAttribute("aria-expanded", String(open));
+  menuButton.setAttribute("aria-label", open ? translate("closeMenu") : translate("openMenu"));
+  mobileNav.hidden = !open;
+  menuButton.innerHTML = `<i data-lucide="${open ? "x" : "menu"}" aria-hidden="true"></i>`;
   if (window.lucide) window.lucide.createIcons();
+};
+
+// 菜单图标在点击时会被 innerHTML 替换，事件目标随即脱离文档，
+// 因此用一次性标记跳过同一次点击的「点击外部关闭」判断。
+let menuClickHandled = false;
+
+menuButton.addEventListener("click", () => {
+  menuClickHandled = true;
+  window.setTimeout(() => { menuClickHandled = false; }, 0);
+  setMenuState(menuButton.getAttribute("aria-expanded") !== "true");
 });
 
 mobileNav.addEventListener("click", (event) => {
   if (event.target.closest("a")) {
-    mobileNav.hidden = true;
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", translate("openMenu"));
-    menuButton.innerHTML = '<i data-lucide="menu" aria-hidden="true"></i>';
-    if (window.lucide) window.lucide.createIcons();
+    setMenuState(false);
   }
+});
+
+document.addEventListener("click", (event) => {
+  if (menuClickHandled) return;
+  if (menuButton.getAttribute("aria-expanded") !== "true") return;
+  if (event.target.closest(".menu-button") || event.target.closest(".mobile-nav")) return;
+  setMenuState(false);
 });
 
 const hashForTab = (tab) => tab === "about" ? "#about" : "#portfolio";
@@ -431,6 +587,25 @@ tabButtons.forEach((button) => {
   });
 });
 
+tabList.addEventListener("keydown", (event) => {
+  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+
+  const currentIndex = tabButtons.indexOf(document.activeElement);
+  const selectedIndex = tabButtons.findIndex((tab) => tab.getAttribute("aria-selected") === "true");
+  const index = currentIndex === -1 ? Math.max(selectedIndex, 0) : currentIndex;
+  let nextIndex = index;
+
+  if (event.key === "ArrowLeft") nextIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+  else if (event.key === "ArrowRight") nextIndex = (index + 1) % tabButtons.length;
+  else if (event.key === "Home") nextIndex = 0;
+  else nextIndex = tabButtons.length - 1;
+
+  event.preventDefault();
+  const nextTab = tabButtons[nextIndex];
+  nextTab.focus();
+  if (nextTab.getAttribute("aria-selected") !== "true") nextTab.click();
+});
+
 primaryNavLinks.forEach((link) => {
   link.addEventListener("click", () => {
     activateTab(link.getAttribute("href") === "#about" ? "about" : "work");
@@ -457,6 +632,7 @@ themeToggle.addEventListener("click", () => {
   applyTheme(currentTheme === "dark" ? "light" : "dark");
 });
 
+bindDialogCloseButton();
 applyLanguage(currentLanguage);
 requestAnimationFrame(updateTimelineHint);
 
