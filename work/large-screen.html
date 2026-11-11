@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-45">
+  <link rel="stylesheet" href="../styles.css?v=20261111-46">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -56,7 +56,7 @@
         </figure>
         <div class="case-media-grid case-slots">
           <figure>
-            <img src="../assets/large-screen-b1.webp" alt="DCDG 全球冠军赛主视觉延展 1-B1" width="3328" height="1152" loading="lazy" decoding="async">
+            <video class="case-slot-video" src="../assets/large-screen-1-b1.mp4" poster="../assets/large-screen-b1.webp" muted playsinline preload="metadata" aria-label="DCDG 全球冠军赛主视觉延展 1-B1"></video>
           </figure>
           <figure>
             <img src="../assets/large-screen-b2.webp" alt="DCDG 全球冠军赛主视觉延展 1-B2" width="3328" height="1152" loading="lazy" decoding="async">
@@ -548,6 +548,39 @@
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var video = document.querySelector(".case-slot-video");
+      if (!video) return;
+      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      function play() {
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      }
+
+      if (canHover) {
+        var figure = video.closest("figure");
+        figure.addEventListener("pointerenter", play);
+        figure.addEventListener("pointerleave", function () {
+          video.pause();
+          video.currentTime = 0;
+        });
+      } else {
+        var observer = new IntersectionObserver(function (entries, instance) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            instance.disconnect();
+            play();
+          });
+        }, { threshold: 0.4 });
+        observer.observe(video);
+        video.addEventListener("click", function () {
+          if (video.paused) play();
+        });
+      }
     })();
   </script>
 </body>

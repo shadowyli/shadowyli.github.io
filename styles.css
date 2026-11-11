@@ -1443,6 +1443,15 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   aspect-ratio: 3328 / 1152;
 }
 
+.case-slot-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3328 / 1152;
+  object-fit: cover;
+  background: var(--surface);
+}
+
 .case-media-grid img {
   display: block;
   width: 100%;
