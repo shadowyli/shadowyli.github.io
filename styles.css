@@ -1395,6 +1395,15 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   height: auto;
 }
 
+.ivl-banners {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.ivl-banners .case-frame--image { margin: 0; }
+
 .case-hero-cover {
   display: block;
   width: 100%;
