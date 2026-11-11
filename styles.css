@@ -1563,6 +1563,31 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-related + .case-section { margin-top: clamp(56px, 8vw, 96px); }
 
+.mobile-play {
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #17161a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.mobile-play svg { width: 16px; height: 16px; }
+
+@media (max-width: 720px) {
+  .mobile-play { display: inline-flex; }
+}
+
 @media (max-width: 720px) {
   .case-related-grid { grid-template-columns: 1fr; gap: 16px; }
 }

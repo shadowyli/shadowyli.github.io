@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261111-58">
+  <link rel="stylesheet" href="../styles.css?v=20261111-59">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -200,6 +200,11 @@
     </div>
     <p class="dialog-hint">长按图片保存二维码</p>
   </div>
+
+  <button class="mobile-play" type="button" aria-label="播放当前可见视频">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    <span data-i18n-key="playAll">播放</span>
+  </button>
   <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
   <script>
     (function () {
@@ -360,6 +365,7 @@
           relatedCampaign: "宣发设计",
           relatedMerch: "周边物料",
           relatedStage: "舞美设计",
+          playAll: "播放",
           ivlCredit: "3D ＆ 视觉设计：影子（李颖） | 生长动画设计：影子（李颖） | 动画设计：郑斯锴",
           section1Body: "DCDG 全球冠军赛是《全明星街球派对》的线下赛事舞台。场地采用环形 LED 主屏加环绕灯带的结构，观众席与直播机位围绕球场分布，视觉需要在任意角度、任意镜头切换中都保持完整。",
           section2Title: "我的工作",
@@ -412,6 +418,7 @@
           relatedCampaign: "Campaign Design",
           relatedMerch: "Merchandise",
           relatedStage: "Stage Design",
+          playAll: "Play",
           ivlCredit: "3D & visual design: Shadow (Li Ying) | Growth animation: Shadow (Li Ying) | Animation: Zheng Sikai",
           section1Body: "The DCDG Global Championship is the offline tournament stage for All-Star Streetball Party. The venue pairs a circular LED main screen with a wraparound light band, with seating and broadcast cameras arranged around the court, so the visuals have to hold up from any angle and through every camera cut.",
           section2Title: "My Role",
@@ -710,6 +717,34 @@
         if (button) button.addEventListener("click", play);
         document.addEventListener("WeixinJSBridgeReady", play, false);
         play();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var button = document.querySelector(".mobile-play");
+      if (!button) return;
+      if (!window.matchMedia("(max-width: 720px)").matches) return;
+
+      function isVisible(element) {
+        var rect = element.getBoundingClientRect();
+        var viewport = window.innerHeight || document.documentElement.clientHeight;
+        var overlap = Math.min(rect.bottom, viewport) - Math.max(rect.top, 0);
+        return overlap > Math.min(rect.height, viewport) * 0.3;
+      }
+
+      button.addEventListener("click", function () {
+        var videos = document.querySelectorAll("video");
+        Array.prototype.forEach.call(videos, function (video) {
+          if (!isVisible(video)) return;
+          video.muted = true;
+          var media = video.closest(".case-hero-media, .case-slot-media");
+          if (media) media.classList.add("is-playing");
+          var frame = video.closest(".case-frame-inner");
+          if (frame) frame.classList.remove("is-paused");
+          var promise = video.play();
+          if (promise && promise.catch) promise.catch(function () {});
+        });
       });
     })();
   </script>
