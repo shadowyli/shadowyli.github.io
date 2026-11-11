@@ -1371,6 +1371,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 }
 
 .case-frame-inner {
+  position: relative;
   display: grid;
   place-items: center;
   aspect-ratio: 16 / 9;
@@ -1381,6 +1382,27 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 .case-frame-hint { color: var(--text-muted); font-size: 13px; letter-spacing: 0.04em; }
 
 .case-frame-video { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+.case-video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(10, 9, 12, 0.6);
+  color: #fff;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(8px);
+}
+
+.case-video-play svg { width: 26px; height: 26px; margin-left: 3px; }
+.case-frame-inner.is-paused .case-video-play { display: grid; }
 
 .case-body h2 {
   display: flex;
@@ -1466,6 +1488,8 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 }
 
 @media (max-width: 720px) {
+  .case-main::before { display: none; }
+
   body.case-page {
     display: flex;
     flex-direction: column;
@@ -1563,7 +1587,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   .case-meta-item + .case-meta-item { border-top: 1px solid var(--line); }
   .case-meta dd { font-size: 13.5px; }
   .case-figure figcaption { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .case-media-grid, .case-media-grid--three { grid-template-columns: 1fr; }
+  .case-media-grid, .case-media-grid--three { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
 }
 
 /* Stage duo: on-site render vs flat artboard with a theme switcher */
