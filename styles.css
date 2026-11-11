@@ -1389,6 +1389,12 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-section .case-frame + .case-frame { margin-top: 6px; }
 
+.case-frame--image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .case-hero-cover {
   display: block;
   width: 100%;
