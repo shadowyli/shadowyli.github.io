@@ -27,7 +27,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-98">
+  <link rel="stylesheet" href="../styles.css?v=20261112-100">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 序言：胶囊 + 署名排成一行（与站内宣发设计案例页保持一致） */
@@ -164,7 +164,7 @@
       display: grid;
       /* 1 : 2 —— 分镜四列两行铺满整列高度时，视频列刚好与分镜板等高 */
       grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-      gap: clamp(10px, 1.2vw, 16px);
+      gap: 6px;
       align-items: start;
     }
     .case-video-split .case-media-slot { margin: 0; }
@@ -176,7 +176,7 @@
     .case-board {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(6px, 0.6vw, 8px);
+      gap: 6px;
       width: 100%;
     }
     .case-board figure { margin: 0; }

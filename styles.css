@@ -72,6 +72,7 @@
   --header-height: 64px;
   --sidebar-width: 300px;
   --radius: 6px;
+  --case-gap: clamp(32px, 4vw, 56px);
   --font-cjk: "Source Han Sans CN", "思源黑体 CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   color-scheme: dark;
 }
@@ -1564,9 +1565,9 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-slot-media.is-playing .case-slot-video { opacity: 1; }
 
-.case-related { margin-top: clamp(56px, 8vw, 96px); }
+.case-related { margin-top: var(--case-gap); }
 
-.case-body .case-divider { margin: 56px 0; }
+.case-body .case-divider { margin: calc(var(--case-gap) / 2) 0; }
 
 .case-stats {
   display: grid;
@@ -1631,7 +1632,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-related-card:hover span { color: var(--text); }
 
-.case-related + .case-section { margin-top: clamp(56px, 8vw, 96px); }
+.case-related + .case-section { margin-top: var(--case-gap); }
 
 .mobile-play {
   position: fixed;
@@ -1771,7 +1772,13 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-body p:last-child { margin-bottom: 0; }
 
-.case-section + .case-section { margin-top: clamp(64px, 9vw, 120px); }
+.case-section + .case-section { margin-top: var(--case-gap); }
+
+/* 分割线两侧各占一半间距，使「相邻区块」与「中间隔分割线」的总间距一致 */
+.case-body .case-divider.case-related-divider,
+.case-body .case-divider.case-echo-divider { margin: calc(var(--case-gap) / 2) 0; }
+
+.case-body #case-gallery-video { margin-top: var(--case-gap); }
 
 .case-footer {
   display: flex;
