@@ -241,6 +241,7 @@
       position: absolute;
       left: 50%;
       top: 50%;
+      z-index: 2;
       display: block;
       width: 72%;
       height: 72%;
@@ -258,17 +259,15 @@
     .orbit-ring {
       position: absolute;
       inset: 0;
-      z-index: 2;
-      animation: orbit-spin 84s linear infinite;
-      will-change: transform;
     }
 
     .orbit-slot {
       position: absolute;
-      left: var(--x);
-      top: var(--y);
+      left: 50%;
+      top: 50%;
       margin: 0;
       transform: translate(-50%, -50%);
+      will-change: transform;
     }
 
     .orbit-card {
@@ -276,8 +275,7 @@
       display: block;
       width: var(--w, 160px);
       background: var(--surface);
-      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.5);
-      animation: orbit-counter 84s linear infinite;
+      box-shadow: 0 22px 50px rgba(0, 0, 0, 0.55);
     }
 
     .orbit-card img {
@@ -285,24 +283,6 @@
       width: 100%;
       height: auto;
       transform: rotate(var(--tilt, 0deg));
-    }
-
-    @keyframes orbit-spin {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes orbit-counter {
-      to { transform: rotate(-360deg); }
-    }
-
-    .orbit-stage:hover .orbit-ring,
-    .orbit-stage:hover .orbit-card {
-      animation-play-state: paused;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .orbit-ring,
-      .orbit-card { animation: none; }
     }
 
     @media (max-width: 720px) {
@@ -449,49 +429,49 @@
           <canvas class="globe-canvas" aria-hidden="true"></canvas>
           <div class="orbit-ring">
             <figure class="orbit-slot" style="--x: 50%; --y: 14%">
-              <span class="orbit-card" style="--w: 180px; --tilt: -4deg">
+              <span class="orbit-card" style="--w: 120px; --tilt: -4deg">
                 <span class="social-badge" data-i18n-key="badgeTwitter10k">推特万转</span>
                 <img src="../assets/social-coa-twitter.webp" alt="《第五人格》COA 万转推特帖子截图" width="747" height="1017" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 75.5%; --y: 24.5%">
-              <span class="orbit-card" style="--w: 196px; --tilt: 3deg">
+              <span class="orbit-card" style="--w: 132px; --tilt: 3deg">
                 <span class="social-badge social-badge--long" data-i18n-key="badgeTwitter35w">推特 35w+ 曝光 · 高互动万赞热帖</span>
                 <img src="../assets/social-coa-hotpost.webp" alt="《第五人格》COA 千转热帖截图" width="744" height="1028" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 86%; --y: 50%">
-              <span class="orbit-card" style="--w: 172px; --tilt: 2deg">
+              <span class="orbit-card" style="--w: 115px; --tilt: 2deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
                 <img src="../assets/social-coa-douyin.webp" alt="《第五人格》COA 抖音千赞截图" width="1100" height="551" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 75.5%; --y: 75.5%">
-              <span class="orbit-card" style="--w: 146px; --tilt: -3deg">
+              <span class="orbit-card" style="--w: 98px; --tilt: -3deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
                 <img src="../assets/social-douyin-10k.webp" alt="抖音万赞截图" width="793" height="1100" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 50%; --y: 86%">
-              <span class="orbit-card" style="--w: 192px; --tilt: 2deg">
+              <span class="orbit-card" style="--w: 129px; --tilt: 2deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
                 <img src="../assets/social-douyin-10k-2.webp" alt="抖音万赞截图 2" width="1100" height="647" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 24.5%; --y: 75.5%">
-              <span class="orbit-card" style="--w: 150px; --tilt: 4deg">
+              <span class="orbit-card" style="--w: 101px; --tilt: 4deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
                 <img src="../assets/social-eggy-douyin.webp" alt="《蛋仔派对》抖音千赞截图" width="792" height="1100" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 14%; --y: 50%">
-              <span class="orbit-card" style="--w: 176px; --tilt: -2deg">
+              <span class="orbit-card" style="--w: 118px; --tilt: -2deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
                 <img src="../assets/social-eggy-10k.webp" alt="《蛋仔派对》万赞截图" width="1100" height="551" loading="lazy" decoding="async">
               </span>
             </figure>
             <figure class="orbit-slot" style="--x: 24.5%; --y: 24.5%">
-              <span class="orbit-card" style="--w: 152px; --tilt: 3deg">
+              <span class="orbit-card" style="--w: 102px; --tilt: 3deg">
                 <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
                 <img src="../assets/social-nsh-douyin.webp" alt="《逆水寒》大屏万赞抖音截图" width="1100" height="551" loading="lazy" decoding="async">
               </span>
@@ -887,6 +867,91 @@
           visible = entries.some(function (entry) { return entry.isIntersecting; });
         }, { threshold: 0 }).observe(canvas);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var stage = document.querySelector(".orbit-stage");
+      if (!stage) return;
+      var slots = Array.prototype.slice.call(stage.querySelectorAll(".orbit-slot"));
+      if (!slots.length) return;
+
+      var mobile = window.matchMedia("(max-width: 720px)");
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var latitudes = [-30, -13, 1, 17, 30, 21, -20, 7];
+      var focal = 820;
+      var speed = 0.000105;
+      var t = 0;
+      var last = 0;
+      var paused = false;
+      var raf = 0;
+      var W = 0;
+      var H = 0;
+      var R = 0;
+
+      function measure() {
+        W = stage.clientWidth;
+        H = stage.clientHeight;
+        R = Math.min(W, H) * 0.405;
+      }
+
+      function reset() {
+        slots.forEach(function (slot) {
+          slot.style.transform = "";
+          slot.style.zIndex = "";
+          slot.style.opacity = "";
+        });
+      }
+
+      function place() {
+        var cx = W / 2;
+        var cy = H / 2;
+        for (var i = 0; i < slots.length; i++) {
+          var lat = (latitudes[i] * Math.PI) / 180;
+          var lon = t + (i * Math.PI * 2) / slots.length;
+          var x = R * Math.cos(lat) * Math.sin(lon);
+          var y = -R * Math.sin(lat) * 0.62;
+          var z = R * Math.cos(lat) * Math.cos(lon);
+          var depth = focal / (focal - z);
+          var wrap = (Math.cos(lon) + 1) / 2;
+          var squeeze = 0.62 + 0.38 * wrap;
+          var tilt = -12 * Math.sin(lon);
+          var slot = slots[i];
+          slot.style.transform =
+            "translate(-50%, -50%) translate3d(" +
+            x.toFixed(1) + "px, " + y.toFixed(1) + "px, 0) rotate(" + tilt.toFixed(2) + "deg) scale(" +
+            (depth * squeeze).toFixed(3) + ", " + depth.toFixed(3) + ")";
+          slot.style.zIndex = z > 0 ? "6" : "1";
+          slot.style.opacity = z > -R * 0.2 ? "1" : "0.4";
+        }
+      }
+
+      function frame(now) {
+        if (!last) last = now;
+        var dt = Math.min(now - last, 64);
+        last = now;
+        if (!paused && !reduce.matches) t += dt * speed;
+        place();
+        raf = window.requestAnimationFrame(frame);
+      }
+
+      function start() {
+        window.cancelAnimationFrame(raf);
+        if (mobile.matches) {
+          reset();
+          return;
+        }
+        measure();
+        last = 0;
+        raf = window.requestAnimationFrame(frame);
+      }
+
+      start();
+      window.addEventListener("resize", start);
+      if (mobile.addEventListener) mobile.addEventListener("change", start);
+
+      stage.addEventListener("pointerenter", function () { paused = true; });
+      stage.addEventListener("pointerleave", function () { paused = false; });
     })();
   </script>
 </body>
