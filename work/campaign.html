@@ -32,6 +32,31 @@
     .case-body .case-pair + .case-frame {
       margin-top: 6px;
     }
+
+    /* 排版规则：① 同一游戏相邻 ② 竖版 2–3 张一行 ③ 横版主要单独一行、次要两张一行 ④ banner 单独一行 */
+    .case-gallery { display: block; }
+
+    .case-row { margin: 0; }
+
+    .case-row + .case-row { margin-top: 6px; }
+
+    .case-row > .case-frame { margin: 0; }
+
+    .case-row[data-layout="portrait"] {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-row[data-layout="secondary"] {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    @media (max-width: 720px) {
+      .case-row[data-layout="portrait"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
   </style>
 </head>
 <body class="case-page">
@@ -60,24 +85,37 @@
     <div class="case-body case-body--flush">
       <p class="case-credit-top" data-i18n-key="creditLine">3D &amp; 视觉设计：影子（李颖）</p>
 
-      <section class="case-section">
-        <div class="case-pair">
-          <figure class="case-pair-item">
+      <section class="case-section case-gallery">
+        <!-- 《第五人格》COA VIII · 横版主要：单独一行 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-cover.webp" alt="2025 COA VIII 全球总决赛冠军海报：ZETA DIVISION 战队群像与金色奖杯" data-i18n-alt="heroAlt" width="1920" height="1080" decoding="async" fetchpriority="high">
           </figure>
-          <figure class="case-pair-item">
+        </div>
+        <!-- 《第五人格》COA VIII · 竖版：2–3 张一行 -->
+        <div class="case-row" data-layout="portrait">
+          <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
         </div>
-        <figure class="case-frame case-frame--image">
-          <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
-        </figure>
-        <figure class="case-frame case-frame--image">
-          <img src="../assets/campaign-kv-ms.webp" alt="《梦幻西游》手游巅峰联赛主视觉：金色奖杯与环绕光带" data-i18n-alt="kvAlt" width="1840" height="1015" loading="lazy" decoding="async">
-        </figure>
-        <figure class="case-frame case-frame--image">
-          <img src="../assets/campaign-trophy-ms.webp" alt="《梦幻西游》手游巅峰联赛奖杯视觉：暗场中的金色徽章" data-i18n-alt="trophyAlt" width="1840" height="760" loading="lazy" decoding="async">
-        </figure>
+        <!-- 《蛋仔派对》· 横版主要：单独一行 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 · 横版主要：单独一行 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-kv-ms.webp" alt="《梦幻西游》手游巅峰联赛主视觉：金色奖杯与环绕光带" data-i18n-alt="kvAlt" width="1840" height="1015" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 · banner：单独一行 -->
+        <div class="case-row" data-layout="banner">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-trophy-ms.webp" alt="《梦幻西游》手游巅峰联赛奖杯视觉：暗场中的金色徽章" data-i18n-alt="trophyAlt" width="1840" height="760" loading="lazy" decoding="async">
+          </figure>
+        </div>
       </section>
 
       <div class="case-divider" aria-hidden="true"></div>
