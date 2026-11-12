@@ -127,6 +127,32 @@
       height: auto;
     }
 
+    /* 动画静帧垫底：播放结束后回到静图，而不是视频首帧 */
+    .case-media-slot {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .case-media-slot > img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .case-media-slot > video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 240ms ease;
+    }
+
+    .case-media-slot.is-playing > video { opacity: 1; }
+
     /* 活动横幅：由外层 banner-grid 统一三列，手机两列保证文字可读 */
     .case-row[data-layout="banners"] {
       display: grid;
@@ -436,13 +462,15 @@
           </figure>
         </div>
         <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--video">
+          <figure class="case-frame case-frame--video case-media-slot">
+            <img src="../assets/campaign-coa-arson.webp?v=20261112c" alt="《第五人格》COA 纵火练习主题插画：废墟中燃烧的摇滚角色" width="1920" height="888" loading="lazy" decoding="async">
             <video class="case-frame-video" src="../assets/campaign-coa-arson.mp4" poster="../assets/campaign-coa-arson.webp?v=20261112c" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" style="aspect-ratio: 1920 / 890" aria-label="《第五人格》COA 纵火练习动画"></video>
           </figure>
         </div>
         <!-- 《第五人格》IVS 倒计时动画 -->
         <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--video">
+          <figure class="case-frame case-frame--video case-media-slot">
+            <img src="../assets/campaign-ivs-countdown-poster.webp" alt="2025 第五人格 IVS 倒计时动画静帧" width="4608" height="1664" loading="lazy" decoding="async">
             <video class="case-frame-video" src="../assets/campaign-ivs-countdown.mp4" poster="../assets/campaign-ivs-countdown-poster.webp" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" style="aspect-ratio: 4608 / 1664" aria-label="2025 第五人格 IVS 倒计时动画"></video>
           </figure>
         </div>
@@ -1386,8 +1414,14 @@
 
       videos.forEach(function (video) {
         video.addEventListener("click", function () { play(video); });
+        video.addEventListener("playing", function () {
+          var slot = video.closest(".case-media-slot");
+          if (slot) slot.classList.add("is-playing");
+        });
         video.addEventListener("ended", function () {
           try { video.currentTime = 0; } catch (error) {}
+          var slot = video.closest(".case-media-slot");
+          if (slot) slot.classList.remove("is-playing");
         });
       });
 
@@ -1405,6 +1439,7 @@
           } else if (!entry.isIntersecting) {
             delete entry.target.dataset.played;
             if (!video.paused) video.pause();
+            entry.target.classList.remove("is-playing");
           }
         });
       }, { threshold: [0, 0.35] });
