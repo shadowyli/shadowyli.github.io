@@ -78,11 +78,21 @@
       background: #000;
     }
 
+    /* 抖音播放器宽度低于 720px 会切成竖版外壳，这里固定用横版播放器等比缩放填满窗口 */
+    @media (max-width: 828px) {
+      .douyin-window iframe {
+        width: 760px;
+        height: 427.5px;
+        max-width: none;
+        transform: scale(var(--douyin-scale, 0.45));
+        transform-origin: top left;
+      }
+    }
+
     @media (max-width: 720px) {
       .douyin-embed { margin-top: 32px; }
       .douyin-window {
-        width: min(100%, 320px);
-        aspect-ratio: 9 / 16;
+        width: 100%;
         margin: 0 auto;
         border-radius: 10px;
       }
@@ -1872,6 +1882,24 @@
         reel.classList.add("is-gl");
         window.requestAnimationFrame(frame);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var windows = document.querySelectorAll(".douyin-window");
+      if (!windows.length) return;
+      var playerWidth = 760;
+
+      function fit() {
+        Array.prototype.forEach.call(windows, function (win) {
+          var width = win.clientWidth;
+          if (width > 0) win.style.setProperty("--douyin-scale", width / playerWidth);
+        });
+      }
+
+      fit();
+      window.addEventListener("resize", fit, { passive: true });
+      window.addEventListener("orientationchange", fit);
     })();
   </script>
 </body>
