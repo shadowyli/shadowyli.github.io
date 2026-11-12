@@ -90,6 +90,8 @@
     @media (max-width: 720px) {
       .case-page .mobile-play { display: none; }
       .case-page .mobile-play.is-visible { display: inline-flex; }
+      /* 给底部浮层留出高度，滚到页脚时不会压住版权行与「联系我」 */
+      .case-page .case-footer { padding-bottom: 128px; }
     }
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
@@ -138,6 +140,11 @@
 
     /* 浅色主题下回声标题不能是白字（卡片本身是深色截图，标题跟随正文色） */
     :root[data-theme="light"] .case-body .social-sign { color: var(--text); }
+
+    /* 回声带上方的分割线：与蛋仔案例页同款，线上下各留白（插入分隔后段间 120px 自动不再叠加） */
+    .case-body .case-echo-divider {
+      margin: clamp(56px, 7vw, 88px) 0 clamp(18px, 2vw, 26px);
+    }
 
     .echo-reel {
       position: relative;
@@ -333,6 +340,8 @@
           </figure>
         </div>
       </section>
+
+      <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
       <section class="case-section case-echo" aria-labelledby="echo-sign">
         <p class="social-sign" id="echo-sign" data-i18n-key="socialSign">设计的回声</p>
