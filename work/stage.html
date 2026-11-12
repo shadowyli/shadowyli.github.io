@@ -117,6 +117,22 @@
     /* 标题与图之间只留一点呼吸，不沿用区块之间的默认大间距 */
     .case-gallery > h2 { margin-bottom: clamp(16px, 1.6vw, 22px); }
 
+    /* 2、3 两张舞台图并排一行；首图单独通栏 */
+    .case-gallery .case-row + .case-row { margin-top: 6px; }
+
+    .case-gallery .case-row[data-layout="secondary"] {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-gallery .case-row[data-layout="secondary"] > .case-frame { margin: 0; }
+
+    .case-gallery .case-row[data-layout="secondary"] .case-frame--image img {
+      width: 100%;
+      height: auto;
+    }
+
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
     @media (min-width: 721px) {
       body.case-page {
@@ -171,6 +187,9 @@
           <figure class="case-frame case-frame--image">
             <img src="../assets/stage-next-overview.webp" alt="网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏" data-i18n-alt="stageAlt1" width="1920" height="754" decoding="async">
           </figure>
+        </div>
+
+        <div class="case-row" data-layout="secondary">
           <figure class="case-frame case-frame--image">
             <img src="../assets/stage-next-front.webp" alt="网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光" data-i18n-alt="stageAlt2" width="1920" height="810" loading="lazy" decoding="async">
           </figure>
