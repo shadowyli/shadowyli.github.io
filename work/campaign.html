@@ -230,29 +230,123 @@
       margin-top: clamp(52px, 7vw, 96px);
     }
 
-    .globe-stage {
+    .orbit-stage {
       position: relative;
-      width: min(100%, 440px);
+      width: min(100%, 760px);
       margin: 0 auto;
       aspect-ratio: 1;
     }
 
-    .globe-canvas {
+    .orbit-stage .globe-canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
       display: block;
-      width: 100%;
-      height: 100%;
+      width: 72%;
+      height: 72%;
+      transform: translate(-50%, -50%);
       opacity: 0;
       cursor: grab;
       touch-action: pan-y;
       transition: opacity 900ms ease;
     }
 
-    .globe-canvas.is-ready { opacity: 1; }
+    .orbit-stage .globe-canvas.is-ready { opacity: 1; }
 
-    .globe-canvas.is-dragging { cursor: grabbing; }
+    .orbit-stage .globe-canvas.is-dragging { cursor: grabbing; }
+
+    .orbit-ring {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      animation: orbit-spin 84s linear infinite;
+      will-change: transform;
+    }
+
+    .orbit-slot {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      margin: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit-card {
+      position: relative;
+      display: block;
+      width: var(--w, 160px);
+      background: var(--surface);
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.5);
+      animation: orbit-counter 84s linear infinite;
+    }
+
+    .orbit-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transform: rotate(var(--tilt, 0deg));
+    }
+
+    @keyframes orbit-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes orbit-counter {
+      to { transform: rotate(-360deg); }
+    }
+
+    .orbit-stage:hover .orbit-ring,
+    .orbit-stage:hover .orbit-card {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .orbit-ring,
+      .orbit-card { animation: none; }
+    }
 
     @media (max-width: 720px) {
-      .globe-stage { width: min(100%, 300px); }
+      .orbit-stage { width: 100%; aspect-ratio: auto; }
+
+      .orbit-stage .globe-canvas {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(100%, 300px);
+        height: auto;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        transform: none;
+      }
+
+      .orbit-ring {
+        position: relative;
+        inset: auto;
+        display: flex;
+        gap: 8px;
+        margin-top: 18px;
+        padding: 4px 4px 10px;
+        overflow-x: auto;
+        animation: none;
+        scrollbar-width: none;
+      }
+
+      .orbit-ring::-webkit-scrollbar { display: none; }
+
+      .orbit-slot {
+        position: relative;
+        left: auto;
+        top: auto;
+        flex: 0 0 auto;
+        transform: none;
+      }
+
+      .orbit-card {
+        width: 128px;
+        animation: none;
+      }
+
+      .orbit-card .social-badge { display: none; }
     }
   </style>
 </head>
@@ -331,47 +425,6 @@
         </div>
       </section>
 
-      <div class="case-divider" aria-hidden="true"></div>
-      <section class="case-social" aria-label="社媒发布截图">
-        <div class="social-float" aria-label="社媒发布截图展示位">
-          <div class="social-track">
-            <div class="social-set">
-              <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeTwitter10k">推特万转</span>
-            <img src="../assets/social-coa-twitter.webp" alt="《第五人格》COA 万转推特帖子截图" width="747" height="1017" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge social-badge--long" data-i18n-key="badgeTwitter35w">推特 35w+ 曝光 · 高互动万赞热帖</span>
-            <img src="../assets/social-coa-hotpost.webp" alt="《第五人格》COA 千转热帖截图" width="744" height="1028" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
-            <img src="../assets/social-coa-douyin.webp" alt="《第五人格》COA 抖音千赞截图" width="1100" height="551" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
-            <img src="../assets/social-douyin-10k.webp" alt="抖音万赞截图" width="793" height="1100" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
-            <img src="../assets/social-douyin-10k-2.webp" alt="抖音万赞截图 2" width="1100" height="647" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
-            <img src="../assets/social-eggy-douyin.webp" alt="《蛋仔派对》抖音千赞截图" width="792" height="1100" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
-            <img src="../assets/social-eggy-10k.webp" alt="《蛋仔派对》万赞截图" width="1100" height="551" loading="lazy" decoding="async">
-          </figure>
-          <figure class="social-slot">
-                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
-            <img src="../assets/social-nsh-douyin.webp" alt="《逆水寒》大屏万赞抖音截图" width="1100" height="551" loading="lazy" decoding="async">
-              </figure>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <section class="case-related" aria-labelledby="related-title">
         <h2 id="related-title" data-i18n-key="relatedTitle">查看更多</h2>
@@ -392,8 +445,58 @@
       </section>
 
       <section class="globe-close" aria-labelledby="social-line">
-        <div class="globe-stage">
+        <div class="orbit-stage">
           <canvas class="globe-canvas" aria-hidden="true"></canvas>
+          <div class="orbit-ring">
+            <figure class="orbit-slot" style="--x: 50%; --y: 14%">
+              <span class="orbit-card" style="--w: 180px; --tilt: -4deg">
+                <span class="social-badge" data-i18n-key="badgeTwitter10k">推特万转</span>
+                <img src="../assets/social-coa-twitter.webp" alt="《第五人格》COA 万转推特帖子截图" width="747" height="1017" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 75.5%; --y: 24.5%">
+              <span class="orbit-card" style="--w: 196px; --tilt: 3deg">
+                <span class="social-badge social-badge--long" data-i18n-key="badgeTwitter35w">推特 35w+ 曝光 · 高互动万赞热帖</span>
+                <img src="../assets/social-coa-hotpost.webp" alt="《第五人格》COA 千转热帖截图" width="744" height="1028" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 86%; --y: 50%">
+              <span class="orbit-card" style="--w: 172px; --tilt: 2deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
+                <img src="../assets/social-coa-douyin.webp" alt="《第五人格》COA 抖音千赞截图" width="1100" height="551" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 75.5%; --y: 75.5%">
+              <span class="orbit-card" style="--w: 146px; --tilt: -3deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
+                <img src="../assets/social-douyin-10k.webp" alt="抖音万赞截图" width="793" height="1100" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 50%; --y: 86%">
+              <span class="orbit-card" style="--w: 192px; --tilt: 2deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
+                <img src="../assets/social-douyin-10k-2.webp" alt="抖音万赞截图 2" width="1100" height="647" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 24.5%; --y: 75.5%">
+              <span class="orbit-card" style="--w: 150px; --tilt: 4deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin1k">抖音千赞</span>
+                <img src="../assets/social-eggy-douyin.webp" alt="《蛋仔派对》抖音千赞截图" width="792" height="1100" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 14%; --y: 50%">
+              <span class="orbit-card" style="--w: 176px; --tilt: -2deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
+                <img src="../assets/social-eggy-10k.webp" alt="《蛋仔派对》万赞截图" width="1100" height="551" loading="lazy" decoding="async">
+              </span>
+            </figure>
+            <figure class="orbit-slot" style="--x: 24.5%; --y: 24.5%">
+              <span class="orbit-card" style="--w: 152px; --tilt: 3deg">
+                <span class="social-badge" data-i18n-key="badgeDouyin10k">抖音万赞</span>
+                <img src="../assets/social-nsh-douyin.webp" alt="《逆水寒》大屏万赞抖音截图" width="1100" height="551" loading="lazy" decoding="async">
+              </span>
+            </figure>
+          </div>
         </div>
         <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
       </section>
@@ -670,67 +773,6 @@
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
-    })();
-  </script>
-  <script>
-    (function () {
-      var stage = document.querySelector(".social-float");
-      if (!stage) return;
-      var track = stage.querySelector(".social-track");
-      var baseSet = stage.querySelector(".social-set");
-      if (track && baseSet && !track.querySelector(".social-set--clone")) {
-        var clone = baseSet.cloneNode(true);
-        clone.classList.add("social-set--clone");
-        clone.setAttribute("aria-hidden", "true");
-        Array.prototype.forEach.call(clone.querySelectorAll("img"), function (image) {
-          image.alt = "";
-        });
-        track.appendChild(clone);
-      }
-      var slots = Array.prototype.slice.call(stage.querySelectorAll(".social-slot"));
-      var depths = slots.map(function (slot) {
-        return parseFloat(getComputedStyle(slot).getPropertyValue("--depth")) || 0.6;
-      });
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var pointerX = 0;
-      var pointerY = 0;
-      var ticking = false;
-
-      function render() {
-        ticking = false;
-        var rect = stage.getBoundingClientRect();
-        var viewport = window.innerHeight || 1;
-        var center = rect.top + rect.height / 2 - viewport / 2;
-        slots.forEach(function (slot, index) {
-          var depth = depths[index];
-          slot.style.setProperty("--sy", (-center * depth * 0.2).toFixed(1) + "px");
-          slot.style.setProperty("--mx", (pointerX * depth * 34).toFixed(1) + "px");
-          slot.style.setProperty("--my", (pointerY * depth * 34).toFixed(1) + "px");
-        });
-      }
-
-      function request() {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(render);
-      }
-
-      if (reduce) return;
-
-      window.addEventListener("scroll", request, { passive: true });
-      window.addEventListener("resize", request);
-      stage.addEventListener("pointermove", function (event) {
-        var rect = stage.getBoundingClientRect();
-        pointerX = (event.clientX - rect.left) / rect.width - 0.5;
-        pointerY = (event.clientY - rect.top) / rect.height - 0.5;
-        request();
-      });
-      stage.addEventListener("pointerleave", function () {
-        pointerX = 0;
-        pointerY = 0;
-        request();
-      });
-      render();
     })();
   </script>
   <script type="module">
