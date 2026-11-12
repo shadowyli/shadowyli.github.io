@@ -103,76 +103,19 @@
       .case-row[data-layout="duo"] .case-frame--image img { height: auto; object-fit: contain; }
     }
 
-    /* 设计理念语录卡 */
+    /* 序言：一句主张 + 署名，不做语录卡 */
     .case-body .voice {
       position: relative;
-      display: grid;
-      grid-template-columns: clamp(76px, 8.6vw, 112px) minmax(0, 1fr);
-      margin: 0 0 clamp(36px, 5vw, 64px);
-      padding: clamp(30px, 4vw, 54px) 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-      overflow: hidden;
-      isolation: isolate;
-    }
-
-    .voice-mark {
-      position: absolute;
-      top: 50%;
-      left: 1%;
-      z-index: 0;
-      transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.055);
-      font-family: "Space Grotesk", var(--font-cjk);
-      font-size: clamp(150px, 19vw, 258px);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.06em;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .voice-side {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(14px, 1.8vw, 22px);
-      border-right: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-    }
-
-    .voice-label {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      color: var(--text-muted);
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.26em;
-      line-height: 1;
-    }
-
-    .voice-line {
       display: block;
-      position: relative;
-      width: 1px;
-      height: clamp(88px, 10vw, 148px);
-      background: color-mix(in srgb, var(--text) 14%, transparent);
-    }
-
-    .voice-line::after {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 62%;
-      background: var(--text);
+      margin: 0 0 clamp(22px, 2.6vw, 32px);
+      padding: clamp(14px, 1.6vw, 20px) 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
     }
 
     .voice-body {
       position: relative;
       z-index: 1;
-      padding: clamp(2px, 0.8vw, 8px) 0 clamp(2px, 0.8vw, 8px) clamp(26px, 3.6vw, 62px);
+      padding: 0;
     }
 
     .case-body .voice-pill {
@@ -180,8 +123,8 @@
       align-items: center;
       gap: 8px;
       max-width: none;
-      margin: 0 0 clamp(22px, 2.8vw, 34px);
-      padding: 4px 11px;
+      margin: 0 0 clamp(10px, 1.2vw, 14px);
+      padding: 3px 10px;
       border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
       border-radius: 999px;
       color: var(--text-muted);
@@ -200,14 +143,14 @@
 
     .case-body .voice-lead {
       width: 100%;
-      max-width: 17.5em;
-      margin: 0 0 clamp(28px, 3.6vw, 46px);
+      max-width: 40em;
+      margin: 0 0 clamp(12px, 1.4vw, 18px);
       color: var(--text);
-      font-size: clamp(26px, 3.5vw, 44px);
+      font-size: clamp(16px, 1.4vw, 21px);
       font-weight: 300;
-      line-height: 1.16;
-      letter-spacing: -0.015em;
-      text-wrap: balance;
+      line-height: 1.65;
+      letter-spacing: 0;
+      text-wrap: pretty;
     }
 
     .voice-author {
@@ -219,9 +162,9 @@
     .voice-rule {
       display: block;
       flex: none;
-      width: 30px;
+      width: 22px;
       height: 1px;
-      margin: 9px 0 0;
+      margin: 8px 0 0;
       background: var(--text);
     }
 
@@ -229,7 +172,7 @@
       margin: 0;
       max-width: none;
       color: var(--text);
-      font-size: 14.5px;
+      font-size: 13px;
       font-weight: 600;
       line-height: 1.4;
     }
@@ -238,21 +181,12 @@
       margin: 2px 0 0;
       max-width: none;
       color: var(--text-muted);
-      font-size: 12.5px;
+      font-size: 11.5px;
       line-height: 1.5;
     }
 
     @media (max-width: 720px) {
-      .case-body .voice {
-        grid-template-columns: minmax(0, 1fr);
-        padding: 24px 0;
-      }
-
-      .voice-side { display: none; }
-
-      .voice-body { padding: 0; }
-
-      .voice-mark { font-size: 108px; opacity: 0.6; }
+      .case-body .voice { padding: 16px 0; }
     }
 
     .case-body .globe-close {
@@ -408,13 +342,6 @@
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
       <section class="voice" aria-labelledby="voice-lead">
-        <span class="voice-mark" aria-hidden="true" data-i18n-key="voiceMark">宣发</span>
-
-        <div class="voice-side" aria-hidden="true">
-          <span class="voice-label" data-i18n-key="voiceLabel">设计理念</span>
-          <span class="voice-line"></span>
-        </div>
-
         <div class="voice-body">
           <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">宣发设计</span></p>
           <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">画面只有一个重心：该亮的先亮，其余退进暗部，把全部力气押在那一个瞬间。</p>
@@ -592,9 +519,7 @@
           metaYearValue: "2023—2025",
           section1Title: "《第五人格》COA VIII全球总决赛",
           socialSign: "设计的回声",
-          voiceLabel: "设计理念",
           voicePill: "宣发设计",
-          voiceMark: "宣发",
           voiceLead: "画面只有一个重心：该亮的先亮，其余退进暗部，把全部力气押在那一个瞬间。",
           voiceName: "影子（李颖）",
           voiceRole: "创意视觉设计",
@@ -649,9 +574,7 @@
           metaYearValue: "2023—2025",
           section1Title: "Identity V COA VIII Global Finals",
           socialSign: "The echo of design",
-          voiceLabel: "PHILOSOPHY",
           voicePill: "CAMPAIGN DESIGN",
-          voiceMark: "CAMPAIGN",
           voiceLead: "One focal point per frame: what should glow glows first, everything else recedes into the dark, and all the force goes into that one moment.",
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
