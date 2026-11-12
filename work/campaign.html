@@ -65,6 +65,21 @@
       z-index: 6;
     }
 
+    .case-body .social-eyebrow {
+      position: relative;
+      z-index: 6;
+      width: 100%;
+      max-width: none;
+      margin: 0 0 12px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      text-align: center;
+    }
+
     @media (max-width: 720px) {
       .case-row[data-layout="portrait"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -140,7 +155,8 @@
 
       <div class="case-divider" aria-hidden="true"></div>
       <section class="case-social" aria-labelledby="social-line">
-        <p class="case-social-line" id="social-line" data-i18n-key="socialLine">相信热爱的力量</p>
+        <p class="social-eyebrow" data-i18n-key="socialEyebrow">设计的回声</p>
+      <p class="case-social-line" id="social-line" data-i18n-key="socialLine">相信热爱的力量</p>
         <div class="social-float" aria-label="社媒发布截图展示位">
           <div class="social-track">
             <div class="social-set">
@@ -239,6 +255,7 @@
           metaYearValue: "2023—2025",
           section1Title: "《第五人格》COA VIII全球总决赛",
           creditLine: "3D & 视觉设计：影子（李颖）",
+          socialEyebrow: "设计的回声",
           socialLine: "相信热爱的力量",
           badgeTwitter10k: "推特万转",
           badgeTwitter1k: "推特千转",
@@ -291,6 +308,7 @@
           metaYearValue: "2023—2025",
           section1Title: "Identity V COA VIII Global Finals",
           creditLine: "3D & visual design: Shadow (Li Ying)",
+          socialEyebrow: "THE ECHO OF DESIGN",
           socialLine: "Believe in the power of passion.",
           badgeTwitter10k: "Twitter · 10K reposts",
           badgeTwitter1k: "Twitter · 1K reposts",
