@@ -42,6 +42,10 @@
 
     .case-row > .case-frame { margin: 0; }
 
+    .case-body .case-row > .case-frame { margin: 0; }
+
+    .case-body .case-row > .case-frame + .case-frame { margin-top: 0; }
+
     .case-row[data-layout="portrait"] {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -102,6 +106,15 @@
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《蛋仔派对》· 横版次要：两张一行 -->
+        <div class="case-row" data-layout="secondary">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-s2-kv.webp" alt="《蛋仔派对》惊魂杯 S2 主视觉：霓虹街区里的黑帮风角色与蛋仔群像" data-i18n-alt="eggyS2Alt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-2026-kv.webp" alt="《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像" data-i18n-alt="eggy2026Alt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
         <!-- 《梦幻西游》手游 · 横版主要：单独一行 -->
@@ -231,6 +244,8 @@
           section1Body: "冠军海报以金色奖杯与队伍群像为骨架，暖金色调在深色背景上拉开层次。标题使用厚重衬线字，压住画面底部；人物、奖杯与飘落的金色碎片形成由中心向两侧扩散的视线路径。",
           section2Title: "《蛋仔派对》全国总决赛",
           danzaiAlt: "第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像",
+      eggyS2Alt: "《蛋仔派对》惊魂杯 S2 主视觉：霓虹街区里的黑帮风角色与蛋仔群像",
+      eggy2026Alt: "《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像",
           section3Title: "《梦幻西游》手游巅峰联赛",
           section2Body: "同一套宣发语言会延展到不同项目：主视觉负责建立记忆点，系列海报负责把信息拆成可传播的单元，联动物料则把品牌与赛事放进同一个画面里。",
           kvCaption: "《梦幻西游》手游 巅峰联赛 S10 · 主视觉",
@@ -280,6 +295,8 @@
           section1Body: "The champion poster is built on the gold trophy and the team line-up. Warm gold separates from the dark ground; a heavy serif title anchors the lower edge, while players, trophy and falling confetti pull the eye from the centre outwards.",
           section2Title: "Eggy Party National Finals",
           danzaiAlt: "Eggy Party National Finals key visual: a gold trophy, city diorama and the Eggy cast",
+      eggyS2Alt: "Eggy Party Haunted Cup S2 key visual: a mobster-styled character and the Eggy cast in a neon street",
+      eggy2026Alt: "Eggy Party 2026 Haunted Cup key visual: circus clowns and the Eggy cast on stage",
           section3Title: "Fantasy Westward Journey Mobile Peak League",
           section2Body: "One campaign language travels across projects: the key visual builds the memory hook, series posters break the message into shareable pieces, and partnership assets put brand and event in the same frame.",
           kvCaption: "Fantasy Westward Journey Mobile · Peak League S10 — Key visual",
