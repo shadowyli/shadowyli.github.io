@@ -96,3 +96,67 @@
     transition: none;
   }
 }
+
+/* ---------- 4K：整体 UI 适度放大（字号/导航/页脚） ---------- */
+@media (min-width: 1900px) {
+  :root { --header-height: 78px; }
+  .brand { font-size: 21px; }
+  .desktop-nav a { font-size: 16px; min-width: 74px; }
+  .case-header .case-back { font-size: 15px; }
+  .case-kicker { font-size: 14px; }
+  .case-body .case-caption { font-size: 14px; }
+  .case-body p { font-size: 17px; }
+  .tab-button { font-size: 15px; }
+  .project-info p { font-size: 13px; }
+  .timeline-item strong { font-size: 15px; }
+  .timeline-item > span { font-size: 13px; }
+  .handle { font-size: 15px; }
+  .social-badge { font-size: 12px; }
+  .sidebar-contact { font-size: 14px; }
+  .case-footer { font-size: 14px; }
+}
+
+@media (min-width: 2400px) {
+  :root { --header-height: 88px; }
+  .brand { font-size: 24px; }
+  .desktop-nav a { font-size: 18px; min-width: 86px; }
+  .case-header .case-back { font-size: 17px; }
+  .case-kicker { font-size: 16px; }
+  .case-body .case-caption { font-size: 16px; }
+  .case-body p { font-size: 19px; }
+  .tab-button { font-size: 17px; }
+  .project-info p { font-size: 15px; }
+  .timeline-item strong { font-size: 17px; }
+  .timeline-item > span { font-size: 15px; }
+  .handle { font-size: 17px; }
+  .social-badge { font-size: 14px; }
+  .sidebar-contact { font-size: 16px; }
+  .case-footer { font-size: 16px; }
+}
+
+@media (min-width: 3200px) {
+  :root { --header-height: 96px; }
+  .brand { font-size: 27px; }
+  .desktop-nav a { font-size: 20px; min-width: 96px; }
+  .case-header .case-back { font-size: 19px; }
+  .case-kicker { font-size: 18px; }
+  .case-body .case-caption { font-size: 17px; }
+  .case-body p { font-size: 21px; }
+  .sidebar-contact { font-size: 18px; }
+  .case-footer { font-size: 18px; }
+}
+/* ---------- 手机端：图片之间的缝隙收窄 ---------- */
+@media (max-width: 720px) {
+  .case-row,
+  .ivl-banners,
+  .nsh-tiles,
+  .nsh-hero-pair,
+  .case-media-grid,
+  .case-clip-row {
+    gap: 4px !important;
+  }
+
+  .case-body .case-frame + .case-frame { margin-top: 4px !important; }
+  .case-row + .case-row { margin-top: 4px !important; }
+  .case-body .globe-close { margin-top: 32px; }
+}

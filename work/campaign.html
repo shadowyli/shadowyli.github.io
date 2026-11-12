@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -197,10 +197,13 @@
 
     /* 查看更多：展开式画廊——悬停 / 聚焦的一张展开，其余收成窄条 */
     .more-gallery {
+      --more-grow: 2.36;
       display: flex;
       gap: 6px;
-      height: clamp(260px, 30vw, 380px);
+      height: clamp(104px, 12vw, 152px);
     }
+
+    .more-item.is-active { flex-grow: var(--more-grow); }
 
     .more-item {
       position: relative;
@@ -211,10 +214,8 @@
       background: var(--surface);
       color: #ffffff;
       text-decoration: none;
-      transition: flex-grow 560ms cubic-bezier(.22, .8, .24, 1);
+      transition: flex-grow 520ms cubic-bezier(.22, .8, .24, 1);
     }
-
-    .more-item.is-active { flex-grow: 5; }
 
     .more-item img {
       position: absolute;
@@ -231,7 +232,7 @@
 
     .more-item::after {
       position: absolute;
-      inset: 45% 0 0;
+      inset: 30% 0 0;
       background: linear-gradient(to top, rgba(8, 7, 10, .82), transparent);
       content: "";
       opacity: 0;
@@ -240,27 +241,16 @@
 
     .more-item.is-active::after { opacity: 1; }
 
-    .more-index {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      z-index: 1;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: .06em;
-      opacity: .72;
-    }
-
     .more-label {
       position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 16px;
+      left: 14px;
+      right: 14px;
+      bottom: 11px;
       z-index: 1;
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 16px;
+      gap: 8px;
+      font-size: 13px;
       font-weight: 600;
       line-height: 1.3;
       opacity: 0;
@@ -284,11 +274,9 @@
     }
 
     @media (max-width: 720px) {
-      .more-gallery { height: 220px; gap: 4px; }
+      .more-gallery { height: 88px; gap: 4px; }
       .more-item { border-radius: 4px; }
-      .more-item.is-active { flex-grow: 6; }
-      .more-index { top: 8px; left: 8px; font-size: 9px; }
-      .more-label { left: 12px; right: 12px; bottom: 11px; font-size: 13px; }
+      .more-label { left: 10px; right: 10px; bottom: 8px; font-size: 11px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -467,39 +455,32 @@
       <section class="case-related" aria-labelledby="related-title">
         <h2 id="related-title" data-i18n-key="relatedTitle">查看更多</h2>
         <div class="more-gallery">
-          <a class="more-item is-active" href="../index.html#portfolio">
+          <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/mengshou.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">01</span>
             <span class="more-label"><span data-i18n-key="relatedMengshou">《梦幻西游》手游巅峰联赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/danzai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">02</span>
             <span class="more-label"><span data-i18n-key="relatedDanzai">《蛋仔派对》全国总决赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="large-screen.html">
             <img src="../assets/more/large-screen.webp" alt="" width="855" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">03</span>
             <span class="more-label"><span data-i18n-key="relatedLargeScreen">大屏视觉</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/stage.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">04</span>
             <span class="more-label"><span data-i18n-key="relatedStage">舞美设计</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/merch.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">05</span>
             <span class="more-label"><span data-i18n-key="relatedMerch">周边物料</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/video.webp" alt="" width="846" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">06</span>
             <span class="more-label"><span data-i18n-key="relatedVideo">视频包装</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
           <a class="more-item" href="../index.html#portfolio">
             <img src="../assets/more/ai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-index" aria-hidden="true">07</span>
             <span class="more-label"><span data-i18n-key="relatedAi">AI 管线开发</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
         </div>
@@ -1254,9 +1235,40 @@
       var gallery = document.querySelector(".more-gallery");
       if (!gallery) return;
       var items = Array.prototype.slice.call(gallery.querySelectorAll(".more-item"));
-      function activate(item) {
-        items.forEach(function (other) { other.classList.toggle("is-active", other === item); });
+      var RATIO = 16 / 9;
+      var active = null;
+
+      function gapSize() {
+        var cs = getComputedStyle(gallery);
+        return parseFloat(cs.columnGap || cs.gap) || 0;
       }
+
+      function growFor(item) {
+        var n = items.length;
+        var gap = gapSize();
+        var inner = gallery.clientWidth - gap * (n - 1);
+        var target = gallery.clientHeight * RATIO;
+        if (inner <= 0 || target <= 0) return 1;
+        var rest = inner - target;
+        if (rest <= 0) return 1;
+        return Math.max(0.4, (target * (n - 1)) / rest);
+      }
+
+      function clear() {
+        active = null;
+        items.forEach(function (item) {
+          item.classList.remove("is-active");
+        });
+      }
+
+      function activate(item) {
+        active = item;
+        gallery.style.setProperty("--more-grow", growFor(item).toFixed(3));
+        items.forEach(function (other) {
+          other.classList.toggle("is-active", other === item);
+        });
+      }
+
       items.forEach(function (item) {
         item.addEventListener("mouseenter", function () { activate(item); });
         item.addEventListener("focus", function () { activate(item); });
@@ -1266,6 +1278,14 @@
             activate(item);
           }
         });
+      });
+
+      gallery.addEventListener("mouseleave", function () {
+        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) clear();
+      });
+
+      window.addEventListener("resize", function () {
+        if (active) activate(active);
       });
     })();
   </script>
