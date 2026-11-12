@@ -61,6 +61,13 @@
     .case-gallery .case-media-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     /* 网格内各列必须同一水平线：抵消全局 figure + figure 的 6px 上边距 */
     .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
+    /* 手机端：站内 site-wide.css 用 !important 把 figure 缝压到 4px，
+       网格内单元格会被一起顶下去 4px（第 2、3 张比第 1 张低），
+       网格与上图的缝也会比列缝宽 2px——这里按手机端 4px 统一回来 */
+    @media (max-width: 720px) {
+      .case-gallery .case-media-grid { margin-top: 4px !important; }
+      .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0 !important; }
+    }
     .case-gallery .case-media-grid img {
       width: 100%;
       height: auto;
