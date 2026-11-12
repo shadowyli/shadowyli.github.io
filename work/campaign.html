@@ -23,7 +23,7 @@
       margin-top: 6px;
     }
 
-    /* 排版规则：① 同一游戏相邻 ② 竖版 2–3 张一行 ③ 横版主要单独一行、次要两张一行 ④ banner 单独一行 */
+    /* 排版规则：① 同一游戏相邻 ② 竖版 2–3 张一行、禁止竖版独占整行 ③ 竖版凑不齐行时与横版并排 ④ 横版主要单独一行、次要两张一行 ⑤ 4 张以上竖版并成一条系列条 ⑥ 尽量避免同样张数的行相邻 */
     .case-gallery { display: block; }
 
     .case-row { margin: 0; }
@@ -40,6 +40,13 @@
     .case-row[data-layout="portrait"] {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 6px;
+    }
+
+    /* 系列条：4 张以上竖版并成一条，避免同样张数的行紧挨着出现 */
+    .case-row[data-layout="strip"] {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 6px;
     }
 
@@ -91,6 +98,7 @@
       /* 手机端竖版行等分，不留通栏的单张 */
       .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
       /* 横版 + 竖版改为上下排列，避免竖版被压到无法辨认 */
+      .case-row[data-layout="strip"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .case-row[data-layout="duo"] { grid-template-columns: 1fr; }
       .case-row[data-layout="duo"] .case-frame--image img { height: auto; object-fit: contain; }
     }
@@ -409,7 +417,7 @@
 
         <div class="voice-body">
           <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">宣发设计</span></p>
-          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">画面只有一个重心：该亮的地方先亮，其余全部退进暗部。克制不是画得少，是把全部力气押在那一个瞬间上。</p>
+          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">画面只有一个重心：该亮的先亮，其余退进暗部，把全部力气押在那一个瞬间。</p>
           <div class="voice-author">
             <span class="voice-rule" aria-hidden="true"></span>
             <div>
@@ -445,8 +453,8 @@
             <img src="../assets/campaign-eggy-2026-kv.webp" alt="《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像" data-i18n-alt="eggy2026Alt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
-        <!-- 《梦幻西游》手游 S12 · 竖版倒计时：3 张一行 -->
-        <div class="case-row" data-layout="portrait">
+        <!-- 《梦幻西游》手游 S12 · 倒计时 + 战队出征：并成一条系列，避免同张数的行相邻 -->
+        <div class="case-row" data-layout="strip">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s12-cd3.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 3 天" width="1000" height="1779" loading="lazy" decoding="async">
           </figure>
@@ -456,9 +464,6 @@
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s12-cd1.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 1 天" width="1000" height="1779" loading="lazy" decoding="async">
           </figure>
-        </div>
-        <!-- 《梦幻西游》手游 S12 · 竖版战队出征：3 张一行 -->
-        <div class="case-row" data-layout="portrait">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s12-team-yongwu.webp" alt="《梦幻西游》手游 S12 巅峰联赛战队出征海报 · 勇武组" width="751" height="1334" loading="lazy" decoding="async">
           </figure>
@@ -590,7 +595,7 @@
           voiceLabel: "设计理念",
           voicePill: "宣发设计",
           voiceMark: "宣发",
-          voiceLead: "画面只有一个重心：该亮的地方先亮，其余全部退进暗部。克制不是画得少，是把全部力气押在那一个瞬间上。",
+          voiceLead: "画面只有一个重心：该亮的先亮，其余退进暗部，把全部力气押在那一个瞬间。",
           voiceName: "影子（李颖）",
           voiceRole: "创意视觉设计",
           badgeTwitter10k: "推特万转",
@@ -647,7 +652,7 @@
           voiceLabel: "PHILOSOPHY",
           voicePill: "CAMPAIGN DESIGN",
           voiceMark: "CAMPAIGN",
-          voiceLead: "One focal point per frame: whatever should glow glows first, everything else recedes into the dark. Restraint isn't drawing less — it's putting all the force into that one moment.",
+          voiceLead: "One focal point per frame: what should glow glows first, everything else recedes into the dark, and all the force goes into that one moment.",
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
           badgeTwitter10k: "Twitter · 10K reposts",
