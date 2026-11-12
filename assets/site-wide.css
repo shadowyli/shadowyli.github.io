@@ -1,0 +1,98 @@
+/* ============================================================
+   宽屏 / 4K 自适应 + 触屏播放按钮的按下反馈
+   （新增于 2026-11-12，独立文件以避免与主样式表的大改冲突）
+   ============================================================ */
+
+/* ---------- 宽屏：放宽内容栏，收掉两侧过多留白 ---------- */
+@media (min-width: 1500px) {
+  .case-main { max-width: 1320px; }
+  .hero-copy { max-width: 1600px; }
+  .profile-layout { max-width: 1660px; }
+  .case-main::before { background-size: 84px 84px; }
+}
+
+@media (min-width: 1750px) {
+  :root { --sidebar-width: 330px; }
+
+  .case-main { max-width: 1520px; }
+  .hero-copy { max-width: 1880px; }
+  .profile-layout { max-width: 1940px; }
+
+  .case-title { font-size: clamp(48px, 2.9vw, 64px); }
+  .case-kicker { font-size: 13px; letter-spacing: 0.2em; }
+  .case-body h2 { font-size: clamp(20px, 1.3vw, 24px); }
+  .case-body p { font-size: 16px; }
+  .hero-copy h1 { font-size: clamp(44px, 2.8vw, 60px); max-width: 820px; }
+  .info-panel > p:not(.section-eyebrow) { font-size: 19px; max-width: 760px; }
+
+  .case-main::before { background-size: 96px 96px; }
+}
+
+@media (min-width: 2100px) {
+  :root { --sidebar-width: 380px; }
+
+  .case-main { max-width: 1800px; }
+  .hero-copy { max-width: 2260px; }
+  .profile-layout { max-width: 2320px; }
+
+  .case-title { font-size: clamp(60px, 2.7vw, 82px); }
+  .case-body h2 { font-size: clamp(24px, 1.15vw, 28px); }
+  .case-body p { font-size: 17px; }
+  .hero-copy h1 { font-size: clamp(56px, 2.5vw, 74px); max-width: 980px; }
+  .info-panel > p:not(.section-eyebrow) { font-size: 20px; max-width: 840px; }
+
+  .case-main::before { background-size: 112px 112px; }
+}
+
+@media (min-width: 2600px) {
+  :root { --sidebar-width: 430px; }
+
+  .case-main { max-width: 2180px; }
+  .hero-copy { max-width: 2680px; }
+  .profile-layout { max-width: 2740px; }
+
+  .case-title { font-size: clamp(76px, 2.5vw, 104px); }
+  .case-body p { font-size: 18px; }
+  .hero-copy h1 { font-size: clamp(72px, 2.3vw, 96px); max-width: 1140px; }
+
+  .case-main::before { background-size: 128px 128px; }
+}
+
+@media (min-width: 3200px) {
+  .case-main { max-width: 2560px; }
+  .hero-copy { max-width: 3100px; }
+  .profile-layout { max-width: 3160px; }
+}
+
+/* ---------- 播放按钮：按住时的下压反馈 ---------- */
+.case-hero-play,
+.case-video-play {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition:
+    transform 160ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.case-hero-play:active,
+.case-video-play:active {
+  transform: translate(-50%, -50%) scale(0.86);
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(255, 255, 255, 0.94);
+  color: #121115;
+}
+
+.case-hero-play:focus-visible,
+.case-video-play:focus-visible {
+  outline: 2px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-hero-play,
+  .case-video-play {
+    transition: none;
+  }
+}
