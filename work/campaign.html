@@ -83,6 +83,71 @@
     @media (max-width: 720px) {
       .case-row[data-layout="portrait"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+
+    .case-body .globe-close {
+      margin-top: clamp(64px, 9vw, 116px);
+      text-align: center;
+    }
+
+    .case-body .globe-eyebrow {
+      width: 100%;
+      max-width: none;
+      margin: 0 0 18px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      text-align: center;
+    }
+
+    .globe-stage {
+      position: relative;
+      width: min(100%, 440px);
+      margin: 0 auto clamp(18px, 2.4vw, 28px);
+      aspect-ratio: 1;
+    }
+
+    .globe-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: grab;
+      touch-action: pan-y;
+      transition: opacity 900ms ease;
+    }
+
+    .globe-canvas.is-ready { opacity: 1; }
+
+    .globe-canvas.is-dragging { cursor: grabbing; }
+
+    .case-body .globe-line {
+      display: block;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      font-size: clamp(21px, 2.3vw, 28px);
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: 0.01em;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .case-body .globe-sub {
+      max-width: 44ch;
+      margin: 12px auto 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.85;
+      text-align: center;
+    }
+
+    @media (max-width: 720px) {
+      .globe-stage { width: min(100%, 300px); }
+    }
   </style>
 </head>
 <body class="case-page">
@@ -203,6 +268,15 @@
         </div>
       </section>
 
+      <section class="globe-close" aria-labelledby="globe-title">
+        <p class="globe-eyebrow" data-i18n-key="globeEyebrow">GLOBAL REACH</p>
+        <div class="globe-stage">
+          <canvas class="globe-canvas" aria-hidden="true"></canvas>
+        </div>
+        <h2 class="globe-line" id="globe-title" data-i18n-key="globeLine">作品在世界各地被看见</h2>
+        <p class="globe-sub" data-i18n-key="globeSub">赛事直播、社媒扩散与线下大屏，把同一份视觉带到不同的时区。</p>
+      </section>
+
     </div>
   </main>
 
@@ -245,6 +319,9 @@
           creditLine: "3D & 视觉设计：影子（李颖）",
           socialEyebrow: "设计的回声",
           socialLine: "相信热爱的力量",
+          globeEyebrow: "GLOBAL REACH",
+          globeLine: "作品在世界各地被看见",
+          globeSub: "赛事直播、社媒扩散与线下大屏，把同一份视觉带到不同的时区。",
           badgeTwitter10k: "推特万转",
           badgeTwitter1k: "推特千转",
           badgeTwitter35w: "推特 35w+ 曝光 · 高互动万赞热帖",
@@ -298,6 +375,9 @@
           creditLine: "3D & visual design: Shadow (Li Ying)",
           socialEyebrow: "THE ECHO OF DESIGN",
           socialLine: "Believe in the power of passion.",
+          globeEyebrow: "GLOBAL REACH",
+          globeLine: "The work is seen around the world",
+          globeSub: "Live broadcasts, social feeds and on-site screens carry the same visual across time zones.",
           badgeTwitter10k: "Twitter · 10K reposts",
           badgeTwitter1k: "Twitter · 1K reposts",
           badgeTwitter35w: "Twitter · 350K+ impressions, high-engagement 10K-like post",
@@ -528,6 +608,120 @@
         request();
       });
       render();
+    })();
+  </script>
+  <script type="module">
+    import createGlobe from "../assets/vendor/cobe.esm.js";
+
+    (function () {
+      var canvas = document.querySelector(".globe-canvas");
+      if (!canvas) return;
+
+      var MARKERS = [
+        { location: [31.2304, 121.4737], size: 0.09 },
+        { location: [39.9042, 116.4074], size: 0.07 },
+        { location: [22.3193, 114.1694], size: 0.06 },
+        { location: [35.6762, 139.6503], size: 0.05 },
+        { location: [1.3521, 103.8198], size: 0.06 },
+        { location: [13.7563, 100.5018], size: 0.05 },
+        { location: [14.5995, 120.9842], size: 0.05 },
+        { location: [-6.2088, 106.8456], size: 0.06 },
+        { location: [25.2048, 55.2708], size: 0.05 },
+        { location: [51.5072, -0.1276], size: 0.05 },
+        { location: [40.7128, -74.006], size: 0.06 },
+        { location: [34.0522, -118.2437], size: 0.05 },
+        { location: [-23.5505, -46.6333], size: 0.06 },
+        { location: [-33.8688, 151.2093], size: 0.05 }
+      ];
+
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var phi = 2.2;
+      var dragging = false;
+      var lastX = 0;
+      var visible = true;
+      var size = 0;
+      var globe = null;
+      var rebuildTimer = 0;
+
+      function build() {
+        var next = Math.round(canvas.offsetWidth);
+        if (!next) return;
+        size = next;
+        if (globe) { globe.destroy(); globe = null; }
+        globe = createGlobe(canvas, {
+          devicePixelRatio: dpr,
+          width: size * dpr,
+          height: size * dpr,
+          phi: phi,
+          theta: 0.26,
+          dark: 1,
+          diffuse: 1.15,
+          mapSamples: 18000,
+          mapBrightness: 7,
+          baseColor: [0.11, 0.105, 0.125],
+          markerColor: [1, 0.208, 0.365],
+          glowColor: [0.17, 0.16, 0.19],
+          markers: MARKERS,
+          onRender: function (state) {
+            state.phi = phi;
+            state.width = size * dpr;
+            state.height = size * dpr;
+            if (!dragging && !reduced && visible) phi += 0.0028;
+          }
+        });
+        canvas.classList.add("is-ready");
+      }
+
+      function scheduleRebuild() {
+        window.clearTimeout(rebuildTimer);
+        rebuildTimer = window.setTimeout(build, 150);
+      }
+
+      try {
+        build();
+      } catch (error) {
+        canvas.classList.remove("is-ready");
+        return;
+      }
+
+      canvas.addEventListener("pointerdown", function (event) {
+        dragging = true;
+        lastX = event.clientX;
+        canvas.classList.add("is-dragging");
+        if (canvas.setPointerCapture) canvas.setPointerCapture(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", function (event) {
+        if (!dragging) return;
+        phi += (event.clientX - lastX) / 220;
+        lastX = event.clientX;
+      });
+
+      function endDrag(event) {
+        if (!dragging) return;
+        dragging = false;
+        canvas.classList.remove("is-dragging");
+        if (canvas.releasePointerCapture && event.pointerId !== undefined) {
+          canvas.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      canvas.addEventListener("pointerup", endDrag);
+      canvas.addEventListener("pointercancel", endDrag);
+      canvas.addEventListener("pointerleave", endDrag);
+
+      if ("ResizeObserver" in window) {
+        new ResizeObserver(scheduleRebuild).observe(canvas);
+      } else {
+        window.addEventListener("resize", scheduleRebuild);
+      }
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          visible = entries.some(function (entry) { return entry.isIntersecting; });
+        }, { threshold: 0 }).observe(canvas);
+      }
     })();
   </script>
 </body>
