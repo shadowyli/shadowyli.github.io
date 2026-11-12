@@ -58,6 +58,7 @@
     .case-gallery .case-media-slot.is-playing video { opacity: 1; }
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
+    .case-gallery .case-media-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     /* 网格内各列必须同一水平线：抵消全局 figure + figure 的 6px 上边距 */
     .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
     .case-gallery .case-media-grid img {
@@ -94,7 +95,10 @@
       <!-- 内容待补充 -->
       <section class="case-section case-gallery">
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" decoding="async" fetchpriority="high">
+          <img src="../assets/mengshou-s13-kv.webp" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
+        </figure>
+        <figure class="case-frame case-frame--image">
+          <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
           <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
