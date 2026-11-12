@@ -2,6 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <script>
+    (function () {
+      if (location.hostname === "shadowyli.com") {
+        location.replace("https://www.shadowyli.com" + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="《全明星街球派对》DCDG 全球冠军赛大屏视觉与舞台视觉设计案例。">
   <title>大屏视觉 · DCDG 全球冠军赛 | Shadowyli</title>
@@ -68,9 +75,69 @@
       background: #000;
     }
 
+    .douyin-fallback { display: none; }
+
+    .douyin-open {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 999px;
+      background: rgba(8, 7, 10, .62);
+      color: #ffffff;
+      font-size: 12px;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .douyin-open:hover { background: rgba(8, 7, 10, .88); }
+
     @media (max-width: 720px) {
       .douyin-embed { margin-top: 32px; }
       .douyin-window { width: 100%; border-radius: 10px; }
+      .douyin-window iframe { display: none; }
+      .douyin-open { display: none; }
+      .douyin-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: block;
+        overflow: hidden;
+      }
+      .douyin-fallback img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .douyin-fallback::after {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, .55), transparent 55%);
+        content: "";
+      }
+      .douyin-fallback-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border: 1px solid rgba(255, 255, 255, .4);
+        border-radius: 999px;
+        background: rgba(8, 7, 10, .8);
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        transform: translate(-50%, -50%);
+      }
     }
 
 
@@ -436,6 +503,11 @@
             allowfullscreen
             referrerpolicy="strict-origin-when-cross-origin"
           ></iframe>
+          <a class="douyin-open" href="https://www.douyin.com/video/7616278296964268122" target="_blank" rel="noopener">在抖音打开 ↗</a>
+          <a class="douyin-fallback" href="https://www.douyin.com/video/7616278296964268122" target="_blank" rel="noopener" aria-label="在抖音观看《第五人格》2025 IVL 秋季总决赛现场视频">
+            <img src="../assets/ivl-opening-poster.webp" alt="《第五人格》2025 IVL 秋季总决赛现场" loading="lazy" decoding="async">
+            <span class="douyin-fallback-label"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>在抖音观看</span>
+          </a>
         </div>
       </div>
 
@@ -573,6 +645,11 @@
             allowfullscreen
             referrerpolicy="strict-origin-when-cross-origin"
           ></iframe>
+          <a class="douyin-open" href="https://www.douyin.com/video/7583977940259114299" target="_blank" rel="noopener">在抖音打开 ↗</a>
+          <a class="douyin-fallback" href="https://www.douyin.com/video/7583977940259114299" target="_blank" rel="noopener" aria-label="在抖音观看《逆水寒》侠棋争霸赛现场视频">
+            <img src="../assets/nsh-opening-poster.webp" alt="《逆水寒》侠棋争霸赛现场" loading="lazy" decoding="async">
+            <span class="douyin-fallback-label"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>在抖音观看</span>
+          </a>
         </div>
       </div>
 
