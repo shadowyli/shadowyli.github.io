@@ -15,6 +15,7 @@ const excludedPaths = [
   "deploy.cmd",
   "*.md",
   "LICENSE",
+  "work/_*.html",
 ];
 
 function fail(message) {

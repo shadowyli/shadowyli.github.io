@@ -36,9 +36,10 @@
 
     .case-body .case-row > .case-frame + .case-frame { margin-top: 0; }
 
+    /* 竖版行按张数自动铺满宽度：1 张通栏，2–3 张等分，不留空位 */
     .case-row[data-layout="portrait"] {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 6px;
     }
 
@@ -60,7 +61,7 @@
       z-index: 6;
       width: 100%;
       max-width: none;
-      margin: clamp(20px, 2.6vw, 32px) 0 0;
+      margin: 0 0 clamp(20px, 2.6vw, 32px);
       color: #ffffff;
       font-family: "PingFangShangShangQian", var(--font-cjk);
       font-size: clamp(30px, 3.6vw, 42px);
@@ -71,7 +72,9 @@
     }
 
     @media (max-width: 720px) {
-      .case-row[data-layout="portrait"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+      /* 竖版 3 张时，第三张（1 天倒计时）通栏收尾，避免右侧留空 */
+      .case-row[data-layout="portrait"] > .case-frame:nth-child(3):last-child { grid-column: 1 / -1; }
     }
 
     /* 设计理念语录卡 */
@@ -247,10 +250,24 @@
       height: 72%;
       transform: translate(-50%, -50%);
       opacity: 0;
-      cursor: grab;
-      touch-action: pan-y;
+      pointer-events: none;
       transition: opacity 900ms ease;
     }
+
+    .orbit-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .orbit-stage.is-3d .orbit-canvas { opacity: 1; }
+
+    .orbit-stage.is-3d .orbit-ring { display: none; }
 
     .orbit-stage .globe-canvas.is-ready { opacity: 1; }
 
@@ -403,6 +420,30 @@
             <img src="../assets/campaign-eggy-2026-kv.webp" alt="《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像" data-i18n-alt="eggy2026Alt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
+        <!-- 《梦幻西游》手游 S12 · 竖版倒计时：3 张一行 -->
+        <div class="case-row" data-layout="portrait">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-cd3.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 3 天" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-cd2.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 2 天" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-cd1.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 1 天" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 S12 · 竖版战队出征：3 张一行 -->
+        <div class="case-row" data-layout="portrait">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-team-yongwu.webp" alt="《梦幻西游》手游 S12 巅峰联赛战队出征海报 · 勇武组" width="751" height="1334" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-team-jingrui.webp" alt="《梦幻西游》手游 S12 巅峰联赛战队出征海报 · 精锐组" width="751" height="1334" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-team-shenwei.webp" alt="《梦幻西游》手游 S12 巅峰联赛战队出征海报 · 神威组" width="751" height="1334" loading="lazy" decoding="async">
+          </figure>
+        </div>
       </section>
 
 
@@ -425,8 +466,10 @@
       </section>
 
       <section class="globe-close" aria-labelledby="social-line">
+        <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
         <div class="orbit-stage">
           <canvas class="globe-canvas" aria-hidden="true"></canvas>
+          <canvas class="orbit-canvas" aria-hidden="true"></canvas>
           <div class="orbit-ring">
             <figure class="orbit-slot" style="--x: 50%; --y: 14%">
               <span class="orbit-card" style="--w: 120px; --tilt: -4deg">
@@ -478,7 +521,6 @@
             </figure>
           </div>
         </div>
-        <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
       </section>
 
     </div>
@@ -830,32 +872,6 @@
         return;
       }
 
-      canvas.addEventListener("pointerdown", function (event) {
-        dragging = true;
-        lastX = event.clientX;
-        canvas.classList.add("is-dragging");
-        if (canvas.setPointerCapture) canvas.setPointerCapture(event.pointerId);
-      });
-
-      canvas.addEventListener("pointermove", function (event) {
-        if (!dragging) return;
-        phi += (event.clientX - lastX) / 220;
-        lastX = event.clientX;
-      });
-
-      function endDrag(event) {
-        if (!dragging) return;
-        dragging = false;
-        canvas.classList.remove("is-dragging");
-        if (canvas.releasePointerCapture && event.pointerId !== undefined) {
-          canvas.releasePointerCapture(event.pointerId);
-        }
-      }
-
-      canvas.addEventListener("pointerup", endDrag);
-      canvas.addEventListener("pointercancel", endDrag);
-      canvas.addEventListener("pointerleave", endDrag);
-
       if ("ResizeObserver" in window) {
         new ResizeObserver(scheduleRebuild).observe(canvas);
       } else {
@@ -869,89 +885,161 @@
       }
     })();
   </script>
-  <script>
+  <script type="module">
+    import * as THREE from "../assets/vendor/three.module.min.js";
+
     (function () {
       var stage = document.querySelector(".orbit-stage");
       if (!stage) return;
+      var canvas = stage.querySelector(".orbit-canvas");
       var slots = Array.prototype.slice.call(stage.querySelectorAll(".orbit-slot"));
-      if (!slots.length) return;
+      if (!canvas || !slots.length) return;
 
       var mobile = window.matchMedia("(max-width: 720px)");
-      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-      var latitudes = [-30, -13, 1, 17, 30, 21, -20, 7];
-      var focal = 820;
-      var speed = 0.000105;
-      var t = 0;
-      var last = 0;
-      var paused = false;
-      var raf = 0;
-      var W = 0;
-      var H = 0;
-      var R = 0;
+      if (mobile.matches) return;
 
-      function measure() {
-        W = stage.clientWidth;
-        H = stage.clientHeight;
-        R = Math.min(W, H) * 0.405;
+      var renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      } catch (error) {
+        return;
       }
 
-      function reset() {
-        slots.forEach(function (slot) {
-          slot.style.transform = "";
-          slot.style.zIndex = "";
-          slot.style.opacity = "";
-        });
-      }
+      var FOV = 40;
+      var CAM_DIST = 3.2;
+      var SPEED = 0.075;
+      var LATITUDES = [-30, -13, 1, 17, 30, 21, -20, 7];
+      var REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      function place() {
-        var cx = W / 2;
-        var cy = H / 2;
-        for (var i = 0; i < slots.length; i++) {
-          var lat = (latitudes[i] * Math.PI) / 180;
-          var lon = t + (i * Math.PI * 2) / slots.length;
-          var x = R * Math.cos(lat) * Math.sin(lon);
-          var y = -R * Math.sin(lat) * 0.62;
-          var z = R * Math.cos(lat) * Math.cos(lon);
-          var depth = focal / (focal - z);
-          var wrap = (Math.cos(lon) + 1) / 2;
-          var squeeze = 0.62 + 0.38 * wrap;
-          var tilt = -12 * Math.sin(lon);
-          var slot = slots[i];
-          slot.style.transform =
-            "translate(-50%, -50%) translate3d(" +
-            x.toFixed(1) + "px, " + y.toFixed(1) + "px, 0) rotate(" + tilt.toFixed(2) + "deg) scale(" +
-            (depth * squeeze).toFixed(3) + ", " + depth.toFixed(3) + ")";
-          slot.style.zIndex = z > 0 ? "6" : "1";
-          slot.style.opacity = z > -R * 0.2 ? "1" : "0.4";
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(FOV, 1, 0.1, 20);
+      camera.position.set(0, 0, CAM_DIST);
+
+      var group = new THREE.Group();
+      scene.add(group);
+
+      var debugMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.4, 0.4),
+        new THREE.MeshBasicMaterial({ color: 0xff0000 })
+      );
+      debugMesh.position.set(0, 0, 1.4);
+      scene.add(debugMesh);
+
+      var loader = new THREE.TextureLoader();
+      var cards = [];
+      var sphereRadius = 1;
+      var pxPerUnit = 1;
+
+      function curvedPatch(width, height, radius, segments) {
+        var geometry = new THREE.PlaneGeometry(width, height, segments, segments);
+        var position = geometry.attributes.position;
+        var point = new THREE.Vector3();
+        for (var i = 0; i < position.count; i++) {
+          point.fromBufferAttribute(position, i);
+          var theta = point.x / radius;
+          var phi = point.y / radius;
+          var cosPhi = Math.cos(phi);
+          position.setXYZ(
+            i,
+            radius * Math.sin(theta) * cosPhi,
+            radius * Math.sin(phi),
+            radius * Math.cos(theta) * cosPhi
+          );
         }
+        geometry.computeVertexNormals();
+        return geometry;
       }
+
+      function build() {
+        var size = stage.clientWidth || 760;
+        pxPerUnit = size / (2 * Math.tan((FOV * Math.PI) / 360) * CAM_DIST);
+        sphereRadius = (size * 0.36) / pxPerUnit;
+
+        cards.forEach(function (card) {
+          group.remove(card.mesh);
+          card.mesh.geometry.dispose();
+          card.mesh.material.dispose();
+        });
+        cards = [];
+
+        slots.forEach(function (slot, index) {
+          var img = slot.querySelector("img");
+          var cardEl = slot.querySelector(".orbit-card");
+          if (!img || !cardEl) return;
+          var cssWidth = parseFloat(cardEl.style.getPropertyValue("--w")) || 120;
+          var aspect = img.width && img.height ? img.height / img.width : 1.3;
+          var width = cssWidth / pxPerUnit;
+          var height = width * aspect;
+          var radius = sphereRadius * 1.02;
+
+          var geometry = curvedPatch(width, height, radius, 12);
+          var texture = loader.load(
+            img.getAttribute("src"),
+            function () {
+              stage.dataset.tex = String(Number(stage.dataset.tex || 0) + 1);
+            },
+            undefined,
+            function () {
+              stage.dataset.texErr = String(Number(stage.dataset.texErr || 0) + 1);
+            }
+          );
+          var material = new THREE.MeshBasicMaterial({
+            map: texture,
+            transparent: true,
+            side: THREE.FrontSide
+          });
+          material.map.colorSpace = THREE.SRGBColorSpace;
+          var mesh = new THREE.Mesh(geometry, material);
+
+          var latitude = (LATITUDES[index % LATITUDES.length] * Math.PI) / 180;
+          var longitude = (index * Math.PI * 2) / slots.length;
+          var normal = new THREE.Vector3(
+            Math.cos(latitude) * Math.sin(longitude),
+            Math.sin(latitude),
+            Math.cos(latitude) * Math.cos(longitude)
+          );
+          mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
+          group.add(mesh);
+
+          cards.push({ mesh: mesh, longitude: longitude });
+        });
+
+        resize();
+      }
+
+      function resize() {
+        var size = stage.clientWidth || 760;
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(size, size, false);
+        camera.aspect = 1;
+        camera.updateProjectionMatrix();
+        stage.classList.add("is-3d");
+        stage.dataset.cards = String(cards.length);
+      }
+
+      var last = 0;
+      var spin = 0;
 
       function frame(now) {
         if (!last) last = now;
-        var dt = Math.min(now - last, 64);
+        var dt = Math.min((now - last) / 1000, 0.05);
         last = now;
-        if (!paused && !reduce.matches) t += dt * speed;
-        place();
-        raf = window.requestAnimationFrame(frame);
+        if (!REDUCE) spin += dt * SPEED;
+        group.rotation.y = spin;
+
+        cards.forEach(function (card) {
+          var facing = Math.cos(card.longitude + spin);
+          card.mesh.material.opacity = THREE.MathUtils.clamp((facing + 0.12) / 0.42, 0, 1);
+        });
+
+        renderer.render(scene, camera);
+        stage.dataset.tris = String(renderer.info.render.triangles);
+        window.requestAnimationFrame(frame);
       }
 
-      function start() {
-        window.cancelAnimationFrame(raf);
-        if (mobile.matches) {
-          reset();
-          return;
-        }
-        measure();
-        last = 0;
-        raf = window.requestAnimationFrame(frame);
-      }
-
-      start();
-      window.addEventListener("resize", start);
-      if (mobile.addEventListener) mobile.addEventListener("change", start);
-
-      stage.addEventListener("pointerenter", function () { paused = true; });
-      stage.addEventListener("pointerleave", function () { paused = false; });
+      build();
+      window.addEventListener("resize", build);
+      window.requestAnimationFrame(frame);
     })();
   </script>
 </body>
