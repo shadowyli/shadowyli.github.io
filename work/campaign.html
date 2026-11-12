@@ -70,10 +70,10 @@
       z-index: 6;
       width: 100%;
       max-width: none;
-      margin: 0 0 clamp(30px, 3.6vw, 44px);
+      margin: clamp(20px, 2.6vw, 32px) 0 0;
       color: #ffffff;
       font-family: "PingFangShangShangQian", var(--font-cjk);
-      font-size: clamp(34px, 4.4vw, 48px);
+      font-size: clamp(30px, 3.6vw, 42px);
       font-weight: 400;
       line-height: 1.25;
       letter-spacing: 0.02em;
@@ -171,8 +171,7 @@
       </section>
 
       <div class="case-divider" aria-hidden="true"></div>
-      <section class="case-social" aria-labelledby="social-line">
-        <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
+      <section class="case-social" aria-label="社媒发布截图">
         <div class="social-float" aria-label="社媒发布截图展示位">
           <div class="social-track">
             <div class="social-set">
@@ -231,10 +230,11 @@
         </div>
       </section>
 
-      <section class="globe-close">
+      <section class="globe-close" aria-labelledby="social-line">
         <div class="globe-stage">
           <canvas class="globe-canvas" aria-hidden="true"></canvas>
         </div>
+        <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
       </section>
 
     </div>
