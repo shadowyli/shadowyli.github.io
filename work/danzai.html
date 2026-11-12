@@ -225,6 +225,11 @@
       color: #08070a;
     }
 
+    /* 回声带上方的分割线 */
+    .case-body .case-echo-divider {
+      margin: clamp(56px, 7vw, 88px) 0 clamp(18px, 2vw, 26px);
+    }
+
     /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .social-badge--long {
       white-space: normal;
@@ -442,6 +447,8 @@
           </div>
         </div>
       </section>
+
+      <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
       <section class="case-section case-echo" aria-labelledby="echo-sign">
         <p class="social-sign" id="echo-sign" data-i18n-key="socialSign">设计的回声</p>
