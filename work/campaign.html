@@ -104,11 +104,24 @@
       gap: 6px;
     }
 
-    /* 活动横幅：桌面两列，手机单列保证文字可读 */
+    /* 活动横幅：由外层 banner-grid 统一三列，手机两列保证文字可读 */
     .case-row[data-layout="banners"] {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 6px;
+    }
+
+    .banner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .banner-grid .case-row[data-layout="banners"] { display: contents; }
+
+    @media (max-width: 720px) {
+      .banner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     .case-row[data-layout="banners"] .case-frame--image img {
@@ -432,6 +445,7 @@
           </figure>
         </div>
         <!-- 《蛋仔派对》· 赛事活动横幅系列 -->
+        <div class="banner-grid">
         <div class="case-row" data-layout="banners">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-eggy-2026-signup.webp?v=20261112c" alt="《蛋仔派对》2026 惊魂杯报名主视觉" width="1600" height="621" loading="lazy" decoding="async">
@@ -488,6 +502,7 @@
             <img src="../assets/campaign-eggy-snow-race.webp?v=20261112c" alt="《蛋仔派对》雪道竞速王活动视觉" width="1600" height="621" loading="lazy" decoding="async">
           </figure>
         </div>
+        </div>
         <!-- 《梦幻西游》手游 S11 · 联盟大会与冠军板 -->
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
@@ -508,7 +523,7 @@
           </figure>
         </div>
         <!-- 《梦幻西游》手游 S12 · 主视觉 -->
-        <div class="case-row" data-layout="main">
+        <div class="case-row" data-layout="secondary">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s12-kv.webp?v=20261112c" alt="《梦幻西游》手游 S12 巅峰联赛主视觉：紫色空间中的冠军奖杯" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>

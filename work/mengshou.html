@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function () {
+      if (location.hostname === "shadowyli.com") {
+        location.replace("https://www.shadowyli.com" + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="《梦幻西游》手游巅峰联赛项目案例。">
+  <title>《梦幻西游》手游巅峰联赛 | Shadowyli</title>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("portfolio-theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (error) { /* ignore */ }
+    })();
+  </script>
+  <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261112-96">
+  <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
+  <style>
+    /* 内容留空时让页脚落在视口底部 */
+    main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
+    /* 同一视觉的图与动画共用一个槽位：默认显示静图，播放时覆盖动画 */
+    .case-gallery .case-media-slot {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .case-gallery .case-media-slot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .case-gallery .case-media-slot video {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      background: var(--surface);
+      transition: opacity 240ms ease;
+    }
+    .case-gallery .case-media-slot.is-playing video { opacity: 1; }
+    /* 组别背景：三张一行，保持 16:9 原比例 */
+    .case-gallery .case-media-grid { margin-top: 6px; }
+    /* 网格内各列必须同一水平线：抵消全局 figure + figure 的 6px 上边距 */
+    .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
+    .case-gallery .case-media-grid img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
+
+  <header class="case-header">
+    <a class="brand" href="../index.html">SHADOWYLI</a>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="../index.html#portfolio" data-i18n-key="navWork">作品</a>
+      <a href="../index.html#about" data-i18n-key="navAbout">关于我</a>
+    </nav>
+    <div class="case-header-actions">
+      <a class="case-back" href="../index.html#portfolio" data-i18n-key="back">← 返回作品集</a>
+      <button class="theme-toggle icon-button case-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button class="case-lang" type="button" aria-label="切换到英文" title="切换到英文"><span>EN</span></button>
+    </div>
+  </header>
+
+  <div class="case-progress" aria-hidden="true">
+    <span class="case-progress-fill"></span>
+  </div>
+
+  <main class="case-main" id="case-main" tabindex="-1">
+    <div class="case-body case-body--flush">
+      <!-- 内容待补充 -->
+      <section class="case-section case-gallery">
+        <figure class="case-frame case-frame--image">
+          <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" decoding="async" fetchpriority="high">
+        </figure>
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
+          <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛通用背景动画"></video>
+        </figure>
+        <div class="case-media-grid case-media-grid--three">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4">
+            <img src="../assets/mengshou-group-jingrui-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组背景：蓝色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组背景动画"></video>
+          </figure>
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-1.mp4">
+            <img src="../assets/mengshou-group-shenwei-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组背景：暖金色环形机关与红色宝石" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组背景动画"></video>
+          </figure>
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-1.mp4">
+            <img src="../assets/mengshou-group-yongwu-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组背景：金色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组背景动画"></video>
+          </figure>
+        </div>
+        <div class="case-media-grid case-media-grid--three">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4">
+            <img src="../assets/mengshou-group-jingrui-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组徽记特写：蓝色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组徽记动画"></video>
+          </figure>
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-2.mp4">
+            <img src="../assets/mengshou-group-shenwei-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组徽记特写：红色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组徽记动画"></video>
+          </figure>
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-2.mp4">
+            <img src="../assets/mengshou-group-yongwu-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组徽记特写：金色宝石与暗金边框" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组徽记动画"></video>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="case-footer">
+    <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">影子 · 视觉设计作品集</span></span>
+    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
+  </footer>
+
+  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
+    <div class="dialog-card">
+      <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+      <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+    </div>
+    <p class="dialog-hint">长按图片保存二维码</p>
+  </div>
+
+  <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var STORAGE_KEY = "portfolio-language";
+      var copy = {
+        zh: {
+          skip: "跳到正文",
+          back: "← 返回作品集",
+          contactMe: "联系我",
+          navWork: "作品",
+          navAbout: "关于我",
+          footerNote: "影子 · 视觉设计作品集",
+          pageTitle: "《梦幻西游》手游巅峰联赛 | Shadowyli",
+          metaDescription: "《梦幻西游》手游巅峰联赛项目案例。"
+        },
+        en: {
+          skip: "Skip to content",
+          back: "← Back to portfolio",
+          contactMe: "Contact me",
+          navWork: "Work",
+          navAbout: "About",
+          footerNote: "Shadow · Visual Design Portfolio",
+          pageTitle: "Fantasy Westward Journey Mobile Peak League | Shadowyli",
+          metaDescription: "Fantasy Westward Journey Mobile Peak League case study."
+        }
+      };
+
+      var currentLanguage = "zh";
+      var languageToggle = document.querySelector(".case-lang");
+      var themeButton = document.querySelector(".case-theme");
+
+      function storedLanguage() {
+        try {
+          return localStorage.getItem(STORAGE_KEY) === "en" ? "en" : "zh";
+        } catch (error) {
+          return "zh";
+        }
+      }
+
+      function labelFor(language) {
+        return language === "zh" ? "切换到英文" : "Switch to Chinese";
+      }
+
+      function syncThemeLabel() {
+        if (!themeButton) return;
+        var light = document.documentElement.dataset.theme === "light";
+        var english = currentLanguage === "en";
+        var label = light
+          ? (english ? "Switch to dark mode" : "切换到深色模式")
+          : (english ? "Switch to light mode" : "切换到浅色模式");
+        themeButton.setAttribute("aria-label", label);
+        themeButton.setAttribute("title", label);
+      }
+
+      function applyLanguage(language) {
+        currentLanguage = language;
+        var dictionary = copy[language];
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+
+        var textNodes = document.querySelectorAll("[data-i18n-key]");
+        for (var i = 0; i < textNodes.length; i++) {
+          var text = dictionary[textNodes[i].getAttribute("data-i18n-key")];
+          if (typeof text === "string") textNodes[i].textContent = text;
+        }
+
+        var altNodes = document.querySelectorAll("[data-i18n-alt]");
+        for (var j = 0; j < altNodes.length; j++) {
+          var alt = dictionary[altNodes[j].getAttribute("data-i18n-alt")];
+          if (typeof alt === "string") altNodes[j].setAttribute("alt", alt);
+        }
+
+        document.title = dictionary.pageTitle;
+        var description = document.querySelector('meta[name="description"]');
+        if (description) description.setAttribute("content", dictionary.metaDescription);
+
+        if (languageToggle) {
+          languageToggle.textContent = language === "zh" ? "EN" : "CN";
+          languageToggle.setAttribute("aria-label", labelFor(language));
+          languageToggle.setAttribute("title", labelFor(language));
+        }
+
+        syncThemeLabel();
+      }
+
+      applyLanguage(storedLanguage());
+
+      if (languageToggle) {
+        languageToggle.addEventListener("click", function () {
+          var nextLanguage = currentLanguage === "zh" ? "en" : "zh";
+          try {
+            localStorage.setItem(STORAGE_KEY, nextLanguage);
+          } catch (error) { /* ignore */ }
+          applyLanguage(nextLanguage);
+        });
+      }
+
+      if (themeButton) {
+        themeButton.addEventListener("click", function () {
+          var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+          if (next === "light") {
+            document.documentElement.dataset.theme = "light";
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+          try {
+            localStorage.setItem("portfolio-theme", next);
+          } catch (error) { /* ignore */ }
+          syncThemeLabel();
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var bar = document.querySelector(".case-progress");
+      if (!bar) return;
+      var ticking = false;
+
+      function render() {
+        ticking = false;
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        bar.style.setProperty("--progress", (progress * 100).toFixed(2) + "%");
+      }
+
+      function request() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(render);
+      }
+
+      window.addEventListener("scroll", request, { passive: true });
+      window.addEventListener("resize", request);
+      render();
+    })();
+  </script>
+  <script>
+    (function () {
+      var trigger = document.querySelector("#case-contact");
+      var dialog = document.querySelector("#case-contact-dialog");
+      if (!trigger || !dialog) return;
+      var closeButton = dialog.querySelector(".dialog-close");
+
+      function openDialog() {
+        dialog.hidden = false;
+        document.body.classList.add("dialog-open");
+        dialog.focus();
+      }
+
+      function closeDialog() {
+        dialog.hidden = true;
+        document.body.classList.remove("dialog-open");
+        trigger.focus();
+      }
+
+      trigger.addEventListener("click", openDialog);
+      if (closeButton) closeButton.addEventListener("click", closeDialog);
+      dialog.addEventListener("click", closeDialog);
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !dialog.hidden) closeDialog();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var slots = Array.prototype.slice.call(document.querySelectorAll(".case-media-slot[data-video]"));
+      if (!slots.length) return;
+
+      function attach(slot) {
+        var video = slot.querySelector("video");
+        var src = slot.getAttribute("data-video");
+        if (!video || !src) return null;
+        if (video.getAttribute("src") !== src) {
+          video.setAttribute("src", src);
+          try { video.load(); } catch (error) {}
+        }
+        return video;
+      }
+
+      function play(slot) {
+        var video = attach(slot);
+        if (!video) return;
+        if (!video.paused && !video.ended) return;
+        try { video.currentTime = 0; } catch (error) {}
+        video.muted = true;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      }
+
+      function stop(slot) {
+        var video = slot.querySelector("video");
+        if (video && !video.paused) video.pause();
+        slot.classList.remove("is-playing");
+      }
+
+      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      slots.forEach(function (slot) {
+        var video = slot.querySelector("video");
+        if (!video) return;
+
+        video.addEventListener("playing", function () {
+          slot.classList.add("is-playing");
+        });
+
+        video.addEventListener("ended", function () {
+          slot.classList.remove("is-playing");
+          try { video.currentTime = 0; } catch (error) {}
+        });
+
+        if (canHover) {
+          slot.addEventListener("pointerenter", function () { play(slot); });
+        }
+        slot.addEventListener("click", function () { play(slot); });
+      });
+
+      if (!("IntersectionObserver" in window)) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var slot = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            if (slot.dataset.played !== "1") {
+              slot.dataset.played = "1";
+              play(slot);
+            }
+          } else if (!entry.isIntersecting) {
+            delete slot.dataset.played;
+            stop(slot);
+          }
+        });
+      }, { threshold: [0, 0.35] });
+
+      slots.forEach(function (slot) { observer.observe(slot); });
+    })();
+  </script>
+</body>
+</html>
