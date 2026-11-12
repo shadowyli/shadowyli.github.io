@@ -594,8 +594,10 @@ img { display: block; max-width: 100%; }
   line-height: 1.5;
 }
 
-.project-card { min-width: 0; opacity: 0; }
+.project-card { min-width: 0; opacity: 1; }
 .project-card.revealed { opacity: 1; transition: opacity 380ms ease; }
+html.reveal-enabled .project-card { opacity: 0; }
+html.reveal-enabled .project-card.revealed { opacity: 1; }
 .project-card[hidden] { display: none; }
 
 .project-visual {

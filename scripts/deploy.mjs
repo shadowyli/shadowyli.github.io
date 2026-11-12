@@ -104,7 +104,7 @@ runOssutil(ossutil, syncArgs);
 const cacheRules = [
   {
     label: "HTML",
-    cacheControl: "no-cache, must-revalidate",
+    cacheControl: "no-cache, no-store, must-revalidate, max-age=0",
     includes: ["*.html"],
   },
   {

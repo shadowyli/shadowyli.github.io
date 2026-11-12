@@ -603,6 +603,7 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 if (reducedMotion || !("IntersectionObserver" in window)) {
   projectCards.forEach((card) => card.classList.add("revealed"));
 } else {
+  document.documentElement.classList.add("reveal-enabled");
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -617,4 +618,25 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   );
 
   projectCards.forEach((card) => observer.observe(card));
+
+  const revealInView = () => {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    projectCards.forEach((card) => {
+      if (card.classList.contains("revealed")) return;
+      const rect = card.getBoundingClientRect();
+      if (rect.top < vh * 0.92 && rect.bottom > 0) {
+        card.classList.add("revealed");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", revealInView, { passive: true });
+  document.addEventListener("scroll", revealInView, { passive: true, capture: true });
+  window.addEventListener("resize", revealInView);
+  window.setTimeout(revealInView, 600);
+  window.setTimeout(() => {
+    if (!projectCards.some((card) => card.classList.contains("revealed"))) {
+      projectCards.forEach((card) => card.classList.add("revealed"));
+    }
+  }, 3000);
 }
