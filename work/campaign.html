@@ -1370,13 +1370,7 @@
         if (promise && promise.catch) promise.catch(function () {});
       }
 
-      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
       videos.forEach(function (video) {
-        var figure = video.closest("figure");
-        if (canHover && figure) {
-          figure.addEventListener("pointerenter", function () { play(video); });
-        }
         video.addEventListener("click", function () { play(video); });
         video.addEventListener("ended", function () {
           try { video.currentTime = 0; } catch (error) {}
