@@ -152,6 +152,79 @@
     }
     .case-gallery .case-media-slot.is-playing video { opacity: 1; }
 
+    /* 视频 + 静态分镜：左片右板，分镜两行四列 */
+    .case-body .case-credit-top {
+      margin: 0 0 clamp(18px, 2.4vw, 28px);
+      max-width: none;
+    }
+    .case-video-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: clamp(10px, 1.2vw, 16px);
+      align-items: center;
+    }
+    .case-video-split .case-media-slot { margin: 0; }
+    .case-board-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-self: center;
+    }
+    .case-board-label {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+    }
+    .case-board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(6px, 0.6vw, 8px);
+    }
+    .case-board figure { margin: 0; }
+    .case-board img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--surface);
+    }
+    @media (max-width: 720px) {
+      .case-video-split { grid-template-columns: 1fr; }
+    }
+
+    /* 右下角声音开关 */
+    .case-media-slot .case-sound {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+      padding: 0 12px;
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 999px;
+      background: rgba(8, 7, 10, .78);
+      color: #ffffff;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      cursor: pointer;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+    .case-media-slot .case-sound:hover { background: rgba(8, 7, 10, .92); border-color: rgba(255, 255, 255, .62); }
+    .case-media-slot .case-sound[aria-pressed="true"] {
+      background: rgba(255, 255, 255, .94);
+      border-color: transparent;
+      color: #08070a;
+    }
+
     /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .social-badge--long {
       white-space: normal;
@@ -331,10 +404,43 @@
 
       <section class="case-section case-gallery" id="case-gallery-video" aria-labelledby="case-title-video">
         <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">视频包装</span></h2>
-        <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
-          <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
-          <video muted playsinline preload="none" aria-label="美年达主宣转场动画：品牌标识与蛋仔角色在橙色视觉中切换"></video>
-        </figure>
+        <p class="case-caption case-credit-top" data-i18n-key="videoCredit">创意视觉设计：影子（李颖）｜动画设计：李楚怡</p>
+        <div class="case-video-split">
+          <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
+            <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="美年达主宣转场动画：品牌标识与蛋仔角色在橙色视觉中切换"></video>
+            <button class="case-sound" type="button" aria-pressed="false" data-i18n-key="soundOn" aria-label="打开声音">声音</button>
+          </figure>
+          <div class="case-board-wrap">
+            <p class="case-board-label" data-i18n-key="boardLabel">静态分镜</p>
+            <div class="case-board" role="group" aria-label="美年达主宣转场静态分镜">
+            <figure>
+              <img src="../assets/mirinda-board-1.webp" alt="美年达主宣转场静态分镜 01" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-2.webp" alt="美年达主宣转场静态分镜 02" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-3.webp" alt="美年达主宣转场静态分镜 03" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-4.webp" alt="美年达主宣转场静态分镜 04" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-5.webp" alt="美年达主宣转场静态分镜 05" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-6.webp" alt="美年达主宣转场静态分镜 06" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-7.webp" alt="美年达主宣转场静态分镜 07" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            <figure>
+              <img src="../assets/mirinda-board-8.webp" alt="美年达主宣转场静态分镜 08" width="640" height="360" loading="lazy" decoding="async">
+            </figure>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="case-section case-echo" aria-labelledby="echo-sign">
@@ -413,6 +519,10 @@
           voiceRole: "创意视觉设计",
           section1Title: "KV",
           section2Title: "视频包装",
+          videoCredit: "创意视觉设计：影子（李颖）｜动画设计：李楚怡",
+          boardLabel: "静态分镜",
+          soundOn: "声音",
+          soundOff: "静音",
           mirindaAlt: "美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品",
           kvAlt: "第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像",
           socialSign: "设计的回声",
@@ -440,6 +550,10 @@
           voiceRole: "Creative visual design",
           section1Title: "Key Visual",
           section2Title: "Video packaging",
+          videoCredit: "Creative visual design: Shadow (Li Ying) | Animation design: Li Chuyi",
+          boardLabel: "Storyboards",
+          soundOn: "Sound",
+          soundOff: "Mute",
           mirindaAlt: "Mirinda brand promo still: the Eggy character holding a Mirinda can on a slice of orange",
           kvAlt: "Eggy Party National Finals key visual: gold trophy, Chengdu city diorama and the Eggy cast",
           socialSign: "The echo of design",
@@ -612,12 +726,17 @@
         return video;
       }
 
+      function isSoundOn(slot) {
+        var button = slot.querySelector(".case-sound");
+        return !!button && button.getAttribute("aria-pressed") === "true";
+      }
+
       function play(slot) {
         var video = attach(slot);
         if (!video) return;
         if (!video.paused && !video.ended) return;
         try { video.currentTime = 0; } catch (error) {}
-        video.muted = true;
+        video.muted = !isSoundOn(slot);
         var promise = video.play();
         if (promise && promise.catch) promise.catch(function () {});
       }
@@ -626,6 +745,16 @@
         var video = slot.querySelector("video");
         if (video && !video.paused) video.pause();
         slot.classList.remove("is-playing");
+      }
+
+      function syncSoundLabel(slot, on) {
+        var button = slot.querySelector(".case-sound");
+        if (!button) return;
+        var language = document.documentElement.lang || "zh-CN";
+        var english = language.indexOf("en") === 0;
+        var label = on ? (english ? "Mute" : "静音") : (english ? "Sound" : "声音");
+        button.textContent = label;
+        button.setAttribute("aria-label", on ? (english ? "Mute the video" : "关闭声音") : (english ? "Play with sound" : "打开声音"));
       }
 
       slots.forEach(function (slot) {
@@ -639,6 +768,24 @@
         video.addEventListener("ended", function () {
           slot.classList.remove("is-playing");
         });
+
+        var sound = slot.querySelector(".case-sound");
+        if (sound) {
+          sound.addEventListener("click", function (event) {
+            event.stopPropagation();
+            var target = attach(slot);
+            if (!target) return;
+            var on = sound.getAttribute("aria-pressed") !== "true";
+            sound.setAttribute("aria-pressed", on ? "true" : "false");
+            syncSoundLabel(slot, on);
+            target.muted = !on;
+            if (target.ended || target.paused) {
+              try { target.currentTime = 0; } catch (error) {}
+              var promise = target.play();
+              if (promise && promise.catch) promise.catch(function () {});
+            }
+          });
+        }
 
         // 点击 = 手动重播（触屏设备没有悬停，也能重看）
         slot.addEventListener("click", function () { play(slot); });
