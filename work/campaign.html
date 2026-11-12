@@ -27,7 +27,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-96">
+  <link rel="stylesheet" href="../styles.css?v=20261112-97">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     .case-body .case-pair + .case-frame {
@@ -204,7 +204,7 @@
     @media (max-width: 720px) {
       /* 手机端竖版行等分，不留通栏的单张 */
       .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
-      /* 横版 + 竖版改为上下排列，避免竖版被压到无法辨认 */
+      /* 系列条：手机端保持三列并排，让系列作为一组被看完 */
       .case-row[data-layout="strip"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .case-row[data-layout="banners"] { grid-template-columns: 1fr; }
     }
@@ -662,12 +662,19 @@
     <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
   </footer>
 
-  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
+  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-labelledby="case-contact-title" tabindex="-1" hidden>
+    <div class="dialog-close-row">
+      <button class="dialog-close" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        <span class="sr-only" data-i18n-key="closeDialog">关闭</span>
+      </button>
+    </div>
     <div class="dialog-card">
+      <h2 class="sr-only" id="case-contact-title" data-i18n-key="wechatTitle">微信二维码</h2>
       <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
       <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
     </div>
-    <p class="dialog-hint">长按图片保存二维码</p>
+    <p class="dialog-hint" data-i18n-key="saveHint">长按图片保存二维码</p>
   </div>
 
   <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
@@ -737,6 +744,9 @@
           relatedDanzai: "《蛋仔派对》全国总决赛",
           relatedVideo: "视频包装",
           relatedAi: "AI 管线开发",
+          closeDialog: "关闭",
+          wechatTitle: "微信二维码",
+          saveHint: "长按图片保存二维码",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "宣发设计 · 赛事宣传视觉 | Shadowyli",
           metaDescription: "《第五人格》COA VIII 全球总决赛、《蛋仔派对》全国总决赛与《梦幻西游》手游巅峰联赛的赛事宣发视觉案例。"
@@ -760,15 +770,15 @@
           metaYearValue: "2023—2025",
           section1Title: "Identity V COA VIII Global Finals",
           socialSign: "The echo of design",
-          statBadge1: "推特420w+曝光·3万赞+破圈爆款",
-          statBadge2: "推特35w+曝光·高互动万赞热帖",
-          statBadge3: "抖音47w赞",
-          statBadge4: "抖音5W+赞万转直拍",
-          statBadge9: "抖音3.8w赞3k+转发",
-          statBadge5: "抖音万赞热门",
-          statBadge6: "抖音4千+赞",
-          statBadge7: "抖音3k+赞",
-          statBadge8: "全网300w曝光节目",
+          statBadge1: "Twitter · 4.2M impressions · 30K likes",
+          statBadge2: "Twitter · 350K impressions · 10K-like hit",
+          statBadge3: "Douyin · 470K likes",
+          statBadge4: "Douyin · 50K likes · 10K reposts",
+          statBadge9: "Douyin · 38K likes · 3K reposts",
+          statBadge5: "Douyin · 10K-like hit",
+          statBadge6: "Douyin · 4K+ likes",
+          statBadge7: "Douyin · 3K+ likes",
+          statBadge8: "3M-impression show",
           voicePill: "CAMPAIGN DESIGN",
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
@@ -803,6 +813,9 @@
           relatedDanzai: "Eggy Party National Finals",
           relatedVideo: "Video Packaging",
           relatedAi: "AI Pipeline Development",
+          closeDialog: "Close",
+          wechatTitle: "WeChat QR code",
+          saveHint: "Long-press the image to save the QR code",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Campaign Design · Esports Campaign Visuals | Shadowyli",
           metaDescription: "Campaign visual case studies for Identity V COA VIII Global Finals, Eggy Party National Finals and Fantasy Westward Journey Mobile Peak League."
@@ -925,8 +938,10 @@
       var dialog = document.querySelector("#case-contact-dialog");
       if (!trigger || !dialog) return;
       var closeButton = dialog.querySelector(".dialog-close");
+      var lastFocus = null;
 
       function openDialog() {
+        lastFocus = document.activeElement;
         dialog.hidden = false;
         document.body.classList.add("dialog-open");
         dialog.focus();
@@ -935,12 +950,16 @@
       function closeDialog() {
         dialog.hidden = true;
         document.body.classList.remove("dialog-open");
-        trigger.focus();
+        var returnTo = lastFocus && lastFocus !== document.body ? lastFocus : trigger;
+        if (returnTo && typeof returnTo.focus === "function") returnTo.focus();
       }
 
       trigger.addEventListener("click", openDialog);
       if (closeButton) closeButton.addEventListener("click", closeDialog);
-      dialog.addEventListener("click", closeDialog);
+      /* 仅点击遮罩关闭，避免长按二维码保存时误触关闭 */
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog) closeDialog();
+      });
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
@@ -1126,7 +1145,7 @@
           var label = badgeText(source);
           if (label) {
             var size = 62;
-            var family = "px 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif";
+            var family = "px 'Inter', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif";
             var padX = 24;
             var padY = 16;
             var lineH = Math.round(size * 1.2);
@@ -1134,17 +1153,20 @@
             var maxTextW = tw - padX * 2 - 20;
             var lines = [];
             var current = "";
-            for (var ci = 0; ci < label.length; ci++) {
-              var test = current + label.charAt(ci);
+            var wordMode = label.indexOf(" ") > -1;
+            var tokens = wordMode ? label.split(" ") : label.split("");
+            for (var ti = 0; ti < tokens.length; ti++) {
+              var token = tokens[ti];
+              var test = current ? current + (wordMode ? " " : "") + token : token;
               if (current && g.measureText(test).width > maxTextW) {
                 lines.push(current);
-                current = label.charAt(ci);
+                current = token;
               } else {
                 current = test;
               }
             }
             if (current) lines.push(current);
-            if (lines.length > 2) lines = [lines[0], lines.slice(1).join("")];
+            if (lines.length > 2) lines = [lines[0], lines.slice(1).join(wordMode ? " " : "")];
             var boxH = lines.length * lineH + padY * 2;
             var textW = 0;
             lines.forEach(function (line) { textW = Math.max(textW, g.measureText(line).width); });
