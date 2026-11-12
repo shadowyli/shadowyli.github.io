@@ -127,6 +127,31 @@
 
       .case-main { flex: 1; }
     }
+    /* 视频槽位：默认显示静帧，入场播放时覆盖动画（与梦幻西游案例页一致） */
+    .case-gallery .case-media-slot {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .case-gallery .case-media-slot img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .case-gallery .case-media-slot video {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      pointer-events: none;
+      background: var(--surface);
+      transition: opacity 240ms ease;
+    }
+    .case-gallery .case-media-slot.is-playing video { opacity: 1; }
+
     /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .social-badge--long {
       white-space: normal;
@@ -304,6 +329,14 @@
              data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
       </section>
 
+      <section class="case-section case-gallery" id="case-gallery-video" aria-labelledby="case-title-video">
+        <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">视频包装</span></h2>
+        <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
+          <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          <video muted playsinline preload="none" aria-label="美年达主宣转场动画：品牌标识与蛋仔角色在橙色视觉中切换"></video>
+        </figure>
+      </section>
+
       <section class="case-section case-echo" aria-labelledby="echo-sign">
         <p class="social-sign" id="echo-sign" data-i18n-key="socialSign">设计的回声</p>
         <div class="echo-reel" tabindex="0" role="region" aria-label="社交媒体反响截图，可左右拖动或用方向键浏览">
@@ -379,6 +412,8 @@
           voiceName: "影子（李颖）",
           voiceRole: "创意视觉设计",
           section1Title: "KV",
+          section2Title: "视频包装",
+          mirindaAlt: "美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品",
           kvAlt: "第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像",
           socialSign: "设计的回声",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
@@ -404,6 +439,8 @@
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
           section1Title: "Key Visual",
+          section2Title: "Video packaging",
+          mirindaAlt: "Mirinda brand promo still: the Eggy character holding a Mirinda can on a slice of orange",
           kvAlt: "Eggy Party National Finals key visual: gold trophy, Chengdu city diorama and the Eggy cast",
           socialSign: "The echo of design",
           statBadge1: "Twitter · 4.2M impressions · 30K likes",
@@ -556,6 +593,75 @@
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var slots = Array.prototype.slice.call(document.querySelectorAll(".case-media-slot[data-video]"));
+      if (!slots.length) return;
+
+      function attach(slot) {
+        var video = slot.querySelector("video");
+        var src = slot.getAttribute("data-video");
+        if (!video || !src) return null;
+        video.loop = false; // 只播一次：结束后停在末帧，末帧与静图呼应
+        if (video.getAttribute("src") !== src) {
+          video.setAttribute("src", src);
+          try { video.load(); } catch (error) {}
+        }
+        return video;
+      }
+
+      function play(slot) {
+        var video = attach(slot);
+        if (!video) return;
+        if (!video.paused && !video.ended) return;
+        try { video.currentTime = 0; } catch (error) {}
+        video.muted = true;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      }
+
+      function stop(slot) {
+        var video = slot.querySelector("video");
+        if (video && !video.paused) video.pause();
+        slot.classList.remove("is-playing");
+      }
+
+      slots.forEach(function (slot) {
+        var video = slot.querySelector("video");
+        if (!video) return;
+
+        video.addEventListener("playing", function () {
+          slot.classList.add("is-playing");
+        });
+
+        video.addEventListener("ended", function () {
+          slot.classList.remove("is-playing");
+        });
+
+        // 点击 = 手动重播（触屏设备没有悬停，也能重看）
+        slot.addEventListener("click", function () { play(slot); });
+      });
+
+      if (!("IntersectionObserver" in window)) return;
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var slot = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            if (slot.dataset.played !== "1") {
+              slot.dataset.played = "1";
+              play(slot);
+            }
+          } else if (!entry.isIntersecting) {
+            delete slot.dataset.played;
+            stop(slot);
+          }
+        });
+      }, { threshold: [0, 0.35] });
+
+      slots.forEach(function (slot) { observer.observe(slot); });
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
