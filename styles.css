@@ -1406,6 +1406,20 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .ivl-banner-wide { grid-column: 1 / -1; }
 
+/* IVL 倒计时：宽幅主视觉 + 竖版战队徽标并排，比例沿用原合成图 */
+.ivl-pair {
+  display: grid;
+  grid-template-columns: 2688fr 576fr;
+  gap: 0;
+  margin: 0;
+}
+
+.ivl-pair .case-slot-media { margin: 0; }
+
+.ivl-slot--wide .case-slot-cover { aspect-ratio: 14 / 9; }
+
+.ivl-slot--tall .case-slot-cover { aspect-ratio: 1 / 3; }
+
 .case-hero-cover {
   display: block;
   width: 100%;
