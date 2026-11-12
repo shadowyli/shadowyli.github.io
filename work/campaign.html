@@ -81,7 +81,6 @@
       grid-template-columns: clamp(76px, 8.6vw, 112px) minmax(0, 1fr);
       margin: 0 0 clamp(36px, 5vw, 64px);
       padding: clamp(30px, 4vw, 54px) 0;
-      border-top: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
       border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
       overflow: hidden;
       isolation: isolate;
@@ -90,15 +89,15 @@
     .voice-mark {
       position: absolute;
       top: 50%;
-      left: -6%;
+      left: 1%;
       z-index: 0;
       transform: translateY(-50%);
-      color: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.055);
       font-family: "Space Grotesk", var(--font-cjk);
-      font-size: clamp(190px, 24vw, 320px);
+      font-size: clamp(150px, 19vw, 258px);
       font-weight: 700;
       line-height: 1;
-      letter-spacing: -0.09em;
+      letter-spacing: -0.06em;
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
@@ -173,7 +172,7 @@
     .case-body .voice-lead {
       width: 100%;
       max-width: 17.5em;
-      margin: 0 0 clamp(20px, 2.4vw, 30px);
+      margin: 0 0 clamp(28px, 3.6vw, 46px);
       color: var(--text);
       font-size: clamp(26px, 3.5vw, 44px);
       font-weight: 300;
@@ -182,33 +181,18 @@
       text-wrap: balance;
     }
 
-    .case-body .voice-copy {
-      max-width: 52ch;
-      margin: 0 0 clamp(26px, 3.2vw, 40px);
-    }
-
-    .case-body .voice-copy p {
-      max-width: none;
-      margin: 0 0 10px;
-      color: var(--text-muted);
-      font-size: 13.5px;
-      line-height: 1.9;
-      letter-spacing: 0.01em;
-    }
-
-    .case-body .voice-copy p:last-child { margin-bottom: 0; }
-
     .voice-author {
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
       gap: clamp(12px, 1.5vw, 16px);
     }
 
     .voice-rule {
       display: block;
+      flex: none;
       width: 30px;
       height: 1px;
-      margin-bottom: 8px;
+      margin: 9px 0 0;
       background: var(--text);
     }
 
@@ -306,11 +290,7 @@
 
         <div class="voice-body">
           <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">宣发设计</span></p>
-          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">先想清楚这场赛事想让谁心跳加速，再决定画面怎么发力。</p>
-          <div class="voice-copy">
-            <p data-i18n-key="voiceBody1">从《第五人格》COA 全球总决赛到《蛋仔派对》全国总决赛，第一件事从来不是出图，而是把赛事规则、战队人设与观众情绪翻译成同一套视觉语言——冠军海报、倒计时、选手名单、社媒切片，说的必须是同一句话。</p>
-            <p data-i18n-key="voiceBody2">主视觉只是起点。粗粝的质感与精致的渲染并存，信息与情绪同频；一套系统能在直播大屏、手机和信息流里同时成立，才算真正把这场比赛交到了观众手里。</p>
-          </div>
+          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">先想清楚这场赛事想让谁心跳加速，再决定画面怎么发力——冠军海报、倒计时、选手名单、社媒切片，说的必须是同一句话。</p>
           <div class="voice-author">
             <span class="voice-rule" aria-hidden="true"></span>
             <div>
@@ -461,9 +441,7 @@
           voiceLabel: "设计理念",
           voicePill: "宣发设计",
           voiceMark: "宣发",
-          voiceLead: "先想清楚这场赛事想让谁心跳加速，再决定画面怎么发力。",
-          voiceBody1: "从《第五人格》COA 全球总决赛到《蛋仔派对》全国总决赛，第一件事从来不是出图，而是把赛事规则、战队人设与观众情绪翻译成同一套视觉语言——冠军海报、倒计时、选手名单、社媒切片，说的必须是同一句话。",
-          voiceBody2: "主视觉只是起点。粗粝的质感与精致的渲染并存，信息与情绪同频；一套系统能在直播大屏、手机和信息流里同时成立，才算真正把这场比赛交到了观众手里。",
+          voiceLead: "先想清楚这场赛事想让谁心跳加速，再决定画面怎么发力——冠军海报、倒计时、选手名单、社媒切片，说的必须是同一句话。",
           voiceName: "影子（李颖）",
           voiceRole: "创意视觉设计",
           badgeTwitter10k: "推特万转",
@@ -520,9 +498,7 @@
           voiceLabel: "PHILOSOPHY",
           voicePill: "CAMPAIGN DESIGN",
           voiceMark: "CAMPAIGN",
-          voiceLead: "Decide whose pulse this event should raise first, then decide how the picture should hit.",
-          voiceBody1: "From Identity V COA Global Finals to Eggy Party National Finals, the first move is never a render. It is translating the rules, the roster and the crowd's mood into one visual language — champion poster, countdown, roster, social cuts, all saying the same thing.",
-          voiceBody2: "The key visual is only the start. Coarse texture beside polished rendering, information in step with emotion: a system that holds on a broadcast screen, a phone and a feed is what actually hands the match to the audience.",
+          voiceLead: "Decide whose pulse this event should raise first, then decide how the picture should hit — champion poster, countdown, roster and social cuts all saying the same thing.",
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
           badgeTwitter10k: "Twitter · 10K reposts",
