@@ -159,7 +159,7 @@
       .case-page .mobile-play.is-visible { display: inline-flex; }
     }
 
-    /* 活动横幅：由外层 banner-grid 统一三列，手机两列保证文字可读 */
+    /* 活动横幅：由外层 banner-grid 统一三列，手机单列保证文案可读 */
     .case-row[data-layout="banners"] {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -176,7 +176,7 @@
     .banner-grid .case-row[data-layout="banners"] { display: contents; }
 
     @media (max-width: 720px) {
-      .banner-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .banner-grid { grid-template-columns: 1fr; }
     }
 
     .case-row[data-layout="banners"] .case-frame--image img {
