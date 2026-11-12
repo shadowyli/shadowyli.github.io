@@ -1025,7 +1025,7 @@ body.dialog-open { overflow: hidden; }
 }
 
 @media (max-width: 1160px) {
-  .site-header { grid-template-columns: max-content minmax(220px, 1fr) max-content; }
+  .site-header { grid-template-columns: max-content 1fr max-content; }
   .desktop-nav { display: none; }
   /* 821–1160 之间也必须有导航入口：菜单按钮与隐藏主导航用同一个断点 */
   .menu-button { display: inline-grid; }
@@ -1051,7 +1051,6 @@ body.dialog-open { overflow: hidden; }
 @media (max-width: 820px) {
   :root { --header-height: 60px; }
   .site-header { grid-template-columns: max-content 1fr max-content; gap: 14px; padding: 0 16px; }
-  .search-box { justify-self: stretch; }
   .menu-button { display: inline-grid; }
   .profile-hero { min-height: 148px; height: 148px; }
   .hero-copy { padding: 16px 24px 12px 160px; text-align: right; }
@@ -1069,23 +1068,6 @@ body.dialog-open { overflow: hidden; }
 @media (max-width: 560px) {
   .brand { position: relative; z-index: 2; width: 84px; height: 23px; overflow: visible; color: transparent; font-size: 0; }
   .brand::after { position: absolute; inset: 0; color: #f7f6f4; content: "SHADOWYLI"; font-size: 15px; font-weight: 700; line-height: 23px; }
-  .search-box { justify-self: end; width: 44px; padding: 0; justify-content: center; border-radius: 50%; cursor: pointer; }
-
-  .search-box input {
-    position: absolute;
-    top: calc(var(--header-height) + 8px);
-    right: 16px;
-    left: 16px;
-    display: none;
-    width: calc(100% - 32px);
-    height: 46px;
-    padding: 0 16px;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    background: var(--surface-raised);
-  }
-
-  .search-box.open input { display: block; }
   .profile-hero { min-height: 140px; height: 140px; }
   .hero-copy { padding: 16px 20px 12px 150px; text-align: right; }
   .hero-copy h1 { font-size: 32px; }

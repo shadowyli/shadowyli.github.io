@@ -1,5 +1,3 @@
-const searchInput = document.querySelector("#search-input");
-const searchBox = document.querySelector(".search-box");
 const projectCards = [...document.querySelectorAll(".project-card")];
 const resultsMessage = document.querySelector(".results-message");
 const menuButton = document.querySelector(".menu-button");
@@ -290,7 +288,6 @@ const applyLanguage = (language) => {
 
   updateAge();
 
-  searchInput.placeholder = language === "zh" ? "搜索作品…" : "Search work…";
   languageToggle.querySelector("span").textContent = language === "zh" ? "EN" : "CN";
   languageToggle.setAttribute("aria-label", language === "zh" ? "切换到英文" : "Switch to Chinese");
   languageToggle.setAttribute("title", language === "zh" ? "切换到英文" : "Switch to Chinese");
@@ -346,8 +343,8 @@ const closeContactDialog = () => {
   dialogTrigger?.focus();
 };
 
-const filterProjects = () => {
-  const query = normalize(searchInput.value);
+const filterProjects = (query = "") => {
+  query = normalize(query);
   let visibleCount = 0;
 
   if (query) {
@@ -368,8 +365,8 @@ const filterProjects = () => {
   }
   resultsMessage.textContent = query
     ? currentLanguage === "zh"
-      ? `找到 ${visibleCount} 个与“${searchInput.value.trim()}”相关的作品`
-      : `${visibleCount} result${visibleCount === 1 ? "" : "s"} for "${searchInput.value.trim()}"`
+      ? `找到 ${visibleCount} 个相关作品`
+      : `${visibleCount} matching result${visibleCount === 1 ? "" : "s"}`
     : "";
 
   // 空状态已给出「没有找到」的视觉信息时，计数行只留给读屏，避免视觉重复。
@@ -384,8 +381,6 @@ const filterProjects = () => {
     resultsMessage.style.removeProperty("margin");
   }
 };
-
-searchInput.addEventListener("input", filterProjects);
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Tab" && !contactDialog.hidden) {
@@ -420,28 +415,6 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 
-  const target = event.target;
-  const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement;
-
-  if (event.key === "/" && !isTyping) {
-    event.preventDefault();
-    searchBox.classList.add("open");
-    searchInput.focus();
-  }
-
-  if (event.key === "Escape") {
-    searchInput.value = "";
-    searchBox.classList.remove("open");
-    filterProjects();
-    searchInput.blur();
-  }
-});
-
-searchBox.addEventListener("click", () => {
-  if (window.matchMedia("(max-width: 560px)").matches) {
-    searchBox.classList.add("open");
-    searchInput.focus();
-  }
 });
 
 contactButton.addEventListener("click", openContactDialog);

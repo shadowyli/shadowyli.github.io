@@ -195,6 +195,106 @@
       margin-top: clamp(14px, 1.8vw, 22px);
     }
 
+    /* 查看更多：展开式画廊——悬停 / 聚焦的一张展开，其余收成窄条 */
+    .more-gallery {
+      display: flex;
+      gap: 6px;
+      height: clamp(260px, 30vw, 380px);
+    }
+
+    .more-item {
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 6px;
+      background: var(--surface);
+      color: #ffffff;
+      text-decoration: none;
+      transition: flex-grow 560ms cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .more-item.is-active { flex-grow: 5; }
+
+    .more-item img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.5) saturate(.75);
+      transform: scale(1.06);
+      transition: filter 420ms ease, transform 800ms cubic-bezier(.22, .8, .24, 1);
+    }
+
+    .more-item.is-active img { filter: none; transform: scale(1); }
+
+    .more-item::after {
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(to top, rgba(8, 7, 10, .82), transparent);
+      content: "";
+      opacity: 0;
+      transition: opacity 360ms ease;
+    }
+
+    .more-item.is-active::after { opacity: 1; }
+
+    .more-index {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      z-index: 1;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      opacity: .72;
+    }
+
+    .more-label {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 240ms ease, transform 360ms ease;
+    }
+
+    .more-item.is-active .more-label {
+      opacity: 1;
+      transform: none;
+      transition-delay: 180ms;
+    }
+
+    .more-label > span:first-child { min-width: 0; }
+    .more-arrow { flex: none; transition: transform 240ms ease; }
+    .more-item.is-active:hover .more-arrow { transform: translateX(4px); }
+
+    .more-item:focus-visible {
+      outline: 1px solid color-mix(in srgb, var(--text) 60%, transparent);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 720px) {
+      .more-gallery { height: 220px; gap: 4px; }
+      .more-item { border-radius: 4px; }
+      .more-item.is-active { flex-grow: 6; }
+      .more-index { top: 8px; left: 8px; font-size: 9px; }
+      .more-label { left: 12px; right: 12px; bottom: 11px; font-size: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .more-item, .more-item img, .more-label { transition: none; }
+    }
+
     /* 回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .echo-reel {
       position: relative;
@@ -366,18 +466,41 @@
 
       <section class="case-related" aria-labelledby="related-title">
         <h2 id="related-title" data-i18n-key="relatedTitle">查看更多</h2>
-        <div class="case-related-grid">
-          <a class="case-related-card" href="large-screen.html">
-            <img src="../assets/large-screen-cover-stage.webp" alt="大屏视觉" width="1996" height="1120" loading="lazy" decoding="async">
-            <span>大屏视觉</span>
+        <div class="more-gallery">
+          <a class="more-item is-active" href="../index.html#portfolio">
+            <img src="../assets/more/mengshou.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">01</span>
+            <span class="more-label"><span data-i18n-key="relatedMengshou">《梦幻西游》手游巅峰联赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
-          <a class="case-related-card" href="../index.html#portfolio">
-            <img src="../assets/merchandise-cover.webp" alt="周边物料" width="1920" height="1077" loading="lazy" decoding="async">
-            <span data-i18n-key="relatedMerch">周边物料</span>
+          <a class="more-item" href="../index.html#portfolio">
+            <img src="../assets/more/danzai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">02</span>
+            <span class="more-label"><span data-i18n-key="relatedDanzai">《蛋仔派对》全国总决赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
-          <a class="case-related-card" href="../index.html#portfolio">
-            <img src="../assets/stage-design-cover.webp" alt="舞美设计" width="1920" height="1077" loading="lazy" decoding="async">
-            <span data-i18n-key="relatedStage">舞美设计</span>
+          <a class="more-item" href="large-screen.html">
+            <img src="../assets/more/large-screen.webp" alt="" width="855" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">03</span>
+            <span class="more-label"><span data-i18n-key="relatedLargeScreen">大屏视觉</span><span class="more-arrow" aria-hidden="true">→</span></span>
+          </a>
+          <a class="more-item" href="../index.html#portfolio">
+            <img src="../assets/more/stage.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">04</span>
+            <span class="more-label"><span data-i18n-key="relatedStage">舞美设计</span><span class="more-arrow" aria-hidden="true">→</span></span>
+          </a>
+          <a class="more-item" href="../index.html#portfolio">
+            <img src="../assets/more/merch.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">05</span>
+            <span class="more-label"><span data-i18n-key="relatedMerch">周边物料</span><span class="more-arrow" aria-hidden="true">→</span></span>
+          </a>
+          <a class="more-item" href="../index.html#portfolio">
+            <img src="../assets/more/video.webp" alt="" width="846" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">06</span>
+            <span class="more-label"><span data-i18n-key="relatedVideo">视频包装</span><span class="more-arrow" aria-hidden="true">→</span></span>
+          </a>
+          <a class="more-item" href="../index.html#portfolio">
+            <img src="../assets/more/ai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
+            <span class="more-index" aria-hidden="true">07</span>
+            <span class="more-label"><span data-i18n-key="relatedAi">AI 管线开发</span><span class="more-arrow" aria-hidden="true">→</span></span>
           </a>
         </div>
       </section>
@@ -494,6 +617,10 @@
           relatedLargeScreen: "大屏视觉",
           relatedMerch: "周边物料",
           relatedStage: "舞美设计",
+          relatedMengshou: "《梦幻西游》手游巅峰联赛",
+          relatedDanzai: "《蛋仔派对》全国总决赛",
+          relatedVideo: "视频包装",
+          relatedAi: "AI 管线开发",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "宣发设计 · 赛事宣传视觉 | Shadowyli",
           metaDescription: "《第五人格》COA VIII 全球总决赛、《蛋仔派对》全国总决赛与《梦幻西游》手游巅峰联赛的赛事宣发视觉案例。"
@@ -548,6 +675,10 @@
           relatedLargeScreen: "Large-Screen Visuals",
           relatedMerch: "Merchandise",
           relatedStage: "Stage Design",
+          relatedMengshou: "Fantasy Westward Journey Mobile Peak League",
+          relatedDanzai: "Eggy Party National Finals",
+          relatedVideo: "Video Packaging",
+          relatedAi: "AI Pipeline Development",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Campaign Design · Esports Campaign Visuals | Shadowyli",
           metaDescription: "Campaign visual case studies for Identity V COA VIII Global Finals, Eggy Party National Finals and Fantasy Westward Journey Mobile Peak League."
@@ -1116,6 +1247,26 @@
         reel.classList.add("is-gl");
         window.requestAnimationFrame(frame);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var gallery = document.querySelector(".more-gallery");
+      if (!gallery) return;
+      var items = Array.prototype.slice.call(gallery.querySelectorAll(".more-item"));
+      function activate(item) {
+        items.forEach(function (other) { other.classList.toggle("is-active", other === item); });
+      }
+      items.forEach(function (item) {
+        item.addEventListener("mouseenter", function () { activate(item); });
+        item.addEventListener("focus", function () { activate(item); });
+        item.addEventListener("click", function (event) {
+          if (!item.classList.contains("is-active")) {
+            event.preventDefault();
+            activate(item);
+          }
+        });
+      });
     })();
   </script>
 </body>
