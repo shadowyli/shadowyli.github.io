@@ -160,3 +160,52 @@
   .case-row + .case-row { margin-top: 4px !important; }
   .case-body .globe-close { margin-top: 32px; }
 }
+/* ---------- 手机端隐藏「查看更多」，改为左右滑动切换案例 ---------- */
+@media (max-width: 720px) {
+  .case-related { display: none !important; }
+}
+
+.switcher-hint {
+  position: fixed;
+  left: 50%;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-muted);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 10px);
+  pointer-events: none;
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.switcher-hint.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.switcher-hint a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.switcher-hint a:hover { color: var(--yellow); }
+
+.switcher-hint .switcher-sep { opacity: 0.35; }
+
+.switcher-hint .switcher-tip { opacity: 0.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .switcher-hint { transition: none; }
+}

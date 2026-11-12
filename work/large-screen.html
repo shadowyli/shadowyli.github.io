@@ -1336,5 +1336,115 @@
       });
     })();
   </script>
+
+  <script>
+    // 案例之间左右切换（按首页作品顺序，只保留已有子页面的项）
+    (function () {
+      var order = [
+        { id: "campaign", label: { zh: "宣发设计", en: "Campaign Design" } },
+        { id: "large-screen", label: { zh: "大屏视觉", en: "Large-Screen Visuals" } }
+      ];
+      var here = "large-screen";
+      var index = order.findIndex(function (item) { return item.id === here; });
+      if (index < 0) return;
+
+      var prev = order[index - 1] || null;
+      var next = order[index + 1] || null;
+      if (!prev && !next) return;
+
+      var zh = (document.documentElement.lang || "zh").toLowerCase().indexOf("en") !== 0;
+      function label(item) { return item ? item.label[zh ? "zh" : "en"] : ""; }
+      function href(item) { return item.id + ".html"; }
+
+      var hint = document.createElement("div");
+      hint.className = "switcher-hint";
+      hint.setAttribute("role", "status");
+      var parts = [];
+      if (prev) parts.push('<a href="' + href(prev) + '">← ' + label(prev) + "</a>");
+      parts.push('<span class="switcher-tip">' + (zh ? "左右滑动切换案例" : "Swipe to switch case") + "</span>");
+      if (next) parts.push('<a href="' + href(next) + '">' + label(next) + " →</a>");
+      hint.innerHTML = parts.join('<span class="switcher-sep">·</span>');
+      document.body.appendChild(hint);
+
+      var hideTimer = 0;
+      function reveal(ms) {
+        hint.classList.add("is-visible");
+        window.clearTimeout(hideTimer);
+        hideTimer = window.setTimeout(function () {
+          hint.classList.remove("is-visible");
+        }, ms || 2600);
+      }
+
+      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      if (canHover) {
+        document.addEventListener("mousemove", function () { reveal(); }, { passive: true });
+      } else {
+        window.setTimeout(function () { reveal(4200); }, 1200);
+      }
+
+      hint.addEventListener("mouseenter", function () {
+        window.clearTimeout(hideTimer);
+        hint.classList.add("is-visible");
+      });
+      hint.addEventListener("mouseleave", function () { reveal(1200); });
+
+      function go(item) {
+        if (!item) return;
+        window.location.href = href(item);
+      }
+
+      // 移动端滑动
+      var startX = 0;
+      var startY = 0;
+      var tracking = false;
+      var ignored = ".echo-reel, .echo-list, .case-hero-media, .more-gallery, input, textarea, select";
+
+      document.addEventListener("touchstart", function (event) {
+        if (event.touches.length !== 1) { tracking = false; return; }
+        var target = event.target;
+        if (target && target.closest && target.closest(ignored)) { tracking = false; return; }
+        tracking = true;
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+      }, { passive: true });
+
+      document.addEventListener("touchend", function (event) {
+        if (!tracking) return;
+        tracking = false;
+        var touch = event.changedTouches && event.changedTouches[0];
+        if (!touch) return;
+        var dx = touch.clientX - startX;
+        var dy = touch.clientY - startY;
+        if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
+        if (dx < 0) { go(next); } else { go(prev); }
+      }, { passive: true });
+
+      // 桌面：方向键 + 拖动
+      document.addEventListener("keydown", function (event) {
+        if (event.metaKey || event.ctrlKey || event.altKey) return;
+        var tag = (event.target && event.target.tagName) || "";
+        if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
+        if (event.key === "ArrowRight") { go(next); }
+        else if (event.key === "ArrowLeft") { go(prev); }
+      });
+
+      var dragStart = null;
+      document.addEventListener("mousedown", function (event) {
+        if (!canHover) return;
+        var target = event.target;
+        if (target && target.closest && target.closest(ignored)) { dragStart = null; return; }
+        dragStart = event.clientX;
+      });
+
+      document.addEventListener("mouseup", function (event) {
+        if (dragStart === null) return;
+        var dx = event.clientX - dragStart;
+        dragStart = null;
+        if (Math.abs(dx) < 140) return;
+        if (dx < 0) { go(next); } else { go(prev); }
+      });
+    })();
+  </script>
 </body>
 </html>
