@@ -133,6 +133,12 @@
       height: auto;
     }
 
+    /* 02 的 16:9 画框槽位：虚线框标明可替换区域 */
+    .case-gallery .case-placeholder-frame .case-frame-inner {
+      border: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
+      background: color-mix(in srgb, var(--surface) 55%, transparent);
+    }
+
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
     @media (min-width: 721px) {
       body.case-page {
@@ -198,6 +204,18 @@
           </figure>
         </div>
       </section>
+
+      <section class="case-section case-gallery" id="case-gallery-02" aria-labelledby="case-title-02">
+        <h2 id="case-title-02"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">舞台项目（暂定）</span></h2>
+
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-placeholder-frame">
+            <div class="case-frame-inner">
+              <span class="case-frame-hint" data-i18n-key="slot2Hint">16:9 画框槽位 · 内容待补充</span>
+            </div>
+          </figure>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -232,6 +250,8 @@
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
+          section2Title: "舞台项目（暂定）",
+          slot2Hint: "16:9 画框槽位 · 内容待补充",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "舞美设计 · 赛事舞台视觉 | Shadowyli",
           metaDescription: "舞美设计案例：网易电竞 NeXT 冬季赛舞台全景、正视图与灯光结构。"
@@ -249,6 +269,8 @@
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
+          section2Title: "Stage Project (TBD)",
+          slot2Hint: "16:9 frame slot · content coming soon",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Stage Design · Event Stage Visual | Shadowyli",
           metaDescription: "Stage design case study: NetEase Esports NeXT winter stage panoramas, front views and lighting structure."
