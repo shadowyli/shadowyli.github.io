@@ -41,6 +41,17 @@
 
     .case-row > .case-frame { display: flex; align-items: stretch; }
 
+    .case-frame--video { display: block; }
+
+    .case-frame--video .case-frame-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4608 / 1664;
+      object-fit: cover;
+      background: #000;
+    }
+
     .case-row[data-layout="secondary"] .case-frame--image img,
     .case-row[data-layout="strip"] .case-frame--image img,
     .case-row[data-layout="portrait"] .case-frame--image img {
@@ -391,6 +402,12 @@
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-coa-arson.webp?v=20261112c" alt="《第五人格》COA 纵火练习主题插画" width="1600" height="740" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《第五人格》IVS 倒计时动画 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--video">
+            <video class="case-frame-video" src="../assets/campaign-ivs-countdown.mp4" poster="../assets/campaign-ivs-countdown-poster.webp" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" aria-label="2025 第五人格 IVS 倒计时动画"></video>
           </figure>
         </div>
         <!-- 《蛋仔派对》· 横版主要：单独一行 -->
