@@ -27,7 +27,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-97">
+  <link rel="stylesheet" href="../styles.css?v=20261112-98">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 序言：胶囊 + 署名排成一行（与站内宣发设计案例页保持一致） */
@@ -127,6 +127,130 @@
 
       .case-main { flex: 1; }
     }
+    /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
+    .social-badge--long {
+      white-space: normal;
+      font-size: 12.5px;
+      letter-spacing: 0;
+      z-index: 6;
+    }
+
+    .case-body .social-sign {
+      position: relative;
+      z-index: 6;
+      width: 100%;
+      max-width: none;
+      margin: 0 0 6px;
+      color: #ffffff;
+      font-family: "PingFangShangShangQian", var(--font-cjk);
+      font-size: clamp(30px, 3.6vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+
+    .echo-reel {
+      position: relative;
+      width: 100vw;
+      height: clamp(190px, 19vw, 280px);
+      margin: 0 0 0 calc(50% - 50vw);
+      outline: none;
+    }
+
+    .echo-reel:focus-visible .echo-canvas {
+      outline: 1px solid color-mix(in srgb, var(--text) 35%, transparent);
+      outline-offset: -4px;
+    }
+
+    .echo-canvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: grab;
+      touch-action: pan-y;
+      transition: opacity 700ms ease;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    }
+
+    .echo-reel.is-gl .echo-canvas { opacity: 1; }
+    .echo-reel.is-dragging .echo-canvas { cursor: grabbing; }
+
+    .echo-list {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 max(20px, calc(50vw - 496px));
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .echo-list::-webkit-scrollbar { display: none; }
+
+    .echo-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: none;
+      height: 97%;
+      margin: 0;
+      scroll-snap-align: center;
+    }
+
+    .echo-card img {
+      display: block;
+      width: auto;
+      height: calc(100% - 31px);
+      max-height: calc(100% - 31px);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 5px;
+    }
+
+    .echo-card .social-badge {
+      position: static;
+      order: -1;
+      align-self: flex-start;
+      max-width: 100%;
+      margin: 0 0 6px;
+      border-color: rgba(255, 255, 255, .48);
+      background: rgba(8, 7, 10, .94);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding: 5px 11px;
+      white-space: normal;
+    }
+
+    /* WebGL 接管后，DOM 列表只留给读屏与搜索引擎 */
+    .echo-reel.is-gl .echo-list {
+      inset: auto;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .echo-reel { height: clamp(180px, 52vw, 240px); }
+      .echo-canvas {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+      }
+    }
+
   </style>
 </head>
 <body class="case-page">
@@ -179,6 +303,31 @@
              </div>
              data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
       </section>
+
+      <section class="case-section case-echo" aria-labelledby="echo-sign">
+        <p class="social-sign" id="echo-sign" data-i18n-key="echoSign">设计的回声</p>
+        <div class="echo-reel" tabindex="0" role="region" aria-label="社交媒体反响截图，可左右拖动或用方向键浏览">
+          <canvas class="echo-canvas" aria-hidden="true"></canvas>
+          <div class="echo-list">
+            <figure class="echo-card">
+              <span class="social-badge social-badge--long" data-i18n-key="echoBadge1">抖音47w赞·30万转</span>
+              <img src="../assets/social-stat-3.webp?v=20261112b" alt="《蛋仔派对》抖音 47 万赞、30 万转超高裂变视频" data-i18n-alt="echoAlt1" width="900" height="1248" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="echoBadge3">抖音1.2w赞</span>
+              <img src="../assets/social-eggy-10k.webp" alt="《蛋仔派对》全国总决赛冠军采访抖音 1.2 万赞视频" data-i18n-alt="echoAlt3" width="1100" height="551" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="echoBadge2">抖音3k+赞</span>
+              <img src="../assets/social-stat-7.webp?v=20261112b" alt="《蛋仔派对》惊魂杯抖音 3 千赞视频" data-i18n-alt="echoAlt2" width="900" height="1249" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="echoBadge4">抖音8.8k赞</span>
+              <img src="../assets/social-eggy-douyin.webp" alt="《蛋仔派对》惊魂杯赛事日程图文，抖音 8.8 千赞" data-i18n-alt="echoAlt4" width="792" height="1100" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -211,6 +360,15 @@
           voiceRole: "创意视觉设计",
           section1Title: "KV",
           kvAlt: "第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像",
+          echoSign: "设计的回声",
+          echoBadge1: "抖音47w赞·30万转",
+          echoBadge2: "抖音3k+赞",
+          echoBadge3: "抖音1.2w赞",
+          echoBadge4: "抖音8.8k赞",
+          echoAlt1: "《蛋仔派对》抖音 47 万赞、30 万转超高裂变视频",
+          echoAlt2: "《蛋仔派对》惊魂杯抖音 3 千赞视频",
+          echoAlt3: "《蛋仔派对》全国总决赛冠军采访抖音 1.2 万赞视频",
+          echoAlt4: "《蛋仔派对》惊魂杯赛事日程图文，抖音 8.8 千赞",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "《蛋仔派对》全国总决赛 · 赛事主视觉 | Shadowyli",
           metaDescription: "《蛋仔派对》全国总决赛赛事主视觉案例：主 KV、系列海报与现场物料（内容制作中）。"
@@ -226,6 +384,15 @@
           voiceRole: "Creative visual design",
           section1Title: "Key Visual",
           kvAlt: "Eggy Party National Finals key visual: gold trophy, Chengdu city diorama and the Eggy cast",
+          echoSign: "The echo of design",
+          echoBadge1: "Douyin · 470K likes · 300K shares",
+          echoBadge2: "Douyin · 3K+ likes",
+          echoBadge3: "Douyin · 12K likes",
+          echoBadge4: "Douyin · 8.8K likes",
+          echoAlt1: "Eggy Party Douyin video with 470K likes and 300K shares",
+          echoAlt2: "Eggy Party Ghost Cup Douyin video with 3K+ likes",
+          echoAlt3: "Eggy Party National Finals champion interview with 12K likes on Douyin",
+          echoAlt4: "Eggy Party Ghost Cup schedule post with 8.8K likes on Douyin",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Eggy Party National Finals · Key Visual | Shadowyli",
           metaDescription: "Eggy Party National Finals key visual case study: key art, series posters and on-site assets (work in progress)."
@@ -369,5 +536,6 @@
       });
     })();
   </script>
+  <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
 </body>
 </html>
