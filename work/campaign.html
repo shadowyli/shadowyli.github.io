@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -177,10 +177,17 @@
       .case-body .voice { padding: 16px 0; }
     }
 
-    .case-body .case-related-divider { margin: 56px 0 0; }
+    /* 底部收口：分割线、查看更多、回声区之间的留白压到最小可用值 */
+    main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
+
+    .case-body .case-related-divider { margin: 32px 0 0; }
+
+    .case-body .case-related { margin-top: 22px; }
+
+    .case-body .case-related-grid { margin-top: 0; }
 
     .case-body .globe-close {
-      margin-top: clamp(52px, 7vw, 96px);
+      margin-top: clamp(18px, 2.4vw, 30px);
     }
 
     .orbit-stage {
@@ -198,8 +205,8 @@
       top: 50%;
       z-index: 2;
       display: block;
-      width: 72%;
-      height: 72%;
+      width: 86%;
+      height: 86%;
       transform: translate(-50%, -50%);
       opacity: 0;
       pointer-events: none;
