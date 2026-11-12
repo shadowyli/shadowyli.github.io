@@ -313,25 +313,6 @@ img { display: block; max-width: 100%; }
     url("assets/portfolio-hero-bg.webp") center 52% / cover no-repeat;
 }
 
-.hero-gl {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  transition: opacity 900ms ease;
-}
-
-.profile-hero.is-gl .hero-gl { opacity: 0.9; }
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-gl { transition: none; }
-}
-
 .hero-grid { position: absolute; inset: 0; z-index: -2; overflow: hidden; opacity: 0.2; }
 
 .hero-grid::before, .hero-grid::after {
