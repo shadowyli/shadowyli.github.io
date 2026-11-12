@@ -180,6 +180,7 @@ const localizedAttributes = [
   { selector: ".project-grid", attribute: "aria-label", zh: "作品列表", en: "Project list" },
   { selector: 'a[href="work/campaign.html"]', attribute: "aria-label", zh: "查看项目案例：宣发设计 · COA VII 全球总决赛冠军海报", en: "View case study: Campaign Design · COA VII Global Finals championship poster" },
   { selector: 'a[href="work/large-screen.html"]', attribute: "aria-label", zh: "查看项目案例：大屏视觉 · 《全明星街球派对》DCDG 全球冠军赛", en: "View case study: Large-Screen Visuals · All-Star Streetball Party DCDG Global Championship" },
+  { selector: 'a[href="work/stage.html"]', attribute: "aria-label", zh: "查看项目案例：舞美设计", en: "View case study: Stage Design" },
   { selector: ".language-tags", attribute: "aria-label", zh: "语言能力", en: "Languages" },
   { selector: ".qr-image", attribute: "alt", zh: "影子的微信二维码", en: "Shadowyli WeChat QR code" },
   { selector: ".dialog-close", attribute: "aria-label", zh: "关闭", en: "Close" },

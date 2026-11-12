@@ -153,6 +153,12 @@
 
     .case-media-slot.is-playing > video { opacity: 1; }
 
+    /* 手机端一键播放：有可见视频时才浮出，避免整页常驻遮挡回声区 */
+    @media (max-width: 720px) {
+      .case-page .mobile-play { display: none; }
+      .case-page .mobile-play.is-visible { display: inline-flex; }
+    }
+
     /* 活动横幅：由外层 banner-grid 统一三列，手机两列保证文字可读 */
     .case-row[data-layout="banners"] {
       display: grid;
@@ -677,6 +683,13 @@
     <p class="dialog-hint" data-i18n-key="saveHint">长按图片保存二维码</p>
   </div>
 
+  <button class="mobile-play" type="button" aria-label="播放当前可见视频">
+    <span class="mobile-play-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+    <span data-i18n-key="playAll">一键播放</span>
+  </button>
+
   <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
   <script>
     (function () {
@@ -747,6 +760,7 @@
           closeDialog: "关闭",
           wechatTitle: "微信二维码",
           saveHint: "长按图片保存二维码",
+          playAll: "一键播放",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "宣发设计 · 赛事宣传视觉 | Shadowyli",
           metaDescription: "《第五人格》COA VIII 全球总决赛、《蛋仔派对》全国总决赛与《梦幻西游》手游巅峰联赛的赛事宣发视觉案例。"
@@ -816,6 +830,7 @@
           closeDialog: "Close",
           wechatTitle: "WeChat QR code",
           saveHint: "Long-press the image to save the QR code",
+          playAll: "Play all",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Campaign Design · Esports Campaign Visuals | Shadowyli",
           metaDescription: "Campaign visual case studies for Identity V COA VIII Global Finals, Eggy Party National Finals and Fantasy Westward Journey Mobile Peak League."
@@ -1014,6 +1029,31 @@
       videos.forEach(function (video) {
         observer.observe(video.closest("figure") || video);
       });
+
+      var playButton = document.querySelector(".mobile-play");
+      if (playButton && window.matchMedia("(max-width: 720px)").matches) {
+        var visibleVideos = [];
+        function syncPlayButton() {
+          playButton.classList.toggle("is-visible", visibleVideos.length > 0);
+        }
+        var buttonObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var index = visibleVideos.indexOf(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+              if (index < 0) visibleVideos.push(entry.target);
+            } else if (index > -1) {
+              visibleVideos.splice(index, 1);
+            }
+          });
+          syncPlayButton();
+        }, { threshold: [0, 0.25] });
+        videos.forEach(function (video) {
+          buttonObserver.observe(video);
+        });
+        playButton.addEventListener("click", function () {
+          visibleVideos.slice().forEach(function (video) { play(video); });
+        });
+      }
     })();
   </script>
 </body>
