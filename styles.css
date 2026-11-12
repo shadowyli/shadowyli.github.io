@@ -1780,6 +1780,11 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-body #case-gallery-video { margin-top: var(--case-gap); }
 
+/* 抖音现场、回声收口等自建模块也纳入同一套节奏 */
+.case-body .douyin-embed { margin-top: var(--case-gap); }
+
+.case-body section.globe-close { margin-top: 0; }
+
 .case-footer {
   display: flex;
   flex-direction: row;
