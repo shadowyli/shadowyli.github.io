@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "CJK Sans";
-  src: local("Source Han Sans CN"), local("Source Han Sans SC"), local("Noto Sans SC");
+  src: local("思源黑体 CN"), local("Source Han Sans CN"), local("思源黑体"), local("Source Han Sans SC"), local("Noto Sans SC"), local("Noto Sans CJK SC");
   font-weight: 400;
   unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
 }
@@ -44,6 +44,7 @@
   --header-height: 64px;
   --sidebar-width: 300px;
   --radius: 6px;
+  --font-cjk: "思源黑体 CN", "Source Han Sans CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   color-scheme: dark;
 }
 
@@ -74,7 +75,7 @@ body {
   overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
-  font-family: "Archivo", "CJK Sans", "Microsoft YaHei", sans-serif;
+  font-family: "Archivo", var(--font-cjk);
   font-size: 16px;
   line-height: 1.5;
 }
@@ -415,7 +416,7 @@ img { display: block; max-width: 100%; }
   background: #ffffff !important;
   color: #17161a;
   cursor: pointer;
-  font-family: "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei", sans-serif;
+  font-family: var(--font-cjk);
   font-size: 13px;
   font-weight: 700;
   transition: background 160ms ease, transform 160ms ease;
@@ -426,7 +427,7 @@ img { display: block; max-width: 100%; }
 .bio {
   margin: 18px 0;
   color: var(--yellow);
-  font-family: "PingFangShangShangQian", "Noto Sans SC", sans-serif;
+  font-family: "PingFangShangShangQian", var(--font-cjk);
   font-size: 22px;
   font-weight: 400;
   line-height: 1.7;
@@ -822,7 +823,7 @@ img { display: block; max-width: 100%; }
   max-width: none;
   margin: 0 0 16px;
   color: var(--text-muted);
-  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  font-family: "Space Grotesk", var(--font-cjk);
   font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
@@ -1673,7 +1674,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 .case-body .case-caption {
   margin: 0;
   color: var(--text-muted);
-  font-family: "Archivo", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "Archivo", var(--font-cjk);
   font-size: 12px;
   line-height: 1.7;
   letter-spacing: 0.02em;
@@ -2074,7 +2075,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 .social-slot:nth-child(8) { --w: 165px; --rot: 3deg; --depth: 0.55; bottom: 20px; right: 0; z-index: 3; }
 
 .case-body .case-credit {
-  font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+  font-family: "Archivo", var(--font-cjk);
   font-size: 12px;
   letter-spacing: 0.03em;
 }
