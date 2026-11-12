@@ -114,6 +114,9 @@
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
+    /* 标题与图之间只留一点呼吸，不沿用区块之间的默认大间距 */
+    .case-gallery > h2 { margin-bottom: clamp(16px, 1.6vw, 22px); }
+
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
     @media (min-width: 721px) {
       body.case-page {
@@ -161,11 +164,8 @@
         </div>
       </section>
 
-      <section class="case-section" aria-labelledby="case-title">
+      <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">KV</span></h2>
-      </section>
-
-      <section class="case-section case-gallery" id="case-gallery" aria-label="《蛋仔派对》全国总决赛 作品图集">
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">

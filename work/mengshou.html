@@ -101,8 +101,9 @@
       <!-- 内容待补充 -->
       <section class="case-section case-gallery">
         <h2><span class="case-section-index" aria-hidden="true">01</span>主视觉 KV</h2>
-        <figure class="case-frame case-frame--image">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-play="enter">
           <img src="../assets/mengshou-s13-kv.webp?v=20261112d" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S13 巅峰联赛主视觉动画：从 C4D 场景搭建到成片落版"></video>
         </figure>
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
@@ -329,6 +330,7 @@
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
         if (!video || !src) return null;
+        video.loop = false; // 只播一次：结束后停在末帧，末帧与静图一致
         if (video.getAttribute("src") !== src) {
           video.setAttribute("src", src);
           try { video.load(); } catch (error) {}
@@ -367,9 +369,11 @@
           try { video.currentTime = 0; } catch (error) {}
         });
 
-        if (canHover) {
+        // data-play="enter"：只跟随视口入场播放，悬停不打断静态展示
+        if (canHover && slot.getAttribute("data-play") !== "enter") {
           slot.addEventListener("pointerenter", function () { play(slot); });
         }
+        // 点击 = 手动重播（触屏设备没有悬停，也能重看）
         slot.addEventListener("click", function () { play(slot); });
       });
 
