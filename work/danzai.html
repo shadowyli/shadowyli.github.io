@@ -195,6 +195,42 @@
       .case-video-split { grid-template-columns: 1fr; }
     }
 
+    /* 手机端拿不到自动播放权限：每块动画单独给一个播放按钮（桌面靠入场自动播放，不显示按钮） */
+    .case-gallery .slot-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 3;
+      display: none;
+      width: clamp(36px, 34%, 56px);
+      aspect-ratio: 1;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(12, 11, 15, 0.62);
+      color: #ffffff;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      transition: opacity 200ms ease;
+    }
+    .case-gallery .slot-play svg { width: 42%; height: 42%; margin-left: 8%; }
+    /* 正在播放时让出画面，播完（回到静图）再浮回来，等于「重播」入口 */
+    .case-gallery .case-media-slot.is-playing .slot-play {
+      opacity: 0;
+      pointer-events: none;
+    }
+    @media (max-width: 720px), (hover: none) {
+      .case-gallery .slot-play { display: grid; }
+    }
+    /* 手机端一键播放：页面上有动画在视野里才浮出，避免常驻遮挡回声带与页脚 */
+    @media (max-width: 720px) {
+      .case-page .mobile-play { display: none; }
+      .case-page .mobile-play.is-visible { display: inline-flex; }
+    }
+
     /* 右下角声音开关 */
     .case-media-slot .case-sound {
       position: absolute;
@@ -414,6 +450,9 @@
           <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
             <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="美年达主宣转场动画：品牌标识与蛋仔角色在橙色视觉中切换"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
             <button class="case-sound" type="button" aria-pressed="false" data-i18n-key="soundOn" aria-label="打开声音">声音</button>
           </figure>
           <div class="case-board-wrap">
@@ -497,6 +536,13 @@
     </div>
   </main>
 
+  <button class="mobile-play" type="button" aria-label="播放当前可见动画">
+    <span class="mobile-play-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+    <span data-i18n-key="playAll">一键播放</span>
+  </button>
+
   <footer class="case-footer">
     <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">影子 · 视觉设计作品集</span></span>
     <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
@@ -530,6 +576,7 @@
           boardLabel: "静态分镜",
           soundOn: "声音",
           soundOff: "静音",
+          playAll: "一键播放",
           mirindaAlt: "美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品",
           kvAlt: "第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像",
           socialSign: "设计的回声",
@@ -561,6 +608,7 @@
           boardLabel: "Storyboards",
           soundOn: "Sound",
           soundOff: "Mute",
+          playAll: "Play all",
           mirindaAlt: "Mirinda brand promo still: the Eggy character holding a Mirinda can on a slice of orange",
           kvAlt: "Eggy Party National Finals key visual: gold trophy, Chengdu city diorama and the Eggy cast",
           socialSign: "The echo of design",
@@ -721,6 +769,8 @@
       var slots = Array.prototype.slice.call(document.querySelectorAll(".case-media-slot[data-video]"));
       if (!slots.length) return;
 
+      var mobileQuery = window.matchMedia("(max-width: 720px)");
+
       function attach(slot) {
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
@@ -776,6 +826,16 @@
           slot.classList.remove("is-playing");
         });
 
+        // 手机端：按钮直接播放这块动画（点整块也能播，按钮是给出手势入口）
+        var playButton = slot.querySelector(".slot-play");
+        if (playButton) {
+          playButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            play(slot);
+          });
+        }
+
         var sound = slot.querySelector(".case-sound");
         if (sound) {
           sound.addEventListener("click", function (event) {
@@ -804,7 +864,8 @@
         entries.forEach(function (entry) {
           var slot = entry.target;
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-            if (slot.dataset.played !== "1") {
+            // 手机端交给显式播放按钮，不自动播放
+            if (!mobileQuery.matches && slot.dataset.played !== "1") {
               slot.dataset.played = "1";
               play(slot);
             }
@@ -816,6 +877,30 @@
       }, { threshold: [0, 0.35] });
 
       slots.forEach(function (slot) { observer.observe(slot); });
+
+      // 手机端「一键播放」：只播当前在视野里的动画，按钮仅在页面上有动画时才浮出。
+      var playAllButton = document.querySelector(".mobile-play");
+      if (playAllButton && window.matchMedia("(max-width: 720px)").matches) {
+        var visibleSlots = [];
+        function syncPlayAll() {
+          playAllButton.classList.toggle("is-visible", visibleSlots.length > 0);
+        }
+        var buttonObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var index = visibleSlots.indexOf(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+              if (index < 0) visibleSlots.push(entry.target);
+            } else if (index > -1) {
+              visibleSlots.splice(index, 1);
+            }
+          });
+          syncPlayAll();
+        }, { threshold: [0, 0.25] });
+        slots.forEach(function (slot) { buttonObserver.observe(slot); });
+        playAllButton.addEventListener("click", function () {
+          visibleSlots.slice().forEach(function (slot) { play(slot); });
+        });
+      }
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
