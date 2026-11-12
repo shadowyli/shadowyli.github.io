@@ -93,6 +93,19 @@
       gap: 6px;
     }
 
+    /* 活动横幅：桌面两列，手机单列保证文字可读 */
+    .case-row[data-layout="banners"] {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-row[data-layout="banners"] .case-frame--image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     .social-badge--long {
       white-space: normal;
       font-size: 12.5px;
@@ -120,6 +133,7 @@
       .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
       /* 横版 + 竖版改为上下排列，避免竖版被压到无法辨认 */
       .case-row[data-layout="strip"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .case-row[data-layout="banners"] { grid-template-columns: 1fr; }
     }
 
     /* 序言：胶囊 + 署名排成一行 */
@@ -368,10 +382,27 @@
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
         </div>
+        <!-- 《第五人格》COA · 城市官宣与主题插画 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-coa-chengdu.webp" alt="《第五人格》COA 城市官宣海报 · 成都" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-coa-arson.webp" alt="《第五人格》COA 纵火练习主题插画" width="1600" height="740" loading="lazy" decoding="async">
+          </figure>
+        </div>
         <!-- 《蛋仔派对》· 横版主要：单独一行 -->
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《蛋仔派对》· 全国总决赛 KV 多 LOGO 版本 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-finals-kv-logos.webp" alt="第三届《蛋仔派对》全国总决赛主视觉 · 多 LOGO 版本" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
         <!-- 《蛋仔派对》· 横版次要：两张一行 -->
@@ -381,6 +412,88 @@
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-eggy-2026-kv.webp" alt="《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像" data-i18n-alt="eggy2026Alt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《蛋仔派对》· 赛事活动横幅系列 -->
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-2026-signup.webp" alt="《蛋仔派对》2026 惊魂杯报名主视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-in-name.webp" alt="《蛋仔派对》以蛋之名活动主视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-finals-loot.webp" alt="《蛋仔派对》决赛掉宝狂欢活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-summer-camp.webp" alt="《蛋仔派对》匠夏挑战营活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-snow-arena.webp" alt="《蛋仔派对》小雪擂台赛活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-s0903.webp" alt="《蛋仔派对》惊魂杯 0903 主视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-carnival-night.webp" alt="《蛋仔派对》惊魂狂欢夜活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-douyin-cup.webp" alt="《蛋仔派对》抖音巅峰杯活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-new-year.webp" alt="《蛋仔派对》新春办赛礼活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-spring.webp" alt="《蛋仔派对》春景蛋畅玩活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-finals-kickoff.webp" alt="《蛋仔派对》全国总决赛开门红活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-new-journey.webp" alt="《蛋仔派对》蛋启新征程活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-chase.webp" alt="《蛋仔派对》追赛进行时活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-snow-race.webp" alt="《蛋仔派对》雪道竞速王活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 S11 · 联盟大会与冠军板 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s11-kv.webp" alt="《梦幻西游》手游 S11 联盟尊享大会主视觉：金色奖杯与联盟徽记墙" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s11-champion.webp" alt="《梦幻西游》手游 S11 精锐组冠军板：冠军战队成员群像" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="portrait">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s10-cd1.webp" alt="《梦幻西游》手游 S10 巅峰联赛倒计时海报" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s11-cd1.webp" alt="《梦幻西游》手游 S11 巅峰联赛倒计时海报" width="750" height="1334" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 S12 · 主视觉 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s12-kv.webp" alt="《梦幻西游》手游 S12 巅峰联赛主视觉：紫色空间中的冠军奖杯" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
         <!-- 《梦幻西游》手游 S12 · 倒计时 + 战队出征：并成一条系列，避免同张数的行相邻 -->
