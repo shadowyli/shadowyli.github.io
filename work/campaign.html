@@ -103,7 +103,7 @@
       .case-row[data-layout="duo"] .case-frame--image img { height: auto; object-fit: contain; }
     }
 
-    /* 序言：一句主张 + 署名，不做语录卡 */
+    /* 序言：胶囊 + 署名排成一行 */
     .case-body .voice {
       position: relative;
       display: block;
@@ -115,6 +115,10 @@
     .voice-body {
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: clamp(12px, 1.5vw, 20px);
       padding: 0;
     }
 
@@ -123,7 +127,8 @@
       align-items: center;
       gap: 8px;
       max-width: none;
-      margin: 0 0 clamp(10px, 1.2vw, 14px);
+      flex: none;
+      margin: 0;
       padding: 3px 10px;
       border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
       border-radius: 999px;
@@ -143,8 +148,9 @@
 
     .voice-author {
       display: flex;
-      align-items: flex-start;
-      gap: clamp(12px, 1.5vw, 16px);
+      align-items: center;
+      gap: clamp(9px, 1.1vw, 13px);
+      min-height: 20px;
     }
 
     .voice-rule {
@@ -152,8 +158,8 @@
       flex: none;
       width: 22px;
       height: 1px;
-      margin: 8px 0 0;
-      background: var(--text);
+      margin: 0;
+      background: color-mix(in srgb, var(--text) 45%, transparent);
     }
 
     .case-body .voice-name {
@@ -162,15 +168,15 @@
       color: var(--text);
       font-size: 13px;
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.2;
     }
 
     .case-body .voice-role {
-      margin: 2px 0 0;
+      margin: 0;
       max-width: none;
       color: var(--text-muted);
       font-size: 11.5px;
-      line-height: 1.5;
+      line-height: 1.2;
     }
 
     @media (max-width: 720px) {
@@ -343,10 +349,8 @@
           <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">宣发设计</span></p>
           <div class="voice-author">
             <span class="voice-rule" aria-hidden="true"></span>
-            <div>
-              <p class="voice-name" data-i18n-key="voiceName">影子（李颖）</p>
-              <p class="voice-role" data-i18n-key="voiceRole">创意视觉设计</p>
-            </div>
+            <p class="voice-name" data-i18n-key="voiceName">影子（李颖）</p>
+            <p class="voice-role" data-i18n-key="voiceRole">创意视觉设计</p>
           </div>
         </div>
       </section>
