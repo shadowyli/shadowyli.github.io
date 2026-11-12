@@ -2032,6 +2032,12 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   transform: none;
 }
 
+/* 浅色模式下回声标题用正文色，避免白字融进白底 */
+:root[data-theme="light"] .home-echo .echo-sign,
+:root[data-theme="light"] .case-body .social-sign {
+  color: var(--text);
+}
+
 .social-float {
   position: relative;
   width: 100%;
