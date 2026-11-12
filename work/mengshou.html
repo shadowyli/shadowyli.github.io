@@ -56,6 +56,41 @@
       transition: opacity 240ms ease;
     }
     .case-gallery .case-media-slot.is-playing video { opacity: 1; }
+    /* 手机端拿不到自动播放权限：每块动画单独给一个播放按钮（桌面靠入场/悬停自动播放，不显示按钮） */
+    .case-gallery .slot-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 3;
+      display: none;
+      width: clamp(36px, 34%, 56px);
+      aspect-ratio: 1;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(12, 11, 15, 0.62);
+      color: #ffffff;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      transition: opacity 200ms ease;
+    }
+    .case-gallery .slot-play svg { width: 42%; height: 42%; margin-left: 8%; }
+    /* 正在播放时让出画面，播完（回到静图）再浮回来，等于「重播」入口 */
+    .case-gallery .case-media-slot.is-playing .slot-play {
+      opacity: 0;
+      pointer-events: none;
+    }
+    @media (max-width: 720px), (hover: none) {
+      .case-gallery .slot-play { display: grid; }
+    }
+    /* 手机端一键播放：页面上有动画在视野里才浮出，避免常驻遮挡回声带与页脚 */
+    @media (max-width: 720px) {
+      .case-page .mobile-play { display: none; }
+      .case-page .mobile-play.is-visible { display: inline-flex; }
+    }
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
     .case-gallery .case-media-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -237,6 +272,9 @@
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-play="enter">
           <img src="../assets/mengshou-s13-kv.webp?v=20261112d" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S13 巅峰联赛主视觉动画：从 C4D 场景搭建到成片落版"></video>
+          <button class="slot-play" type="button" aria-label="播放动画">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
         </figure>
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
@@ -244,33 +282,54 @@
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
           <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛通用背景动画"></video>
+          <button class="slot-play" type="button" aria-label="播放动画">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
         </figure>
         <div class="case-media-grid case-media-grid--three">
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4">
             <img src="../assets/mengshou-group-jingrui-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组背景：蓝色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组背景动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-1.mp4">
             <img src="../assets/mengshou-group-shenwei-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组背景：暖金色环形机关与红色宝石" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组背景动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-1.mp4">
             <img src="../assets/mengshou-group-yongwu-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组背景：金色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组背景动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
         </div>
         <div class="case-media-grid case-media-grid--three">
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4">
             <img src="../assets/mengshou-group-jingrui-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组徽记特写：蓝色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组徽记动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-2.mp4">
             <img src="../assets/mengshou-group-shenwei-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组徽记特写：红色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组徽记动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-2.mp4">
             <img src="../assets/mengshou-group-yongwu-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组徽记特写：金色宝石与暗金边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组徽记动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
         </div>
       </section>
@@ -335,6 +394,13 @@
     <p class="dialog-hint">长按图片保存二维码</p>
   </div>
 
+  <button class="mobile-play" type="button" aria-label="播放当前可见动画">
+    <span class="mobile-play-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+    <span data-i18n-key="playAll">一键播放</span>
+  </button>
+
   <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
   <script>
     (function () {
@@ -344,6 +410,7 @@
           skip: "跳到正文",
           back: "← 返回作品集",
           contactMe: "联系我",
+          playAll: "一键播放",
           navWork: "作品",
           navAbout: "关于我",
           footerNote: "影子 · 视觉设计作品集",
@@ -364,6 +431,7 @@
           skip: "Skip to content",
           back: "← Back to portfolio",
           contactMe: "Contact me",
+          playAll: "Play all",
           navWork: "Work",
           navAbout: "About",
           footerNote: "Shadow · Visual Design Portfolio",
@@ -573,6 +641,16 @@
         }
         // 点击 = 手动重播（触屏设备没有悬停，也能重看）
         slot.addEventListener("click", function () { play(slot); });
+
+        // 手机端：按钮直接播放这块动画（点整块也能播，按钮是给出手势入口）
+        var playButton = slot.querySelector(".slot-play");
+        if (playButton) {
+          playButton.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            play(slot);
+          });
+        }
       });
 
       if (!("IntersectionObserver" in window)) return;
@@ -593,6 +671,31 @@
       }, { threshold: [0, 0.35] });
 
       slots.forEach(function (slot) { observer.observe(slot); });
+
+      // 手机端「一键播放」：只播当前在视野里的动画（同时解码多个会互相抢资源），
+      // 按钮仅在页面上有动画时才浮出，滚到回声带/页脚前自动收起。
+      var playAllButton = document.querySelector(".mobile-play");
+      if (playAllButton && window.matchMedia("(max-width: 720px)").matches) {
+        var visibleSlots = [];
+        function syncPlayAll() {
+          playAllButton.classList.toggle("is-visible", visibleSlots.length > 0);
+        }
+        var buttonObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var index = visibleSlots.indexOf(entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.25) {
+              if (index < 0) visibleSlots.push(entry.target);
+            } else if (index > -1) {
+              visibleSlots.splice(index, 1);
+            }
+          });
+          syncPlayAll();
+        }, { threshold: [0, 0.25] });
+        slots.forEach(function (slot) { buttonObserver.observe(slot); });
+        playAllButton.addEventListener("click", function () {
+          visibleSlots.slice().forEach(function (slot) { play(slot); });
+        });
+      }
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
