@@ -22,6 +22,34 @@
   font-weight: 400;
 }
 
+/* 中文统一使用思源黑体；手机端无本地字体时加载站内子集 */
+@font-face {
+  font-family: "Source Han Sans CN";
+  src: url("assets/fonts/SourceHanSansCN-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "Source Han Sans CN";
+  src: url("assets/fonts/SourceHanSansCN-Medium.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+
+@font-face {
+  font-family: "Source Han Sans CN";
+  src: url("assets/fonts/SourceHanSansCN-Bold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+FF00-FFEF;
+}
+
 @font-face {
   font-family: "CJK Sans";
   src: local("思源黑体 CN"), local("Source Han Sans CN"), local("思源黑体"), local("Source Han Sans SC"), local("Noto Sans SC"), local("Noto Sans CJK SC");
@@ -44,7 +72,7 @@
   --header-height: 64px;
   --sidebar-width: 300px;
   --radius: 6px;
-  --font-cjk: "思源黑体 CN", "Source Han Sans CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-cjk: "Source Han Sans CN", "思源黑体 CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   color-scheme: dark;
 }
 
