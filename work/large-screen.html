@@ -17,10 +17,11 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-94">
-  <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-3">
+  <link rel="stylesheet" href="../styles.css?v=20261112-95">
+  <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
-    .case-body .case-related-divider { margin: 56px 0 0; }
+    .case-body .case-related-divider { margin: 56px 0 22px; }
+    main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
     .nsh-banners { grid-template-columns: 3.5fr 1.778fr; }
     .nsh-banners .case-slot-media { margin: 0; }
     .nsh-banners .case-slot-cover {
@@ -34,92 +35,7 @@
     @media (max-width: 720px) {
       .nsh-tiles { grid-template-columns: 3.5fr 1.778fr; }
     }
-    /* 查看更多：展开式画廊——悬停 / 聚焦的一张展开，其余收成窄条 */
-    .more-gallery {
-      display: flex;
-      gap: 6px;
-      height: clamp(104px, 12vw, 152px);
-    }
-
-    .more-item {
-      position: relative;
-      flex: 1 1 0;
-      min-width: 0;
-      overflow: hidden;
-      border-radius: 6px;
-      background: var(--surface);
-      color: #ffffff;
-      text-decoration: none;
-      transition: flex-grow 520ms cubic-bezier(.22, .8, .24, 1);
-    }
-
-    .more-item img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(.5) saturate(.75);
-      transform: scale(1.06);
-      transition: filter 420ms ease, transform 800ms cubic-bezier(.22, .8, .24, 1);
-    }
-
-    .more-item.is-active img { filter: none; transform: scale(1); }
-
-    .more-item::after {
-      position: absolute;
-      inset: 30% 0 0;
-      background: linear-gradient(to top, rgba(8, 7, 10, .82), transparent);
-      content: "";
-      opacity: 0;
-      transition: opacity 360ms ease;
-    }
-
-    .more-item.is-active::after { opacity: 1; }
-
-    .more-label {
-      position: absolute;
-      left: 14px;
-      right: 14px;
-      bottom: 11px;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.3;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity 240ms ease, transform 360ms ease;
-    }
-
-    .more-item.is-active .more-label {
-      opacity: 1;
-      transform: none;
-      transition-delay: 180ms;
-    }
-
-    .more-label > span:first-child { min-width: 0; }
-    .more-arrow { flex: none; transition: transform 240ms ease; }
-    .more-item.is-active:hover .more-arrow { transform: translateX(4px); }
-
-    .more-item:focus-visible {
-      outline: 1px solid color-mix(in srgb, var(--text) 60%, transparent);
-      outline-offset: 3px;
-    }
-
-    @media (max-width: 720px) {
-      .more-gallery { height: 88px; gap: 4px; }
-      .more-item { border-radius: 4px; }
-      .more-label { left: 10px; right: 10px; bottom: 8px; font-size: 11px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .more-item, .more-item img, .more-label { transition: none; }
-    }
-
-    /* 抖音现场：竖屏窗口嵌在大屏案例里 */
+    /* 抖音现场：横屏窗口，裁掉播放器自带的白边 */
     .douyin-embed {
       display: flex;
       justify-content: center;
@@ -128,8 +44,8 @@
 
     .douyin-window {
       position: relative;
-      width: min(390px, 100%);
-      aspect-ratio: 390 / 740;
+      width: min(1080px, 100%);
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
       border-radius: 14px;
@@ -138,17 +54,148 @@
     }
 
     .douyin-window iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       display: block;
       width: 100%;
       height: 100%;
       border: 0;
+      background: #000;
     }
 
     @media (max-width: 720px) {
       .douyin-embed { margin-top: 32px; }
-      .douyin-window { width: min(340px, 100%); border-radius: 10px; }
+      .douyin-window { width: 100%; border-radius: 10px; }
     }
 
+
+    /* 设计的回声：与宣发设计页共用同一套视觉 */
+    .social-badge--long {
+      white-space: normal;
+      font-size: 12.5px;
+      letter-spacing: 0;
+      z-index: 6;
+    }
+
+    .case-body .social-sign {
+      position: relative;
+      z-index: 6;
+      width: 100%;
+      max-width: none;
+      margin: 0 0 6px;
+      color: #ffffff;
+      font-family: "PingFangShangShangQian", var(--font-cjk);
+      font-size: clamp(30px, 3.6vw, 42px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      text-align: center;
+    }
+
+    .echo-reel {
+      position: relative;
+      width: 100vw;
+      height: clamp(190px, 19vw, 280px);
+      margin: 0 0 0 calc(50% - 50vw);
+      outline: none;
+    }
+
+    .echo-reel:focus-visible .echo-canvas {
+      outline: 1px solid color-mix(in srgb, var(--text) 35%, transparent);
+      outline-offset: -4px;
+    }
+
+    .echo-canvas {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: grab;
+      touch-action: pan-y;
+      transition: opacity 700ms ease;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
+    }
+
+    .echo-reel.is-gl .echo-canvas { opacity: 1; }
+    .echo-reel.is-dragging .echo-canvas { cursor: grabbing; }
+
+    .echo-list {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 max(20px, calc(50vw - 496px));
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .echo-list::-webkit-scrollbar { display: none; }
+
+    .echo-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: none;
+      height: 97%;
+      margin: 0;
+      scroll-snap-align: center;
+    }
+
+    .echo-card img {
+      display: block;
+      width: auto;
+      height: calc(100% - 31px);
+      max-height: calc(100% - 31px);
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 5px;
+    }
+
+    .echo-card .social-badge {
+      position: static;
+      order: -1;
+      align-self: flex-start;
+      max-width: 100%;
+      margin: 0 0 6px;
+      border-color: rgba(255, 255, 255, .48);
+      background: rgba(8, 7, 10, .94);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      padding: 5px 11px;
+      white-space: normal;
+    }
+
+    .echo-reel.is-gl .echo-list {
+      inset: auto;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 720px) {
+      .echo-reel { height: clamp(150px, 44vw, 210px); }
+      .echo-canvas {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+      }
+    }
+
+    @media (min-width: 2400px) {
+      .echo-card .social-badge { padding: 6px 12px; font-size: 14px; }
+    }
   </style>
 </head>
 <body class="case-page">
@@ -288,20 +335,6 @@
         </div>
       </section>
 
-      <div class="douyin-embed">
-        <div class="douyin-window">
-          <iframe
-            src="https://open.douyin.com/player/video?vid=7616278296964268122&autoplay=0"
-            title="抖音赛事现场视频"
-            loading="lazy"
-            scrolling="no"
-            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin"
-          ></iframe>
-        </div>
-      </div>
-
       <div class="case-divider" aria-hidden="true"></div>
       <section class="case-section">
         <h2><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="project2Title">《第五人格》2025IVL秋季总决赛</span></h2>
@@ -387,6 +420,20 @@
           </div>
         </div>
       </section>
+
+      <div class="douyin-embed">
+        <div class="douyin-window">
+          <iframe
+            src="https://open.douyin.com/player/video?vid=7616278296964268122&autoplay=0"
+            title="《第五人格》2025 IVL 秋季总决赛现场视频"
+            loading="lazy"
+            scrolling="no"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
 
       <div class="case-divider" aria-hidden="true"></div>
       <section class="case-section">
@@ -511,39 +558,64 @@
         </div>
       </section>
 
+      <div class="douyin-embed">
+        <div class="douyin-window">
+          <iframe
+            src="https://open.douyin.com/player/video?vid=7583977940259114299&autoplay=0"
+            title="《逆水寒》侠棋争霸赛现场视频"
+            loading="lazy"
+            scrolling="no"
+            allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
+
       <div class="case-divider case-related-divider" aria-hidden="true"></div>
 
-      <section class="case-related" aria-labelledby="related-title">
-        <h2 id="related-title" data-i18n-key="relatedTitle">查看更多</h2>
-        <div class="more-gallery">
-          <a class="more-item is-active" href="campaign.html">
-            <img src="../assets/more/campaign.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedCampaign">宣发设计</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/mengshou.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedMengshou">《梦幻西游》手游巅峰联赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/danzai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedDanzai">《蛋仔派对》全国总决赛</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/stage.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedStage">舞美设计</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/merch.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedMerch">周边物料</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/video.webp" alt="" width="846" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedVideo">视频包装</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
-          <a class="more-item" href="../index.html#portfolio">
-            <img src="../assets/more/ai.webp" alt="" width="853" height="480" loading="lazy" decoding="async">
-            <span class="more-label"><span data-i18n-key="relatedAi">AI 管线开发</span><span class="more-arrow" aria-hidden="true">→</span></span>
-          </a>
+      <section class="globe-close" aria-labelledby="social-line">
+        <p class="social-sign" id="social-line" data-i18n-key="socialSign">设计的回声</p>
+        <div class="echo-reel" tabindex="0" role="region" aria-label="社交媒体反响截图，可左右拖动或用方向键浏览">
+          <canvas class="echo-canvas" aria-hidden="true"></canvas>
+          <div class="echo-list">
+            <figure class="echo-card">
+              <span class="social-badge social-badge--long" data-i18n-key="statBadge1">推特420w+曝光·3万赞+破圈爆款</span>
+              <img src="../assets/social-stat-1.webp" alt="《第五人格》COA 推特 420 万曝光、3 万赞破圈爆款帖" width="1429" height="782" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge social-badge--long" data-i18n-key="statBadge2">推特35w+曝光·高互动万赞热帖</span>
+              <img src="../assets/social-stat-2.webp" alt="《第五人格》COA 推特 35 万曝光、高互动万赞热帖" width="1428" height="780" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge3">抖音47w赞</span>
+              <img src="../assets/social-stat-3.webp" alt="《蛋仔派对》抖音 47 万赞、30 万转超高裂变视频" width="900" height="1248" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge4">抖音5W+赞万转直拍</span>
+              <img src="../assets/social-stat-4.webp" alt="《逆水寒》大屏现场抖音 5W+ 赞、万转直拍" width="900" height="688" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge9">抖音3.8w赞3k+转发</span>
+              <img src="../assets/social-stat-9.webp" alt="《逆水寒》赛事现场抖音 3.8w 赞、3k+ 转发" width="900" height="544" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge5">抖音万赞热门</span>
+              <img src="../assets/social-stat-5.webp" alt="《第五人格》COA 冠军采访抖音万赞热门视频" width="900" height="529" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge6">抖音4千+赞</span>
+              <img src="../assets/social-stat-6.webp" alt="《第五人格》COA 冠军群访抖音 4 千赞视频" width="900" height="451" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge7">抖音3k+赞</span>
+              <img src="../assets/social-stat-7.webp" alt="《蛋仔派对》惊魂杯抖音 3 千赞视频" width="900" height="1249" loading="lazy" decoding="async">
+            </figure>
+            <figure class="echo-card">
+              <span class="social-badge" data-i18n-key="statBadge8">全网300w曝光节目</span>
+              <img src="../assets/social-stat-8.webp" alt="《第五人格》情报局节目全网 300 万曝光" width="900" height="567" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -730,7 +802,16 @@
           statProjects: "个项目",
           statVisuals: "组主视觉",
           statAnimations: "段动画",
-          relatedTitle: "查看更多",
+          socialSign: "设计的回声",
+          statBadge1: "推特420w+曝光·3万赞+破圈爆款",
+          statBadge2: "推特35w+曝光·高互动万赞热帖",
+          statBadge3: "抖音47w赞",
+          statBadge4: "抖音5W+赞万转直拍",
+          statBadge9: "抖音3.8w赞3k+转发",
+          statBadge5: "抖音万赞热门",
+          statBadge6: "抖音4千+赞",
+          statBadge7: "抖音3k+赞",
+          statBadge8: "全网300w曝光节目",
           relatedCampaign: "宣发设计",
           relatedMerch: "周边物料",
           relatedStage: "舞美设计",
@@ -792,7 +873,16 @@
           statProjects: "Projects",
           statVisuals: "Key visuals",
           statAnimations: "Animations",
-          relatedTitle: "See more",
+          socialSign: "The echo of design",
+          statBadge1: "推特420w+曝光·3万赞+破圈爆款",
+          statBadge2: "推特35w+曝光·高互动万赞热帖",
+          statBadge3: "抖音47w赞",
+          statBadge4: "抖音5W+赞万转直拍",
+          statBadge9: "抖音3.8w赞3k+转发",
+          statBadge5: "抖音万赞热门",
+          statBadge6: "抖音4千+赞",
+          statBadge7: "抖音3k+赞",
+          statBadge8: "全网300w曝光节目",
           relatedCampaign: "Campaign Design",
           relatedMerch: "Merchandise",
           relatedStage: "Stage Design",
@@ -1314,180 +1404,456 @@
       });
     })();
   </script>
-  <script>
+  <script type="module">
+    import * as THREE from "../assets/vendor/three.module.min.js";
+
     (function () {
-      var gallery = document.querySelector(".more-gallery");
-      if (!gallery) return;
-      var items = Array.prototype.slice.call(gallery.querySelectorAll(".more-item"));
-      var RATIO = 16 / 9;
-      var active = null;
+      var reel = document.querySelector(".echo-reel");
+      if (!reel) return;
+      var canvas = reel.querySelector(".echo-canvas");
+      var list = reel.querySelector(".echo-list");
+      var figures = Array.prototype.slice.call(reel.querySelectorAll(".echo-card"));
+      if (!canvas || !figures.length) return;
 
-      function gapSize() {
-        var cs = getComputedStyle(gallery);
-        return parseFloat(cs.columnGap || cs.gap) || 0;
+      var started = false;
+      function start() {
+        if (started) return;
+        started = true;
+        try {
+          init();
+        } catch (error) {
+          if (window.console) console.warn("echo reel fallback:", error && error.message);
+          reel.classList.remove("is-gl");
+        }
       }
 
-      function growFor(item) {
-        var n = items.length;
-        var gap = gapSize();
-        var inner = gallery.clientWidth - gap * (n - 1);
-        var target = gallery.clientHeight * RATIO;
-        if (inner <= 0 || target <= 0) return 1;
-        var rest = inner - target;
-        if (rest <= 0) return 1;
-        return Math.max(0.4, (target * (n - 1)) / rest);
-      }
+      if (document.readyState === "complete") start();
+      else window.addEventListener("load", start, { once: true });
+      window.setTimeout(start, 1800);
 
-      function clear() {
-        active = null;
-        items.forEach(function (item) {
-          item.classList.remove("is-active");
-          item.style.flexGrow = "";
+      function init() {
+        if (window.matchMedia("(max-width: 720px)").matches) return;
+        var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setClearColor(0x000000, 0);
+        var scene = new THREE.Scene();
+        var camera = new THREE.OrthographicCamera(-1, 1, 1, -1, -10, 10);
+
+        /* 横向压缩曲线：屏幕 x = X · sin(s / A) / sin(T)。
+           中心斜率为 1（原比例最宽），越往两侧卡片越窄、越暗，形成通栏的“宽—窄”节奏。 */
+        var T = 1.32;
+        var GAP_RATIO = 0.05;
+
+        var vertex = [
+          "uniform float uCenter;",
+          "uniform vec2 uSize;",
+          "uniform float uA;",
+          "uniform float uX;",
+          "uniform float uT;",
+          "varying vec2 vUv;",
+          "varying float vShade;",
+          "void main() {",
+          "  vUv = uv;",
+          "  float s = uCenter + position.x * uSize.x;",
+          "  float theta = clamp(s / uA, -1.5707, 1.5707);",
+          "  float x = uX * sin(theta) / sin(uT);",
+          "  float edge = (1.0 - cos(theta)) / (1.0 - cos(uT));",
+          "  float y = position.y * uSize.y * (1.0 - 0.16 * clamp(edge, 0.0, 1.0));",
+          "  vShade = clamp(edge, 0.0, 1.0);",
+          "  gl_Position = projectionMatrix * modelViewMatrix * vec4(x, y, 0.0, 1.0);",
+          "}"
+        ].join("\n");
+
+        var fragment = [
+          "uniform sampler2D uMap;",
+          "uniform vec2 uSize;",
+          "uniform float uRadius;",
+          "varying vec2 vUv;",
+          "varying float vShade;",
+          "float sdRound(vec2 p, vec2 b, float r) {",
+          "  vec2 q = abs(p) - b + r;",
+          "  return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - r;",
+          "}",
+          "void main() {",
+          "  vec2 p = (vUv - 0.5) * uSize;",
+          "  float d = sdRound(p, uSize * 0.5, uRadius);",
+          "  float aa = fwidth(d) * 1.2;",
+          "  float mask = 1.0 - smoothstep(-aa, aa, d);",
+          "  if (mask < 0.004) discard;",
+          "  vec4 tex = texture2D(uMap, vUv);",
+          "  vec3 color = tex.rgb;",
+          "  float alpha = tex.a * mask;",
+          "  if (alpha < 0.004) discard;",
+          "  float rim = 1.0 - smoothstep(0.0, 1.6, -d);",
+          "  color = mix(color, vec3(1.0), rim * 0.14);",
+          "  color *= 1.0 - 0.55 * vShade * vShade;",
+          "  gl_FragColor = vec4(color, alpha);",
+          "}"
+        ].join("\n");
+
+        var blank = new THREE.DataTexture(new Uint8Array([22, 21, 26, 255]), 1, 1);
+        blank.needsUpdate = true;
+        var geometry = new THREE.PlaneGeometry(1, 1, 40, 1);
+
+        var sources = figures.map(function (figure) {
+          var img = figure.querySelector("img");
+          var ratio = Number(img.getAttribute("width")) / Number(img.getAttribute("height")) || 0.75;
+          return {
+            figure: figure,
+            img: img,
+            aspect: Math.min(1.7, Math.max(0.7, ratio)),
+            image: null,
+            texture: blank,
+            meshes: []
+          };
         });
-      }
 
-      function activate(item) {
-        active = item;
-        var grow = growFor(item);
-        items.forEach(function (other) {
-          if (other === item) {
-            other.classList.add("is-active");
-            other.style.flexGrow = String(grow.toFixed(3));
+        /* 两份副本首尾相接，接缝始终落在可视范围之外 */
+        var items = [];
+        for (var copy = 0; copy < 2; copy++) {
+          sources.forEach(function (source, index) {
+            var material = new THREE.ShaderMaterial({
+              uniforms: {
+                uMap: { value: blank },
+                uCenter: { value: 0 },
+                uSize: { value: new THREE.Vector2(1, 1) },
+                uA: { value: 1 },
+                uX: { value: 1 },
+                uT: { value: T },
+                uRadius: { value: 5 }
+              },
+              vertexShader: vertex,
+              fragmentShader: fragment,
+              transparent: true,
+              depthTest: false,
+              depthWrite: false,
+              extensions: { derivatives: true }
+            });
+            var mesh = new THREE.Mesh(geometry, material);
+            mesh.frustumCulled = false;
+            scene.add(mesh);
+            source.meshes.push(mesh);
+            items.push({ source: source, index: index, mesh: mesh, width: 0, start: 0 });
+          });
+        }
+
+        var TH = 720;
+        var BAND = 200;
+        var cardH = 100;
+        var gap = 6;
+        var total = 1;
+        var halfW = 1;
+        var A = 1;
+
+        function measure() {
+          var arc = 0;
+          items.forEach(function (item) {
+            item.width = cardH * item.source.aspect * (TH / (TH + BAND));
+            item.start = arc;
+            arc += item.width + gap;
+          });
+          total = arc;
+        }
+
+        function badgeText(source) {
+          var badge = source.figure.querySelector(".social-badge");
+          return badge ? badge.textContent.trim() : "";
+        }
+
+        function drawTexture(source) {
+          if (!source.image) return;
+          var tw = Math.round(TH * source.aspect);
+          var surface = document.createElement("canvas");
+          surface.width = tw;
+          surface.height = TH + BAND;
+          var g = surface.getContext("2d");
+          g.clearRect(0, 0, tw, TH + BAND);
+          var iw = source.image.naturalWidth;
+          var ih = source.image.naturalHeight;
+          var sx = 0;
+          var sy = 0;
+          var sw = iw;
+          var sh = ih;
+          if (iw / ih > source.aspect) {
+            sw = ih * source.aspect;
+            sx = (iw - sw) / 2;
           } else {
-            other.classList.remove("is-active");
-            other.style.flexGrow = "1";
+            sh = iw / source.aspect;
           }
-        });
-      }
+          g.drawImage(source.image, sx, sy, sw, sh, 0, BAND, tw, TH);
 
-      items.forEach(function (item) {
-        item.addEventListener("mouseenter", function () { activate(item); });
-        item.addEventListener("focus", function () { activate(item); });
-        item.addEventListener("click", function (event) {
-          if (!item.classList.contains("is-active")) {
-            event.preventDefault();
-            activate(item);
+          var label = badgeText(source);
+          if (label) {
+            var size = 62;
+            var family = "px 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', sans-serif";
+            var padX = 24;
+            var padY = 16;
+            var lineH = Math.round(size * 1.2);
+            g.font = "700 " + size + family;
+            var maxTextW = tw - padX * 2 - 20;
+            var lines = [];
+            var current = "";
+            for (var ci = 0; ci < label.length; ci++) {
+              var test = current + label.charAt(ci);
+              if (current && g.measureText(test).width > maxTextW) {
+                lines.push(current);
+                current = label.charAt(ci);
+              } else {
+                current = test;
+              }
+            }
+            if (current) lines.push(current);
+            if (lines.length > 2) lines = [lines[0], lines.slice(1).join("")];
+            var boxH = lines.length * lineH + padY * 2;
+            var textW = 0;
+            lines.forEach(function (line) { textW = Math.max(textW, g.measureText(line).width); });
+            var boxW = Math.min(tw - 20, textW + padX * 2);
+            var x = 10;
+            var y = BAND - boxH - 8;
+            var r = boxH / 2;
+            g.beginPath();
+            g.moveTo(x + r, y);
+            g.arcTo(x + boxW, y, x + boxW, y + boxH, r);
+            g.arcTo(x + boxW, y + boxH, x, y + boxH, r);
+            g.arcTo(x, y + boxH, x, y, r);
+            g.arcTo(x, y, x + boxW, y, r);
+            g.closePath();
+            g.save();
+            g.shadowColor = "rgba(0, 0, 0, 0.6)";
+            g.shadowBlur = 12;
+            g.shadowOffsetY = 3;
+            g.fillStyle = "rgba(8, 7, 10, 0.94)";
+            g.fill();
+            g.restore();
+            g.lineWidth = 2;
+            g.strokeStyle = "rgba(255, 255, 255, 0.55)";
+            g.stroke();
+            g.fillStyle = "#ffffff";
+            g.textBaseline = "middle";
+            lines.forEach(function (line, index) {
+              g.fillText(line, x + padX, y + padY + lineH * (index + 0.5), boxW - padX * 2);
+            });
           }
+
+          var texture = new THREE.CanvasTexture(surface);
+          texture.minFilter = THREE.LinearMipmapLinearFilter;
+          texture.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy());
+          if (source.texture && source.texture !== blank) source.texture.dispose();
+          source.texture = texture;
+          source.meshes.forEach(function (mesh) { mesh.material.uniforms.uMap.value = texture; });
+          /* 贴图到位立即补画，不依赖动画循环（离屏、后台标签页时同样生效） */
+          if (ready) { layout(); renderer.render(scene, camera); }
+          dirty = true;
+        }
+
+        sources.forEach(function (source) {
+          var image = new Image();
+          image.decoding = "async";
+          image.onload = function () {
+            source.image = image;
+            drawTexture(source);
+          };
+          image.src = source.img.currentSrc || source.img.src;
         });
-      });
 
-      gallery.addEventListener("mouseleave", function () {
-        if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) clear();
-      });
+        if (list && "MutationObserver" in window) {
+          var relabelTimer = 0;
+          new MutationObserver(function () {
+            window.clearTimeout(relabelTimer);
+            relabelTimer = window.setTimeout(function () { sources.forEach(drawTexture); }, 60);
+          }).observe(list, { subtree: true, childList: true, characterData: true });
+        }
 
-      window.addEventListener("resize", function () {
-        if (active) activate(active);
-      });
-    })();
-  </script>
+        var dirty = true;
+        var ready = false;
+        var offset = 0;
+        var target = 0;
 
-  <script>
-    // 案例之间左右切换（按首页作品顺序，只保留已有子页面的项）
-    (function () {
-      var order = [
-        { id: "campaign", label: { zh: "宣发设计", en: "Campaign Design" } },
-        { id: "large-screen", label: { zh: "大屏视觉", en: "Large-Screen Visuals" } }
-      ];
-      var here = "large-screen";
-      var index = order.findIndex(function (item) { return item.id === here; });
-      if (index < 0) return;
+        function resize() {
+          var w = reel.clientWidth;
+          var h = reel.clientHeight;
+          if (!w || !h) return;
+          var center = items.length ? (offset - items[0].start) / (total || 1) : 0;
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+          renderer.setSize(w, h, false);
+          camera.left = -w / 2;
+          camera.right = w / 2;
+          camera.top = h / 2;
+          camera.bottom = -h / 2;
+          camera.updateProjectionMatrix();
+          cardH = Math.round(h * 0.94);
+          gap = Math.max(4, Math.round(cardH * GAP_RATIO));
+          halfW = w / 2;
+          A = halfW / Math.sin(T);          /* 中心斜率 = 1，中卡保持原比例 */
+          measure();
+          offset = target = center * total + items[0].start;
+          /* setSize 会清空画布：立即补画一帧，避免离屏时尺寸变化留下空白 */
+          if (ready) { layout(); renderer.render(scene, camera); }
+          dirty = true;
+        }
 
-      var prev = order[index - 1] || null;
-      var next = order[index + 1] || null;
-      if (!prev && !next) return;
+        function wrap(value) {
+          return ((value % total) + total * 1.5) % total - total / 2;
+        }
 
-      var zh = (document.documentElement.lang || "zh").toLowerCase().indexOf("en") !== 0;
-      function label(item) { return item ? item.label[zh ? "zh" : "en"] : ""; }
-      function href(item) { return item.id + ".html"; }
+        function centerOf(item) {
+          return item.start + item.width / 2;
+        }
 
-      var hint = document.createElement("div");
-      hint.className = "switcher-hint";
-      hint.setAttribute("role", "status");
-      var parts = [];
-      if (prev) parts.push('<a href="' + href(prev) + '">← ' + label(prev) + "</a>");
-      parts.push('<span class="switcher-tip">' + (zh ? "左右滑动切换案例" : "Swipe to switch case") + "</span>");
-      if (next) parts.push('<a href="' + href(next) + '">' + label(next) + " →</a>");
-      hint.innerHTML = parts.join('<span class="switcher-sep">·</span>');
-      document.body.appendChild(hint);
+        function nearest(value) {
+          var best = items[0];
+          var bestDistance = Infinity;
+          items.forEach(function (item) {
+            var distance = Math.abs(wrap(centerOf(item) - value));
+            if (distance < bestDistance) { bestDistance = distance; best = item; }
+          });
+          return best;
+        }
 
-      var hideTimer = 0;
-      function reveal(ms) {
-        hint.classList.add("is-visible");
-        window.clearTimeout(hideTimer);
-        hideTimer = window.setTimeout(function () {
-          hint.classList.remove("is-visible");
-        }, ms || 2600);
+        function snapTo(item) {
+          target = offset + wrap(centerOf(item) - offset);
+          lastInteract = performance.now();
+        }
+
+        function layout() {
+          var limit = A * 1.5707 + cardH * 1.8;
+          items.forEach(function (item) {
+            var c = wrap(centerOf(item) - offset);
+            var u = item.mesh.material.uniforms;
+            u.uCenter.value = c;
+            u.uSize.value.set(item.width, cardH);
+            u.uA.value = A;
+            u.uX.value = halfW;
+            u.uRadius.value = Math.max(3, cardH * 0.025);
+            item.mesh.visible = Math.abs(c) < limit;
+          });
+        }
+
+        /* 屏幕坐标反解回弧长，用于点击定位 */
+        function pickAt(clientX) {
+          var rect = canvas.getBoundingClientRect();
+          var x = clientX - rect.left - rect.width / 2;
+          var k = Math.max(-1, Math.min(1, x * Math.sin(T) / halfW));
+          var s = Math.asin(k) * A;
+          var hit = null;
+          items.forEach(function (item) {
+            var c = wrap(centerOf(item) - offset);
+            if (Math.abs(s - c) <= item.width / 2) hit = item;
+          });
+          return hit;
+        }
+
+        var dragging = false;
+        var pointerId = null;
+        var startX = 0;
+        var startOffset = 0;
+        var moved = 0;
+        var lastX = 0;
+        var lastT = 0;
+        var velocity = 0;
+        var lastInteract = -1e9;
+        var wheelTimer = 0;
+        var onScreen = true;
+
+        canvas.addEventListener("pointerdown", function (event) {
+          if (event.button > 0) return;
+          dragging = true;
+          pointerId = event.pointerId;
+          startX = lastX = event.clientX;
+          startOffset = target = offset;
+          lastT = performance.now();
+          moved = 0;
+          velocity = 0;
+          reel.classList.add("is-dragging");
+          try { canvas.setPointerCapture(event.pointerId); } catch (error) {}
+        });
+
+        canvas.addEventListener("pointermove", function (event) {
+          if (!dragging) return;
+          var dx = event.clientX - startX;
+          moved = Math.max(moved, Math.abs(dx));
+          offset = target = startOffset - dx;
+          var now = performance.now();
+          velocity = (event.clientX - lastX) / Math.max(8, now - lastT);
+          lastX = event.clientX;
+          lastT = now;
+          dirty = true;
+        });
+
+        function release(event) {
+          if (!dragging) return;
+          dragging = false;
+          reel.classList.remove("is-dragging");
+          if (pointerId !== null) {
+            try { canvas.releasePointerCapture(pointerId); } catch (error) {}
+            pointerId = null;
+          }
+          if (moved < 6 && event && event.type === "pointerup") {
+            var hit = pickAt(event.clientX);
+            if (hit) { snapTo(hit); return; }
+          }
+          snapTo(nearest(offset - velocity * 240));
+        }
+
+        canvas.addEventListener("pointerup", release);
+        canvas.addEventListener("pointercancel", release);
+
+        canvas.addEventListener("wheel", function (event) {
+          if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          target += event.deltaX;
+          lastInteract = performance.now();
+          window.clearTimeout(wheelTimer);
+          wheelTimer = window.setTimeout(function () { snapTo(nearest(target)); }, 160);
+        }, { passive: false });
+
+        reel.addEventListener("keydown", function (event) {
+          var current = nearest(target);
+          var index = items.indexOf(current);
+          if (event.key === "ArrowLeft") { event.preventDefault(); snapTo(items[(index - 1 + items.length) % items.length]); }
+          else if (event.key === "ArrowRight") { event.preventDefault(); snapTo(items[(index + 1) % items.length]); }
+        });
+
+        if ("IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries) {
+            onScreen = entries.some(function (entry) { return entry.isIntersecting; });
+          }, { threshold: 0 }).observe(reel);
+        }
+
+        if ("ResizeObserver" in window) new ResizeObserver(resize).observe(reel);
+        else window.addEventListener("resize", resize);
+
+        var last = 0;
+        function frame(now) {
+          window.requestAnimationFrame(frame);
+          if (!onScreen || document.hidden) { last = 0; return; }
+          var dt = last ? Math.min(48, now - last) : 16;
+          last = now;
+          if (!dragging && !reduced && now - lastInteract > 2600) target += dt * 0.028;
+          if (!dragging) {
+            var delta = target - offset;
+            if (Math.abs(delta) > 0.05) {
+              offset += reduced ? delta : delta * Math.min(1, dt * 0.012);
+              dirty = true;
+            } else if (offset !== target) {
+              offset = target;
+              dirty = true;
+            }
+          }
+          if (!dirty) return;
+          dirty = false;
+          layout();
+          renderer.render(scene, camera);
+        }
+
+        resize();
+        offset = target = centerOf(items[0]);
+        layout();
+        renderer.render(scene, camera);
+        ready = true;
+        reel.classList.add("is-gl");
+        window.requestAnimationFrame(frame);
       }
-
-      var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-      if (canHover) {
-        document.addEventListener("mousemove", function () { reveal(); }, { passive: true });
-      } else {
-        window.setTimeout(function () { reveal(4200); }, 1200);
-      }
-
-      hint.addEventListener("mouseenter", function () {
-        window.clearTimeout(hideTimer);
-        hint.classList.add("is-visible");
-      });
-      hint.addEventListener("mouseleave", function () { reveal(1200); });
-
-      function go(item) {
-        if (!item) return;
-        window.location.href = href(item);
-      }
-
-      // 移动端滑动
-      var startX = 0;
-      var startY = 0;
-      var tracking = false;
-      var ignored = ".echo-reel, .echo-list, .case-hero-media, .more-gallery, input, textarea, select";
-
-      document.addEventListener("touchstart", function (event) {
-        if (event.touches.length !== 1) { tracking = false; return; }
-        var target = event.target;
-        if (target && target.closest && target.closest(ignored)) { tracking = false; return; }
-        tracking = true;
-        startX = event.touches[0].clientX;
-        startY = event.touches[0].clientY;
-      }, { passive: true });
-
-      document.addEventListener("touchend", function (event) {
-        if (!tracking) return;
-        tracking = false;
-        var touch = event.changedTouches && event.changedTouches[0];
-        if (!touch) return;
-        var dx = touch.clientX - startX;
-        var dy = touch.clientY - startY;
-        if (Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy) * 1.6) return;
-        if (dx < 0) { go(next); } else { go(prev); }
-      }, { passive: true });
-
-      // 桌面：方向键 + 拖动
-      document.addEventListener("keydown", function (event) {
-        if (event.metaKey || event.ctrlKey || event.altKey) return;
-        var tag = (event.target && event.target.tagName) || "";
-        if (/INPUT|TEXTAREA|SELECT/.test(tag)) return;
-        if (event.key === "ArrowRight") { go(next); }
-        else if (event.key === "ArrowLeft") { go(prev); }
-      });
-
-      var dragStart = null;
-      document.addEventListener("mousedown", function (event) {
-        if (!canHover) return;
-        var target = event.target;
-        if (target && target.closest && target.closest(ignored)) { dragStart = null; return; }
-        dragStart = event.clientX;
-      });
-
-      document.addEventListener("mouseup", function (event) {
-        if (dragStart === null) return;
-        var dx = event.clientX - dragStart;
-        dragStart = null;
-        if (Math.abs(dx) < 140) return;
-        if (dx < 0) { go(next); } else { go(prev); }
-      });
     })();
   </script>
 </body>

@@ -5,7 +5,7 @@
 
 /* ---------- 宽屏：放宽内容栏，收掉两侧过多留白 ---------- */
 @media (min-width: 1500px) {
-  .case-main { max-width: 88vw; }
+  .case-main { max-width: 95vw; }
   .hero-copy { max-width: 1600px; }
   .profile-layout { max-width: 1660px; }
   .case-main::before { background-size: 84px 84px; }
@@ -14,7 +14,7 @@
 @media (min-width: 1750px) {
   :root { --sidebar-width: 330px; }
 
-  .case-main { max-width: 88vw; }
+  .case-main { max-width: 95vw; }
   .hero-copy { max-width: 1880px; }
   .profile-layout { max-width: 1940px; }
 
@@ -31,7 +31,7 @@
 @media (min-width: 2100px) {
   :root { --sidebar-width: 380px; }
 
-  .case-main { max-width: 90vw; }
+  .case-main { max-width: 94vw; }
   .hero-copy { max-width: 2260px; }
   .profile-layout { max-width: 2320px; }
 
@@ -47,7 +47,7 @@
 @media (min-width: 2600px) {
   :root { --sidebar-width: 430px; }
 
-  .case-main { max-width: 90vw; }
+  .case-main { max-width: 94vw; }
   .hero-copy { max-width: 2680px; }
   .profile-layout { max-width: 2740px; }
 
@@ -60,7 +60,7 @@
 }
 
 @media (min-width: 3200px) {
-  .case-main { max-width: min(92vw, 3200px); }
+  .case-main { max-width: min(94vw, 3400px); }
   .hero-copy { max-width: 3100px; }
   .profile-layout { max-width: 3160px; }
 }
@@ -160,55 +160,11 @@
   }
 
   .case-body .case-frame + .case-frame { margin-top: 4px !important; }
+  .case-body .case-row > .case-frame + .case-frame { margin-top: 0 !important; }
   .case-row + .case-row { margin-top: 4px !important; }
   .case-body .globe-close { margin-top: 32px; }
 }
 /* ---------- 手机端隐藏「查看更多」，改为左右滑动切换案例 ---------- */
 @media (max-width: 720px) {
   .case-related { display: none !important; }
-}
-
-.switcher-hint {
-  position: fixed;
-  left: 50%;
-  bottom: max(16px, env(safe-area-inset-bottom));
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 16px;
-  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: var(--text-muted);
-  font-size: 12px;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  opacity: 0;
-  transform: translate(-50%, 10px);
-  pointer-events: none;
-  transition: opacity 240ms ease, transform 240ms ease;
-}
-
-.switcher-hint.is-visible {
-  opacity: 1;
-  transform: translate(-50%, 0);
-  pointer-events: auto;
-}
-
-.switcher-hint a {
-  color: var(--text);
-  text-decoration: none;
-}
-
-.switcher-hint a:hover { color: var(--yellow); }
-
-.switcher-hint .switcher-sep { opacity: 0.35; }
-
-.switcher-hint .switcher-tip { opacity: 0.7; }
-
-@media (prefers-reduced-motion: reduce) {
-  .switcher-hint { transition: none; }
 }
