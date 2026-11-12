@@ -1439,6 +1439,10 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-hero-media.is-playing .case-hero-video { opacity: 1; }
 
+.case-hero-media.is-paused .case-hero-video { opacity: 0; }
+
+.case-hero-media.is-paused .case-hero-play { display: grid; }
+
 .case-hero-play {
   position: absolute;
   top: 50%;

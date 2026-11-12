@@ -17,7 +17,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-91">
+  <link rel="stylesheet" href="../styles.css?v=20261112-92">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -789,7 +789,7 @@
       function release(video) {
         if (!video.getAttribute("src")) return;
         if (!video.paused) return;
-        if (video.classList.contains("is-playing")) return;
+        if (video.closest(".is-playing")) return;
         video.removeAttribute("src");
         try {
           video.load();
@@ -969,7 +969,10 @@
         }
 
         function show() {
-          if (frame) frame.classList.add("is-playing");
+          if (frame) {
+            frame.classList.add("is-playing");
+            frame.classList.remove("is-paused");
+          }
         }
 
         function play() {
@@ -987,6 +990,13 @@
         video.addEventListener("playing", function () {
           show();
           if (frame) frame.classList.remove("is-blocked");
+        });
+
+        video.addEventListener("ended", function () {
+          video.currentTime = 0;
+          if (!frame) return;
+          frame.classList.remove("is-playing");
+          frame.classList.add("is-paused");
         });
 
         if (button) button.addEventListener("click", play);
