@@ -13,6 +13,7 @@ const excludedPaths = [
   "node_modules/**",
   "scripts/**",
   "deploy.cmd",
+  "publish.cmd",
   "*.md",
   "LICENSE",
   "work/_*.html",
