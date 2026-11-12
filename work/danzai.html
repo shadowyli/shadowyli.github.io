@@ -161,31 +161,41 @@
       display: grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
       gap: clamp(10px, 1.2vw, 16px);
-      align-items: center;
+      align-items: stretch;
     }
     .case-video-split .case-media-slot { margin: 0; }
     .case-board-wrap {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-self: center;
+      align-self: stretch;
     }
+    /* 两行四列铺满整列高度，与左侧视频上下齐平 */
     .case-board {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: clamp(6px, 0.6vw, 8px);
+      width: 100%;
     }
-    .case-board figure { margin: 0; }
+    .case-board figure {
+      height: 100%;
+      margin: 0;
+    }
     .case-board img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 0;
       background: var(--surface);
+      object-fit: cover;
     }
     @media (max-width: 720px) {
       .case-video-split { grid-template-columns: 1fr; }
+      .case-board { grid-template-rows: auto auto; }
+      .case-board img {
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
     }
 
     /* 手机端拿不到自动播放权限：每块动画单独给一个播放按钮（桌面靠入场自动播放，不显示按钮） */
