@@ -8,7 +8,6 @@
       var list = reel.querySelector(".echo-list");
       var figures = Array.prototype.slice.call(reel.querySelectorAll(".echo-card"));
       if (!canvas || !figures.length) return;
-      if (window.matchMedia("(min-width: 721px)").matches) return;
 
       var started = false;
       function start() {
