@@ -85,7 +85,7 @@
       z-index: 6;
       width: 100%;
       max-width: none;
-      margin: 0 0 clamp(10px, 1.2vw, 16px);
+      margin: 0 0 clamp(6px, 0.8vw, 12px);
       color: #ffffff;
       font-family: "PingFangShangShangQian", var(--font-cjk);
       font-size: clamp(30px, 3.6vw, 42px);
@@ -288,7 +288,7 @@
       position: relative;
       width: 100vw;
       height: clamp(170px, 18vw, 260px);
-      margin: clamp(6px, 1vw, 12px) 0 0 calc(50% - 50vw);
+      margin: clamp(0px, 0.4vw, 4px) 0 0 calc(50% - 50vw);
       outline: none;
     }
 
@@ -334,7 +334,7 @@
       flex-direction: column;
       align-items: flex-start;
       flex: none;
-      height: 86%;
+      height: 94%;
       margin: 0;
       scroll-snap-align: center;
     }
@@ -489,7 +489,7 @@
               <img src="../assets/social-stat-2.webp" alt="《第五人格》COA 推特 35 万曝光、高互动万赞热帖" width="900" height="715" loading="lazy" decoding="async">
             </figure>
             <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge3">抖音47w+赞30w转·超高裂变</span>
+              <span class="social-badge" data-i18n-key="statBadge3">抖音47w赞</span>
               <img src="../assets/social-stat-3.webp" alt="《蛋仔派对》抖音 47 万赞、30 万转超高裂变视频" width="900" height="1248" loading="lazy" decoding="async">
             </figure>
             <figure class="echo-card">
@@ -562,7 +562,7 @@
           socialSign: "设计的回声",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
           statBadge2: "推特35w+曝光·高互动万赞热帖",
-          statBadge3: "抖音47w+赞30w转·超高裂变",
+          statBadge3: "抖音47w赞",
           statBadge4: "抖音5W+赞万转直拍",
           statBadge9: "抖音3.8w赞3k+转发",
           statBadge5: "抖音万赞热门",
@@ -629,7 +629,7 @@
           socialSign: "The echo of design",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
           statBadge2: "推特35w+曝光·高互动万赞热帖",
-          statBadge3: "抖音47w+赞30w转·超高裂变",
+          statBadge3: "抖音47w赞",
           statBadge4: "抖音5W+赞万转直拍",
           statBadge9: "抖音3.8w赞3k+转发",
           statBadge5: "抖音万赞热门",
@@ -1086,7 +1086,7 @@
           camera.top = h / 2;
           camera.bottom = -h / 2;
           camera.updateProjectionMatrix();
-          cardH = Math.round(h * 0.86);
+          cardH = Math.round(h * 0.94);
           gap = Math.max(4, Math.round(cardH * GAP_RATIO));
           halfW = w / 2;
           A = halfW / Math.sin(T);          /* 中心斜率 = 1，中卡保持原比例 */
