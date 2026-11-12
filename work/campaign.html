@@ -36,11 +36,27 @@
 
     .case-body .case-row > .case-frame + .case-frame { margin-top: 0; }
 
-    /* 竖版行按张数自动铺满宽度：1 张通栏，2–3 张等分，不留空位 */
+    /* 竖版行：至少 2 张、按张数等分铺满，禁止竖版单张独占一行 */
     .case-row[data-layout="portrait"] {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 6px;
+    }
+
+    /* 横版 + 竖版并排：横版保形（3:1 分栏，裁切仅 ~5%），竖版因此不独占一行 */
+    .case-row[data-layout="duo"] {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 6px;
+    }
+
+    .case-row[data-layout="duo"] > .case-frame { min-height: 0; }
+
+    .case-row[data-layout="duo"] .case-frame--image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     .case-row[data-layout="secondary"] {
@@ -72,9 +88,11 @@
     }
 
     @media (max-width: 720px) {
-      .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-      /* 竖版 3 张时，第三张（1 天倒计时）通栏收尾，避免右侧留空 */
-      .case-row[data-layout="portrait"] > .case-frame:nth-child(3):last-child { grid-column: 1 / -1; }
+      /* 手机端竖版行等分，不留通栏的单张 */
+      .case-row[data-layout="portrait"] { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+      /* 横版 + 竖版改为上下排列，避免竖版被压到无法辨认 */
+      .case-row[data-layout="duo"] { grid-template-columns: 1fr; }
+      .case-row[data-layout="duo"] .case-frame--image img { height: auto; object-fit: contain; }
     }
 
     /* 设计理念语录卡 */
@@ -391,7 +409,7 @@
 
         <div class="voice-body">
           <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">宣发设计</span></p>
-          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">金色不是装饰，是颁奖：冠军海报只让奖杯和标题发亮，其余沉进暗部；倒计时的数字要比人脸先跳出来；战队出征那张，先保证每张脸都站得住。同一场赛事，每张物料只说透一件事。</p>
+          <p class="voice-lead" id="voice-lead" data-i18n-key="voiceLead">画面只有一个重心：该亮的地方先亮，其余全部退进暗部。克制不是画得少，是把全部力气押在那一个瞬间上。</p>
           <div class="voice-author">
             <span class="voice-rule" aria-hidden="true"></span>
             <div>
@@ -403,14 +421,11 @@
       </section>
 
       <section class="case-section case-gallery">
-        <!-- 《第五人格》COA VIII · 横版主要：单独一行 -->
-        <div class="case-row" data-layout="main">
+        <!-- 《第五人格》COA VIII · 横版 + 竖版并排：竖版不单独成行 -->
+        <div class="case-row" data-layout="duo">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-cover.webp" alt="2025 COA VIII 全球总决赛冠军海报：ZETA DIVISION 战队群像与金色奖杯" data-i18n-alt="heroAlt" width="1920" height="1080" decoding="async" fetchpriority="high">
           </figure>
-        </div>
-        <!-- 《第五人格》COA VIII · 竖版：2–3 张一行 -->
-        <div class="case-row" data-layout="portrait">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
@@ -575,7 +590,7 @@
           voiceLabel: "设计理念",
           voicePill: "宣发设计",
           voiceMark: "宣发",
-          voiceLead: "金色不是装饰，是颁奖：冠军海报只让奖杯和标题发亮，其余沉进暗部；倒计时的数字要比人脸先跳出来；战队出征那张，先保证每张脸都站得住。同一场赛事，每张物料只说透一件事。",
+          voiceLead: "画面只有一个重心：该亮的地方先亮，其余全部退进暗部。克制不是画得少，是把全部力气押在那一个瞬间上。",
           voiceName: "影子（李颖）",
           voiceRole: "创意视觉设计",
           badgeTwitter10k: "推特万转",
@@ -632,7 +647,7 @@
           voiceLabel: "PHILOSOPHY",
           voicePill: "CAMPAIGN DESIGN",
           voiceMark: "CAMPAIGN",
-          voiceLead: "Gold isn't decoration — it's the award. On the champion poster only the cup and the title carry light, everything else sinks into the dark. The countdown digit has to land before anyone's face does, and on the lineup poster every face must hold up first. One event, one clear message per asset.",
+          voiceLead: "One focal point per frame: whatever should glow glows first, everything else recedes into the dark. Restraint isn't drawing less — it's putting all the force into that one moment.",
           voiceName: "Shadow (Li Ying)",
           voiceRole: "Creative visual design",
           badgeTwitter10k: "Twitter · 10K reposts",
