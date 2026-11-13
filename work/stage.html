@@ -265,6 +265,14 @@
     }
 
     @media (max-width: 720px) {
+      /* 与宣发设计画廊对齐：手机端画框间距统一 4px */
+      .stage-media-grid,
+      .stage-media-side { gap: 4px; }
+
+      .case-gallery.stage-module + .case-gallery.stage-module { margin-top: 4px; }
+      .case-gallery .case-row + .case-row { margin-top: 4px; }
+      .case-gallery .case-row[data-layout="secondary"] { gap: 4px; }
+
       .echo-reel { height: clamp(180px, 52vw, 240px); }
       .echo-canvas {
         -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);

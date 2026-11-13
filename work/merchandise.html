@@ -55,6 +55,9 @@
 
     .merch-gallery .merch-trio { margin-top: 6px; }
 
+    /* 图集内所有相邻块保持 6px 间距（含非 figure 的自定义行） */
+    .merch-gallery > * + * { margin-top: 6px; }
+
     /* S10 徽章礼盒：左图 + 右侧 16:9 视频框，左右等高 */
     .merch-video-pair {
       display: grid;
