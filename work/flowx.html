@@ -177,42 +177,6 @@
       .case-body .pillar-stat strong { font-size: 24px; }
     }
 
-    /* 空画框：占位框，虚线 + 对角线（与 danzai 案例页一致） */
-    .case-frame--empty {
-      position: relative;
-      display: block;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      border: 1px dashed color-mix(in srgb, var(--text) 24%, transparent);
-      background: color-mix(in srgb, var(--text) 4%, transparent);
-    }
-    .case-frame--empty::before,
-    .case-frame--empty::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    .case-frame--empty::before {
-      background: linear-gradient(
-        to top right,
-        transparent calc(50% - 0.5px),
-        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
-        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
-        transparent calc(50% + 0.5px)
-      );
-    }
-    .case-frame--empty::after {
-      background: linear-gradient(
-        to bottom right,
-        transparent calc(50% - 0.5px),
-        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
-        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
-        transparent calc(50% + 0.5px)
-      );
-    }
-
     /* 窄屏压缩为电脑端 6 列数据 + 4 列价值卡，不出现横向滚动 */
     @media (max-width: 900px) {
       .flowx-value .case-stats {
@@ -372,10 +336,6 @@
             <p class="pillar-stat"><strong>22+</strong><span data-i18n-key="pillar4Unit">业务环节</span></p>
           </article>
         </div>
-      </section>
-
-      <section class="case-section flowx-frame" aria-label="平台界面展示">
-        <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
       </section>
 
       <!-- 往这里继续追加内容，例如：
