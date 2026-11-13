@@ -151,8 +151,8 @@
     /* 手机端拿不到自动播放权限：每块动画单独给一个播放按钮（桌面靠入场自动播放，不显示按钮） */
     .case-gallery .slot-play {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      right: 8px;
+      bottom: 8px;
       z-index: 3;
       display: none;
       width: clamp(36px, 34%, 56px);
@@ -164,7 +164,7 @@
       background: rgba(12, 11, 15, 0.62);
       color: #ffffff;
       cursor: pointer;
-      transform: translate(-50%, -50%);
+      transform: none;
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
       transition: opacity 200ms ease;

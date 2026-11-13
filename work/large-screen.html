@@ -224,6 +224,18 @@
     @media (min-width: 2400px) {
       .echo-card .social-badge { padding: 6px 12px; font-size: 14px; }
     }
+
+    /* 手机端播放键统一放到画面右下角 */
+    @media (max-width: 720px), (hover: none) {
+      .case-video-play,
+      .case-hero-play {
+        top: auto;
+        right: 10px;
+        bottom: 10px;
+        left: auto;
+        transform: none;
+      }
+    }
   </style>
 </head>
 <body class="case-page">

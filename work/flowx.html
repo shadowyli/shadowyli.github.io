@@ -68,7 +68,8 @@
 
     /* 平台价值：复用站内 case-stats 数据卡 */
     .flowx-value .case-stats {
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(6, max-content);
+      justify-content: space-between;
       gap: 24px 20px;
       margin-top: clamp(24px, 3vw, 34px);
       padding-bottom: clamp(14px, 1.8vw, 22px);
