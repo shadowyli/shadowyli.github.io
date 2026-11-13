@@ -55,6 +55,54 @@
 
     .merch-gallery .merch-trio { margin-top: 6px; }
 
+    /* S10 徽章礼盒：左图 + 右侧 16:9 视频框，左右等高 */
+    .merch-video-pair {
+      display: grid;
+      grid-template-columns: calc(27.27% - 1.64px) minmax(0, 1fr);
+      gap: 6px;
+      align-items: stretch;
+      margin-top: 6px;
+    }
+
+    .case-body .merch-video-pair > .case-frame { margin: 0 !important; }
+
+    .merch-video-pair .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .merch-video-frame {
+      position: relative;
+      display: grid;
+      place-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px dashed color-mix(in srgb, var(--text) 24%, transparent);
+      background: color-mix(in srgb, var(--text) 4%, transparent);
+    }
+
+    .merch-video-play {
+      display: grid;
+      width: 56px;
+      height: 56px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(12, 11, 15, 0.62);
+      color: #ffffff;
+    }
+
+    .merch-video-play svg {
+      width: 22px;
+      height: 22px;
+      margin-left: 3px;
+    }
+
+    @media (max-width: 720px) {
+      .merch-video-pair { grid-template-columns: 1fr; }
+    }
+
     /* S9 连帽衫：左侧主图放大，右侧两张上下叠放 */
     .case-row[data-layout="hero-stack"] {
       display: grid;
@@ -141,9 +189,16 @@
         <figure class="case-frame case-frame--image">
           <img src="../assets/merchandise-ace-medals-three-view.webp" alt="《王牌竞速》星芒争锋赛奖牌三视图：正面素模、正面成品与侧面细节" data-i18n-alt="aceThreeViewAlt" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
-        <figure class="case-frame case-frame--image merch-feature">
-          <img src="../assets/merchandise-mengshou-s10-gift-boxes.webp" alt="《梦幻西游》手游巅峰联赛 S10 周边效果图：神威组战队徽章礼盒与巅峰联赛徽章礼盒" data-i18n-alt="mengshouS10Alt" width="1280" height="1920" loading="lazy" decoding="async">
-        </figure>
+        <div class="merch-video-pair">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-mengshou-s10-gift-boxes.webp" alt="《梦幻西游》手游巅峰联赛 S10 周边效果图：神威组战队徽章礼盒与巅峰联赛徽章礼盒" data-i18n-alt="mengshouS10Alt" width="1280" height="1920" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame merch-video-frame" aria-label="S10 徽章礼盒视频，待补充">
+            <span class="merch-video-play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+            </span>
+          </figure>
+        </div>
         <figure class="case-frame case-frame--image merch-feature">
           <img src="../assets/merchandise-mengshou-s10-tote-bags.webp" alt="《梦幻西游》手游巅峰联赛 S10 帆布袋周边：黄色与蓝色两款角色图案帆布袋" data-i18n-alt="mengshouTotesAlt" width="1600" height="1600" loading="lazy" decoding="async">
         </figure>
