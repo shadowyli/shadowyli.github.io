@@ -10,6 +10,8 @@
     { id: "video", zh: "视频", en: "Video" },
     { id: "flowx", zh: "FlowX", en: "FlowX" }
   ];
+  var REPEAT = 5;
+  var MIDDLE = Math.floor(REPEAT / 2);
 
   var current = (window.location.pathname.split("/").pop() || "").replace(/\.html$/, "");
   var active = CASES.filter(function (item) { return item.id === current; })[0];
@@ -29,6 +31,45 @@
     var left = tab.offsetLeft - (track.clientWidth - tab.offsetWidth) / 2;
     return Math.max(0, Math.min(max, left));
   }
+
+  function copyWidth() {
+    var first = track.querySelector('.case-tab[data-copy="0"]');
+    var second = track.querySelector('.case-tab[data-copy="1"]');
+    if (!first || !second) return 0;
+    return second.offsetLeft - first.offsetLeft;
+  }
+
+  function centerActive(behavior) {
+    var tab = track.querySelector('.case-tab[data-copy="' + MIDDLE + '"][aria-current="page"]');
+    if (!tab) return;
+    var left = tab.offsetLeft - (track.clientWidth - tab.offsetWidth) / 2;
+    if (typeof track.scrollTo === "function") {
+      track.scrollTo({ left: left, behavior: behavior || "instant" });
+    } else {
+      track.scrollLeft = left;
+    }
+  }
+
+  var normalizing = false;
+
+  function normalizeLoop() {
+    if (normalizing) return;
+    var width = copyWidth();
+    if (!width) return;
+    var max = track.scrollWidth - track.clientWidth;
+    var left = track.scrollLeft;
+    if (left < width * 0.5) {
+      normalizing = true;
+      track.scrollLeft = left + width;
+      window.requestAnimationFrame(function () { normalizing = false; });
+    } else if (left > max - width * 0.5) {
+      normalizing = true;
+      track.scrollLeft = left - width;
+      window.requestAnimationFrame(function () { normalizing = false; });
+    }
+  }
+
+  track.addEventListener("scroll", normalizeLoop, { passive: true });
 
   function snapToNearest() {
     var tabs = Array.prototype.slice.call(track.querySelectorAll(".case-tab"));
@@ -119,26 +160,26 @@
     var english = isEnglish();
     nav.setAttribute("aria-label", english ? "Switch case" : "案例切换");
     track.innerHTML = "";
-    CASES.forEach(function (item) {
-      var link = document.createElement("a");
-      link.className = "case-tab";
-      link.href = item.id + ".html";
-      link.draggable = false;
-      link.textContent = english ? item.en : item.zh;
-      if (item.id === current) link.setAttribute("aria-current", "page");
-      track.appendChild(link);
-    });
-
-    var currentTab = track.querySelector('[aria-current="page"]');
-    if (currentTab) {
-      var target = Math.max(0, currentTab.offsetLeft - (track.clientWidth - currentTab.offsetWidth) / 2);
-      if (typeof track.scrollTo === "function") {
-        track.scrollTo({ left: target, behavior: "instant" });
-      } else {
-        track.scrollLeft = target;
-      }
+    for (var copy = 0; copy < REPEAT; copy += 1) {
+      CASES.forEach(function (item) {
+        var link = document.createElement("a");
+        link.className = "case-tab";
+        link.href = item.id + ".html";
+        link.draggable = false;
+        link.textContent = english ? item.en : item.zh;
+        link.setAttribute("data-copy", String(copy));
+        if (copy === MIDDLE && item.id === current) {
+          link.setAttribute("aria-current", "page");
+        }
+        if (copy !== MIDDLE) {
+          link.setAttribute("aria-hidden", "true");
+          link.setAttribute("tabindex", "-1");
+        }
+        track.appendChild(link);
+      });
     }
 
+    window.requestAnimationFrame(function () { centerActive("instant"); });
     updateOverflow();
   }
 
@@ -148,8 +189,14 @@
     nav.classList.toggle("is-overflowing", track.scrollWidth > track.clientWidth + 1);
   }
 
-  window.addEventListener("resize", updateOverflow);
-  window.addEventListener("load", updateOverflow);
+  window.addEventListener("resize", function () {
+    centerActive("instant");
+    updateOverflow();
+  });
+  window.addEventListener("load", function () {
+    centerActive("instant");
+    updateOverflow();
+  });
 
   if ("MutationObserver" in window) {
     new MutationObserver(render).observe(document.documentElement, {
