@@ -29,7 +29,55 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261112-105">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
-  <style>
+<style>
+    /* 02 舞台：左侧一大，右侧两张竖排，左右等高 */
+    .stage-02-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6px;
+      aspect-ratio: 1280 / 540;
+    }
+
+    .stage-02-main { grid-row: 1 / span 2; }
+
+    .stage-02-side {
+      display: grid;
+      grid-row: 1 / span 2;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .stage-02-grid figure {
+      margin: 0;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .stage-02-grid img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 720px) {
+      .stage-02-grid {
+        grid-template-columns: 1fr;
+        aspect-ratio: auto;
+      }
+
+      .stage-02-main { grid-row: auto; }
+
+      .stage-02-side {
+        grid-row: auto;
+        grid-template-rows: none;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stage-02-grid img { height: auto; }
+    }
+
     /* 序言：胶囊 + 署名排成一行（与站内其他案例页保持一致） */
     .case-body .voice {
       position: relative;
@@ -332,14 +380,20 @@
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-02" aria-labelledby="case-title-02">
-        <h2 id="case-title-02"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">舞台项目（暂定）</span></h2>
+        <h2 id="case-title-02"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">《蛋仔派对》舞台</span></h2>
 
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-placeholder-frame">
-            <div class="case-frame-inner">
-              <span class="case-frame-hint" data-i18n-key="slot2Hint">16:9 画框槽位 · 内容待补充</span>
-            </div>
+        <div class="stage-02-grid">
+          <figure class="case-frame case-frame--image stage-02-main">
+            <img src="../assets/stage-eggy-01.webp" alt="《蛋仔派对》赛事舞台全景：彩虹拱门、中央伸展地板与两侧赛车装置" width="1280" height="540" loading="lazy" decoding="async">
           </figure>
+          <div class="stage-02-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-eggy-02.webp" alt="《蛋仔派对》赛事舞台斜侧视角：彩虹拱门、选手席位与 EGGY PARTY 主屏" width="1280" height="540" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-eggy-03.webp" alt="《蛋仔派对》舞台中央走道近景：发光座位与中央主屏" width="1280" height="540" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -423,7 +477,7 @@
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
-          section2Title: "舞台项目（暂定）",
+          section2Title: "《蛋仔派对》舞台",
           slot2Hint: "16:9 画框槽位 · 内容待补充",
           socialSign: "设计的回声",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
@@ -452,7 +506,7 @@
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
-          section2Title: "Stage Project (TBD)",
+          section2Title: "Eggy Party Stage",
           slot2Hint: "16:9 frame slot · content coming soon",
           socialSign: "The echo of design",
           statBadge1: "Twitter · 4.2M impressions · 30K likes",
