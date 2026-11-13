@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function () {
+      if (location.hostname === "shadowyli.com") {
+        location.replace("https://www.shadowyli.com" + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="视频包装项目案例。">
+  <title>视频包装 | Shadowyli</title>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("portfolio-theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (error) { /* ignore */ }
+    })();
+  </script>
+  <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
+  <style>
+    /* 空白案例页：内容未填时让页脚落在视口底部 */
+    @media (min-width: 721px) {
+      body.case-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .case-main { flex: 1; }
+    }
+
+    main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
+
+    /* 页首署名：与站内其他案例页保持一致 */
+    .case-body .voice {
+      position: relative;
+      display: block;
+      margin: 0 0 clamp(22px, 2.6vw, 32px);
+      padding: clamp(14px, 1.6vw, 20px) 0;
+      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+    }
+
+    .voice-body {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: clamp(12px, 1.5vw, 20px);
+      padding: 0;
+      min-height: 26px;
+    }
+
+    .case-body .voice-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: none;
+      flex: none;
+      margin: 0;
+      min-height: 26px;
+      padding: 0 10px;
+      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      line-height: 1.6;
+    }
+
+    .voice-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .voice-author {
+      display: flex;
+      align-items: center;
+      gap: clamp(9px, 1.1vw, 13px);
+      min-height: 26px;
+    }
+
+    .voice-rule {
+      display: block;
+      flex: none;
+      width: 22px;
+      height: 1px;
+      margin: 0;
+      background: color-mix(in srgb, var(--text) 45%, transparent);
+    }
+
+    .case-body .voice-name {
+      margin: 0;
+      max-width: none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .case-body .voice-credit {
+      margin: 0;
+      max-width: none;
+      color: var(--text-muted);
+      font-size: 11.5px;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 720px) {
+      .case-body .voice { padding: 16px 0; }
+    }
+
+    /* 01 模块：开场分镜，一行 5 张 */
+    .nbpl-opening-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐 */
+    .case-page .case-section .nbpl-opening-grid > .case-frame { margin: 0; }
+
+    .nbpl-opening-grid .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .nbpl-opening-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .nbpl-opening-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* 02 模块：蛋仔麦克疯包装，一行四个 */
+    .egg-mic-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-page .case-section .egg-mic-grid > .case-frame { margin: 0; }
+
+    .egg-mic-grid .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .egg-mic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
+
+  <header class="case-header">
+    <a class="brand" href="../index.html">SHADOWYLI</a>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="../index.html#portfolio" data-i18n-key="navWork">作品</a>
+      <a href="../index.html#about" data-i18n-key="navAbout">关于我</a>
+    </nav>
+    <div class="case-header-actions">
+      <a class="case-back" href="../index.html#portfolio" data-i18n-key="back">← 返回作品集</a>
+      <button class="theme-toggle icon-button case-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button class="case-lang" type="button" aria-label="切换到英文" title="切换到英文"><span>EN</span></button>
+    </div>
+  </header>
+
+  <div class="case-progress" aria-hidden="true">
+    <span class="case-progress-fill"></span>
+  </div>
+
+  <main class="case-main" id="case-main" tabindex="-1">
+    <div class="case-body case-body--flush">
+      <h1 class="sr-only" data-i18n-key="pageHeading">视频包装</h1>
+
+      <section class="voice" aria-label="视频包装" data-i18n-aria="voiceLabel">
+        <div class="voice-body">
+          <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">视频包装</span></p>
+          <div class="voice-author">
+            <span class="voice-rule" aria-hidden="true"></span>
+            <p class="voice-credit"><span data-i18n-key="voiceCredit">3D &amp; 视觉创意设计：</span><span class="voice-name" data-i18n-key="voiceName">影子（李颖）</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section nbpl-opening" aria-labelledby="nbpl-opening-title">
+        <h2 id="nbpl-opening-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">永劫无间 NBPL 夏季赛常规赛开场</span></h2>
+        <div class="nbpl-opening-grid">
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-01.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 01" width="640" height="360" loading="lazy" decoding="async" data-frame-index="01"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-02.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 02" width="640" height="360" loading="lazy" decoding="async" data-frame-index="02"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-03.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 03" width="640" height="360" loading="lazy" decoding="async" data-frame-index="03"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-04.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 04" width="640" height="360" loading="lazy" decoding="async" data-frame-index="04"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-05.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 05" width="640" height="360" loading="lazy" decoding="async" data-frame-index="05"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-06.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 06" width="640" height="360" loading="lazy" decoding="async" data-frame-index="06"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-07.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 07" width="640" height="360" loading="lazy" decoding="async" data-frame-index="07"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-08.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 08" width="640" height="360" loading="lazy" decoding="async" data-frame-index="08"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-09.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 09" width="640" height="360" loading="lazy" decoding="async" data-frame-index="09"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-10.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 10" width="640" height="360" loading="lazy" decoding="async" data-frame-index="10"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-11.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 11" width="640" height="360" loading="lazy" decoding="async" data-frame-index="11"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-12.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 12" width="640" height="360" loading="lazy" decoding="async" data-frame-index="12"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-13.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 13" width="640" height="360" loading="lazy" decoding="async" data-frame-index="13"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-14.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 14" width="640" height="360" loading="lazy" decoding="async" data-frame-index="14"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-15.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 15" width="640" height="360" loading="lazy" decoding="async" data-frame-index="15"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-16.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 16" width="640" height="360" loading="lazy" decoding="async" data-frame-index="16"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-17.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 17" width="640" height="360" loading="lazy" decoding="async" data-frame-index="17"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-18.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 18" width="640" height="360" loading="lazy" decoding="async" data-frame-index="18"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-19.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 19" width="640" height="360" loading="lazy" decoding="async" data-frame-index="19"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-20.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 20" width="640" height="360" loading="lazy" decoding="async" data-frame-index="20"></figure>
+        </div>
+      </section>
+
+      <section class="case-section egg-mic" aria-labelledby="egg-mic-title">
+        <h2 id="egg-mic-title"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">《蛋仔派对》麦克疯 · 视频包装</span></h2>
+        <div class="egg-mic-grid">
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-01.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 1" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-02.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 2" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-03.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 3" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-04.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 4" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-05.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 5" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-06.webp" alt="《蛋仔派对》麦克疯视频包装 · 蛋仔聚光灯 1" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-07.webp" alt="《蛋仔派对》麦克疯视频包装 · 蛋仔聚光灯 2" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-08.webp" alt="《蛋仔派对》麦克疯视频包装 · 三维LOGO转场 1" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-09.webp" alt="《蛋仔派对》麦克疯视频包装 · 三维LOGO转场 2" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-10.webp" alt="《蛋仔派对》麦克疯视频包装 · 三维LOGO转场 3" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-11.webp" alt="《蛋仔派对》麦克疯视频包装 · 闪电结尾" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-12.webp" alt="《蛋仔派对》麦克疯视频包装 · 节目KV落版" width="1920" height="1080" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <!-- 往这里继续追加内容，例如
+      <section class="case-section">
+        <h2><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">区块标题</span></h2>
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/文件名.webp" alt="图片说明" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </section>
+      data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
+    </div>
+  </main>
+
+  <footer class="case-footer">
+    <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">影子 · 视觉设计作品集</span></span>
+    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
+  </footer>
+
+  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-labelledby="case-contact-title" tabindex="-1" hidden>
+    <div class="dialog-close-row">
+      <button class="dialog-close" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+        <span class="sr-only" data-i18n-key="closeDialog">关闭</span>
+      </button>
+    </div>
+    <div class="dialog-card">
+      <h2 class="sr-only" id="case-contact-title" data-i18n-key="wechatTitle">微信二维码</h2>
+      <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+      <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+    </div>
+    <p class="dialog-hint" data-i18n-key="saveHint">长按图片保存二维码</p>
+  </div>
+
+  <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var STORAGE_KEY = "portfolio-language";
+      var copy = {
+        zh: {
+          skip: "跳到正文",
+          back: "← 返回作品集",
+          contactMe: "联系我",
+          navWork: "作品",
+          navAbout: "关于我",
+          pageHeading: "视频包装",
+          voiceLabel: "视频包装",
+          voicePill: "视频包装",
+          voiceName: "影子（李颖）",
+          voiceCredit: "3D & 视觉创意设计：",
+          section1Title: "永劫无间 NBPL 夏季赛常规赛开场",
+          section2Title: "《蛋仔派对》麦克疯 · 视频包装",
+          closeDialog: "关闭",
+          wechatTitle: "微信二维码",
+          saveHint: "长按图片保存二维码",
+          footerNote: "影子 · 视觉设计作品集",
+          pageTitle: "视频包装 | Shadowyli",
+          metaDescription: "视频包装项目案例。"
+        },
+        en: {
+          skip: "Skip to content",
+          back: "← Back to portfolio",
+          contactMe: "Contact me",
+          navWork: "Work",
+          navAbout: "About",
+          pageHeading: "Video Packaging",
+          voiceLabel: "Video Packaging",
+          voicePill: "VIDEO PACKAGING",
+          voiceName: "Shadow (Li Ying)",
+          voiceCredit: "3D & Visual Creative Design: ",
+          section1Title: "Naraka: Bladepoint NBPL Summer Split Opening",
+          section2Title: "Eggy Party Mic Check · Video Packaging",
+          closeDialog: "Close",
+          wechatTitle: "WeChat QR code",
+          saveHint: "Long-press the image to save the QR code",
+          footerNote: "Shadow · Visual Design Portfolio",
+          pageTitle: "Video Packaging | Shadowyli",
+          metaDescription: "Video packaging case study."
+        }
+      };
+
+      var currentLanguage = "zh";
+      var languageToggle = document.querySelector(".case-lang");
+      var themeButton = document.querySelector(".case-theme");
+
+      function storedLanguage() {
+        try {
+          return localStorage.getItem(STORAGE_KEY) === "en" ? "en" : "zh";
+        } catch (error) {
+          return "zh";
+        }
+      }
+
+      function labelFor(language) {
+        return language === "zh" ? "切换到英文" : "Switch to Chinese";
+      }
+
+      function syncThemeLabel() {
+        if (!themeButton) return;
+        var light = document.documentElement.dataset.theme === "light";
+        var english = currentLanguage === "en";
+        var label = light
+          ? (english ? "Switch to dark mode" : "切换到深色模式")
+          : (english ? "Switch to light mode" : "切换到浅色模式");
+        themeButton.setAttribute("aria-label", label);
+        themeButton.setAttribute("title", label);
+      }
+
+      function applyLanguage(language) {
+        currentLanguage = language;
+        var dictionary = copy[language];
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+
+        var textNodes = document.querySelectorAll("[data-i18n-key]");
+        for (var i = 0; i < textNodes.length; i++) {
+          var text = dictionary[textNodes[i].getAttribute("data-i18n-key")];
+          if (typeof text === "string") textNodes[i].textContent = text;
+        }
+
+        var ariaNodes = document.querySelectorAll("[data-i18n-aria]");
+        for (var j = 0; j < ariaNodes.length; j++) {
+          var label = dictionary[ariaNodes[j].getAttribute("data-i18n-aria")];
+          if (typeof label === "string") ariaNodes[j].setAttribute("aria-label", label);
+        }
+
+        var frameImages = document.querySelectorAll("[data-frame-index]");
+        for (var k = 0; k < frameImages.length; k++) {
+          var frameIndex = frameImages[k].getAttribute("data-frame-index");
+          frameImages[k].setAttribute("alt", language === "zh"
+            ? "《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 " + frameIndex
+            : "Naraka: Bladepoint NBPL Summer Split opening · frame " + frameIndex);
+        }
+
+        document.title = dictionary.pageTitle;
+        var description = document.querySelector('meta[name="description"]');
+        if (description) description.setAttribute("content", dictionary.metaDescription);
+
+        if (languageToggle) {
+          languageToggle.textContent = language === "zh" ? "EN" : "CN";
+          languageToggle.setAttribute("aria-label", labelFor(language));
+          languageToggle.setAttribute("title", labelFor(language));
+        }
+
+        syncThemeLabel();
+      }
+
+      applyLanguage(storedLanguage());
+
+      if (languageToggle) {
+        languageToggle.addEventListener("click", function () {
+          var nextLanguage = currentLanguage === "zh" ? "en" : "zh";
+          try {
+            localStorage.setItem(STORAGE_KEY, nextLanguage);
+          } catch (error) { /* ignore */ }
+          applyLanguage(nextLanguage);
+        });
+      }
+
+      if (themeButton) {
+        themeButton.addEventListener("click", function () {
+          var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+          if (next === "light") {
+            document.documentElement.dataset.theme = "light";
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+          try {
+            localStorage.setItem("portfolio-theme", next);
+          } catch (error) { /* ignore */ }
+          syncThemeLabel();
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var bar = document.querySelector(".case-progress");
+      if (!bar) return;
+      var ticking = false;
+
+      function render() {
+        ticking = false;
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        bar.style.setProperty("--progress", (progress * 100).toFixed(2) + "%");
+      }
+
+      function request() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(render);
+      }
+
+      window.addEventListener("scroll", request, { passive: true });
+      window.addEventListener("resize", request);
+      render();
+    })();
+  </script>
+  <script>
+    (function () {
+      var trigger = document.querySelector("#case-contact");
+      var dialog = document.querySelector("#case-contact-dialog");
+      if (!trigger || !dialog) return;
+      var closeButton = dialog.querySelector(".dialog-close");
+      var lastFocus = null;
+
+      function openDialog() {
+        lastFocus = document.activeElement;
+        dialog.hidden = false;
+        document.body.classList.add("dialog-open");
+        dialog.focus();
+      }
+
+      function closeDialog() {
+        dialog.hidden = true;
+        document.body.classList.remove("dialog-open");
+        var returnTo = lastFocus && lastFocus !== document.body ? lastFocus : trigger;
+        if (returnTo && typeof returnTo.focus === "function") returnTo.focus();
+      }
+
+      trigger.addEventListener("click", openDialog);
+      if (closeButton) closeButton.addEventListener("click", closeDialog);
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog) closeDialog();
+      });
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !dialog.hidden) closeDialog();
+      });
+    })();
+  </script>
+  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+</body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <script>
+    (function () {
+      if (location.hostname === "shadowyli.com") {
+        location.replace("https://www.shadowyli.com" + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowX 面向跨岗位协作的 AI 内容生产平台项目案例。">
+  <title>FlowX - 面向跨岗位协作的 AI 内容生产平台 | Shadowyli</title>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("portfolio-theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch (error) { /* ignore */ }
+    })();
+  </script>
+  <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
+  <style>
+    /* 内容留空时让页脚落在视口底部 */
+    main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
+
+    /* 署名：左栏 5 条、右栏 4 条，每条一行，避免一长串名字挤在一起 */
+    .case-credits {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(6, auto);
+      gap: 4px 36px;
+      margin: 0 0 clamp(20px, 2.6vw, 30px);
+      padding: 0;
+      list-style: none;
+    }
+
+    .case-credits li {
+      color: var(--text-muted);
+      font-family: var(--font-cjk);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 560px) {
+      .case-credits { grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); gap: 3px 8px; }
+      .case-credits li { font-size: 9.5px; line-height: 1.75; letter-spacing: 0; }
+    }
+
+    @media (max-width: 400px) {
+      .flowx-value .case-stat strong { font-size: 22px; }
+    }
+
+    .flowx-intro { margin-top: 0; }
+
+    /* 平台价值：复用站内 case-stats 数据卡 */
+    .flowx-value .case-stats {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 24px 20px;
+      margin-top: clamp(24px, 3vw, 34px);
+      padding-bottom: clamp(14px, 1.8vw, 22px);
+      border-bottom: 0;
+    }
+
+    .flowx-value .case-stat strong {
+      font-size: clamp(22px, 2.2vw, 30px);
+      letter-spacing: -0.01em;
+    }
+
+    .flowx-value .case-stat span { font-size: 12.5px; }
+
+    /* 数据区上下留白对齐：下方 padding + 间距 = 上方 padding */
+    .case-body .case-section.flowx-pillars {
+      margin-top: calc(clamp(28px, 4vw, 40px) - clamp(14px, 1.8vw, 22px));
+    }
+
+    @media (max-width: 900px) {
+      .flowx-value .case-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; }
+    }
+
+    @media (max-width: 720px) {
+      .flowx-value .case-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; }
+    }
+
+    /* 四张价值卡：桌面 4 列，竖线分隔 */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pillar {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 24px 22px 26px;
+      border-left: 1px solid var(--line);
+    }
+
+    .pillar:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .pillar-index {
+      order: 1;
+      color: var(--text-muted);
+      font-family: "Space Grotesk", "Archivo", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+    }
+
+    .case-body .pillar-title {
+      order: 3;
+      margin: 12px 0 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .case-body .pillar-desc {
+      order: 4;
+      margin: 4px 0 0;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    .case-body .pillar-stat {
+      order: 2;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 10px 0 0;
+      padding-top: 0;
+    }
+
+    .pillar-stat strong {
+      font-size: clamp(28px, 2.6vw, 36px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+
+    .pillar-stat span {
+      color: var(--text-muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .pillar { border-left: 1px solid var(--line); }
+      .pillar:nth-child(odd) { border-left: 0; padding-left: 0; }
+      .pillar:nth-child(n + 3) { border-top: 1px solid var(--line); }
+    }
+
+    @media (max-width: 560px) {
+      .pillar { padding: 18px 14px 20px; }
+      .case-body .pillar-title { font-size: 16px; }
+      .case-body .pillar-desc { font-size: 11.5px; }
+      .case-body .pillar-stat strong { font-size: 24px; }
+    }
+
+    /* 空画框：占位框，虚线 + 对角线（与 danzai 案例页一致） */
+    .case-frame--empty {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px dashed color-mix(in srgb, var(--text) 24%, transparent);
+      background: color-mix(in srgb, var(--text) 4%, transparent);
+    }
+    .case-frame--empty::before,
+    .case-frame--empty::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .case-frame--empty::before {
+      background: linear-gradient(
+        to top right,
+        transparent calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+    }
+    .case-frame--empty::after {
+      background: linear-gradient(
+        to bottom right,
+        transparent calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+    }
+  </style>
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
+
+  <header class="case-header">
+    <a class="brand" href="../index.html">SHADOWYLI</a>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="../index.html#portfolio" data-i18n-key="navWork">作品</a>
+      <a href="../index.html#about" data-i18n-key="navAbout">关于我</a>
+    </nav>
+    <div class="case-header-actions">
+      <a class="case-back" href="../index.html#portfolio" data-i18n-key="back">← 返回作品集</a>
+      <button class="theme-toggle icon-button case-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+      </button>
+      <button class="case-lang" type="button" aria-label="切换到英文" title="切换到英文"><span>EN</span></button>
+    </div>
+  </header>
+
+  <div class="case-progress" aria-hidden="true">
+    <span class="case-progress-fill"></span>
+  </div>
+
+  <main class="case-main" id="case-main" tabindex="-1">
+    <div class="case-body case-body--flush">
+      <ul class="case-credits" aria-label="项目署名">
+        <li data-i18n-key="credit1">项目发起人：影子（李颖）</li>
+        <li data-i18n-key="credit2">项目负责人：影子（李颖）</li>
+        <li data-i18n-key="credit3">产品经理：影子（李颖）、张喆涵</li>
+        <li data-i18n-key="credit4">核心开发：影子（李颖）、匡振威、张喆涵</li>
+        <li data-i18n-key="credit5">协助开发：钟丰骏</li>
+        <li data-i18n-key="credit6">运营维护：影子（李颖）、匡振威</li>
+        <li data-i18n-key="credit7">AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏</li>
+        <li data-i18n-key="credit8">UI/UX设计：影子（李颖）</li>
+        <li data-i18n-key="credit9">美术支持：影子（李颖）、匡振威</li>
+        <li data-i18n-key="credit10">动画支持：刘星、刘佰强、邹文君</li>
+        <li data-i18n-key="credit11">项目指导：胡煦升、刘星</li>
+        <li data-i18n-key="credit12">业务支持：胡煦升、刘星</li>
+      </ul>
+
+      <section class="case-section flowx-intro">
+        <figure class="case-frame">
+          <div class="case-frame-inner">
+            <video class="case-frame-video" controls playsinline preload="metadata" poster="../assets/flowx-platform-intro-poster.jpg?v=20261113-2" aria-label="FlowX 平台介绍" width="1920" height="1080">
+              <source src="../assets/flowx-platform-intro.mp4" type="video/mp4">
+              你的浏览器不支持 HTML5 视频。
+            </video>
+          </div>
+        </figure>
+      </section>
+
+      <section class="case-section flowx-value" aria-labelledby="flowx-value-title">
+        <h2 id="flowx-value-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="valueTitle">平台价值</span></h2>
+        <div class="case-stats">
+          <div class="case-stat">
+            <strong>55+</strong>
+            <span data-i18n-key="value1">AI 管线</span>
+          </div>
+          <div class="case-stat">
+            <strong>58</strong>
+            <span data-i18n-key="value2">覆盖游戏</span>
+          </div>
+          <div class="case-stat">
+            <strong>54,986</strong>
+            <span data-i18n-key="value3">累计调用 · 套</span>
+          </div>
+          <div class="case-stat">
+            <strong>50–200%+</strong>
+            <span data-i18n-key="value4">单模块效率提升</span>
+          </div>
+          <div class="case-stat">
+            <strong>31.6%</strong>
+            <span data-i18n-key="value5">月均产量提升</span>
+          </div>
+          <div class="case-stat">
+            <strong>54.3%</strong>
+            <span data-i18n-key="value6">渠道单素材成本降低</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section flowx-pillars" aria-label="平台价值亮点">
+        <div class="pillars">
+          <article class="pillar">
+            <span class="pillar-index" aria-hidden="true">01</span>
+            <h3 class="pillar-title" data-i18n-key="pillar1Title">提效</h3>
+            <p class="pillar-desc" data-i18n-key="pillar1Desc">单月产量峰值</p>
+            <p class="pillar-stat"><strong>5,300+</strong><span data-i18n-key="pillar1Unit">套 / 月</span></p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-index" aria-hidden="true">02</span>
+            <h3 class="pillar-title" data-i18n-key="pillar2Title">降低门槛</h3>
+            <p class="pillar-desc" data-i18n-key="pillar2Desc">上传素材，接收结果</p>
+            <p class="pillar-stat"><strong>2</strong><span data-i18n-key="pillar2Unit">步</span></p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-index" aria-hidden="true">03</span>
+            <h3 class="pillar-title" data-i18n-key="pillar3Title">资产沉淀</h3>
+            <p class="pillar-desc" data-i18n-key="pillar3Desc">规范内置，管线复用</p>
+            <p class="pillar-stat"><strong>900+</strong><span data-i18n-key="pillar3Unit">套广告位</span></p>
+          </article>
+          <article class="pillar">
+            <span class="pillar-index" aria-hidden="true">04</span>
+            <h3 class="pillar-title" data-i18n-key="pillar4Title">业务适配</h3>
+            <p class="pillar-desc" data-i18n-key="pillar4Desc">赛事 · 运营 · 营销</p>
+            <p class="pillar-stat"><strong>22+</strong><span data-i18n-key="pillar4Unit">业务环节</span></p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section flowx-frame" aria-label="平台界面展示">
+        <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
+      </section>
+
+      <!-- 往这里继续追加内容，例如：
+      <section class="case-section">
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/文件名.webp" alt="图片说明" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </section>
+      data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
+    </div>
+  </main>
+
+  <footer class="case-footer">
+    <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">影子 · 视觉设计作品集</span></span>
+    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
+  </footer>
+
+  <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
+    <div class="dialog-card">
+      <img class="qr-image qr-dark" src="../assets/wechat-qr.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+      <img class="qr-image qr-light" src="../assets/wechat-qr-light.png" alt="影子的微信二维码" width="958" height="1415" decoding="async">
+    </div>
+    <p class="dialog-hint">长按图片保存二维码</p>
+  </div>
+
+  <script>document.getElementById("case-year").textContent = new Date().getFullYear();</script>
+  <script>
+    (function () {
+      var STORAGE_KEY = "portfolio-language";
+      var copy = {
+        zh: {
+          skip: "跳到正文",
+          back: "← 返回作品集",
+          contactMe: "联系我",
+          navWork: "作品",
+          navAbout: "关于我",
+          footerNote: "影子 · 视觉设计作品集",
+          credit1: "项目发起人：影子（李颖）",
+          credit2: "项目负责人：影子（李颖）",
+          credit3: "产品经理：影子（李颖）、张喆涵",
+          credit4: "核心开发：影子（李颖）、匡振威、张喆涵",
+          credit5: "协助开发：钟丰骏",
+          credit6: "运营维护：影子（李颖）、匡振威",
+          credit7: "AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏",
+          credit8: "UI/UX设计：影子（李颖）",
+          credit9: "美术支持：影子（李颖）、匡振威",
+          credit10: "动画支持：刘星、刘佰强、邹文君",
+          credit11: "项目指导：胡煦升、刘星",
+          credit12: "业务支持：胡煦升、刘星",
+          valueTitle: "平台价值",
+          value1: "AI 管线",
+          value2: "覆盖游戏",
+          value3: "累计调用 · 套",
+          value4: "单模块效率提升",
+          value5: "月均产量提升",
+          value6: "渠道单素材成本降低",
+          pillar1Title: "提效",
+          pillar1Desc: "单月产量峰值",
+          pillar1Unit: "套 / 月",
+          pillar2Title: "降低门槛",
+          pillar2Desc: "上传素材，接收结果",
+          pillar2Unit: "步",
+          pillar3Title: "资产沉淀",
+          pillar3Desc: "规范内置，管线复用",
+          pillar3Unit: "套广告位",
+          pillar4Title: "业务适配",
+          pillar4Desc: "赛事 · 运营 · 营销",
+          pillar4Unit: "业务环节",
+          pageTitle: "FlowX - 面向跨岗位协作的 AI 内容生产平台 | Shadowyli",
+          metaDescription: "FlowX 面向跨岗位协作的 AI 内容生产平台项目案例。"
+        },
+        en: {
+          skip: "Skip to content",
+          back: "← Back to portfolio",
+          contactMe: "Contact me",
+          navWork: "Work",
+          navAbout: "About",
+          footerNote: "Shadow · Visual Design Portfolio",
+          credit1: "Project Sponsor: Shadow (Li Ying)",
+          credit2: "Project Lead: Shadow (Li Ying)",
+          credit3: "Product Manager: Shadow (Li Ying), 张喆涵",
+          credit4: "Core Development: Shadow (Li Ying), 匡振威, 张喆涵",
+          credit5: "Assistant Development: 钟丰骏",
+          credit6: "Operations & Maintenance: Shadow (Li Ying), 匡振威",
+          credit7: "AI Application Engineering: Shadow (Li Ying), 匡振威, 张喆涵, 钟丰骏",
+          credit8: "UI/UX Design: Shadow (Li Ying)",
+          credit9: "Art Support: Shadow (Li Ying), 匡振威",
+          credit10: "Animation Support: 刘星, 刘佰强, 邹文君",
+          credit11: "Project Advisors: 胡煦升, 刘星",
+          credit12: "Business Support: 胡煦升, 刘星",
+          valueTitle: "Platform Value",
+          value1: "AI pipelines",
+          value2: "games covered",
+          value3: "cumulative calls",
+          value4: "efficiency gain per module",
+          value5: "average monthly output increase",
+          value6: "lower cost per channel asset",
+          pillar1Title: "Efficiency",
+          pillar1Desc: "Peak monthly output",
+          pillar1Unit: "sets / month",
+          pillar2Title: "Lower barrier",
+          pillar2Desc: "Upload assets, receive results",
+          pillar2Unit: "steps",
+          pillar3Title: "Asset accumulation",
+          pillar3Desc: "Built-in standards, reusable pipelines",
+          pillar3Unit: "ad slots",
+          pillar4Title: "Business fit",
+          pillar4Desc: "Esports · Operations · Marketing",
+          pillar4Unit: "business stages",
+          pageTitle: "FlowX — AI Content Production Platform | Shadowyli",
+          metaDescription: "FlowX AI content production platform case study."
+        }
+      };
+
+      var currentLanguage = "zh";
+      var languageToggle = document.querySelector(".case-lang");
+      var themeButton = document.querySelector(".case-theme");
+
+      function storedLanguage() {
+        try {
+          return localStorage.getItem(STORAGE_KEY) === "en" ? "en" : "zh";
+        } catch (error) {
+          return "zh";
+        }
+      }
+
+      function labelFor(language) {
+        return language === "zh" ? "切换到英文" : "Switch to Chinese";
+      }
+
+      function syncThemeLabel() {
+        if (!themeButton) return;
+        var light = document.documentElement.dataset.theme === "light";
+        var english = currentLanguage === "en";
+        var label = light
+          ? (english ? "Switch to dark mode" : "切换到深色模式")
+          : (english ? "Switch to light mode" : "切换到浅色模式");
+        themeButton.setAttribute("aria-label", label);
+        themeButton.setAttribute("title", label);
+      }
+
+      function applyLanguage(language) {
+        currentLanguage = language;
+        var dictionary = copy[language];
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+
+        var textNodes = document.querySelectorAll("[data-i18n-key]");
+        for (var i = 0; i < textNodes.length; i++) {
+          var text = dictionary[textNodes[i].getAttribute("data-i18n-key")];
+          if (typeof text === "string") textNodes[i].textContent = text;
+        }
+
+        document.title = dictionary.pageTitle;
+        var description = document.querySelector('meta[name="description"]');
+        if (description) description.setAttribute("content", dictionary.metaDescription);
+
+        if (languageToggle) {
+          languageToggle.textContent = language === "zh" ? "EN" : "CN";
+          languageToggle.setAttribute("aria-label", labelFor(language));
+          languageToggle.setAttribute("title", labelFor(language));
+        }
+
+        syncThemeLabel();
+      }
+
+      applyLanguage(storedLanguage());
+
+      if (languageToggle) {
+        languageToggle.addEventListener("click", function () {
+          var nextLanguage = currentLanguage === "zh" ? "en" : "zh";
+          try {
+            localStorage.setItem(STORAGE_KEY, nextLanguage);
+          } catch (error) { /* ignore */ }
+          applyLanguage(nextLanguage);
+        });
+      }
+
+      if (themeButton) {
+        themeButton.addEventListener("click", function () {
+          var next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+          if (next === "light") {
+            document.documentElement.dataset.theme = "light";
+          } else {
+            delete document.documentElement.dataset.theme;
+          }
+          try {
+            localStorage.setItem("portfolio-theme", next);
+          } catch (error) { /* ignore */ }
+          syncThemeLabel();
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var bar = document.querySelector(".case-progress");
+      if (!bar) return;
+      var ticking = false;
+
+      function render() {
+        ticking = false;
+        var doc = document.documentElement;
+        var max = doc.scrollHeight - window.innerHeight;
+        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+        bar.style.setProperty("--progress", (progress * 100).toFixed(2) + "%");
+      }
+
+      function request() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(render);
+      }
+
+      window.addEventListener("scroll", request, { passive: true });
+      window.addEventListener("resize", request);
+      render();
+    })();
+  </script>
+  <script>
+    (function () {
+      var trigger = document.querySelector("#case-contact");
+      var dialog = document.querySelector("#case-contact-dialog");
+      if (!trigger || !dialog) return;
+      var closeButton = dialog.querySelector(".dialog-close");
+
+      function openDialog() {
+        dialog.hidden = false;
+        document.body.classList.add("dialog-open");
+        dialog.focus();
+      }
+
+      function closeDialog() {
+        dialog.hidden = true;
+        document.body.classList.remove("dialog-open");
+        trigger.focus();
+      }
+
+      trigger.addEventListener("click", openDialog);
+      if (closeButton) closeButton.addEventListener("click", closeDialog);
+      dialog.addEventListener("click", closeDialog);
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !dialog.hidden) closeDialog();
+      });
+    })();
+  </script>
+  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+</body>
+</html>

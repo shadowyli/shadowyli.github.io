@@ -26,8 +26,10 @@
   </script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-6">
+  <link rel="stylesheet" href="../styles.css?v=20261113-7">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
 <style>
     /* 舞美模块：一大 + 其余小；相邻模块的大图左右交替，保持原比例并等高 */
@@ -81,86 +83,24 @@
       .stage-media-side figure { flex: 1 1 0; }
     }
 
-    /* 序言：胶囊 + 署名排成一行（与站内其他案例页保持一致） */
-    .case-body .voice {
-      position: relative;
-      display: block;
+    /* 署名模块 */
+    .case-credits {
       margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: clamp(14px, 1.6vw, 20px) 0;
+      padding: 0 0 clamp(14px, 1.6vw, 20px);
       border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+      list-style: none;
     }
 
-    .voice-body {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: clamp(12px, 1.5vw, 20px);
-      padding: 0;
-      min-height: 26px;
-    }
-
-    .case-body .voice-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: none;
-      flex: none;
-      margin: 0;
-      min-height: 26px;
-      padding: 0 10px;
-      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-      border-radius: 999px;
+    .case-credits li {
       color: var(--text-muted);
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      line-height: 1.6;
+      font-family: var(--font-cjk);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
     }
 
-    .voice-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .voice-author {
-      display: flex;
-      align-items: center;
-      gap: clamp(9px, 1.1vw, 13px);
-      min-height: 26px;
-    }
-
-    .voice-rule {
-      display: block;
-      flex: none;
-      width: 22px;
-      height: 1px;
-      margin: 0;
-      background: color-mix(in srgb, var(--text) 45%, transparent);
-    }
-
-    .case-body .voice-name {
-      margin: 0;
-      max-width: none;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .case-body .voice-role {
-      margin: 0;
-      max-width: none;
-      color: var(--text-muted);
-      font-size: 11.5px;
-      line-height: 1.2;
-    }
-
-    @media (max-width: 720px) {
-      .case-body .voice { padding: 16px 0; }
+    @media (max-width: 560px) {
+      .case-credits li { font-size: 11px; }
     }
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
@@ -352,16 +292,9 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <section class="voice" aria-label="舞美设计">
-        <div class="voice-body">
-          <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">舞美设计</span></p>
-          <div class="voice-author">
-            <span class="voice-rule" aria-hidden="true"></span>
-            <p class="voice-name" data-i18n-key="voiceName">影子（李颖）</p>
-            <p class="voice-role" data-i18n-key="voiceRole">舞台视觉设计</p>
-          </div>
-        </div>
-      </section>
+      <ul class="case-credits" aria-label="项目署名">
+        <li data-i18n-key="credit1">舞美设计：影子（李颖）</li>
+      </ul>
 
       <section class="case-section case-gallery stage-module stage-ratio-neck" data-stage-side="left" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">网易电竞 NeXT 舞台</span></h2>
@@ -490,9 +423,7 @@
           contactMe: "联系我",
           navWork: "作品",
           navAbout: "关于我",
-          voicePill: "舞美设计",
-          voiceName: "影子（李颖）",
-          voiceRole: "舞台视觉设计",
+          credit1: "舞美设计：影子（李颖）",
           section1Title: "网易电竞 NeXT 舞台",
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
@@ -520,9 +451,7 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          voicePill: "STAGE DESIGN",
-          voiceName: "Shadow (Li Ying)",
-          voiceRole: "Stage visual design",
+          credit1: "Stage Design: Shadow (Li Ying)",
           section1Title: "NetEase Esports NeXT Stage",
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
@@ -684,7 +613,7 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-6" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
   <script>
     (function () {
       var modules = document.querySelectorAll(".stage-module");

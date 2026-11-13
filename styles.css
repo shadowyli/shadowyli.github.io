@@ -816,7 +816,7 @@ html.reveal-enabled .project-card.revealed { opacity: 1; }
 }
 
 .timeline-item.current::before { background: var(--yellow); }
-.timeline-item time { position: absolute; top: -42px; left: 0; color: var(--yellow); font-family: "Space Grotesk", sans-serif; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.timeline-item time { position: absolute; top: -42px; left: 0; color: var(--yellow); font-family: "Space Grotesk", var(--font-cjk); font-size: 11px; font-weight: 700; white-space: nowrap; }
 .timeline-item strong { font-size: 13px; line-height: 1.35; }
 .timeline-item > span { color: var(--text-muted); font-size: 11px; line-height: 1.45; }
 
@@ -1525,6 +1525,11 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 
 .case-body h2::after { display: none; }
 
+/* 案例页章节标题：拉丁用 Space Grotesk，中文统一思源黑体 */
+body.case-page .case-body h2 {
+  font-family: "Space Grotesk", "Archivo", var(--font-cjk);
+}
+
 .case-media-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1670,14 +1675,16 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   .mobile-play { display: inline-flex; }
 }
 
-/* 手机端悬浮案例 tab：案例页之间直接切换 */
+/* 案例切换 tab：桌面居中悬浮，手机端铺满底部 */
 .case-tabs {
   position: fixed;
-  left: 10px;
-  right: 10px;
-  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
   z-index: 55;
-  display: none;
+  display: flex;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  transform: translateX(-50%);
   align-items: center;
   gap: 2px;
   padding: 4px;
@@ -1691,9 +1698,23 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
     0 14px 34px rgba(0, 0, 0, 0.28);
   overflow-x: auto;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  touch-action: pan-x;
 }
 
+body.case-page .case-footer { padding-bottom: 96px; }
+
 .case-tabs::-webkit-scrollbar { display: none; }
+
+.case-tabs.is-dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  cursor: grabbing;
+  user-select: none;
+}
 
 .case-tab {
   display: inline-flex;
@@ -1710,7 +1731,25 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
-  transition: background 180ms ease, color 180ms ease;
+  transition: background 180ms ease, color 180ms ease, transform 140ms ease;
+  scroll-snap-align: center;
+}
+.case-tab:active { transform: scale(0.96); }
+
+/* 案例页切换：淡入 / 离场淡出，避免瞬间硬切 */
+@keyframes case-page-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+body.case-page { animation: case-page-in 240ms ease both; }
+body.case-page.is-leaving {
+  animation: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.case-page { animation: none; }
+  body.case-page.is-leaving { transition: none; }
 }
 
 .case-tab:hover { color: var(--text); }
@@ -1726,9 +1765,23 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 }
 
 @media (max-width: 720px) {
-  .case-tabs { display: flex; }
+  .case-tabs {
+    left: 10px;
+    right: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    width: auto;
+    max-width: none;
+    transform: none;
+  }
   .mobile-play { bottom: 78px; }
-  body.case-page .case-footer { padding-bottom: 96px; }
+}
+
+@media (max-width: 560px) {
+  .case-tab { padding: 0 9px; font-size: 11.5px; }
+}
+
+@media (max-width: 400px) {
+  .case-tab { padding: 0 7px; font-size: 11px; }
 }
 
 @media (max-width: 720px) {
@@ -1755,6 +1808,7 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
 }
 
 .case-body .case-caption--below { margin: 0 0 22px; }
+.case-body .case-credit-top { font-family: var(--font-cjk); }
 
 .case-progress {
   position: fixed;

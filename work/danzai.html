@@ -26,90 +26,41 @@
   </script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-105">
+  <link rel="stylesheet" href="../styles.css?v=20261113-7">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
-    /* 序言：胶囊 + 署名排成一行（与站内宣发设计案例页保持一致） */
-    .case-body .voice {
-      position: relative;
-      display: block;
+    /* 署名模块：4 条，左 2 右 2，窄屏单列 */
+    .case-credits {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, auto);
+      gap: 4px 36px;
       margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: clamp(14px, 1.6vw, 20px) 0;
+      padding: 0 0 clamp(14px, 1.6vw, 20px);
       border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+      list-style: none;
     }
 
-    .voice-body {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: clamp(12px, 1.5vw, 20px);
-      padding: 0;
-      min-height: 26px;
-    }
-
-    .case-body .voice-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: none;
-      flex: none;
-      margin: 0;
-      min-height: 26px;
-      padding: 0 10px;
-      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-      border-radius: 999px;
+    .case-credits li {
       color: var(--text-muted);
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      line-height: 1.6;
+      font-family: var(--font-cjk);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
     }
 
-    .voice-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .voice-author {
-      display: flex;
-      align-items: center;
-      gap: clamp(9px, 1.1vw, 13px);
-      min-height: 26px;
-    }
-
-    .voice-rule {
-      display: block;
-      flex: none;
-      width: 22px;
-      height: 1px;
-      margin: 0;
-      background: color-mix(in srgb, var(--text) 45%, transparent);
-    }
-
-    .case-body .voice-name {
-      margin: 0;
-      max-width: none;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .case-body .voice-role {
-      margin: 0;
-      max-width: none;
-      color: var(--text-muted);
-      font-size: 11.5px;
-      line-height: 1.2;
-    }
-
-    @media (max-width: 720px) {
-      .case-body .voice { padding: 16px 0; }
+    @media (max-width: 560px) {
+      .case-credits {
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 2px;
+      }
+      .case-credits li { font-size: 11px; }
     }
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
@@ -164,13 +115,18 @@
       display: grid;
       /* 1 : 2 —— 分镜四列两行铺满整列高度时，视频列刚好与分镜板等高 */
       grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-      gap: 0;
-      align-items: start;
+      gap: 6px;
+      align-items: stretch;
     }
     .case-video-split .case-media-slot { margin: 0; }
+    /* 视频静帧铺满列高，消除分镜板与视频之间的亚像素高度差 */
+    .case-video-split .case-media-slot img {
+      height: 100%;
+      object-fit: cover;
+    }
     .case-board-wrap {
       display: flex;
-      align-self: start;
+      align-self: stretch;
     }
     /* 两行四列，按原比例完整显示，整体高度与左侧视频齐平 */
     .case-board {
@@ -465,22 +421,23 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <section class="voice" aria-label="赛事主视觉">
-        <div class="voice-body">
-          <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">赛事主视觉</span></p>
-          <div class="voice-author">
-            <span class="voice-rule" aria-hidden="true"></span>
-            <p class="voice-name" data-i18n-key="voiceName">影子（李颖）</p>
-            <p class="voice-role" data-i18n-key="voiceRole">创意视觉设计</p>
-          </div>
-        </div>
-      </section>
+      <ul class="case-credits" aria-label="项目署名">
+        <li data-i18n-key="credit1">3D &amp; 视觉创意设计：影子（李颖）</li>
+        <li data-i18n-key="credit2">美术监修：影子（李颖）</li>
+        <li data-i18n-key="credit3">动效设计：纪云、李楚怡、郑斯锴、刘佰强</li>
+        <li data-i18n-key="credit4">美术督导：胡煦升、刘星</li>
+      </ul>
 
       <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">KV</span></h2>
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-s2-kv.webp" alt="第二届《蛋仔派对》全国总决赛主视觉：星城共聚，再战巅峰（湖南长沙）" width="2400" height="1350" loading="lazy" decoding="async">
           </figure>
         </div>
         <!-- 往这里继续追加作品图，例如：
@@ -494,7 +451,7 @@
 
       <section class="case-section case-gallery" id="case-gallery-video" aria-labelledby="case-title-video">
         <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">视频包装</span></h2>
-        <p class="case-caption case-credit-top" data-i18n-key="videoCredit">创意视觉设计：影子（李颖）｜动画设计：李楚怡</p>
+        <p class="case-caption case-credit-top" data-i18n-key="videoCredit">视觉创意设计：影子（李颖）｜动效设计：李楚怡</p>
         <div class="case-video-split">
           <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
             <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
@@ -650,16 +607,17 @@
           contactMe: "联系我",
           navWork: "作品",
           navAbout: "关于我",
-          voicePill: "赛事主视觉",
-          voiceName: "影子（李颖）",
-          voiceRole: "创意视觉设计",
+          credit1: "3D & 视觉创意设计：影子（李颖）",
+          credit2: "美术监修：影子（李颖）",
+          credit3: "动效设计：纪云、李楚怡、郑斯锴、刘佰强",
+          credit4: "美术督导：胡煦升、刘星",
           section1Title: "KV",
           section2Title: "视频包装",
           section3Title: "VI 手册",
           section4Title: "大屏视觉",
           section5Title: "周边物料",
           section6Title: "宣发设计",
-          videoCredit: "创意视觉设计：影子（李颖）｜动画设计：李楚怡",
+          videoCredit: "视觉创意设计：影子（李颖）｜动效设计：李楚怡",
           soundOn: "声音",
           soundOff: "静音",
           playAll: "一键播放",
@@ -685,16 +643,17 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          voicePill: "KEY VISUAL",
-          voiceName: "Shadow (Li Ying)",
-          voiceRole: "Creative visual design",
+          credit1: "3D & Visual Creative Design: Shadow (Li Ying)",
+          credit2: "Art Supervision: Shadow (Li Ying)",
+          credit3: "Motion Design: 纪云, 李楚怡, 郑斯锴, 刘佰强",
+          credit4: "Art Direction: 胡煦升, 刘星",
           section1Title: "Key Visual",
           section2Title: "Video packaging",
           section3Title: "VI manual",
           section4Title: "Large-screen visuals",
           section5Title: "Merchandise",
           section6Title: "Promotional design",
-          videoCredit: "Creative visual design: Shadow (Li Ying) | Animation design: Li Chuyi",
+          videoCredit: "Visual creative design: Shadow (Li Ying) | Motion design: Li Chuyi",
           soundOn: "Sound",
           soundOff: "Mute",
           playAll: "Play all",
@@ -991,6 +950,6 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-1" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
 </body>
 </html>

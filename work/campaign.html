@@ -26,8 +26,10 @@
   </script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-105">
+  <link rel="stylesheet" href="../styles.css?v=20261113-7">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     .case-body .case-pair + .case-frame {
@@ -98,26 +100,30 @@
       object-position: center;
     }
 
-    /* 两段动画并排：统一 12:5 画幅，让两段素材同高且各自构图主体不被裁掉 */
-    .case-row[data-layout="video-pair"] {
+    /* 宽幅动画 + 方形主视觉：按两张原图比例分栏，等高且不裁切 */
+    .case-row[data-layout="arson-pair"] {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 2.1622fr 1fr;
       gap: 6px;
+      align-items: start;
     }
 
-    .case-row[data-layout="video-pair"] .case-media-slot {
-      aspect-ratio: 12 / 5;
-    }
+    .case-row[data-layout="arson-pair"] .case-frame { margin: 0; }
 
-    .case-row[data-layout="video-pair"] .case-media-slot > img {
-      height: 100%;
-      object-fit: cover;
+    @media (max-width: 720px) {
+      .case-row[data-layout="arson-pair"] { grid-template-columns: 1fr; }
     }
 
     .case-row[data-layout="secondary"] {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 6px;
+    }
+
+    /* 城市官宣 + 主视觉：双栏填满行高，避免亚像素缝 */
+    .eggy-city-pair .case-frame--image img {
+      height: 100%;
+      object-fit: cover;
     }
 
     /* 竖版海报：2 张一行起排，可扩展到 3 / 4 张（6 张仅用于次次要系列） */
@@ -198,7 +204,7 @@
     .case-row[data-layout="banners"] .case-frame--image img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .social-badge--long {
@@ -462,7 +468,7 @@
           <div class="voice-author">
             <span class="voice-rule" aria-hidden="true"></span>
             <p class="voice-name" data-i18n-key="voiceName">影子（李颖）</p>
-            <p class="voice-role" data-i18n-key="voiceRole">创意视觉设计</p>
+            <p class="voice-role" data-i18n-key="voiceRole">视觉创意设计</p>
           </div>
         </div>
       </section>
@@ -477,25 +483,11 @@
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
         </div>
-        <!-- 《第五人格》COA · 城市官宣与主题插画 -->
-        <div class="case-row" data-layout="main">
+        <!-- 《蛋仔派对》· 全国总决赛城市官宣 + 主视觉 -->
+        <div class="case-row eggy-city-pair" data-layout="secondary">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-coa-chengdu.webp?v=20261112d" alt="《第五人格》COA 城市官宣海报 · 成都" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../assets/campaign-coa-chengdu.webp?v=20261112d" alt="第三届《蛋仔派对》全国总决赛 · 成都城市官宣海报" data-i18n-alt="chengduAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
-        </div>
-        <!-- 《第五人格》纵火练习 + IVS 倒计时：两段动画并排一行 -->
-        <div class="case-row" data-layout="video-pair">
-          <figure class="case-frame case-frame--video case-media-slot">
-            <img src="../assets/campaign-coa-arson.webp?v=20261112c" alt="《第五人格》COA 纵火练习主题插画：废墟中燃烧的摇滚角色" width="1920" height="888" loading="lazy" decoding="async">
-            <video class="case-frame-video" src="../assets/campaign-coa-arson.mp4" poster="../assets/campaign-coa-arson.webp?v=20261112c" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" style="aspect-ratio: 1920 / 890" aria-label="《第五人格》COA 纵火练习动画"></video>
-          </figure>
-          <figure class="case-frame case-frame--video case-media-slot">
-            <img src="../assets/campaign-ivs-countdown-poster.webp" alt="2025 第五人格 IVS 倒计时动画静帧" width="4608" height="1664" loading="lazy" decoding="async">
-            <video class="case-frame-video" src="../assets/campaign-ivs-countdown.mp4" poster="../assets/campaign-ivs-countdown-poster.webp" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" style="aspect-ratio: 4608 / 1664" aria-label="2025 第五人格 IVS 倒计时动画"></video>
-          </figure>
-        </div>
-        <!-- 《蛋仔派对》· 横版主要：单独一行 -->
-        <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
           </figure>
@@ -519,52 +511,52 @@
         <div class="banner-grid">
         <div class="case-row" data-layout="banners">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-2026-signup.webp?v=20261112c" alt="《蛋仔派对》2026 惊魂杯报名主视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-2026-signup.webp?v=20261113d" alt="《蛋仔派对》2026 惊魂杯报名主视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-in-name.webp?v=20261112c" alt="《蛋仔派对》以蛋之名活动主视觉" width="1600" height="621" loading="lazy" decoding="async">
-          </figure>
-        </div>
-        <div class="case-row" data-layout="banners">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-finals-loot.webp?v=20261112c" alt="《蛋仔派对》决赛掉宝狂欢活动视觉" width="1600" height="621" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-summer-camp.webp?v=20261112c" alt="《蛋仔派对》匠夏挑战营活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-in-name.webp?v=20261113d" alt="《蛋仔派对》以蛋之名活动主视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
         </div>
         <div class="case-row" data-layout="banners">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-snow-arena.webp?v=20261112c" alt="《蛋仔派对》小雪擂台赛活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-finals-loot.webp?v=20261113d" alt="《蛋仔派对》决赛掉宝狂欢活动视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-s0903.webp?v=20261112c" alt="《蛋仔派对》惊魂杯 0903 主视觉" width="1600" height="621" loading="lazy" decoding="async">
-          </figure>
-        </div>
-        <div class="case-row" data-layout="banners">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-carnival-night.webp?v=20261112c" alt="《蛋仔派对》惊魂狂欢夜活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-summer-camp.webp?v=20261113d" alt="《蛋仔派对》匠夏挑战营活动视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
         </div>
         <div class="case-row" data-layout="banners">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-new-year.webp?v=20261112c" alt="《蛋仔派对》新春办赛礼活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-snow-arena.webp?v=20261113d" alt="《蛋仔派对》小雪擂台赛活动视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-spring.webp?v=20261112c" alt="《蛋仔派对》春景蛋畅玩活动视觉" width="1600" height="621" loading="lazy" decoding="async">
-          </figure>
-        </div>
-        <div class="case-row" data-layout="banners">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-new-journey.webp?v=20261112c" alt="《蛋仔派对》蛋启新征程活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-s0903.webp?v=20261113d" alt="《蛋仔派对》惊魂杯 0903 主视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
         </div>
         <div class="case-row" data-layout="banners">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-chase.webp?v=20261112c" alt="《蛋仔派对》追赛进行时活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-carnival-night.webp?v=20261113d" alt="《蛋仔派对》惊魂狂欢夜活动视觉" width="1600" height="560" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-spring.webp?v=20261113d" alt="《蛋仔派对》春景蛋畅玩活动视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-snow-race.webp?v=20261112c" alt="《蛋仔派对》雪道竞速王活动视觉" width="1600" height="621" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-new-year.webp?v=20261113d" alt="《蛋仔派对》新春办赛礼活动视觉" width="1600" height="560" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-new-journey.webp?v=20261113e" alt="《蛋仔派对》蛋启新征程活动视觉" width="1600" height="560" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <div class="case-row" data-layout="banners">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-snow-race.webp?v=20261113d" alt="《蛋仔派对》雪道竞速王活动视觉" width="1600" height="560" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-eggy-chase.webp?v=20261113d" alt="《蛋仔派对》追赛进行时活动视觉" width="1600" height="560" loading="lazy" decoding="async">
           </figure>
         </div>
         </div>
@@ -616,8 +608,12 @@
             <img src="../assets/campaign-mengshou-s12-team-yongwu.webp" alt="《梦幻西游》手游 S12 巅峰联赛战队出征海报 · 勇武组" width="751" height="1334" loading="lazy" decoding="async">
           </figure>
         </div>
-        <!-- 《永劫无间》NBPL · 端午主题主视觉 -->
-        <div class="case-row" data-layout="main">
+        <!-- 《第五人格》COA 纵火练习 + 《永劫无间》NBPL 端午主题：同一行 -->
+        <div class="case-row" data-layout="arson-pair">
+          <figure class="case-frame case-frame--video case-media-slot">
+            <img src="../assets/campaign-coa-arson.webp?v=20261112c" alt="《第五人格》COA 纵火练习主题插画：废墟中燃烧的摇滚角色" width="1920" height="888" loading="lazy" decoding="async">
+            <video class="case-frame-video" src="../assets/campaign-coa-arson.mp4" poster="../assets/campaign-coa-arson.webp?v=20261112c" muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" preload="metadata" style="aspect-ratio: 1920 / 890" aria-label="《第五人格》COA 纵火练习动画"></video>
+          </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-naraka-nbpl-d2.webp" alt="《永劫无间》NBPL 端午主题主视觉：荷塘、粽子与赛事标识" width="3072" height="3072" loading="lazy" decoding="async">
           </figure>
@@ -736,7 +732,7 @@
           statBadge8: "全网300w曝光节目",
           voicePill: "宣发设计",
           voiceName: "影子（李颖）",
-          voiceRole: "创意视觉设计",
+          voiceRole: "视觉创意设计",
           badgeTwitter10k: "推特万转",
           badgeTwitter1k: "推特千转",
           badgeTwitter35w: "推特 35w+ 曝光 · 高互动万赞热帖",
@@ -749,6 +745,7 @@
           section1Body: "冠军海报以金色奖杯与队伍群像为骨架，暖金色调在深色背景上拉开层次。标题使用厚重衬线字，压住画面底部；人物、奖杯与飘落的金色碎片形成由中心向两侧扩散的视线路径。",
           section2Title: "《蛋仔派对》全国总决赛",
           danzaiAlt: "第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像",
+          chengduAlt: "第三届《蛋仔派对》全国总决赛 · 成都城市官宣海报",
       eggyS2Alt: "《蛋仔派对》惊魂杯 S2 主视觉：霓虹街区里的黑帮风角色与蛋仔群像",
       eggy2026Alt: "《蛋仔派对》2026 惊魂杯主视觉：马戏团小丑与舞台下的蛋仔群像",
           section3Title: "《梦幻西游》手游巅峰联赛",
@@ -806,7 +803,7 @@
           statBadge8: "3M-impression show",
           voicePill: "CAMPAIGN DESIGN",
           voiceName: "Shadow (Li Ying)",
-          voiceRole: "Creative visual design",
+          voiceRole: "Visual creative design",
           badgeTwitter10k: "Twitter · 10K reposts",
           badgeTwitter1k: "Twitter · 1K reposts",
           badgeTwitter35w: "Twitter · 350K+ impressions, high-engagement 10K-like post",
@@ -819,6 +816,7 @@
           section1Body: "The champion poster is built on the gold trophy and the team line-up. Warm gold separates from the dark ground; a heavy serif title anchors the lower edge, while players, trophy and falling confetti pull the eye from the centre outwards.",
           section2Title: "Eggy Party National Finals",
           danzaiAlt: "Eggy Party National Finals key visual: a gold trophy, city diorama and the Eggy cast",
+          chengduAlt: "Eggy Party 3rd National Finals · Chengdu city announcement poster",
       eggyS2Alt: "Eggy Party Haunted Cup S2 key visual: a mobster-styled character and the Eggy cast in a neon street",
       eggy2026Alt: "Eggy Party 2026 Haunted Cup key visual: circus clowns and the Eggy cast on stage",
           section3Title: "Fantasy Westward Journey Mobile Peak League",
@@ -1067,6 +1065,6 @@
       }
     })();
   </script>
-  <script src="../assets/case-tabs.js?v=20261113-1" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
 </body>
 </html>
