@@ -33,48 +33,39 @@
     /* 02 舞台：左侧一大，右侧两张竖排，左右等高 */
     .stage-02-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr;
+      /* 按 1280:540 原比例反推列宽，使左图与右侧两图总高严格相等 */
+      grid-template-columns: calc(66.6667% + 0.74px) minmax(0, 1fr);
       gap: 6px;
-      aspect-ratio: 1280 / 540;
+      align-items: start;
     }
 
-    .stage-02-main { grid-row: 1 / span 2; }
-
     .stage-02-side {
-      display: grid;
-      grid-row: 1 / span 2;
-      grid-template-rows: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 6px;
-      min-height: 0;
     }
 
     .stage-02-grid figure {
       margin: 0;
-      min-height: 0;
-      overflow: hidden;
     }
+
+    /* 抵消全局相邻 figure 的 6px 上边距，避免右侧第二张被顶下去 */
+    .stage-02-grid .case-frame + .case-frame { margin-top: 0; }
 
     .stage-02-grid img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
     }
 
     @media (max-width: 720px) {
-      .stage-02-grid {
-        grid-template-columns: 1fr;
-        aspect-ratio: auto;
-      }
-
-      .stage-02-main { grid-row: auto; }
+      .stage-02-grid { grid-template-columns: 1fr; }
 
       .stage-02-side {
-        grid-row: auto;
-        grid-template-rows: none;
-        grid-template-columns: 1fr 1fr;
+        flex-direction: row;
       }
 
+      .stage-02-side figure { flex: 1 1 0; }
       .stage-02-grid img { height: auto; }
     }
 
@@ -662,6 +653,6 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-1" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-2" defer></script>
 </body>
 </html>
