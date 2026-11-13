@@ -27,7 +27,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-103">
+  <link rel="stylesheet" href="../styles.css?v=20261112-104">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 序言：胶囊 + 署名排成一行（与站内宣发设计案例页保持一致） */
@@ -190,10 +190,6 @@
       border-radius: 0;
       background: var(--surface);
     }
-    @media (max-width: 720px) {
-      .case-video-split { grid-template-columns: 1fr; }
-    }
-
     /* 手机端拿不到自动播放权限：每块动画单独给一个播放按钮（桌面靠入场自动播放，不显示按钮） */
     .case-gallery .slot-play {
       position: absolute;
@@ -228,6 +224,15 @@
     @media (max-width: 720px) {
       .case-page .mobile-play { display: none; }
       .case-page .mobile-play.is-visible { display: inline-flex; }
+      /* 手机端视频只占一行里的三分之一，控件同比缩小，避免遮挡画面 */
+      .case-gallery .slot-play { width: clamp(26px, 30%, 44px); }
+      .case-gallery .case-media-slot .case-sound {
+        right: 6px;
+        bottom: 6px;
+        width: 26px;
+        height: 26px;
+      }
+      .case-gallery .case-media-slot .case-sound svg { width: 13px; height: 13px; }
     }
 
     /* 右下角声音开关：纯图标，点击在「有声 / 静音」之间切换 */
