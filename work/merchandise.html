@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../styles.css?v=20261113-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     .case-credits {
@@ -54,6 +54,33 @@
     }
 
     .merch-gallery .merch-trio { margin-top: 6px; }
+
+    /* S9 连帽衫：左侧主图放大，右侧两张上下叠放 */
+    .case-row[data-layout="hero-stack"] {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6px;
+      align-items: stretch;
+    }
+
+    .case-row[data-layout="hero-stack"] > .case-frame { margin: 0; }
+
+    .case-body .case-row[data-layout="hero-stack"] .case-frame { margin: 0; }
+
+    .case-row[data-layout="hero-stack"] .case-frame--image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .case-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .case-stack > .case-frame { margin: 0; min-height: 0; }
 
     @media (max-width: 560px) {
       .case-credits li { font-size: 11px; }
@@ -137,6 +164,19 @@
         <figure class="case-frame case-frame--image">
           <img src="../assets/campaign-mengshou-s9-graphic-design.webp" alt="《梦幻西游》手游 S9 巅峰联赛图案设计：山水、建筑与云纹白描，辅以火、电、水三纹" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
+        <div class="case-row" data-layout="hero-stack">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s9-hoodie-shenwei.webp" alt="《梦幻西游》手游 S9 巅峰联赛神威组选手连帽衫：正面「天下无双」、背面「巅峰联赛 2024」，红色纹样" width="1600" height="1558" loading="lazy" decoding="async">
+          </figure>
+          <div class="case-stack">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/campaign-mengshou-s9-hoodie-yongwu.webp" alt="《梦幻西游》手游 S9 巅峰联赛勇武组选手连帽衫：正面「岁岁长安」、背面「巅峰联赛 2024」，金色纹样" width="1600" height="1558" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/campaign-mengshou-s9-hoodie-jingrui.webp" alt="《梦幻西游》手游 S9 巅峰联赛精锐组选手连帽衫：正面「雷霆万钧」、背面「巅峰联赛 2024」，蓝色纹样" width="1600" height="1558" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
       </section>
     </div>
   </main>
