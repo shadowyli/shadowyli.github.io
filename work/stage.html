@@ -30,28 +30,37 @@
   <link rel="stylesheet" href="../styles.css?v=20261112-105">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
 <style>
-    /* 02 舞台：左侧一大，右侧两张竖排，左右等高 */
+    /* 01 / 02 舞台：左侧一大，右侧两张竖排，保持原比例并等高 */
+    .stage-01-grid,
     .stage-02-grid {
       display: grid;
-      /* 按 1280:540 原比例反推列宽，使左图与右侧两图总高严格相等 */
-      grid-template-columns: calc(66.6667% + 0.74px) minmax(0, 1fr);
       gap: 6px;
       align-items: start;
     }
 
+    /* 01：左图 1920:754，右图 1920:810 */
+    .stage-01-grid { grid-template-columns: calc(68.24% + 0.76px) minmax(0, 1fr); }
+
+    /* 02：三图均为 1280:540 */
+    .stage-02-grid { grid-template-columns: calc(66.6667% + 0.74px) minmax(0, 1fr); }
+
+    .stage-01-side,
     .stage-02-side {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
+    .stage-01-grid figure,
     .stage-02-grid figure {
       margin: 0;
     }
 
     /* 抵消全局相邻 figure 的 6px 上边距，避免右侧第二张被顶下去 */
+    .stage-01-grid .case-frame + .case-frame,
     .stage-02-grid .case-frame + .case-frame { margin-top: 0; }
 
+    .stage-01-grid img,
     .stage-02-grid img {
       display: block;
       width: 100%;
@@ -59,13 +68,17 @@
     }
 
     @media (max-width: 720px) {
+      .stage-01-grid,
       .stage-02-grid { grid-template-columns: 1fr; }
 
+      .stage-01-side,
       .stage-02-side {
         flex-direction: row;
       }
 
+      .stage-01-side figure,
       .stage-02-side figure { flex: 1 1 0; }
+      .stage-01-grid img,
       .stage-02-grid img { height: auto; }
     }
 
@@ -354,19 +367,18 @@
       <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">网易电竞 NeXT 舞台</span></h2>
 
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
+        <div class="stage-01-grid">
+          <figure class="case-frame case-frame--image stage-01-main">
             <img src="../assets/stage-next-overview.webp" alt="网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏" data-i18n-alt="stageAlt1" width="1920" height="754" decoding="async">
           </figure>
-        </div>
-
-        <div class="case-row" data-layout="secondary">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/stage-next-front.webp" alt="网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光" data-i18n-alt="stageAlt2" width="1920" height="810" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/stage-next-angle.webp" alt="网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果" data-i18n-alt="stageAlt3" width="1920" height="810" loading="lazy" decoding="async">
-          </figure>
+          <div class="stage-01-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-next-front.webp" alt="网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光" data-i18n-alt="stageAlt2" width="1920" height="810" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-next-angle.webp" alt="网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果" data-i18n-alt="stageAlt3" width="1920" height="810" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
       </section>
 
