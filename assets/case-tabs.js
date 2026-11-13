@@ -5,6 +5,7 @@
     { id: "danzai", zh: "蛋仔派对", en: "Eggy Party" },
     { id: "large-screen", zh: "大屏视觉", en: "Large Screen" },
     { id: "campaign", zh: "宣发", en: "Campaign" },
+    { id: "merchandise", zh: "周边", en: "Merch" },
     { id: "stage", zh: "舞美", en: "Stage" },
     { id: "video", zh: "视频包装", en: "Video" },
     { id: "flowx", zh: "FlowX", en: "FlowX" }
