@@ -274,6 +274,42 @@
       margin: clamp(56px, 7vw, 88px) 0 clamp(18px, 2vw, 26px);
     }
 
+    /* 空灯箱：还没填内容时的占位框，虚线 + 对角线 */
+    .case-frame--empty {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px dashed color-mix(in srgb, var(--text) 24%, transparent);
+      background: color-mix(in srgb, var(--text) 4%, transparent);
+    }
+    .case-frame--empty::before,
+    .case-frame--empty::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .case-frame--empty::before {
+      background: linear-gradient(
+        to top right,
+        transparent calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+    }
+    .case-frame--empty::after {
+      background: linear-gradient(
+        to bottom right,
+        transparent calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% - 0.5px),
+        color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+    }
+
     /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .social-badge--long {
       white-space: normal;
@@ -500,21 +536,33 @@
       <section class="case-section case-gallery" id="case-gallery-vi" aria-labelledby="case-title-vi">
         <h2 id="case-title-vi"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">VI 手册</span></h2>
         <!-- 内容待补充：VI 手册的页面/规范图，按 case-row data-layout 追加 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
+        </div>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-screen" aria-labelledby="case-title-screen">
         <h2 id="case-title-screen"><span class="case-section-index" aria-hidden="true">04</span><span data-i18n-key="section4Title">大屏视觉</span></h2>
         <!-- 内容待补充：大屏视觉的现场图/界面图，按 case-row data-layout 追加 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
+        </div>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-merch" aria-labelledby="case-title-merch">
         <h2 id="case-title-merch"><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">周边物料</span></h2>
         <!-- 内容待补充：周边物料的实物图/延展图，按 case-row data-layout 追加 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
+        </div>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-promo" aria-labelledby="case-title-promo">
         <h2 id="case-title-promo"><span class="case-section-index" aria-hidden="true">06</span><span data-i18n-key="section6Title">宣发设计</span></h2>
         <!-- 内容待补充：宣发物料的海报/长图/户外图，按 case-row data-layout 追加 -->
+        <div class="case-row" data-layout="main">
+          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
+        </div>
       </section>
 
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
