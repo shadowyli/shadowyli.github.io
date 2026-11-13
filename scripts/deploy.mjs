@@ -118,6 +118,12 @@ const cacheRules = [
     cacheControl: "public, max-age=604800",
     includes: ["assets/**"],
   },
+  {
+    label: "fonts",
+    cacheControl: "public, max-age=604800",
+    contentType: "font/woff2",
+    includes: ["assets/fonts/*.woff2"],
+  },
 ];
 
 for (const rule of cacheRules) {
@@ -134,6 +140,7 @@ for (const rule of cacheRules) {
   for (const pattern of rule.includes) {
     args.push("--include", pattern);
   }
+  if (rule.contentType) args.push("--content-type", rule.contentType);
   if (dryRun) args.push("--dry-run");
   runOssutil(ossutil, args);
 }

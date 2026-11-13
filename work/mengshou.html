@@ -90,8 +90,8 @@
     @media (max-width: 720px) {
       .case-page .mobile-play { display: none; }
       .case-page .mobile-play.is-visible { display: inline-flex; }
-      /* 给底部浮层留出高度，滚到页脚时不会压住版权行与「联系我」 */
-      .case-page .case-footer { padding-bottom: 128px; }
+      /* 给底部浮层（距底 78px + 56px 高）留出高度，页脚文字不会被压住；站点样式是 body.case-page 的同名规则，这里要同级覆盖 */
+      body.case-page .case-footer { padding-bottom: 150px; }
     }
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
@@ -297,46 +297,28 @@
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4">
             <img src="../assets/mengshou-group-jingrui-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组背景：蓝色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组背景动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-1.mp4">
             <img src="../assets/mengshou-group-shenwei-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组背景：暖金色环形机关与红色宝石" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组背景动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-1.mp4">
             <img src="../assets/mengshou-group-yongwu-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组背景：金色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组背景动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
         </div>
         <div class="case-media-grid case-media-grid--three">
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4">
             <img src="../assets/mengshou-group-jingrui-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组徽记特写：蓝色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组徽记动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-2.mp4">
             <img src="../assets/mengshou-group-shenwei-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组徽记特写：红色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组徽记动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-2.mp4">
             <img src="../assets/mengshou-group-yongwu-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组徽记特写：金色宝石与暗金边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组徽记动画"></video>
-            <button class="slot-play" type="button" aria-label="播放动画">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
           </figure>
         </div>
       </section>
