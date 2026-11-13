@@ -110,6 +110,33 @@
 
     .case-row[data-layout="arson-pair"] .case-frame { margin: 0; }
 
+    /* 左侧主图放大，右侧两张上下叠放 */
+    .case-row[data-layout="hero-stack"] {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6px;
+      align-items: stretch;
+    }
+
+    .case-row[data-layout="hero-stack"] > .case-frame { margin: 0; }
+
+    .case-body .case-row[data-layout="hero-stack"] .case-frame { margin: 0; }
+
+    .case-row[data-layout="hero-stack"] .case-frame--image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .case-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .case-stack > .case-frame { margin: 0; min-height: 0; }
+
     @media (max-width: 720px) {
       .case-row[data-layout="arson-pair"] { grid-template-columns: 1fr; }
     }
@@ -147,6 +174,21 @@
     .case-row[data-layout="portrait-3"] img {
       width: 100%;
       height: auto;
+    }
+
+    .case-row[data-layout="portrait-4"] {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-row[data-layout="portrait-4"] img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .case-row[data-layout="portrait-4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     /* 动画静帧垫底：播放结束后回到静图，而不是视频首帧 */
@@ -196,6 +238,9 @@
     }
 
     .banner-grid .case-row[data-layout="banners"] { display: contents; }
+
+    /* banner-grid 后紧跟的普通行补回 6px 间距（跨容器时 + 选择器失效） */
+    .case-gallery .banner-grid + .case-row { margin-top: 6px; }
 
     @media (max-width: 720px) {
       .banner-grid { grid-template-columns: 1fr; }
@@ -485,8 +530,11 @@
             <img src="../assets/campaign-mengshou-s11-kv.webp?v=20261112c" alt="《梦幻西游》手游 S11 联盟尊享大会主视觉：金色奖杯与联盟徽记墙" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
-        <!-- 《梦幻西游》手游 S10 / S11 / S13 倒计时：三张一行 -->
-        <div class="case-row" data-layout="portrait-3">
+        <!-- 《梦幻西游》手游 S8 / S10 / S11 / S13 倒计时：四张一行 -->
+        <div class="case-row" data-layout="portrait-4">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s8-cd1.webp" alt="《梦幻西游》手游 S8 赛季常规赛倒计时海报 · 还有 1 天" width="750" height="1334" loading="lazy" decoding="async">
+          </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s10-cd1.webp?v=20261112c" alt="《梦幻西游》手游 S10 巅峰联赛倒计时海报" width="1000" height="1779" loading="lazy" decoding="async">
           </figure>
@@ -532,6 +580,20 @@
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s9-graphic-design.webp" alt="《梦幻西游》手游 S9 巅峰联赛图案设计：山水、建筑与云纹白描，辅以火、电、水三纹" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
+        </div>
+        <!-- 《梦幻西游》手游 S9 · 选手连帽衫：红色主图左置，黄上蓝下 -->
+        <div class="case-row" data-layout="hero-stack">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s9-hoodie-shenwei.webp" alt="《梦幻西游》手游 S9 巅峰联赛神威组选手连帽衫：正面「天下无双」、背面「巅峰联赛 2024」，红色纹样" data-i18n-alt="s9HoodieShenweiAlt" width="1600" height="1558" loading="lazy" decoding="async">
+          </figure>
+          <div class="case-stack">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/campaign-mengshou-s9-hoodie-yongwu.webp" alt="《梦幻西游》手游 S9 巅峰联赛勇武组选手连帽衫：正面「岁岁长安」、背面「巅峰联赛 2024」，金色纹样" data-i18n-alt="s9HoodieYongwuAlt" width="1600" height="1558" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/campaign-mengshou-s9-hoodie-jingrui.webp" alt="《梦幻西游》手游 S9 巅峰联赛精锐组选手连帽衫：正面「雷霆万钧」、背面「巅峰联赛 2024」，蓝色纹样" data-i18n-alt="s9HoodieJingruiAlt" width="1600" height="1558" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
         <!-- 《第五人格》COA 纵火练习 + 《永劫无间》NBPL 端午主题：同一行 -->
         <div class="case-row" data-layout="arson-pair">
@@ -679,6 +741,9 @@
           aceAlt: "《王牌竞速》× 广汽传祺杯联动 KV：赛道上的黑色赛车",
           nextCaption: "网易电竞 NeXT · 赛事群像 KV",
           nextAlt: "网易电竞 NeXT 赛事群像 KV：多款游戏角色集结",
+          s9HoodieShenweiAlt: "《梦幻西游》手游 S9 巅峰联赛神威组选手连帽衫：正面「天下无双」、背面「巅峰联赛 2024」，红色纹样",
+          s9HoodieYongwuAlt: "《梦幻西游》手游 S9 巅峰联赛勇武组选手连帽衫：正面「岁岁长安」、背面「巅峰联赛 2024」，金色纹样",
+          s9HoodieJingruiAlt: "《梦幻西游》手游 S9 巅峰联赛精锐组选手连帽衫：正面「雷霆万钧」、背面「巅峰联赛 2024」，蓝色纹样",
           relatedLargeScreen: "大屏视觉",
           relatedMerch: "周边物料",
           relatedStage: "舞美设计",
@@ -746,6 +811,9 @@
           aceAlt: "ACE Racer × GAC Trumpchi Cup partnership KV: a black race car on the track",
           nextCaption: "NetEase Esports NeXT — Ensemble KV",
           nextAlt: "NetEase Esports NeXT ensemble KV with characters from multiple games",
+          s9HoodieShenweiAlt: "Fantasy Westward Journey Mobile Peak League S9 Shenwei division hoodie: 'Peerless Under Heaven' on the front and 'Peak League 2024' on the back, with red artwork",
+          s9HoodieYongwuAlt: "Fantasy Westward Journey Mobile Peak League S9 Yongwu division hoodie: 'Everlasting Peace' on the front and 'Peak League 2024' on the back, with gold artwork",
+          s9HoodieJingruiAlt: "Fantasy Westward Journey Mobile Peak League S9 Jingrui division hoodie: 'Thunderous Momentum' on the front and 'Peak League 2024' on the back, with blue artwork",
           relatedLargeScreen: "Large-Screen Visuals",
           relatedMerch: "Merchandise",
           relatedStage: "Stage Design",
