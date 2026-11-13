@@ -3,11 +3,11 @@
   var CASES = [
     { id: "mengshou", zh: "梦幻西游", en: "Fantasy League" },
     { id: "danzai", zh: "蛋仔派对", en: "Eggy Party" },
-    { id: "large-screen", zh: "大屏视觉", en: "Large Screen" },
+    { id: "large-screen", zh: "大屏", en: "Large Screen" },
     { id: "campaign", zh: "宣发", en: "Campaign" },
     { id: "merchandise", zh: "周边", en: "Merch" },
     { id: "stage", zh: "舞美", en: "Stage" },
-    { id: "video", zh: "视频包装", en: "Video" },
+    { id: "video", zh: "视频", en: "Video" },
     { id: "flowx", zh: "FlowX", en: "FlowX" }
   ];
 

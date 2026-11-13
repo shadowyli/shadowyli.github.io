@@ -87,12 +87,16 @@
       height: auto;
     }
 
-    .nbpl-opening-hero { margin: 0 0 6px; }
+    .nbpl-opening-hero { margin: 0; }
 
     .nbpl-opening-hero img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .nbpl-opening-grid .nbpl-opening-hero { grid-column: 1 / -1; }
     }
 
     /* 02 模块：蛋仔麦克疯包装，一行四个 */
@@ -193,10 +197,10 @@
 
       <section class="case-section nbpl-opening" aria-labelledby="nbpl-opening-title">
         <h2 id="nbpl-opening-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">永劫无间 NBPL 夏季赛常规赛开场</span></h2>
-        <figure class="case-frame case-frame--image nbpl-opening-hero">
-          <img src="../assets/video-packaging-nbpl-hero.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 主视觉" width="1200" height="675" loading="eager" decoding="async">
-        </figure>
         <div class="nbpl-opening-grid">
+          <figure class="case-frame case-frame--image nbpl-opening-hero">
+            <img src="../assets/video-packaging-nbpl-hero.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 主视觉" width="1200" height="675" loading="eager" decoding="async">
+          </figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-02.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 02" width="640" height="360" loading="lazy" decoding="async" data-frame-index="02"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-03.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 03" width="640" height="360" loading="lazy" decoding="async" data-frame-index="03"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-04.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 04" width="640" height="360" loading="lazy" decoding="async" data-frame-index="04"></figure>
@@ -498,6 +502,6 @@
       });
     })();
   </script>
-  <script src="../assets/case-tabs.js?v=20261113-9" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-10" defer></script>
 </body>
 </html>
