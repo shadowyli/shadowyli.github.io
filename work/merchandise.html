@@ -130,6 +130,43 @@
 
     .case-stack > .case-frame { margin: 0; min-height: 0; }
 
+    /* S10 工作服：左侧大图 + 右侧三张（神威 / 勇武 / 精锐）上到下 */
+    .merch-jersey-row {
+      display: grid;
+      grid-template-columns: calc(75% + 0.83px) minmax(0, 1fr);
+      gap: 6px;
+      align-items: stretch;
+      margin-top: 6px;
+    }
+
+    .case-body .merch-jersey-row > .case-frame,
+    .case-body .merch-jersey-row figure { margin: 0 !important; }
+
+    .merch-jersey-row > .case-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .case-stack--three {
+      display: grid;
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      min-height: 0;
+    }
+
+    .case-stack--three > figure { margin: 0 !important; min-height: 0; }
+
+    .case-stack--three img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 720px) {
+      .merch-jersey-row { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 560px) {
       .case-credits li { font-size: 11px; }
     }
@@ -202,19 +239,21 @@
         <figure class="case-frame case-frame--image merch-feature">
           <img src="../assets/merchandise-mengshou-s10-tote-bags.webp" alt="《梦幻西游》手游巅峰联赛 S10 帆布袋周边：黄色与蓝色两款角色图案帆布袋" data-i18n-alt="mengshouTotesAlt" width="1600" height="1600" loading="lazy" decoding="async">
         </figure>
-        <figure class="case-frame case-frame--image">
-          <img src="../assets/merchandise-mengshou-s10-jersey.webp" alt="《梦幻西游》手游巅峰联赛 S10 工作服设计：黑色电竞队服正背面，紫色线条与蛛网纹样" data-i18n-alt="mengshouJerseyAlt" width="1920" height="1080" loading="lazy" decoding="async">
-        </figure>
-        <div class="case-media-grid case-media-grid--three merch-trio">
+        <div class="merch-jersey-row">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/merchandise-mengshou-s10-jersey-yongwu.webp" alt="《梦幻西游》手游巅峰联赛 S10 勇武组选手服：黑色队服正背面，金色线条与「天下无双」" data-i18n-alt="jerseyYongwuAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../assets/merchandise-mengshou-s10-jersey.webp" alt="《梦幻西游》手游巅峰联赛 S10 工作服设计：黑色电竞队服正背面，紫色线条与蛛网纹样" data-i18n-alt="mengshouJerseyAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/merchandise-mengshou-s10-jersey-jingrui.webp" alt="《梦幻西游》手游巅峰联赛 S10 精锐组选手服：黑色队服正背面，蓝色线条与「东海湾」" data-i18n-alt="jerseyJingruiAlt" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/merchandise-mengshou-s10-jersey-shenwei.webp" alt="《梦幻西游》手游巅峰联赛 S10 神威组选手服：黑色队服正背面，红色线条与「紫禁之巅」" data-i18n-alt="jerseyShenweiAlt" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
+          <div class="case-stack case-stack--three">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/merchandise-mengshou-s10-jersey-shenwei.webp" alt="《梦幻西游》手游巅峰联赛 S10 神威组选手服：黑色队服正背面，红色线条与「紫禁之巅」" data-i18n-alt="jerseyShenweiAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/merchandise-mengshou-s10-jersey-yongwu.webp" alt="《梦幻西游》手游巅峰联赛 S10 勇武组选手服：黑色队服正背面，金色线条与「天下无双」" data-i18n-alt="jerseyYongwuAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/merchandise-mengshou-s10-jersey-jingrui.webp" alt="《梦幻西游》手游巅峰联赛 S10 精锐组选手服：黑色队服正背面，蓝色线条与「东海湾」" data-i18n-alt="jerseyJingruiAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
         <figure class="case-frame case-frame--image">
           <img src="../assets/campaign-mengshou-s9-graphic-design.webp" alt="《梦幻西游》手游 S9 巅峰联赛图案设计：山水、建筑与云纹白描，辅以火、电、水三纹" width="1920" height="1080" loading="lazy" decoding="async">

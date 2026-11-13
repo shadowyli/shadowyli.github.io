@@ -84,6 +84,10 @@
       gap: 6px;
     }
 
+    .case-row[data-layout="strip"].strip-six {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
     /* 横版 + 竖版并排：横版保形（3:1 分栏，裁切仅 ~5%），竖版因此不独占一行 */
     .case-row[data-layout="duo"] {
       display: grid;
@@ -555,7 +559,7 @@
           </figure>
         </div>
         <!-- 《梦幻西游》手游 S12 · 倒计时三张 + 战队出征三张：并成一条系列 -->
-        <div class="case-row" data-layout="strip">
+        <div class="case-row strip-six" data-layout="strip">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s12-cd3.webp" alt="《梦幻西游》手游 S12 巅峰联赛倒计时海报 · 3 天" width="1000" height="1779" loading="lazy" decoding="async">
           </figure>
