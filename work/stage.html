@@ -27,59 +27,57 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261112-105">
+  <link rel="stylesheet" href="../styles.css?v=20261113-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
 <style>
-    /* 01 / 02 舞台：左侧一大，右侧两张竖排，保持原比例并等高 */
-    .stage-01-grid,
-    .stage-02-grid {
+    /* 舞美模块：一大 + 其余小；相邻模块的大图左右交替，保持原比例并等高 */
+    .stage-media-grid {
       display: grid;
       gap: 6px;
       align-items: start;
+      grid-template-columns: var(--stage-large-col) minmax(0, 1fr);
     }
 
-    /* 01：左图 1920:754，右图 1920:810 */
-    .stage-01-grid { grid-template-columns: calc(68.24% + 0.76px) minmax(0, 1fr); }
+    .stage-module[data-stage-side="right"] .stage-media-grid {
+      grid-template-columns: minmax(0, 1fr) var(--stage-large-col);
+    }
 
-    /* 02：三图均为 1280:540 */
-    .stage-02-grid { grid-template-columns: calc(66.6667% + 0.74px) minmax(0, 1fr); }
+    .stage-module[data-stage-side="left"] .stage-media-main { grid-column: 1; grid-row: 1; }
+    .stage-module[data-stage-side="left"] .stage-media-side { grid-column: 2; grid-row: 1; }
+    .stage-module[data-stage-side="right"] .stage-media-main { grid-column: 2; grid-row: 1; }
+    .stage-module[data-stage-side="right"] .stage-media-side { grid-column: 1; grid-row: 1; }
 
-    .stage-01-side,
-    .stage-02-side {
+    .stage-media-side {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
 
-    .stage-01-grid figure,
-    .stage-02-grid figure {
+    .stage-media-grid figure {
       margin: 0;
     }
 
     /* 抵消全局相邻 figure 的 6px 上边距，避免右侧第二张被顶下去 */
-    .stage-01-grid .case-frame + .case-frame,
-    .stage-02-grid .case-frame + .case-frame { margin-top: 0; }
+    .stage-media-grid .case-frame + .case-frame { margin-top: 0; }
 
-    .stage-01-grid img,
-    .stage-02-grid img {
+    .stage-media-grid img {
       display: block;
       width: 100%;
       height: auto;
     }
 
+    /* 大图列宽按各模块原图比例反推，保证与右侧两小图总高严格相等 */
+    .stage-ratio-neck { --stage-large-col: calc(68.24% + 0.76px); }
+    .stage-ratio-eggy { --stage-large-col: calc(66.6667% + 0.74px); }
+
     @media (max-width: 720px) {
-      .stage-01-grid,
-      .stage-02-grid { grid-template-columns: 1fr; }
+      .stage-media-grid { grid-template-columns: 1fr; }
 
-      .stage-01-side,
-      .stage-02-side {
-        flex-direction: row;
-      }
+      .stage-media-main,
+      .stage-media-side { grid-column: 1; grid-row: auto; }
 
-      .stage-01-side figure,
-      .stage-02-side figure { flex: 1 1 0; }
-      .stage-01-grid img,
-      .stage-02-grid img { height: auto; }
+      .stage-media-side { flex-direction: row; }
+      .stage-media-side figure { flex: 1 1 0; }
     }
 
     /* 序言：胶囊 + 署名排成一行（与站内其他案例页保持一致） */
@@ -364,14 +362,14 @@
         </div>
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
+      <section class="case-section case-gallery stage-module stage-ratio-neck" data-stage-side="left" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">网易电竞 NeXT 舞台</span></h2>
 
-        <div class="stage-01-grid">
-          <figure class="case-frame case-frame--image stage-01-main">
+        <div class="stage-media-grid">
+          <figure class="case-frame case-frame--image stage-media-main">
             <img src="../assets/stage-next-overview.webp" alt="网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏" data-i18n-alt="stageAlt1" width="1920" height="754" decoding="async">
           </figure>
-          <div class="stage-01-side">
+          <div class="stage-media-side">
             <figure class="case-frame case-frame--image">
               <img src="../assets/stage-next-front.webp" alt="网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光" data-i18n-alt="stageAlt2" width="1920" height="810" loading="lazy" decoding="async">
             </figure>
@@ -382,14 +380,14 @@
         </div>
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery-02" aria-labelledby="case-title-02">
+      <section class="case-section case-gallery stage-module stage-ratio-eggy" data-stage-side="right" id="case-gallery-02" aria-labelledby="case-title-02">
         <h2 id="case-title-02"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">《蛋仔派对》舞台</span></h2>
 
-        <div class="stage-02-grid">
-          <figure class="case-frame case-frame--image stage-02-main">
+        <div class="stage-media-grid">
+          <figure class="case-frame case-frame--image stage-media-main">
             <img src="../assets/stage-eggy-01.webp" alt="《蛋仔派对》赛事舞台全景：彩虹拱门、中央伸展地板与两侧赛车装置" width="1280" height="540" loading="lazy" decoding="async">
           </figure>
-          <div class="stage-02-side">
+          <div class="stage-media-side">
             <figure class="case-frame case-frame--image">
               <img src="../assets/stage-eggy-02.webp" alt="《蛋仔派对》赛事舞台斜侧视角：彩虹拱门、选手席位与 EGGY PARTY 主屏" width="1280" height="540" loading="lazy" decoding="async">
             </figure>
@@ -665,6 +663,14 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-2" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-4" defer></script>
+  <script>
+    (function () {
+      var modules = document.querySelectorAll(".stage-module");
+      for (var index = 0; index < modules.length; index += 1) {
+        modules[index].setAttribute("data-stage-side", index % 2 === 0 ? "left" : "right");
+      }
+    })();
+  </script>
 </body>
 </html>
