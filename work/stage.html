@@ -27,7 +27,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-1">
+  <link rel="stylesheet" href="../styles.css?v=20261113-5">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
 <style>
     /* 舞美模块：一大 + 其余小；相邻模块的大图左右交替，保持原比例并等高 */
@@ -69,6 +69,7 @@
     /* 大图列宽按各模块原图比例反推，保证与右侧两小图总高严格相等 */
     .stage-ratio-neck { --stage-large-col: calc(68.24% + 0.76px); }
     .stage-ratio-eggy { --stage-large-col: calc(66.6667% + 0.74px); }
+    .stage-ratio-mengshou { --stage-large-col: calc(66.6667% - 0.44px); }
 
     @media (max-width: 720px) {
       .stage-media-grid { grid-template-columns: 1fr; }
@@ -398,6 +399,24 @@
         </div>
       </section>
 
+      <section class="case-section case-gallery stage-module stage-ratio-mengshou" data-stage-side="left" id="case-gallery-03" aria-labelledby="case-title-03">
+        <h2 id="case-title-03"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">《梦幻西游》手游舞台</span></h2>
+
+        <div class="stage-media-grid">
+          <figure class="case-frame case-frame--image stage-media-main">
+            <img src="../assets/stage-mengshou-01.webp" alt="《梦幻西游》手游赛事舞台全景：中央主屏、对称灯柱与地面徽记" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <div class="stage-media-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-mengshou-02.webp" alt="《梦幻西游》手游舞台主持出场：发光通道与主视觉背景" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-mengshou-03.webp" alt="《梦幻西游》手游舞台奖杯台：主持人、冠军奖杯与灯光装置" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
       <section class="case-section case-echo" aria-labelledby="echo-sign">
@@ -479,6 +498,7 @@
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
           section2Title: "《蛋仔派对》舞台",
+          section3Title: "《梦幻西游》手游舞台",
           slot2Hint: "16:9 画框槽位 · 内容待补充",
           socialSign: "设计的回声",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
@@ -508,6 +528,7 @@
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
           section2Title: "Eggy Party Stage",
+          section3Title: "Fantasy Westward Journey Mobile Stage",
           slot2Hint: "16:9 frame slot · content coming soon",
           socialSign: "The echo of design",
           statBadge1: "Twitter · 4.2M impressions · 30K likes",
@@ -663,7 +684,7 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-4" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-6" defer></script>
   <script>
     (function () {
       var modules = document.querySelectorAll(".stage-module");
