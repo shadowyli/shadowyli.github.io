@@ -1671,6 +1671,65 @@ html[lang="en"] .case-title { letter-spacing: -0.02em; }
   .mobile-play { display: inline-flex; }
 }
 
+/* 手机端悬浮案例 tab：案例页之间直接切换 */
+.case-tabs {
+  position: fixed;
+  left: 10px;
+  right: 10px;
+  bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  z-index: 55;
+  display: none;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid color-mix(in srgb, var(--text) 14%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.case-tabs::-webkit-scrollbar { display: none; }
+
+.case-tab {
+  display: inline-flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.case-tab:hover { color: var(--text); }
+
+.case-tab:focus-visible {
+  outline: 1px solid var(--text);
+  outline-offset: 2px;
+}
+
+.case-tab[aria-current="page"] {
+  background: var(--text);
+  color: var(--bg);
+}
+
+@media (max-width: 720px) {
+  .case-tabs { display: flex; }
+  .mobile-play { bottom: 78px; }
+  body.case-page .case-footer { padding-bottom: 96px; }
+}
+
 @media (max-width: 720px) {
   .case-related-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
   .case-related-card span { margin-top: 6px; font-size: 11px; }
