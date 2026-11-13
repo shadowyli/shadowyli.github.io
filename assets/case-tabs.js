@@ -16,30 +16,33 @@
 
   var nav = document.createElement("nav");
   nav.className = "case-tabs";
+  var track = document.createElement("div");
+  track.className = "case-tabs-track";
+  nav.appendChild(track);
   document.body.appendChild(nav);
 
   var drag = { active: false, moved: false, startX: 0, startLeft: 0, pointerId: null, blockClick: false };
 
   function centerFor(tab) {
-    var max = Math.max(0, nav.scrollWidth - nav.clientWidth);
-    var left = tab.offsetLeft - (nav.clientWidth - tab.offsetWidth) / 2;
+    var max = Math.max(0, track.scrollWidth - track.clientWidth);
+    var left = tab.offsetLeft - (track.clientWidth - tab.offsetWidth) / 2;
     return Math.max(0, Math.min(max, left));
   }
 
   function snapToNearest() {
-    var tabs = Array.prototype.slice.call(nav.querySelectorAll(".case-tab"));
+    var tabs = Array.prototype.slice.call(track.querySelectorAll(".case-tab"));
     if (!tabs.length) return;
-    var mid = nav.scrollLeft + nav.clientWidth / 2;
+    var mid = track.scrollLeft + track.clientWidth / 2;
     var best = tabs[0];
     var bestDistance = Infinity;
     tabs.forEach(function (tab) {
       var distance = Math.abs(tab.offsetLeft + tab.offsetWidth / 2 - mid);
       if (distance < bestDistance) { bestDistance = distance; best = tab; }
     });
-    if (typeof nav.scrollTo === "function") {
-      nav.scrollTo({ left: centerFor(best), behavior: "smooth" });
+    if (typeof track.scrollTo === "function") {
+      track.scrollTo({ left: centerFor(best), behavior: "smooth" });
     } else {
-      nav.scrollLeft = centerFor(best);
+      track.scrollLeft = centerFor(best);
     }
   }
 
@@ -49,7 +52,7 @@
     drag.active = true;
     drag.moved = false;
     drag.startX = event.clientX;
-    drag.startLeft = nav.scrollLeft;
+    drag.startLeft = track.scrollLeft;
     drag.pointerId = event.pointerId;
     drag.blockClick = false;
   });
@@ -64,7 +67,7 @@
     }
     if (!drag.moved) return;
     event.preventDefault();
-    nav.scrollLeft = drag.startLeft - delta;
+    track.scrollLeft = drag.startLeft - delta;
   });
 
   function endDrag(event) {
@@ -98,8 +101,8 @@
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     if (link.href === window.location.href) return;
-    if (typeof nav.scrollTo === "function") {
-      nav.scrollTo({ left: centerFor(link), behavior: "smooth" });
+    if (typeof track.scrollTo === "function") {
+      track.scrollTo({ left: centerFor(link), behavior: "smooth" });
     }
     document.body.classList.add("is-leaving");
     window.setTimeout(function () {
@@ -114,7 +117,7 @@
   function render() {
     var english = isEnglish();
     nav.setAttribute("aria-label", english ? "Switch case" : "案例切换");
-    nav.innerHTML = "";
+    track.innerHTML = "";
     CASES.forEach(function (item) {
       var link = document.createElement("a");
       link.className = "case-tab";
@@ -122,21 +125,30 @@
       link.draggable = false;
       link.textContent = english ? item.en : item.zh;
       if (item.id === current) link.setAttribute("aria-current", "page");
-      nav.appendChild(link);
+      track.appendChild(link);
     });
 
-    var currentTab = nav.querySelector('[aria-current="page"]');
+    var currentTab = track.querySelector('[aria-current="page"]');
     if (currentTab) {
-      var target = Math.max(0, currentTab.offsetLeft - (nav.clientWidth - currentTab.offsetWidth) / 2);
-      if (typeof nav.scrollTo === "function") {
-        nav.scrollTo({ left: target, behavior: "instant" });
+      var target = Math.max(0, currentTab.offsetLeft - (track.clientWidth - currentTab.offsetWidth) / 2);
+      if (typeof track.scrollTo === "function") {
+        track.scrollTo({ left: target, behavior: "instant" });
       } else {
-        nav.scrollLeft = target;
+        track.scrollLeft = target;
       }
     }
+
+    updateOverflow();
   }
 
   render();
+
+  function updateOverflow() {
+    nav.classList.toggle("is-overflowing", track.scrollWidth > track.clientWidth + 1);
+  }
+
+  window.addEventListener("resize", updateOverflow);
+  window.addEventListener("load", updateOverflow);
 
   if ("MutationObserver" in window) {
     new MutationObserver(render).observe(document.documentElement, {

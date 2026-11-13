@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../styles.css?v=20261113-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 空白案例页：内容未填时让页脚落在视口底部 */
@@ -45,86 +45,30 @@
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
-    /* 页首署名：与站内其他案例页保持一致 */
-    .case-body .voice {
-      position: relative;
-      display: block;
-      margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: clamp(14px, 1.6vw, 20px) 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-    }
-
-    .voice-body {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: clamp(12px, 1.5vw, 20px);
+    /* 页首署名：参考 FlowX 的 credit 列表样式 */
+    .video-credits {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4px;
+      margin: 0 0 clamp(20px, 2.6vw, 30px);
       padding: 0;
-      min-height: 26px;
+      list-style: none;
     }
 
-    .case-body .voice-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      max-width: none;
-      flex: none;
-      margin: 0;
-      min-height: 26px;
-      padding: 0 10px;
-      border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
-      border-radius: 999px;
+    .video-credits li {
       color: var(--text-muted);
-      font-size: 10.5px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      line-height: 1.6;
+      font-family: var(--font-cjk);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
     }
 
-    .voice-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    .voice-author {
-      display: flex;
-      align-items: center;
-      gap: clamp(9px, 1.1vw, 13px);
-      min-height: 26px;
-    }
-
-    .voice-rule {
-      display: block;
-      flex: none;
-      width: 22px;
-      height: 1px;
-      margin: 0;
-      background: color-mix(in srgb, var(--text) 45%, transparent);
-    }
-
-    .case-body .voice-name {
-      margin: 0;
-      max-width: none;
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.2;
-    }
-
-    .case-body .voice-credit {
-      margin: 0;
-      max-width: none;
-      color: var(--text-muted);
-      font-size: 11.5px;
-      line-height: 1.2;
-    }
-
-    @media (max-width: 720px) {
-      .case-body .voice { padding: 16px 0; }
+    @media (max-width: 560px) {
+      .video-credits li {
+        font-size: 9.5px;
+        line-height: 1.75;
+        letter-spacing: 0;
+      }
     }
 
     /* 01 模块：开场分镜，一行 5 张 */
@@ -135,7 +79,7 @@
     }
 
     /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐 */
-    .case-page .case-section .nbpl-opening-grid > .case-frame { margin: 0; }
+    .case-page .case-section .nbpl-opening-grid > .case-frame { margin: 0 !important; }
 
     .nbpl-opening-grid .case-frame--image img {
       display: block;
@@ -143,12 +87,12 @@
       height: auto;
     }
 
-    @media (max-width: 720px) {
-      .nbpl-opening-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
+    .nbpl-opening-hero { margin: 0 0 6px; }
 
-    @media (max-width: 560px) {
-      .nbpl-opening-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .nbpl-opening-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* 02 模块：蛋仔麦克疯包装，一行四个 */
@@ -158,7 +102,7 @@
       gap: 6px;
     }
 
-    .case-page .case-section .egg-mic-grid > .case-frame { margin: 0; }
+    .case-page .case-section .egg-mic-grid > .case-frame { margin: 0 !important; }
 
     .egg-mic-grid .case-frame--image img {
       display: block;
@@ -166,9 +110,55 @@
       height: auto;
     }
 
-    @media (max-width: 720px) {
-      .egg-mic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* 03 模块：深渊的召唤 TOP5 分镜，一行 4 张 */
+    .top5-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
     }
+
+    .case-page .case-section .top5-grid > .case-frame { margin: 0 !important; }
+
+    .top5-grid .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* 04 模块：第五情报局，左大 KV + 右侧 2×2 小图 */
+    .ivl-bureau-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      align-items: start;
+    }
+
+    .ivl-bureau-main { margin: 0; }
+
+    .ivl-bureau-main img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .ivl-bureau-thumbs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-page .case-section .ivl-bureau-thumbs > .case-frame { margin: 0; }
+
+    .ivl-bureau-thumbs img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 720px) {
+      .ivl-bureau-layout { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 <body class="case-page">
@@ -197,20 +187,16 @@
     <div class="case-body case-body--flush">
       <h1 class="sr-only" data-i18n-key="pageHeading">视频包装</h1>
 
-      <section class="voice" aria-label="视频包装" data-i18n-aria="voiceLabel">
-        <div class="voice-body">
-          <p class="voice-pill"><span class="voice-dot"></span><span data-i18n-key="voicePill">视频包装</span></p>
-          <div class="voice-author">
-            <span class="voice-rule" aria-hidden="true"></span>
-            <p class="voice-credit"><span data-i18n-key="voiceCredit">3D &amp; 视觉创意设计：</span><span class="voice-name" data-i18n-key="voiceName">影子（李颖）</span></p>
-          </div>
-        </div>
-      </section>
+      <ul class="video-credits" aria-label="项目署名">
+        <li data-i18n-key="creditLine">3D &amp; 视觉创意设计：影子（李颖）</li>
+      </ul>
 
       <section class="case-section nbpl-opening" aria-labelledby="nbpl-opening-title">
         <h2 id="nbpl-opening-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">永劫无间 NBPL 夏季赛常规赛开场</span></h2>
+        <figure class="case-frame case-frame--image nbpl-opening-hero">
+          <img src="../assets/video-packaging-nbpl-hero.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 主视觉" width="1200" height="675" loading="eager" decoding="async">
+        </figure>
         <div class="nbpl-opening-grid">
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-01.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 01" width="640" height="360" loading="lazy" decoding="async" data-frame-index="01"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-02.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 02" width="640" height="360" loading="lazy" decoding="async" data-frame-index="02"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-03.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 03" width="640" height="360" loading="lazy" decoding="async" data-frame-index="03"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-04.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 04" width="640" height="360" loading="lazy" decoding="async" data-frame-index="04"></figure>
@@ -251,9 +237,42 @@
         </div>
       </section>
 
+      <section class="case-section top5" aria-labelledby="top5-title">
+        <h2 id="top5-title"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">《第五人格》深渊的召唤 VIII 全球总决赛 TOP5</span></h2>
+        <div class="top5-grid">
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-01.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 01" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-03.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 03" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-04.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 04" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-05.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 05" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-06.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 06" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-07.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 07" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-08.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 08" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-09.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 09" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-10.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 10" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-11.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 11" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-12.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 12" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-14.webp" alt="《第五人格》深渊的召唤 VIII 全球总决赛 TOP5 · 分镜 14" width="640" height="360" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
+      <section class="case-section ivl-bureau" aria-labelledby="ivl-bureau-title">
+        <h2 id="ivl-bureau-title"><span class="case-section-index" aria-hidden="true">04</span><span data-i18n-key="section4Title">《第五人格》IVL 第五情报局</span></h2>
+        <div class="ivl-bureau-layout">
+          <figure class="case-frame case-frame--image ivl-bureau-main">
+            <img src="../assets/video-packaging-ivl-bureau-main.webp" alt="《第五人格》IVL 第五情报局 主视觉" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <div class="ivl-bureau-thumbs">
+            <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-ivl-bureau-01.webp" alt="《第五人格》IVL 第五情报局 · 全屏背景" width="640" height="360" loading="lazy" decoding="async"></figure>
+            <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-ivl-bureau-02.webp" alt="《第五人格》IVL 第五情报局 · 全屏环节板" width="640" height="360" loading="lazy" decoding="async"></figure>
+            <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-ivl-bureau-03.webp" alt="《第五人格》IVL 第五情报局 · 视频框" width="640" height="360" loading="lazy" decoding="async"></figure>
+            <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-ivl-bureau-04.webp" alt="《第五人格》IVL 第五情报局 · 节目标识" width="640" height="360" loading="lazy" decoding="async"></figure>
+          </div>
+        </div>
+      </section>
+
       <!-- 往这里继续追加内容，例如
       <section class="case-section">
-        <h2><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">区块标题</span></h2>
+        <h2><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">区块标题</span></h2>
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/文件名.webp" alt="图片说明" width="1920" height="1080" loading="lazy" decoding="async">
@@ -296,12 +315,11 @@
           navWork: "作品",
           navAbout: "关于我",
           pageHeading: "视频包装",
-          voiceLabel: "视频包装",
-          voicePill: "视频包装",
-          voiceName: "影子（李颖）",
-          voiceCredit: "3D & 视觉创意设计：",
+          creditLine: "3D & 视觉创意设计：影子（李颖）",
           section1Title: "永劫无间 NBPL 夏季赛常规赛开场",
           section2Title: "《蛋仔派对》麦克疯 · 视频包装",
+          section3Title: "《第五人格》深渊的召唤 VIII 全球总决赛 TOP5",
+          section4Title: "《第五人格》IVL 第五情报局",
           closeDialog: "关闭",
           wechatTitle: "微信二维码",
           saveHint: "长按图片保存二维码",
@@ -316,12 +334,11 @@
           navWork: "Work",
           navAbout: "About",
           pageHeading: "Video Packaging",
-          voiceLabel: "Video Packaging",
-          voicePill: "VIDEO PACKAGING",
-          voiceName: "Shadow (Li Ying)",
-          voiceCredit: "3D & Visual Creative Design: ",
+          creditLine: "3D & Visual Creative Design: Shadow (Li Ying)",
           section1Title: "Naraka: Bladepoint NBPL Summer Split Opening",
           section2Title: "Eggy Party Mic Check · Video Packaging",
+          section3Title: "Identity V Call of the Abyss VIII Global Finals TOP 5",
+          section4Title: "Identity V IVL · The Fifth Intelligence Bureau",
           closeDialog: "Close",
           wechatTitle: "WeChat QR code",
           saveHint: "Long-press the image to save the QR code",
@@ -481,6 +498,6 @@
       });
     })();
   </script>
-  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-8" defer></script>
 </body>
 </html>

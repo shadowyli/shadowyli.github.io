@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../styles.css?v=20261113-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -56,7 +56,7 @@
     }
 
     @media (max-width: 560px) {
-      .case-credits { grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); gap: 3px 8px; }
+      .case-credits { grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; }
       .case-credits li { font-size: 9.5px; line-height: 1.75; letter-spacing: 0; }
     }
 
@@ -211,6 +211,43 @@
         color-mix(in srgb, var(--text) 12%, transparent) calc(50% + 0.5px),
         transparent calc(50% + 0.5px)
       );
+    }
+
+    /* 窄屏保持电脑端 6 列数据 + 4 列价值卡；空间不足时横向滑动 */
+    @media (max-width: 900px) {
+      .flowx-value .case-stats {
+        grid-template-columns: repeat(6, minmax(150px, 1fr));
+        gap: 24px 20px;
+        overflow-x: auto;
+      }
+
+      .pillars {
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+        overflow-x: auto;
+      }
+
+      .pillar {
+        padding: 24px 22px 26px;
+        border-left: 1px solid var(--line);
+      }
+
+      .pillar:nth-child(odd) {
+        padding-left: 22px;
+        border-left: 1px solid var(--line);
+      }
+
+      .pillar:first-child {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .pillar:nth-child(n + 3) {
+        border-top: 0;
+      }
+
+      .case-body .pillar-title { font-size: 18px; }
+      .case-body .pillar-desc { font-size: 12.5px; }
+      .case-body .pillar-stat strong { font-size: clamp(28px, 2.6vw, 36px); }
     }
   </style>
 </head>
@@ -572,6 +609,6 @@
       });
     })();
   </script>
-  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-8" defer></script>
 </body>
 </html>

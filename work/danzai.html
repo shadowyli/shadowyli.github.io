@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../styles.css?v=20261113-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 署名模块：4 条，左 2 右 2，窄屏单列 */
@@ -70,6 +70,8 @@
 
     /* 标题与图之间只留一点呼吸，不沿用区块之间的默认大间距 */
     .case-gallery > h2 { margin-bottom: clamp(16px, 1.6vw, 22px); }
+
+    .case-row + .case-row { margin-top: 6px; }
 
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
     @media (min-width: 721px) {
@@ -950,6 +952,6 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-8" defer></script>
 </body>
 </html>

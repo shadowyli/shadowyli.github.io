@@ -21,7 +21,7 @@
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261113-7">
+  <link rel="stylesheet" href="styles.css?v=20261113-8">
   <link rel="stylesheet" href="assets/site-wide.css?v=20261112-5">
   <style>
     /* 首页底部：与案例页一致的弧形自动播放回声 */
@@ -136,6 +136,23 @@
         -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
         mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
       }
+    }
+
+    /* 关于我底部信息：窄屏也保持电脑端三列 */
+    @media (max-width: 560px) {
+      .about-facts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 24px;
+      }
+
+      .about-facts div,
+      .about-facts div:first-child {
+        padding: 24px 10px;
+        border-bottom: 0;
+      }
+
+      .about-facts div:first-child { padding-left: 0; }
+      .about-facts div:last-child { padding-right: 0; }
     }
   </style>
 </head>
@@ -264,10 +281,13 @@
               </a>
             </article>
             <article class="project-entry project-card" data-title="周边物料 Merchandise" data-tags="奖牌 周边 物料 游戏 medal merchandise game">
-              <figure class="project-slot project-slot-filled">
-                <img src="assets/merchandise-cover.webp" alt="王牌竞速星芒争锋赛奖牌渲染三视图" width="1400" height="788" loading="lazy" decoding="async">
-              </figure>
-              <h3 class="project-slot-title" data-i18n="merchandiseTitle">周边物料</h3>
+              <a class="project-card-link" href="work/merchandise.html" aria-label="查看项目案例：周边物料">
+                <figure class="project-slot project-slot-filled">
+                  <img src="assets/merchandise-cover.webp" alt="王牌竞速星芒争锋赛奖牌渲染三视图" width="1400" height="788" loading="lazy" decoding="async">
+                  <span class="project-card-cta">查看项目 →</span>
+                </figure>
+                <h3 class="project-slot-title" data-i18n="merchandiseTitle">周边物料</h3>
+              </a>
             </article>
             <article class="project-entry project-card" data-title="舞美设计 Stage Design" data-tags="舞台 舞美 赛事 视觉 stage event visual">
               <a class="project-card-link" href="work/stage.html" aria-label="查看项目案例：舞美设计">
@@ -434,7 +454,7 @@
             </ul>
           </section>
           <div class="about-facts">
-            <div><span data-i18n="focusLabel">专注方向</span><strong data-i18n="focusValue">品牌视觉 / 游戏营销</strong></div><div><span data-i18n="baseLabel">所在地</span><strong data-i18n="baseValue">中国 广州</strong></div><div><span data-i18n="targetCitiesLabel">意向城市</span><strong data-i18n="targetCitiesValue">广州/深圳</strong></div>
+            <div><span data-i18n="focusLabel">专注方向</span><strong data-i18n="focusValue">品牌视觉 / 技术美术</strong></div><div><span data-i18n="baseLabel">所在地</span><strong data-i18n="baseValue">中国 广州</strong></div><div><span data-i18n="targetCitiesLabel">意向城市</span><strong data-i18n="targetCitiesValue">广州/深圳</strong></div>
           </div>
         </div>
       </section>
@@ -456,7 +476,7 @@
   </div>
 
   <script src="assets/vendor/lucide.min.js" defer></script>
-  <script src="script.js?v=20261113-3" defer></script>
+  <script src="script.js?v=20261113-4" defer></script>
   <script type="module" src="assets/home-echo.js?v=20261112-2"></script>
 </body>
 </html>

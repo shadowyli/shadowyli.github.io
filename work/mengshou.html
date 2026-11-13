@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261113-7">
+  <link rel="stylesheet" href="../styles.css?v=20261113-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261112-5">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -113,9 +113,83 @@
       object-fit: contain;
     }
 
-    .case-body .case-credit-top {
+    /* 署名模块：参考 FlowX，两列两行，窄屏单列 */
+    .case-credits {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, auto);
+      gap: 4px 36px;
       margin: 0 0 clamp(18px, 2.4vw, 28px);
-      max-width: none;
+      padding: 0;
+      list-style: none;
+    }
+
+    .case-credits li {
+      color: var(--text-muted);
+      font-family: var(--font-cjk);
+      font-size: 12px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 560px) {
+      .case-credits {
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 2px;
+      }
+      .case-credits li { font-size: 9.5px; }
+    }
+
+    /* 品牌视觉：红在左跨两行，蓝/黄在右侧上下，保持 16:9 原比例 */
+    .case-media-grid.brand-mosaic {
+      grid-template-columns: calc(66.667% - 0.44px) minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      gap: 6px !important;
+    }
+
+    .case-body .case-media-grid.brand-mosaic > .case-frame { margin: 0 !important; }
+
+    .case-media-grid.brand-mosaic > figure:nth-child(2) {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .case-media-grid.brand-mosaic > figure:nth-child(1) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .case-media-grid.brand-mosaic > figure:nth-child(3) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .case-media-grid.brand-mosaic img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* 第二组镜像：大红图在右，蓝/黄在左上下 */
+    .case-media-grid.brand-mosaic--mirror {
+      grid-template-columns: minmax(0, 1fr) calc(66.667% - 0.44px);
+    }
+
+    .case-media-grid.brand-mosaic--mirror > figure:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .case-media-grid.brand-mosaic--mirror > figure:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .case-media-grid.brand-mosaic--mirror > figure:nth-child(3) {
+      grid-column: 1;
+      grid-row: 2;
     }
     /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
     .social-badge--long {
@@ -274,7 +348,11 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <p class="case-caption case-credit-top">3D &amp; 视觉创意设计：影子（李颖） | 动效设计：李楚怡、纪云、郑斯锴、程禹涵、刘佰强 | 美术督导：胡煦升、刘星</p>
+      <ul class="case-credits" aria-label="项目署名">
+        <li>3D &amp; 视觉创意设计：影子（李颖）</li>
+        <li>动效设计：李楚怡、纪云、郑斯锴、程禹涵、刘佰强</li>
+        <li>美术督导：胡煦升、刘星</li>
+      </ul>
       <!-- 内容待补充 -->
       <section class="case-section case-gallery">
         <h2><span class="case-section-index" aria-hidden="true">01</span>主视觉 KV</h2>
@@ -294,6 +372,10 @@
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-s10-kv.webp" alt="《梦幻西游》手游 S10 巅峰联赛主视觉：缚天纪命，问鼎巅峰" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
+      </section>
+
+      <section class="case-section case-gallery">
+        <h2><span class="case-section-index" aria-hidden="true">02</span>品牌视觉</h2>
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
         </figure>
@@ -304,7 +386,7 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
           </button>
         </figure>
-        <div class="case-media-grid case-media-grid--three">
+        <div class="case-media-grid case-media-grid--three brand-mosaic">
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4">
             <img src="../assets/mengshou-group-jingrui-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组背景：蓝色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组背景动画"></video>
@@ -318,7 +400,7 @@
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组背景动画"></video>
           </figure>
         </div>
-        <div class="case-media-grid case-media-grid--three">
+        <div class="case-media-grid case-media-grid--three brand-mosaic brand-mosaic--mirror">
           <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4">
             <img src="../assets/mengshou-group-jingrui-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组徽记特写：蓝色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组徽记动画"></video>
@@ -701,6 +783,6 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
-  <script src="../assets/case-tabs.js?v=20261113-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261113-8" defer></script>
 </body>
 </html>
