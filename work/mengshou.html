@@ -104,12 +104,15 @@
     }
     /* 网格内各列必须同一水平线：抵消全局 figure + figure 的 6px 上边距 */
     .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
+    /* 网格后面紧跟的整幅图（品牌视觉末尾那张）：补上和网格同样的缝 */
+    .case-gallery .case-media-grid + .case-frame { margin-top: 6px; }
     /* 手机端：站内 site-wide.css 用 !important 把 figure 缝压到 4px，
        网格内单元格会被一起顶下去 4px（第 2、3 张比第 1 张低），
        网格与上图的缝也会比列缝宽 2px——这里按手机端 4px 统一回来 */
     @media (max-width: 720px) {
       .case-gallery .case-media-grid { margin-top: 4px !important; }
       .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0 !important; }
+      .case-gallery .case-media-grid + .case-frame { margin-top: 4px !important; }
     }
     .case-gallery .case-media-grid img {
       width: 100%;
@@ -380,9 +383,6 @@
 
       <section class="case-section case-gallery">
         <h2><span class="case-section-index" aria-hidden="true">02</span>品牌视觉</h2>
-        <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
-        </figure>
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
           <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛通用背景动画"></video>
@@ -418,6 +418,9 @@
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组徽记动画"></video>
           </figure>
         </div>
+        <figure class="case-frame case-frame--image">
+          <img src="../assets/mengshou-gallery-cover-s10.webp" alt="《梦幻西游》手游巅峰联赛 S10 概念主视觉：金色羽翼奖杯徽记与深色峡谷背景" width="1920" height="1080" loading="lazy" decoding="async">
+        </figure>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-screen" aria-labelledby="case-title-screen">
