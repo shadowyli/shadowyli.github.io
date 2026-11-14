@@ -98,23 +98,6 @@
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
     .case-gallery .case-media-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    /* 大屏 · 组别小标题与图注（S9 通栏条 / S12 舞台实拍） */
-    .case-gallery .case-screen-subhead {
-      margin: clamp(26px, 3vw, 34px) 0 8px;
-      color: var(--text-muted);
-      font-family: "Space Grotesk", "Archivo", var(--font-cjk);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-    }
-    .case-gallery h2 + .case-screen-subhead { margin-top: 0; }
-    .case-gallery .case-media-grid figcaption {
-      margin-top: 8px;
-      color: var(--text-muted);
-      font-size: 12px;
-      line-height: 1.5;
-      letter-spacing: 0.02em;
-    }
     /* S12 舞台实拍细节多，窄屏收成一列 */
     @media (max-width: 720px) {
       .case-gallery .case-media-grid--s12 { grid-template-columns: 1fr; }
@@ -439,7 +422,6 @@
 
       <section class="case-section case-gallery" id="case-gallery-screen" aria-labelledby="case-title-screen">
         <h2 id="case-title-screen"><span class="case-section-index" aria-hidden="true">03</span>大屏</h2>
-        <p class="case-screen-subhead" data-i18n-key="screenS9">S9 赛季 · 组别大屏</p>
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-s9-screen-jingrui-1.webp" alt="《梦幻西游》手游 S9 季后赛精锐组登场大屏：蓝色水波与冰晶氛围" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
@@ -458,31 +440,24 @@
         <figure class="case-frame case-frame--image">
           <img src="../assets/mengshou-s9-screen-yongwu-2.webp" alt="《梦幻西游》手游 S9 季后赛勇武组登场大屏：金色铠甲角色与「勇武」书法" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
-        <p class="case-screen-subhead" data-i18n-key="screenS12">S12 季后赛 · 组别大屏</p>
         <div class="case-media-grid case-media-grid--s12">
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-jingrui-enter.webp" alt="《梦幻西游》手游 S12 季后赛精锐组大屏入场画面：蓝色水波舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12JingruiEnter">精锐组 · 入场</figcaption>
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-jingrui-final.webp" alt="《梦幻西游》手游 S12 季后赛精锐组大屏落版：舞台亮起「精锐」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12JingruiFinal">精锐组 · 落版</figcaption>
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-shenwei-enter.webp" alt="《梦幻西游》手游 S12 季后赛神威组大屏入场画面：红色熔岩舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12ShenweiEnter">神威组 · 入场</figcaption>
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-shenwei-final.webp" alt="《梦幻西游》手游 S12 季后赛神威组大屏落版：舞台亮起「神威」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12ShenweiFinal">神威组 · 落版</figcaption>
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-yongwu-enter.webp" alt="《梦幻西游》手游 S12 季后赛勇武组大屏入场画面：金色沙尘舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12YongwuEnter">勇武组 · 入场</figcaption>
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/mengshou-s12-screen-yongwu-final.webp" alt="《梦幻西游》手游 S12 季后赛勇武组大屏落版：舞台亮起「勇武」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-            <figcaption data-i18n-key="s12YongwuFinal">勇武组 · 落版</figcaption>
           </figure>
         </div>
       </section>
@@ -566,14 +541,6 @@
           back: "← 返回作品集",
           contactMe: "联系我",
           playAll: "一键播放",
-          screenS9: "S9 赛季 · 组别大屏",
-          screenS12: "S12 季后赛 · 组别大屏",
-          s12JingruiEnter: "精锐组 · 入场",
-          s12JingruiFinal: "精锐组 · 落版",
-          s12ShenweiEnter: "神威组 · 入场",
-          s12ShenweiFinal: "神威组 · 落版",
-          s12YongwuEnter: "勇武组 · 入场",
-          s12YongwuFinal: "勇武组 · 落版",
           navWork: "作品",
           navAbout: "关于我",
           footerNote: "影子 · 视觉设计作品集",
@@ -595,14 +562,6 @@
           back: "← Back to portfolio",
           contactMe: "Contact me",
           playAll: "Play all",
-          screenS9: "Season S9 · Group Screens",
-          screenS12: "S12 Playoffs · Group Screens",
-          s12JingruiEnter: "Jingrui · Entry",
-          s12JingruiFinal: "Jingrui · Final",
-          s12ShenweiEnter: "Shenwei · Entry",
-          s12ShenweiFinal: "Shenwei · Final",
-          s12YongwuEnter: "Yongwu · Entry",
-          s12YongwuFinal: "Yongwu · Final",
           navWork: "Work",
           navAbout: "About",
           footerNote: "Shadow · Visual Design Portfolio",
