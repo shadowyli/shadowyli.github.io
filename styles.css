@@ -1688,14 +1688,13 @@ body.case-page .case-body h2 {
   align-items: center;
   gap: 2px;
   padding: 4px;
-  border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  /* 兜底：不支持 color-mix 的内核（老 iOS / 微信 X5）用实色胶囊，保证 tab 一定可见 */
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  background: var(--surface);
   -webkit-backdrop-filter: blur(24px) saturate(140%);
   backdrop-filter: blur(24px) saturate(140%);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent),
-    0 14px 34px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
   overflow: hidden;
 }
 
@@ -1743,7 +1742,7 @@ body.case-page .case-footer { padding-bottom: 96px; }
   min-height: 38px;
   padding: 0 12px;
   border-radius: 999px;
-  color: color-mix(in srgb, var(--text) 72%, transparent);
+  color: var(--text);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -1781,6 +1780,19 @@ body.case-page.is-leaving {
 .case-tab[aria-current="page"] {
   background: var(--text);
   color: var(--bg);
+}
+
+/* 内核支持 color-mix 时升级成半透明磨砂胶囊；老 iOS / 微信 X5 保留上面的实色兜底 */
+@supports (background: color-mix(in srgb, #000 50%, transparent)) {
+  .case-tabs {
+    border-color: color-mix(in srgb, var(--text) 18%, transparent);
+    background: color-mix(in srgb, var(--bg) 62%, transparent);
+    box-shadow:
+      inset 0 1px 0 color-mix(in srgb, var(--text) 10%, transparent),
+      0 14px 34px rgba(0, 0, 0, 0.28);
+  }
+  .case-tab { color: color-mix(in srgb, var(--text) 72%, transparent); }
+  .case-tab:hover { color: var(--text); }
 }
 
 @media (max-width: 720px) {
