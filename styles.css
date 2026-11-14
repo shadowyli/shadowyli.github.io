@@ -25,7 +25,7 @@
 /* 中文统一使用思源黑体；手机端无本地字体时加载站内子集 */
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Regular.woff2?v=20261112-98") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Regular.woff2?v=20261114-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -34,7 +34,7 @@
 
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Medium.woff2?v=20261112-98") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Medium.woff2?v=20261114-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 500;
@@ -43,7 +43,7 @@
 
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Bold.woff2?v=20261112-98") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Bold.woff2?v=20261114-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 700;
@@ -408,7 +408,7 @@ img { display: block; max-width: 100%; }
   box-shadow: 0 0 0 4px rgba(184, 239, 50, 0.12);
 }
 
-.identity h2 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 28px; line-height: 1.1; }
+.identity h2 { margin: 0; font-family: "Space Grotesk", var(--font-cjk); font-size: 28px; line-height: 1.1; }
 .identity h2, .handle { overflow-wrap: anywhere; }
 .name-en { font-size: 0.72em; font-weight: 600; white-space: nowrap; }
 .handle { margin: 7px 0 0; color: var(--text-muted); font-size: 13px; line-height: 1.5; }
