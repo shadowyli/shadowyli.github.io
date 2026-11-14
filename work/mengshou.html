@@ -158,6 +158,13 @@
     }
 
     .case-body .case-media-grid.brand-mosaic > .case-frame { margin: 0 !important; }
+    /* 手机端和全站一样收成 4px 缝；列宽按 4px 缝重算，保持大图 = 两张小图 + 一道缝 */
+    @media (max-width: 720px) {
+      .case-media-grid.brand-mosaic {
+        grid-template-columns: calc(66.667% - 0.3px) minmax(0, 1fr);
+        gap: 4px !important;
+      }
+    }
 
     .case-media-grid.brand-mosaic > figure:nth-child(2) {
       grid-column: 1;
