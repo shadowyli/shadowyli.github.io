@@ -13,7 +13,7 @@
     })();
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="舞美设计案例：网易电竞 NeXT 冬季赛舞台全景、正视图与灯光结构。">
+  <meta name="description" content="舞美设计案例：网易电竞 NeXT 冬季赛、梦幻西游 S11、蛋仔派对盛典与《全明星街球派对》DCDC 冠军杯舞台。">
   <title>舞美设计 · 赛事舞台视觉 | Shadowyli</title>
   <script>
     (function () {
@@ -84,6 +84,23 @@
     .stage-ratio-neck { --stage-large-col: calc(68.24% + 0.76px); }
     .stage-ratio-eggy { --stage-large-col: calc(66.6667% + 0.74px); }
     .stage-ratio-mengshou { --stage-large-col: calc(66.6667% - 0.44px); }
+    .stage-ratio-dcdc { --stage-large-col: calc(66.6667% + 0.74px); }
+
+    /* DCDC：首屏一大两小，其余四张两行铺满 */
+    .stage-media-extra {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .stage-media-extra figure { margin: 0; }
+
+    .stage-media-extra img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     /* 署名模块 */
     .case-credits {
@@ -127,12 +144,6 @@
     .case-gallery .case-row[data-layout="secondary"] .case-frame--image img {
       width: 100%;
       height: auto;
-    }
-
-    /* 02 的 16:9 画框槽位：虚线框标明可替换区域 */
-    .case-gallery .case-placeholder-frame .case-frame-inner {
-      border: 1px dashed color-mix(in srgb, var(--text) 16%, transparent);
-      background: color-mix(in srgb, var(--surface) 55%, transparent);
     }
 
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
@@ -267,11 +278,13 @@
     @media (max-width: 720px) {
       /* 与宣发设计画廊对齐：手机端画框间距统一 4px */
       .stage-media-grid,
-      .stage-media-side { gap: 4px; }
+      .stage-media-side,
+      .stage-media-extra { gap: 4px; }
 
       .case-gallery.stage-module + .case-gallery.stage-module { margin-top: 4px; }
       .case-gallery .case-row + .case-row { margin-top: 4px; }
       .case-gallery .case-row[data-layout="secondary"] { gap: 4px; }
+      .stage-media-extra { margin-top: 4px; }
 
       .echo-reel { height: clamp(180px, 52vw, 240px); }
       .echo-canvas {
@@ -360,6 +373,38 @@
         </div>
       </section>
 
+      <section class="case-section case-gallery stage-module stage-ratio-dcdc" data-stage-side="right" id="case-gallery-04" aria-label="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台">
+
+        <div class="stage-media-grid">
+          <figure class="case-frame case-frame--image stage-media-main">
+            <img src="../assets/stage-dcdc-2.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带" data-i18n-alt="dcdcAlt2" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <div class="stage-media-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-dcdc-3.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台近景：主屏、选手席与橙色结构" data-i18n-alt="dcdcAlt3" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-dcdc-4.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：蓝橙渐变主屏与灯光" data-i18n-alt="dcdcAlt4" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+
+        <div class="stage-media-extra">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/stage-dcdc-5.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/stage-dcdc-6.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台：主持人台与主屏" data-i18n-alt="dcdcAlt6" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/stage-dcdc-7.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台侧视角：中央 Logo 结构" data-i18n-alt="dcdcAlt7" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/stage-dcdc-8.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </section>
+
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
       <section class="case-section case-echo" aria-labelledby="echo-sign">
@@ -438,9 +483,15 @@
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
+          dcdcAlt2: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带",
+          dcdcAlt3: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台近景：主屏、选手席与橙色结构",
+          dcdcAlt4: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：蓝橙渐变主屏与灯光",
+          dcdcAlt5: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱",
+          dcdcAlt6: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台：主持人台与主屏",
+          dcdcAlt7: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台侧视角：中央 Logo 结构",
+          dcdcAlt8: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写",
           section2Title: "蛋仔派对盛典舞台",
           section3Title: "梦幻西游手游巅峰联赛 S11 舞台",
-          slot2Hint: "16:9 画框槽位 · 内容待补充",
           socialSign: "设计的回声",
           statBadge1: "推特420w+曝光·3万赞+破圈爆款",
           statBadge2: "推特35w+曝光·高互动万赞热帖",
@@ -453,7 +504,7 @@
           statBadge8: "全网300w曝光节目",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "舞美设计 · 赛事舞台视觉 | Shadowyli",
-          metaDescription: "舞美设计案例：网易电竞 NeXT 冬季赛舞台全景、正视图与灯光结构。"
+          metaDescription: "舞美设计案例：网易电竞 NeXT 冬季赛、梦幻西游 S11、蛋仔派对盛典与《全明星街球派对》DCDC 冠军杯舞台。"
         },
         en: {
           skip: "Skip to content",
@@ -466,9 +517,15 @@
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
+          dcdcAlt2: "All-Star Streetball Party DCDC Championship summer finals stage front panorama with curved main screen and blue-orange light strips",
+          dcdcAlt3: "All-Star Streetball Party DCDC Championship stage close front view with main screen, player desks and orange structures",
+          dcdcAlt4: "All-Star Streetball Party DCDC Championship stage front view with blue-orange gradient screen and lighting",
+          dcdcAlt5: "All-Star Streetball Party DCDC Championship stage front view with white main screen and symmetrical light columns",
+          dcdcAlt6: "All-Star Streetball Party DCDC Championship stage with host desk and main screen",
+          dcdcAlt7: "All-Star Streetball Party DCDC Championship stage side angle with central logo structure",
+          dcdcAlt8: "All-Star Streetball Party DCDC Championship stage central structure close-up",
           section2Title: "Eggy Party Ceremony Stage",
           section3Title: "Fantasy Westward Journey Mobile Peak League S11 Stage",
-          slot2Hint: "16:9 frame slot · content coming soon",
           socialSign: "The echo of design",
           statBadge1: "Twitter · 4.2M impressions · 30K likes",
           statBadge2: "Twitter · 350K impressions · 10K-like hit",
@@ -481,7 +538,7 @@
           statBadge8: "3M-impression show",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Stage Design · Event Stage Visual | Shadowyli",
-          metaDescription: "Stage design case study: NetEase Esports NeXT winter stage panoramas, front views and lighting structure."
+          metaDescription: "Stage design case study: NetEase Esports NeXT Winter, Fantasy Westward Journey S11, Eggy Party Ceremony and All-Star Streetball Party DCDC Championship stages."
         }
       };
 
