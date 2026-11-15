@@ -4,6 +4,8 @@
   font-display: swap;
   font-style: normal;
   font-weight: 100 900;
+  /* 排除「&」：Archivo 的 & 是单层的 δ 形，夹在中文里像乱码，交给下面的 CJK Ampersand */
+  unicode-range: U+0000-0025, U+0027-00FF;
 }
 
 @font-face {
@@ -12,6 +14,17 @@
   font-display: swap;
   font-style: normal;
   font-weight: 300 700;
+  unicode-range: U+0000-0025, U+0027-00FF;
+}
+
+/* 全站的「&」都用思源黑体的字形：只含一个字符，1.8KB */
+@font-face {
+  font-family: "CJK Ampersand";
+  src: url("assets/fonts/AmpersandSourceHan.woff2?v=20261115-1") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  unicode-range: U+0026;
 }
 
 @font-face {
@@ -25,7 +38,7 @@
 /* 中文统一使用思源黑体；手机端无本地字体时加载站内子集 */
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Regular.woff2?v=20261114-1") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -34,7 +47,7 @@
 
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Medium.woff2?v=20261114-1") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Medium.woff2?v=20261115-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 500;
@@ -43,7 +56,7 @@
 
 @font-face {
   font-family: "Source Han Sans CN";
-  src: url("assets/fonts/SourceHanSansCN-Bold.woff2?v=20261114-1") format("woff2");
+  src: url("assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 700;
@@ -73,7 +86,7 @@
   --sidebar-width: 300px;
   --radius: 6px;
   --case-gap: clamp(32px, 4vw, 56px);
-  --font-cjk: "Source Han Sans CN", "思源黑体 CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-cjk: "CJK Ampersand", "Source Han Sans CN", "思源黑体 CN", "Source Han Sans SC", "Noto Sans SC", "Noto Sans CJK SC", "CJK Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
   color-scheme: dark;
 }
 

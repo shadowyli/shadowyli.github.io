@@ -83,6 +83,33 @@ def build(src_dir: pathlib.Path, codepoints: set[int]) -> None:
         print(f"{out.name}: {len(codepoints)} codepoints, {out.stat().st_size / 1024:.1f} KB")
 
 
+def build_ampersand(src_dir: pathlib.Path) -> None:
+    """单独做一个「&」。
+
+    Archivo / Space Grotesk 的 & 是单层的 δ 形，夹在中文句子里像乱码，
+    所以 .woff2 只放一个思源黑体的 &，styles.css 里用 unicode-range: U+0026
+    让所有 & 都走它，拉丁字母仍然走 Archivo。
+    """
+    src = src_dir / WEIGHTS["Regular"]
+    if not src.exists():
+        sys.exit(f"缺少源文件: {src}")
+    font = TTFont(src)
+    options = subset.Options()
+    options.flavor = "woff2"
+    options.name_IDs = ["*"]
+    options.name_legacy = True
+    options.notdef_outline = True
+    options.recalc_bounds = True
+    options.drop_tables += ["DSIG"]
+    subsetter = subset.Subsetter(options=options)
+    subsetter.populate(unicodes={0x0026})
+    subsetter.subset(font)
+    font.flavor = "woff2"
+    out = FONT_DIR / "AmpersandSourceHan.woff2"
+    font.save(out)
+    print(f"{out.name}: 只含 U+0026, {out.stat().st_size / 1024:.1f} KB")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--src", required=True, type=pathlib.Path, help="Source Han Sans CN OTF 所在目录")
@@ -93,6 +120,7 @@ def main() -> None:
     codepoints = site_cps | kept
     print(f"页面文字: {len(site_cps)} 字 / 现有子集: {len(kept)} 字 / 合并: {len(codepoints)} 字")
     build(args.src, codepoints)
+    build_ampersand(args.src)
 
     # 覆盖自检
     missing: dict[str, list[str]] = {}

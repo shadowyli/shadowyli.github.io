@@ -27,6 +27,15 @@ The website uses this font for the short profile bio only.
 - 子集没覆盖到的字会回退到本地安装的思源黑体 / 苹方 / 微软雅黑，所以新增中文
   文案后一定要重跑上面的命令（脚本末尾会自检覆盖）。
 
+## 单独的 &（AmpersandSourceHan.woff2）
+
+- 只含 U+0026 一个字符，约 1.8KB，由 `scripts/build-cjk-subsets.py` 一并生成
+- 原因：Archivo 和 Space Grotesk 的 `&` 是单层的 δ 形，夹在中文句子（例如
+  「微软 & 领英…」「3D & 视觉创意设计」）里像乱码
+- 做法：`styles.css` 里给这两个拉丁字体的 `@font-face` 去掉 U+0026 的
+  unicode-range，再用一个 `unicode-range: U+0026` 的 "CJK Ampersand" 面部接管，
+  以 `--font-cjk` 首位生效；拉丁字母仍走 Archivo
+
 ## Archivo and Space Grotesk
 
 - Subset scope: Latin-1 (`U+0000-00FF`)
