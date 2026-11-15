@@ -148,6 +148,58 @@
   .sidebar-contact { font-size: 18px; }
   .case-footer { font-size: 18px; }
 }
+/* ---------- 首页：侧栏 / 作品卡 / 关于我面板，跟上面的宽屏字号一起放大 ----------
+   之前这些块固定 14px、18px，在 2560 之类的大屏上周围字都放大了，
+   它们却停在原尺寸，同一块面板里字重和字号对不上，看着像换了一种字体。 */
+@media (min-width: 1900px) {
+  .identity h2 { font-size: 32px; }
+  .bio { font-size: 24px; }
+  .availability-text { font-size: 13px; }
+  .experience-tag { font-size: 12px; }
+  .profile-meta li { font-size: 15px; }
+  .portfolio-section-heading h3 { font-size: 15px; }
+  .project-slot-title { font-size: 16px; }
+  .project-card-cta { font-size: 13px; }
+  .timeline-item time { font-size: 13px; }
+  .info-panel .about-section-title { font-size: 20px; }
+  .about-list,
+  .other-list { font-size: 15px; }
+  .tool-tag,
+  .language-tag { font-size: 13px; min-height: 34px; }
+  .language-tag em { font-size: 12px; }
+  .about-facts span { font-size: 11px; }
+  .about-facts strong { font-size: 15px; }
+  .dialog-hint { font-size: 15px; }
+}
+
+@media (min-width: 2400px) {
+  .identity h2 { font-size: 36px; }
+  .bio { font-size: 26px; }
+  .availability-text { font-size: 15px; }
+  .experience-tag { font-size: 13px; }
+  .profile-meta li { font-size: 17px; }
+  .portfolio-section-heading h3 { font-size: 17px; }
+  .project-slot-title { font-size: 18px; }
+  .project-card-cta { font-size: 15px; }
+  .timeline-item time { font-size: 15px; }
+  .info-panel .about-section-title { font-size: 23px; }
+  .about-list,
+  .other-list { font-size: 17px; }
+  .tool-tag,
+  .language-tag { font-size: 15px; min-height: 38px; }
+  .language-tag em { font-size: 14px; }
+  .about-facts span { font-size: 12px; }
+  .about-facts strong { font-size: 17px; }
+  .dialog-hint { font-size: 17px; }
+}
+
+@media (min-width: 3200px) {
+  .info-panel .about-section-title { font-size: 26px; }
+  .about-list,
+  .other-list { font-size: 19px; }
+  .project-slot-title { font-size: 20px; }
+}
+
 /* ---------- 手机端：图片之间的缝隙收窄 ---------- */
 @media (max-width: 720px) {
   .case-row,
