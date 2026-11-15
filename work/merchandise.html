@@ -72,6 +72,37 @@
     /* 图集内所有相邻块保持 6px 间距（含非 figure 的自定义行） */
     .merch-gallery > * + * { margin-top: 6px; }
 
+    /* 玩偶包效果图：两行两列（吉里吉里 / 咕噜咕噜 × 绒布款 / 毛茸茸款） */
+    .merch-bag-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-body .merch-bag-grid > .case-frame { margin: 0 !important; }
+
+    .merch-bag-grid .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* 冠军战袍效果图：单排 / 三排两张并排 */
+    .merch-garment-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .case-body .merch-garment-pair > .case-frame { margin: 0 !important; }
+
+    .merch-garment-pair .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     /* S9 连帽衫：左侧主图放大，右侧两张上下叠放 */
     .case-row[data-layout="hero-stack"] {
       display: grid;
@@ -134,6 +165,10 @@
 
     @media (max-width: 720px) {
       .merch-jersey-row { grid-template-columns: 1fr; }
+      /* 手机上两列会把图上的「绒布／毛绒绳带款」标注压到看不清，改单列 */
+      .merch-bag-grid { grid-template-columns: 1fr; }
+      /* 战袍上有「正反面展示」「750mm」这类小字，手机同样改单列 */
+      .merch-garment-pair { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 560px) {
@@ -229,6 +264,29 @@
             </figure>
           </div>
         </div>
+        <div class="merch-bag-grid">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-bag-jilijili-fabric.webp" alt="《蛋仔派对》周边「吉里吉里」玩偶包 3D 效果图：绒布款，绒布绳带配平滑面料，左肩背与正面两组展示" data-i18n-alt="bagJilijiliFabricAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-bag-jilijili-plush.webp" alt="《蛋仔派对》周边「吉里吉里」玩偶包 3D 效果图：毛茸茸款，长毛绒面料配毛绒绳带" data-i18n-alt="bagJilijiliPlushAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-bag-gulugulu-fabric.webp" alt="《蛋仔派对》周边「咕噜咕噜」玩偶包 3D 效果图：绒布款，平纹棉织带的侧背与正面两组展示" data-i18n-alt="bagGuluguluFabricAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-bag-gulugulu-plush.webp" alt="《蛋仔派对》周边「咕噜咕噜」玩偶包 3D 效果图：毛茸茸款，长毛绒面料配毛绒绳带" data-i18n-alt="bagGuluguluPlushAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《永劫无间》2024 世界冠军赛 · 冠军战袍（单排 / 三排） -->
+        <div class="merch-garment-pair">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-garment-trio-champion.webp" alt="《永劫无间》2024 世界冠军赛三排冠军战袍设计：白色立领长袍的正反面展示，金色凤凰与龙纹刺绣，衣长 750mm" data-i18n-alt="garmentTrioAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/merchandise-garment-solo-champion.webp" alt="《永劫无间》2024 世界冠军赛单排冠军战袍设计：黑色立领长袍的正反面展示，金色凤凰与龙纹刺绣，衣长 750mm" data-i18n-alt="garmentSoloAlt" width="1920" height="1080" loading="lazy" decoding="async">
+          </figure>
+        </div>
       </section>
     </div>
   </main>
@@ -270,6 +328,12 @@
           jerseyYongwuAlt: "《梦幻西游》手游巅峰联赛 S10 勇武组选手服：黑色队服正背面，金色线条与「天下无双」",
           jerseyJingruiAlt: "《梦幻西游》手游巅峰联赛 S10 精锐组选手服：黑色队服正背面，蓝色线条与「东海湾」",
           jerseyShenweiAlt: "《梦幻西游》手游巅峰联赛 S10 神威组选手服：黑色队服正背面，红色线条与「紫禁之巅」",
+          bagJilijiliFabricAlt: "《蛋仔派对》周边「吉里吉里」玩偶包 3D 效果图：绒布款，绒布绳带配平滑面料，左肩背与正面两组展示",
+          bagJilijiliPlushAlt: "《蛋仔派对》周边「吉里吉里」玩偶包 3D 效果图：毛茸茸款，长毛绒面料配毛绒绳带",
+          bagGuluguluFabricAlt: "《蛋仔派对》周边「咕噜咕噜」玩偶包 3D 效果图：绒布款，平纹棉织带的侧背与正面两组展示",
+          bagGuluguluPlushAlt: "《蛋仔派对》周边「咕噜咕噜」玩偶包 3D 效果图：毛茸茸款，长毛绒面料配毛绒绳带",
+          garmentTrioAlt: "《永劫无间》2024 世界冠军赛三排冠军战袍设计：白色立领长袍的正反面展示，金色凤凰与龙纹刺绣，衣长 750mm",
+          garmentSoloAlt: "《永劫无间》2024 世界冠军赛单排冠军战袍设计：黑色立领长袍的正反面展示，金色凤凰与龙纹刺绣，衣长 750mm",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "周边物料 · 奖杯、奖牌与礼盒 | Shadowyli",
           metaDescription: "周边物料案例：挑战杯奖杯、星芒争锋赛奖牌，《梦幻西游》手游巅峰联赛 S10 徽章礼盒、帆布袋、工作服与三组选手服 3D 渲染与包装设计。"
@@ -293,6 +357,12 @@
           jerseyYongwuAlt: "Fantasy Westward Journey Mobile Peak League S10 Yongwu division jersey: black front and back with gold accents and 'Peerless Under Heaven'",
           jerseyJingruiAlt: "Fantasy Westward Journey Mobile Peak League S10 Jingrui division jersey: black front and back with blue accents and 'East Sea Bay'",
           jerseyShenweiAlt: "Fantasy Westward Journey Mobile Peak League S10 Shenwei division jersey: black front and back with red accents and 'Forbidden Peak'",
+          bagJilijiliFabricAlt: "Eggy Party merchandise JiLiJiLi doll crossbody bag 3D render, fabric version: fabric strap with smooth shell, worn on the left shoulder and shown front-on",
+          bagJilijiliPlushAlt: "Eggy Party merchandise JiLiJiLi doll crossbody bag 3D render, plush version: long-pile fur shell with plush strap",
+          bagGuluguluFabricAlt: "Eggy Party merchandise GuLuGuLu doll crossbody bag 3D render, fabric version: plain cotton webbing strap, worn at the side and shown front-on",
+          bagGuluguluPlushAlt: "Eggy Party merchandise GuLuGuLu doll crossbody bag 3D render, plush version: long-pile fur shell with plush strap",
+          garmentTrioAlt: "Naraka: Bladepoint 2024 World Championship trios champion robe design: front and back views of a white mandarin-collar robe with gold phoenix and dragon embroidery, 750mm long",
+          garmentSoloAlt: "Naraka: Bladepoint 2024 World Championship solo champion robe design: front and back views of a black mandarin-collar robe with gold phoenix and dragon embroidery, 750mm long",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Merchandise · Trophies, Medals & Gift Boxes | Shadowyli",
           metaDescription: "Merchandise case study: Challenge Cup trophy, Star Radiance medals, and Fantasy Westward Journey Peak League S10 badge gift boxes, tote bags, staff and team jerseys in 3D render and packaging design."

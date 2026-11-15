@@ -1,0 +1,23 @@
+#!/bin/bash
+# Git hook template: deploy the site to Alibaba Cloud OSS after each commit.
+# Installed by scripts/install-hooks.sh as .git/hooks/post-commit and post-merge.
+#
+# Silently does nothing when the deploy script or the credentials file is absent,
+# so a fresh clone (or CI) is unaffected.
+set -uo pipefail
+REPO=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
+DEPLOY="$REPO/../deploy_oss.py"
+ENVFILE="$REPO/../.tools/oss.env"
+LOG="$REPO/../.tools/deploy.log"
+
+[ -f "$DEPLOY" ] || exit 0
+[ -f "$ENVFILE" ] || exit 0
+
+set -a; . "$ENVFILE"; set +a
+export SSL_CERT_FILE="${SSL_CERT_FILE:-/etc/ssl/cert.pem}"
+{
+  echo "--- $(date '+%F %T') deploy started"
+  python3 "$DEPLOY" --bucket shadowyli-site --region oss-cn-hongkong --website
+  echo "--- $(date '+%F %T') deploy finished rc=$? -> https://www.shadowyli.com/"
+} >> "$LOG" 2>&1
+exit 0

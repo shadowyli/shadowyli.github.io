@@ -2156,6 +2156,11 @@ body.case-page.is-leaving {
   align-items: stretch;
 }
 
+/* Two equally sized visuals side by side (e.g. two portrait posters). */
+.case-pair.case-pair--even {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
 .case-pair-item { margin: 0; min-width: 0; }
 
 .case-pair-item img {
