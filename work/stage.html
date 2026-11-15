@@ -84,7 +84,29 @@
     .stage-ratio-neck { --stage-large-col: calc(68.24% + 0.76px); }
     .stage-ratio-eggy { --stage-large-col: calc(66.6667% + 0.74px); }
     .stage-ratio-mengshou { --stage-large-col: calc(66.6667% - 0.44px); }
-    .stage-ratio-dcdc { --stage-large-col: calc(66.6667% + 0.74px); }
+
+    /* DCDC：主图通栏，其余三张一行并排 */
+    .stage-media-dcdc .stage-media-hero { margin: 0 0 6px; }
+
+    .stage-media-dcdc .stage-media-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .stage-media-dcdc-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .stage-media-dcdc-row figure { margin: 0; }
+
+    .stage-media-dcdc-row img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
 
     /* 署名模块 */
     .case-credits {
@@ -264,6 +286,9 @@
       .stage-media-grid,
       .stage-media-side { gap: 4px; }
 
+      .stage-media-dcdc .stage-media-hero { margin-bottom: 4px; }
+      .stage-media-dcdc-row { grid-template-columns: 1fr; gap: 4px; }
+
       .case-gallery.stage-module + .case-gallery.stage-module { margin-top: 4px; }
       .case-gallery .case-row + .case-row { margin-top: 4px; }
       .case-gallery .case-row[data-layout="secondary"] { gap: 4px; }
@@ -355,15 +380,18 @@
         </div>
       </section>
 
-      <section class="case-section case-gallery stage-module stage-ratio-dcdc" data-stage-side="right" id="case-gallery-04" aria-label="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台">
+      <section class="case-section case-gallery stage-module" id="case-gallery-04" aria-label="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台">
 
-        <div class="stage-media-grid">
-          <figure class="case-frame case-frame--image stage-media-main">
+        <div class="stage-media-dcdc">
+          <figure class="case-frame case-frame--image stage-media-hero">
             <img src="../assets/stage-dcdc-5.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
-          <div class="stage-media-side">
+          <div class="stage-media-dcdc-row">
             <figure class="case-frame case-frame--image">
               <img src="../assets/stage-dcdc-2.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带" data-i18n-alt="dcdcAlt2" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-dcdc-7.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台侧机位：中央 Logo 结构" data-i18n-alt="dcdcAlt7" width="1920" height="1080" loading="lazy" decoding="async">
             </figure>
             <figure class="case-frame case-frame--image">
               <img src="../assets/stage-dcdc-8.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
@@ -452,6 +480,7 @@
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
           dcdcAlt2: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带",
           dcdcAlt5: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱",
+          dcdcAlt7: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台侧机位：中央 Logo 结构",
           dcdcAlt8: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写",
           section2Title: "蛋仔派对盛典舞台",
           section3Title: "梦幻西游手游巅峰联赛 S11 舞台",
@@ -482,6 +511,7 @@
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
           dcdcAlt2: "All-Star Streetball Party DCDC Championship summer finals stage front panorama with curved main screen and blue-orange light strips",
           dcdcAlt5: "All-Star Streetball Party DCDC Championship stage front view with white main screen and symmetrical light columns",
+          dcdcAlt7: "All-Star Streetball Party DCDC Championship stage side camera angle with central logo structure",
           dcdcAlt8: "All-Star Streetball Party DCDC Championship stage central structure close-up",
           section2Title: "Eggy Party Ceremony Stage",
           section3Title: "Fantasy Westward Journey Mobile Peak League S11 Stage",
