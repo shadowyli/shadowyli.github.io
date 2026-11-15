@@ -86,22 +86,6 @@
     .stage-ratio-mengshou { --stage-large-col: calc(66.6667% - 0.44px); }
     .stage-ratio-dcdc { --stage-large-col: calc(66.6667% + 0.74px); }
 
-    /* DCDC：首屏一大两小，其余四张两行铺满 */
-    .stage-media-extra {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .stage-media-extra figure { margin: 0; }
-
-    .stage-media-extra img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
     /* 署名模块 */
     .case-credits {
       margin: 0 0 clamp(22px, 2.6vw, 32px);
@@ -278,13 +262,11 @@
     @media (max-width: 720px) {
       /* 与宣发设计画廊对齐：手机端画框间距统一 4px */
       .stage-media-grid,
-      .stage-media-side,
-      .stage-media-extra { gap: 4px; }
+      .stage-media-side { gap: 4px; }
 
       .case-gallery.stage-module + .case-gallery.stage-module { margin-top: 4px; }
       .case-gallery .case-row + .case-row { margin-top: 4px; }
       .case-gallery .case-row[data-layout="secondary"] { gap: 4px; }
-      .stage-media-extra { margin-top: 4px; }
 
       .echo-reel { height: clamp(180px, 52vw, 240px); }
       .echo-canvas {
@@ -377,25 +359,16 @@
 
         <div class="stage-media-grid">
           <figure class="case-frame case-frame--image stage-media-main">
-            <img src="../assets/stage-dcdc-2.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带" data-i18n-alt="dcdcAlt2" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../assets/stage-dcdc-5.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
           <div class="stage-media-side">
             <figure class="case-frame case-frame--image">
-              <img src="../assets/stage-dcdc-3.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台近景：主屏、选手席与橙色结构" data-i18n-alt="dcdcAlt3" width="1920" height="1080" loading="lazy" decoding="async">
+              <img src="../assets/stage-dcdc-2.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带" data-i18n-alt="dcdcAlt2" width="1920" height="1080" loading="lazy" decoding="async">
             </figure>
             <figure class="case-frame case-frame--image">
-              <img src="../assets/stage-dcdc-4.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：蓝橙渐变主屏与灯光" data-i18n-alt="dcdcAlt4" width="1920" height="1080" loading="lazy" decoding="async">
+              <img src="../assets/stage-dcdc-8.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
             </figure>
           </div>
-        </div>
-
-        <div class="stage-media-extra">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/stage-dcdc-5.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/stage-dcdc-8.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
         </div>
       </section>
 
@@ -478,8 +451,6 @@
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
           dcdcAlt2: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙灯带",
-          dcdcAlt3: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台近景：主屏、选手席与橙色结构",
-          dcdcAlt4: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：蓝橙渐变主屏与灯光",
           dcdcAlt5: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱",
           dcdcAlt8: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写",
           section2Title: "蛋仔派对盛典舞台",
@@ -510,8 +481,6 @@
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
           dcdcAlt2: "All-Star Streetball Party DCDC Championship summer finals stage front panorama with curved main screen and blue-orange light strips",
-          dcdcAlt3: "All-Star Streetball Party DCDC Championship stage close front view with main screen, player desks and orange structures",
-          dcdcAlt4: "All-Star Streetball Party DCDC Championship stage front view with blue-orange gradient screen and lighting",
           dcdcAlt5: "All-Star Streetball Party DCDC Championship stage front view with white main screen and symmetrical light columns",
           dcdcAlt8: "All-Star Streetball Party DCDC Championship stage central structure close-up",
           section2Title: "Eggy Party Ceremony Stage",
