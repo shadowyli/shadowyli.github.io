@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -98,10 +98,6 @@
     /* 组别背景：三张一行，保持 16:9 原比例 */
     .case-gallery .case-media-grid { margin-top: 6px; }
     .case-gallery .case-media-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    /* S12 舞台实拍细节多，窄屏收成一列 */
-    @media (max-width: 720px) {
-      .case-gallery .case-media-grid--s12 { grid-template-columns: 1fr; }
-    }
     /* 网格内各列必须同一水平线：抵消全局 figure + figure 的 6px 上边距 */
     .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
     /* 网格后面紧跟的整幅图（品牌视觉末尾那张）：补上和网格同样的缝 */
@@ -148,6 +144,19 @@
         gap: 2px;
       }
       .case-credits li { font-size: 9.5px; }
+    }
+
+    /* 关于与画廊之间收紧留白 */
+    .case-body .case-intro + .case-gallery { margin-top: clamp(20px, 2.2vw, 28px); }
+    /* 三个视觉分组去掉标题后连成一条画廊：分组之间只留图片同款 6px 缝 */
+    .case-body .case-gallery + .case-gallery { margin-top: 6px; }
+
+    /* 手机上长段落略收紧，避免整段正文压过版面 */
+    @media (max-width: 720px) {
+      .case-body .case-intro p {
+        font-size: 14px;
+        line-height: 1.85;
+      }
     }
 
     /* 品牌视觉：红在左跨两行，蓝/黄在右侧上下，保持 16:9 原比例 */
@@ -366,10 +375,17 @@
         <li>3D &amp; 视觉创意设计：影子（李颖）</li>
         <li>动效设计：李楚怡、纪云、郑斯锴、程禹涵、刘佰强</li>
         <li>美术督导：胡煦升、刘星</li>
+        <li>美术监修：影子（李颖）</li>
       </ul>
+
+      <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
+        <h2 id="case-intro-title">关于</h2>
+        <p>我们为这项游戏内最高规格的职业化电竞赛事打造了一套视觉系统，希望把赛事的量级与声望，在观众第一眼看到时就传达出去。</p>
+        <p>从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。</p>
+      </section>
+
       <!-- 内容待补充 -->
       <section class="case-section case-gallery">
-        <h2><span class="case-section-index" aria-hidden="true">01</span>主视觉 KV</h2>
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-play="enter">
           <img src="../assets/mengshou-s13-kv.webp?v=20261112d" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S13 巅峰联赛主视觉动画：从 C4D 场景搭建到成片落版"></video>
@@ -389,7 +405,6 @@
       </section>
 
       <section class="case-section case-gallery">
-        <h2><span class="case-section-index" aria-hidden="true">02</span>品牌视觉</h2>
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
           <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛通用背景动画"></video>
@@ -430,46 +445,31 @@
         </figure>
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery-screen" aria-labelledby="case-title-screen">
-        <h2 id="case-title-screen"><span class="case-section-index" aria-hidden="true">03</span>大屏</h2>
+      <section class="case-section case-gallery" id="case-gallery-screen" aria-label="大屏">
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-jingrui-1.webp" alt="《梦幻西游》手游 S9 季后赛精锐组登场大屏：蓝色水波与冰晶氛围" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-jingrui-1.webp?v=20261116b" alt="《梦幻西游》手游 S9 季后赛精锐组登场大屏：蓝色水波与冰晶氛围" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-jingrui-2.webp" alt="《梦幻西游》手游 S9 季后赛精锐组登场大屏：金色铠甲角色与蓝色水花" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-jingrui-2.webp?v=20261116b" alt="《梦幻西游》手游 S9 季后赛精锐组登场大屏：金色奖杯与水花飞溅" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-shenwei-1.webp" alt="《梦幻西游》手游 S9 季后赛神威组登场大屏：红色熔岩与余烬氛围" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-shenwei-1.webp?v=20261116d" alt="《梦幻西游》手游 S9 季后赛神威组登场大屏：红色熔岩与余烬氛围" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-shenwei-2.webp" alt="《梦幻西游》手游 S9 季后赛神威组登场大屏：金色铠甲角色与红色熔岩" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-shenwei-2.webp?v=20261116d" alt="《梦幻西游》手游 S9 季后赛神威组登场大屏：金色奖杯与红色熔岩" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-yongwu-1.webp" alt="《梦幻西游》手游 S9 季后赛勇武组登场大屏：金色沙尘与光粒氛围" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-yongwu-1.webp?v=20261116c" alt="《梦幻西游》手游 S9 季后赛勇武组登场大屏：金色沙尘与光粒氛围" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
         <figure class="case-frame case-frame--image">
-          <img src="../assets/mengshou-s9-screen-yongwu-2.webp" alt="《梦幻西游》手游 S9 季后赛勇武组登场大屏：金色铠甲角色与「勇武」书法" width="2400" height="579" loading="lazy" decoding="async">
+          <img src="../assets/mengshou-s9-screen-yongwu-2.webp?v=20261116c" alt="《梦幻西游》手游 S9 季后赛勇武组登场大屏：金色奖杯与金沙飞舞" width="2400" height="579" loading="lazy" decoding="async">
         </figure>
-        <div class="case-media-grid case-media-grid--s12">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-jingrui-enter.webp" alt="《梦幻西游》手游 S12 季后赛精锐组大屏入场画面：蓝色水波舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-jingrui-final.webp" alt="《梦幻西游》手游 S12 季后赛精锐组大屏落版：舞台亮起「精锐」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-shenwei-enter.webp" alt="《梦幻西游》手游 S12 季后赛神威组大屏入场画面：红色熔岩舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-shenwei-final.webp" alt="《梦幻西游》手游 S12 季后赛神威组大屏落版：舞台亮起「神威」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-yongwu-enter.webp" alt="《梦幻西游》手游 S12 季后赛勇武组大屏入场画面：金色沙尘舞台与门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/mengshou-s12-screen-yongwu-final.webp" alt="《梦幻西游》手游 S12 季后赛勇武组大屏落版：舞台亮起「勇武」书法标题" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-        </div>
+        <figure class="case-frame case-frame--image">
+          <img src="../assets/mengshou-s12-screen-shenwei-atmos-enter.webp" alt="《梦幻西游》手游 S12 季后赛神威组通用氛围大屏入场画面：月表地平线、蓝光奖杯与漂浮碎石" width="2400" height="557" loading="lazy" decoding="async">
+        </figure>
+        <figure class="case-frame case-frame--image">
+          <img src="../assets/mengshou-s12-screen-shenwei-atmos-loop.webp" alt="《梦幻西游》手游 S12 季后赛神威组通用氛围大屏落版循环画面：蓝色环状光轨、漂浮晶石与金色奖杯" width="2400" height="557" loading="lazy" decoding="async">
+        </figure>
       </section>
 
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>

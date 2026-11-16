@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 空白案例页：内容未填时让页脚落在视口底部 */
@@ -71,15 +71,15 @@
       }
     }
 
-    /* 01 模块：开场分镜，一行 5 张 */
+    /* 01 模块：Opening Title 分镜，一行 5 张 */
     .nbpl-opening-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 6px;
     }
 
-    /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐 */
-    .case-page .case-section .nbpl-opening-grid > .case-frame { margin: 0 !important; }
+    /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐（主图除外，手机端需要单独出血） */
+    .case-page .case-section .nbpl-opening-grid > .case-frame:not(.nbpl-opening-hero) { margin: 0 !important; }
 
     .nbpl-opening-grid .case-frame--image img {
       display: block;
@@ -96,7 +96,12 @@
     }
 
     @media (max-width: 720px) {
-      .nbpl-opening-grid .nbpl-opening-hero { grid-column: 1 / -1; }
+      /* 主图在手机端出血到屏幕两侧，作为整组的分镜头图 */
+      .nbpl-opening-grid .nbpl-opening-hero {
+        grid-column: 1 / -1;
+        margin-left: calc(-1 * (clamp(16px, 2.2vw, 40px) + 2vw));
+        margin-right: calc(-1 * (clamp(16px, 2.2vw, 40px) + 2vw));
+      }
     }
 
     /* 02 模块：蛋仔麦克疯包装，一行四个 */
@@ -114,7 +119,7 @@
       height: auto;
     }
 
-    /* 03 模块：COA TOP5 分镜，一行 4 张 */
+    /* 03 模块：COA TOP10 分镜，一行 4 张 */
     .top5-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -134,7 +139,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .ivl-bureau-main { margin: 0; }
@@ -148,7 +153,9 @@
     .ivl-bureau-thumbs {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
       gap: 6px;
+      aspect-ratio: 16 / 9;
     }
 
     .case-page .case-section .ivl-bureau-thumbs > .case-frame { margin: 0; }
@@ -156,11 +163,27 @@
     .ivl-bureau-thumbs img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
     }
 
     @media (max-width: 720px) {
       .ivl-bureau-layout { grid-template-columns: 1fr; }
+    }
+
+    /* 05 模块：蛋仔派对挑战杯赛制，分镜一行五张 */
+    .challenge-cup-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-page .case-section .challenge-cup-grid > .case-frame { margin: 0 !important; }
+
+    .challenge-cup-grid .case-frame--image img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* 手机端全页收紧：画框 4px，模块之间 24px */
@@ -169,7 +192,8 @@
       .egg-mic-grid,
       .top5-grid,
       .ivl-bureau-layout,
-      .ivl-bureau-thumbs {
+      .ivl-bureau-thumbs,
+      .challenge-cup-grid {
         gap: 4px;
       }
 
@@ -210,35 +234,35 @@
       </ul>
 
       <section class="case-section nbpl-opening" aria-labelledby="nbpl-opening-title">
-        <h2 id="nbpl-opening-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">永劫无间 NBPL 夏季赛常规赛开场</span></h2>
+        <h2 id="nbpl-opening-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">永劫无间 NBPL 夏季赛常规赛 Opening Title</span></h2>
         <div class="nbpl-opening-grid">
           <figure class="case-frame case-frame--image nbpl-opening-hero">
-            <img src="../assets/video-packaging-nbpl-hero.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 主视觉" width="1200" height="675" loading="eager" decoding="async">
+            <img src="../assets/video-packaging-nbpl-hero.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 主视觉" width="1200" height="675" loading="eager" decoding="async">
           </figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-02.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 02" width="640" height="360" loading="lazy" decoding="async" data-frame-index="02"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-03.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 03" width="640" height="360" loading="lazy" decoding="async" data-frame-index="03"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-04.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 04" width="640" height="360" loading="lazy" decoding="async" data-frame-index="04"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-05.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 05" width="640" height="360" loading="lazy" decoding="async" data-frame-index="05"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-06.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 06" width="640" height="360" loading="lazy" decoding="async" data-frame-index="06"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-07.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 07" width="640" height="360" loading="lazy" decoding="async" data-frame-index="07"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-08.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 08" width="640" height="360" loading="lazy" decoding="async" data-frame-index="08"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-09.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 09" width="640" height="360" loading="lazy" decoding="async" data-frame-index="09"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-10.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 10" width="640" height="360" loading="lazy" decoding="async" data-frame-index="10"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-11.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 11" width="640" height="360" loading="lazy" decoding="async" data-frame-index="11"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-12.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 12" width="640" height="360" loading="lazy" decoding="async" data-frame-index="12"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-13.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 13" width="640" height="360" loading="lazy" decoding="async" data-frame-index="13"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-14.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 14" width="640" height="360" loading="lazy" decoding="async" data-frame-index="14"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-15.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 15" width="640" height="360" loading="lazy" decoding="async" data-frame-index="15"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-16.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 16" width="640" height="360" loading="lazy" decoding="async" data-frame-index="16"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-17.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 17" width="640" height="360" loading="lazy" decoding="async" data-frame-index="17"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-18.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 18" width="640" height="360" loading="lazy" decoding="async" data-frame-index="18"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-19.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 19" width="640" height="360" loading="lazy" decoding="async" data-frame-index="19"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-20.webp" alt="《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 20" width="640" height="360" loading="lazy" decoding="async" data-frame-index="20"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-02.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 02" width="640" height="360" loading="lazy" decoding="async" data-frame-index="02"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-03.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 03" width="640" height="360" loading="lazy" decoding="async" data-frame-index="03"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-04.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 04" width="640" height="360" loading="lazy" decoding="async" data-frame-index="04"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-05.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 05" width="640" height="360" loading="lazy" decoding="async" data-frame-index="05"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-06.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 06" width="640" height="360" loading="lazy" decoding="async" data-frame-index="06"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-07.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 07" width="640" height="360" loading="lazy" decoding="async" data-frame-index="07"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-08.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 08" width="640" height="360" loading="lazy" decoding="async" data-frame-index="08"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-09.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 09" width="640" height="360" loading="lazy" decoding="async" data-frame-index="09"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-10.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 10" width="640" height="360" loading="lazy" decoding="async" data-frame-index="10"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-11.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 11" width="640" height="360" loading="lazy" decoding="async" data-frame-index="11"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-12.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 12" width="640" height="360" loading="lazy" decoding="async" data-frame-index="12"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-13.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 13" width="640" height="360" loading="lazy" decoding="async" data-frame-index="13"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-14.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 14" width="640" height="360" loading="lazy" decoding="async" data-frame-index="14"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-15.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 15" width="640" height="360" loading="lazy" decoding="async" data-frame-index="15"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-16.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 16" width="640" height="360" loading="lazy" decoding="async" data-frame-index="16"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-17.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 17" width="640" height="360" loading="lazy" decoding="async" data-frame-index="17"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-18.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 18" width="640" height="360" loading="lazy" decoding="async" data-frame-index="18"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-19.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 19" width="640" height="360" loading="lazy" decoding="async" data-frame-index="19"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-nbpl-20.webp" alt="《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 20" width="640" height="360" loading="lazy" decoding="async" data-frame-index="20"></figure>
         </div>
       </section>
 
       <section class="case-section egg-mic" aria-labelledby="egg-mic-title">
-        <h2 id="egg-mic-title"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">《蛋仔派对》麦克疯 · 视频包装</span></h2>
+        <h2 id="egg-mic-title"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">蛋仔麦克疯</span></h2>
         <div class="egg-mic-grid">
           <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-01.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 1" width="1920" height="1080" loading="lazy" decoding="async"></figure>
           <figure class="case-frame case-frame--image"><img src="../assets/video-egg-mic-02.webp" alt="《蛋仔派对》麦克疯视频包装 · 粒子麦克风 2" width="1920" height="1080" loading="lazy" decoding="async"></figure>
@@ -256,20 +280,20 @@
       </section>
 
       <section class="case-section top5" aria-labelledby="top5-title">
-        <h2 id="top5-title"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">第五人格 COA VIII 全球总决赛 TOP5</span></h2>
+        <h2 id="top5-title"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">第五人格 COA VIII 全球总决赛 TOP10</span></h2>
         <div class="top5-grid">
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-01.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 01" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-03.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 03" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-04.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 04" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-05.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 05" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-06.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 06" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-07.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 07" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-08.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 08" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-09.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 09" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-10.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 10" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-11.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 11" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-12.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 12" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-14.webp" alt="第五人格 COA VIII 全球总决赛 TOP5 · 分镜 14" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-01.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 01" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-03.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 03" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-04.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 04" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-05.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 05" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-06.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 06" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-07.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 07" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-08.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 08" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-09.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 09" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-10.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 10" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-11.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 11" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-12.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 12" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-abyss-top5-14.webp" alt="第五人格 COA VIII 全球总决赛 TOP10 · 分镜 14" width="640" height="360" loading="lazy" decoding="async"></figure>
         </div>
       </section>
 
@@ -288,9 +312,35 @@
         </div>
       </section>
 
+      <section class="case-section challenge-cup" aria-labelledby="challenge-cup-title">
+        <h2 id="challenge-cup-title"><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">蛋仔派对挑战杯赛制</span></h2>
+        <div class="challenge-cup-grid">
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-01.webp" alt="《蛋仔派对》挑战杯 · 字体规范" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-02.webp" alt="《蛋仔派对》挑战杯 · 开场词「蛋启新征程」" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-03.webp" alt="《蛋仔派对》挑战杯 · 赛事介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-04.webp" alt="《蛋仔派对》挑战杯 · 金字塔选拔通道" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-05.webp" alt="《蛋仔派对》挑战杯 · 直通名额" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-06.webp" alt="《蛋仔派对》挑战杯 · 个人赛与团队赛直通名额" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-07.webp" alt="《蛋仔派对》挑战杯 · 单人参赛与组队参赛" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-08.webp" alt="《蛋仔派对》挑战杯 · 赛事日程" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-09.webp" alt="《蛋仔派对》挑战杯 · 个人赛奖金板" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-10.webp" alt="《蛋仔派对》挑战杯 · 团队赛奖金板" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-11.webp" alt="《蛋仔派对》挑战杯 · 参赛就拿奖" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-12.webp" alt="《蛋仔派对》挑战杯 · 个人赛赛制介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-13.webp" alt="《蛋仔派对》挑战杯 · 团队赛赛制介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-14.webp" alt="《蛋仔派对》挑战杯 · 决赛规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-15.webp" alt="《蛋仔派对》挑战杯 · 阶段式淘汰积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-16.webp" alt="《蛋仔派对》挑战杯 · 前 3 关积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-17.webp" alt="《蛋仔派对》挑战杯 · 第 4 关积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-18.webp" alt="《蛋仔派对》挑战杯 · 赛点激活规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-19.webp" alt="《蛋仔派对》挑战杯 · 获胜规则" width="640" height="360" loading="lazy" decoding="async"></figure>
+          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-21.webp" alt="《蛋仔派对》挑战杯 · 结束语「操刀为刃 破局为王」" width="640" height="360" loading="lazy" decoding="async"></figure>
+        </div>
+      </section>
+
       <!-- 往这里继续追加内容，例如
       <section class="case-section">
-        <h2><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">区块标题</span></h2>
+        <h2><span class="case-section-index" aria-hidden="true">06</span><span data-i18n-key="section6Title">区块标题</span></h2>
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/文件名.webp" alt="图片说明" width="1920" height="1080" loading="lazy" decoding="async">
@@ -334,10 +384,11 @@
           navAbout: "关于我",
           pageHeading: "视频包装",
           creditLine: "3D & 视觉创意设计：影子（李颖）",
-          section1Title: "永劫无间 NBPL 夏季赛常规赛开场",
-          section2Title: "《蛋仔派对》麦克疯 · 视频包装",
-          section3Title: "第五人格 COA VIII 全球总决赛 TOP5",
+          section1Title: "永劫无间 NBPL 夏季赛常规赛 Opening Title",
+          section2Title: "蛋仔麦克疯",
+          section3Title: "第五人格 COA VIII 全球总决赛 TOP10",
           section4Title: "第五人格 IVL 第五情报局",
+          section5Title: "蛋仔派对挑战杯赛制",
           closeDialog: "关闭",
           wechatTitle: "微信二维码",
           saveHint: "长按图片保存二维码",
@@ -352,11 +403,12 @@
           navWork: "Work",
           navAbout: "About",
           pageHeading: "Video Packaging",
-          creditLine: "3D & Visual Creative Design: Shadow (Li Ying)",
-          section1Title: "Naraka: Bladepoint NBPL Summer Split Opening",
-          section2Title: "Eggy Party Mic Check · Video Packaging",
-          section3Title: "Identity V COA VIII Global Finals TOP 5",
+          creditLine: "3D & Visual Creative Design: 影子（李颖）",
+          section1Title: "Naraka: Bladepoint NBPL Summer Split Opening Title",
+          section2Title: "Eggy Party Mic Check",
+          section3Title: "Identity V COA VIII Global Finals TOP 10",
           section4Title: "Identity V IVL · The Fifth Intelligence Bureau",
+          section5Title: "Eggy Party Challenge Cup Rules",
           closeDialog: "Close",
           wechatTitle: "WeChat QR code",
           saveHint: "Long-press the image to save the QR code",
@@ -414,8 +466,8 @@
         for (var k = 0; k < frameImages.length; k++) {
           var frameIndex = frameImages[k].getAttribute("data-frame-index");
           frameImages[k].setAttribute("alt", language === "zh"
-            ? "《永劫无间》NBPL 夏季赛常规赛开场 · 分镜 " + frameIndex
-            : "Naraka: Bladepoint NBPL Summer Split opening · frame " + frameIndex);
+            ? "《永劫无间》NBPL 夏季赛常规赛 Opening Title · 分镜 " + frameIndex
+            : "Naraka: Bladepoint NBPL Summer Split Opening Title · frame " + frameIndex);
         }
 
         document.title = dictionary.pageTitle;

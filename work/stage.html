@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
 <style>
     /* 舞美模块：一大 + 其余小；相邻模块的大图左右交替，保持原比例并等高 */
@@ -84,15 +84,10 @@
     .stage-ratio-neck { --stage-large-col: calc(68.24% + 0.76px); }
     .stage-ratio-eggy { --stage-large-col: calc(66.6667% + 0.74px); }
     .stage-ratio-mengshou { --stage-large-col: calc(66.6667% - 0.44px); }
-
-    /* DCDC：主图通栏，其余三张一行并排 */
-    .stage-media-dcdc .stage-media-hero { margin: 0 0 6px; }
-
-    .stage-media-dcdc .stage-media-hero img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+    /* DCDC：左侧大图 + 右侧两张上下排 */
+    .stage-ratio-dcdc { --stage-large-col: calc(66.6667% + 0.74px); }
+    /* TapTap 年度游戏大赏：大图 + 右侧两张上下排 */
+    .stage-ratio-awards { --stage-large-col: calc(66.6667% + 0.74px); }
 
     /* 署名模块 */
     .case-credits {
@@ -272,8 +267,6 @@
       .stage-media-grid,
       .stage-media-side { gap: 4px; }
 
-      .stage-media-dcdc .stage-media-hero { margin-bottom: 4px; }
-
       .case-gallery.stage-module + .case-gallery.stage-module { margin-top: 4px; }
       .case-gallery .case-row + .case-row { margin-top: 4px; }
       .case-gallery .case-row[data-layout="secondary"] { gap: 4px; }
@@ -353,14 +346,14 @@
 
         <div class="stage-media-grid">
           <figure class="case-frame case-frame--image stage-media-main">
-            <img src="../assets/stage-eggy-01.webp" alt="《蛋仔派对》赛事舞台全景：彩虹拱门、中央伸展地板与两侧赛车装置" width="1280" height="540" loading="lazy" decoding="async">
+            <img src="../assets/stage-eggy-01.webp?v=20261116-1" alt="《蛋仔派对》赛事舞台正面全景：彩虹拱门、中央伸展地板装置与两侧赛车造型灯箱" width="1600" height="900" loading="lazy" decoding="async">
           </figure>
           <div class="stage-media-side">
             <figure class="case-frame case-frame--image">
-              <img src="../assets/stage-eggy-02.webp" alt="《蛋仔派对》赛事舞台斜侧视角：彩虹拱门、选手席位与 EGGY PARTY 主屏" width="1280" height="540" loading="lazy" decoding="async">
+              <img src="../assets/stage-eggy-02.webp?v=20261116-1" alt="《蛋仔派对》赛事舞台斜侧视角：彩虹拱门、发光选手席位与 EGGY PARTY 圆台" width="1600" height="900" loading="lazy" decoding="async">
             </figure>
             <figure class="case-frame case-frame--image">
-              <img src="../assets/stage-eggy-03.webp" alt="《蛋仔派对》舞台中央走道近景：发光座位与中央主屏" width="1280" height="540" loading="lazy" decoding="async">
+              <img src="../assets/stage-eggy-03.webp?v=20261116-1" alt="《蛋仔派对》舞台中央圆台与走道近景：EGGY PARTY 标识、发光座椅与主持人站位" width="1600" height="900" loading="lazy" decoding="async">
             </figure>
           </div>
         </div>
@@ -368,13 +361,35 @@
 
       <section class="case-section case-gallery stage-module" id="case-gallery-04" aria-label="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台">
 
-        <div class="stage-media-dcdc">
-          <figure class="case-frame case-frame--image stage-media-hero">
-            <img src="../assets/stage-dcdc-5.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
+        <div class="stage-media-grid stage-ratio-dcdc">
+          <figure class="case-frame case-frame--image stage-media-main">
+            <img src="../assets/stage-dcdc-5.webp?v=20261116-1" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙对称灯光" data-i18n-alt="dcdcAlt5" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/stage-dcdc-8.webp" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
+          <div class="stage-media-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-dcdc-3.webp?v=20261116-1" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台斜侧视角：弧形主屏、侧屏与地面灯带" data-i18n-alt="dcdcAlt3" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-dcdc-8.webp?v=20261116-1" alt="《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写：赛事标识与发光立柱" data-i18n-alt="dcdcAlt8" width="1920" height="1080" loading="lazy" decoding="async">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-gallery stage-module" id="case-gallery-05" aria-label="TapTap 年度游戏大赏舞台">
+
+        <div class="stage-media-grid stage-ratio-awards">
+          <figure class="case-frame case-frame--image stage-media-main">
+            <img src="../assets/stage-awards-01.webp" alt="TapTap 年度游戏大赏舞台全景：中央大屏、折纸造型主视觉与两侧主持人站位" width="1600" height="900" loading="lazy" decoding="async">
           </figure>
+          <div class="stage-media-side">
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-awards-02.webp" alt="TapTap 年度游戏大赏舞台正面：圆形光环背景、折纸雕塑与菱形地台" width="1600" height="900" loading="lazy" decoding="async">
+            </figure>
+            <figure class="case-frame case-frame--image">
+              <img src="../assets/stage-awards-03.webp" alt="TapTap 年度游戏大赏舞台灯光特写：折纸雕塑与青色光门" width="1600" height="900" loading="lazy" decoding="async">
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -457,8 +472,9 @@
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
           stageAlt3: "网易电竞 NeXT 冬季赛舞台侧视角度：左右屏结构与灯光效果",
-          dcdcAlt5: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面：白色主屏与对称灯柱",
-          dcdcAlt8: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写",
+          dcdcAlt5: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台正面全景：弧形主屏与蓝橙对称灯光",
+          dcdcAlt3: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台斜侧视角：弧形主屏、侧屏与地面灯带",
+          dcdcAlt8: "《全明星街球派对》DCDC 冠军杯夏季赛总决赛舞台中央结构特写：赛事标识与发光立柱",
           section2Title: "蛋仔派对盛典舞台",
           section3Title: "梦幻西游手游巅峰联赛 S11 舞台",
           socialSign: "设计的回声",
@@ -481,14 +497,15 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          credit1: "Stage Design: Shadow (Li Ying)",
+          credit1: "Stage Design: 影子（李颖）",
           credit2: "Stage Supervision & Execution: Li Xia, Dai Zexuan, Wen Hong",
           section1Title: "NetEase Esports NeXT Stage",
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
           stageAlt3: "NetEase Esports NeXT winter stage side angle showing screen structures and lighting",
-          dcdcAlt5: "All-Star Streetball Party DCDC Championship stage front view with white main screen and symmetrical light columns",
-          dcdcAlt8: "All-Star Streetball Party DCDC Championship stage central structure close-up",
+          dcdcAlt5: "All-Star Streetball Party DCDC Championship stage front view with a curved main screen and symmetrical blue and orange lighting",
+          dcdcAlt3: "All-Star Streetball Party DCDC Championship stage three-quarter view with curved main screen, side screens and floor light strips",
+          dcdcAlt8: "All-Star Streetball Party DCDC Championship stage central structure close-up with the event mark and glowing column",
           section2Title: "Eggy Party Ceremony Stage",
           section3Title: "Fantasy Westward Journey Mobile Peak League S11 Stage",
           socialSign: "The echo of design",

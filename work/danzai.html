@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 署名模块：4 条，左 2 右 2，窄屏单列 */
@@ -65,13 +65,26 @@
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
-    /* 01 KV 与 02 视频包装之间收紧，不沿用区块之间的默认大间距 */
-    #case-gallery-video { margin-top: clamp(24px, 3vw, 40px); }
+    /* 项目背景与 01 KV 之间收紧留白 */
+    .case-body .case-intro + .case-gallery { margin-top: clamp(20px, 2.2vw, 28px); }
+
+    /* 01 KV 与 02 VI 手册之间收紧，不沿用区块之间的默认大间距 */
+    #case-gallery-vi { margin-top: clamp(24px, 3vw, 40px); }
 
     /* 标题与图之间只留一点呼吸，不沿用区块之间的默认大间距 */
     .case-gallery > h2 { margin-bottom: clamp(16px, 1.6vw, 22px); }
 
     .case-row + .case-row { margin-top: 6px; }
+
+    /* VI 手册：一行五张，未定图的位置留空占位 */
+    .case-vi-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+    /* 覆盖全局「相邻 frame 上边距」（手机端 site-wide.css 用 !important 压到 4px），
+       否则每行第 2 张起会比第 1 张低 4px，行首出现错位 */
+    .case-gallery .case-vi-row .case-frame { margin: 0 !important; }
 
     /* 空白页内容较短：桌面端让页脚始终落在视口底部 */
     @media (min-width: 721px) {
@@ -178,6 +191,8 @@
     @media (max-width: 720px), (hover: none) {
       .case-gallery .slot-play { display: grid; }
     }
+    /* KV 两张：桌面端也常驻播放按钮，滚走再回来时不自动播放，靠它重播 */
+    .case-gallery .kv-slot .slot-play { display: grid; }
     /* 手机端一键播放：页面上有动画在视野里才浮出，避免常驻遮挡回声带与页脚 */
     @media (max-width: 720px) {
       .case-page .mobile-play { display: none; }
@@ -432,19 +447,28 @@
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
         <h2 id="case-intro-title"><span data-i18n-key="introTitle">项目背景</span></h2>
-        <p data-i18n-key="introBody">《蛋仔派对》全国总决赛，是《蛋仔派对》官方自 2024 年起举办的专业赛事总决赛，也是目前《蛋仔派对》赛事体系中最高级别的赛事。</p>
+        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是这款游戏赛事体系里最高级别的年度赛事，自 2024 年起由官方举办；2026 年第三届在四川省体育馆开票一分钟售罄。我所在的内容团队负责整场视觉：主 KV、品牌规范、直播与节目包装、大屏和周边。</p>
+        <p data-i18n-key="introP2">派对游戏本来是轻的，做成比赛又得有排面，这两边很容易打架。我的做法是先定住蛋仔的圆润造型和奖杯的体量，再把颜色、字体、版式固化成规范；后面直播、大屏、周边都从这套规范里出，赛事加了新玩法，视觉也不用重做。</p>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
         <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">KV</span></h2>
         <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">
+            <video muted playsinline preload="none" aria-label="第三届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
         </div>
         <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-play="enter">
             <img src="../assets/danzai-s2-kv.webp" alt="第二届《蛋仔派对》全国总决赛主视觉：星城共聚，再战巅峰（湖南长沙）" width="2400" height="1350" loading="lazy" decoding="async">
+            <video muted playsinline preload="none" aria-label="第二届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
+            <button class="slot-play" type="button" aria-label="播放动画">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
           </figure>
         </div>
         <!-- 往这里继续追加作品图，例如：
@@ -456,9 +480,120 @@
              data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
       </section>
 
+      <section class="case-section case-gallery" id="case-gallery-vi" aria-labelledby="case-title-vi">
+        <h2 id="case-title-vi"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">VI 手册</span></h2>
+        <!-- VI 手册：一行五张，未定图的位置留空占位 -->
+        <div class="case-vi-row">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-01-cover.webp" alt="《蛋仔派对》2025 全国总决赛赛事视觉规范手册封面" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-02-logo-intro.webp" alt="赛事标志总览页：2025 全国总决赛赛事标志与手册说明" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-03-logo-cover.webp" alt="VI 手册 LOGO 标志章节封面：金色奖杯与章节目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-04-logo-elements.webp" alt="标志元素页：全国总决赛奖杯标志元素与标准标志" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-05-logo-basic.webp" alt="标准标志页：全彩、单黑、单白三个版本及适用场景" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-06-logo-usage.webp" alt="标志使用页：2024 与 2025 版标志及全彩＞白＞黑的使用优先级" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-07-logo-combination.webp" alt="LOGO 组合规范页：与网易游戏、蛋仔派对标志组合时的光学重量平衡建议" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-08-logo-clear-space.webp" alt="安全区域与最小尺寸页：标志四周留 1X 安全区，印刷最小 16mm、显示最小 44px" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-09-logo-restrictions.webp" alt="使用与限制页：禁止改变比例、翻转、改色、叠加等错误用法示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-10-logo-restrictions-2.webp" alt="使用与限制续页：标志在不同底色比例下的可用与禁用示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-11-color-cover.webp" alt="品牌色章节封面：金色奖杯与 COLOR 品牌色目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-12-color-basic.webp" alt="品牌标准色页：冠军荣耀黄、新生面貌蓝、赛事白、赛事黑及色值标注" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-13-color-proportion.webp" alt="颜色比例页：主色与辅色使用比例的环形示意" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-14-type-cover.webp" alt="字体章节封面：金色奖杯与 TYPOGRAPHY 字体目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-15-type-overview.webp" alt="赛事字体规范页：中英文标题、正文与装饰字体规范" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-16-type-precaution.webp" alt="注意事项页：游戏品牌标题字体与正文字体使用示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-17-broadcast-cover.webp" alt="直播包装章节封面：金色奖杯与 BROADCAST 直播包装目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-18-broadcast-main-1.webp" alt="正赛包装页：20:35 倒计时开场画面" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-19-broadcast-main-2.webp" alt="正赛包装页：赛程、晋级规则、获胜与选手数据面板示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-20-broadcast-main-3.webp" alt="正赛包装页：选手数据、淘汰榜、击破榜与赛果面板示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-21-broadcast-main-4.webp" alt="正赛包装页：对阵、晋级、奖金分配、赛程与精彩集锦面板示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-22-broadcast-exhibition-1.webp" alt="表演赛包装页：巅峰热身赛冠军队伍海报示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-23-broadcast-exhibition-2.webp" alt="表演赛包装页：积分榜、冠军板与赛后积分面板示例" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-24-subpkg-cover.webp" alt="节目内容包装章节封面：金色奖杯与 SUB PKG 目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-25-subpkg-egg-talk.webp" alt="蛋言蛋语节目包装页：栏目片头、转场与选手采访界面" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-26-subpkg-top5.webp" alt="TOP5 节目包装页：TOP5 片头与选手名单条" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-27-subpkg-highlights.webp" alt="选手高光特辑包装页：高光时刻转播画面与奖杯包装" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-28-subpkg-bumper.webp" alt="选手 BUMPER 包装页：个人赛与团队赛选手过场动画分镜" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-29-subpkg-format.webp" alt="赛制介绍包装页：赛程、奖金、晋级与夺冠条件信息板" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-30-app-cover.webp" alt="周边应用章节封面：金色奖杯与 APPLICATIONS 周边应用目录" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-31-app-trophy-1.webp" alt="赛事奖杯页：奖杯正面、背面与顶视图三视图" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-32-app-trophy-2.webp" alt="赛事奖杯页：奖杯正面与背面特写" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-33-app-products.webp" alt="赛事品牌产品页：手提袋、徽章与包装盒等延展物料" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-34-app-jersey.webp" alt="赛事服装页：选手队服正面与背面设计" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/danzai-vi-35-app-flag.webp" alt="赛事道旗页：六色道旗的蛋仔角色与赛事标准字应用" width="1200" height="675" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </section>
+
       <section class="case-section case-gallery" id="case-gallery-video" aria-labelledby="case-title-video">
-        <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">视频包装</span></h2>
-        <p class="case-caption case-credit-top" data-i18n-key="videoCredit">视觉创意设计：影子（李颖）｜动效设计：李楚怡</p>
+        <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">美年达联名转场</span></h2>
         <div class="case-video-split">
           <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
             <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
@@ -499,14 +634,6 @@
             </figure>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="case-section case-gallery" id="case-gallery-vi" aria-labelledby="case-title-vi">
-        <h2 id="case-title-vi"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">VI 手册</span></h2>
-        <!-- 内容待补充：VI 手册的页面/规范图，按 case-row data-layout 追加 -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
         </div>
       </section>
 
@@ -619,14 +746,14 @@
           credit3: "动效设计：纪云、李楚怡、郑斯锴、刘佰强",
           credit4: "美术督导：胡煦升、刘星",
           introTitle: "项目背景",
-          introBody: "《蛋仔派对》全国总决赛，是《蛋仔派对》官方自 2024 年起举办的专业赛事总决赛，也是目前《蛋仔派对》赛事体系中最高级别的赛事。",
+          introP1: "《蛋仔派对》全国总决赛是这款游戏赛事体系里最高级别的年度赛事，自 2024 年起由官方举办；2026 年第三届在四川省体育馆开票一分钟售罄。我所在的内容团队负责整场视觉：主 KV、品牌规范、直播与节目包装、大屏和周边。",
+          introP2: "派对游戏本来是轻的，做成比赛又得有排面，这两边很容易打架。我的做法是先定住蛋仔的圆润造型和奖杯的体量，再把颜色、字体、版式固化成规范；后面直播、大屏、周边都从这套规范里出，赛事加了新玩法，视觉也不用重做。",
           section1Title: "KV",
-          section2Title: "视频包装",
-          section3Title: "VI 手册",
+          section2Title: "VI 手册",
+          section3Title: "美年达联名转场",
           section4Title: "大屏视觉",
           section5Title: "周边物料",
           section6Title: "宣发设计",
-          videoCredit: "视觉创意设计：影子（李颖）｜动效设计：李楚怡",
           soundOn: "声音",
           soundOff: "静音",
           playAll: "一键播放",
@@ -652,19 +779,19 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          credit1: "3D & Visual Creative Design: Shadow (Li Ying)",
-          credit2: "Art Supervision: Shadow (Li Ying)",
+          credit1: "3D & Visual Creative Design: 影子（李颖）",
+          credit2: "Art Supervision: 影子（李颖）",
           credit3: "Motion Design: 纪云, 李楚怡, 郑斯锴, 刘佰强",
           credit4: "Art Direction: 胡煦升, 刘星",
           introTitle: "Project background",
-          introBody: "The Eggy Party National Finals is the professional championship the game has run since 2024, and the highest level of competition in the Eggy Party esports system.",
+          introP1: "The Eggy Party National Finals is the top-tier annual event within the game's own esports system, run by the official team since 2024; the 2026 edition sold out in a minute at the Sichuan Provincial Gymnasium. Our content team owns its full visual: key visuals, brand guidelines, broadcast and program packaging, large screens and merchandise.",
+          introP2: "A party game is light by nature; a final has to feel big, and those two pull against each other. I locked the Eggies' rounded shapes and the trophy's weight first, then fixed color, type and layout into guidelines. Broadcast, screens and merch all come out of that set, so adding a new game mode didn't mean redesigning the look.",
           section1Title: "Key Visual",
-          section2Title: "Video packaging",
-          section3Title: "VI manual",
+          section2Title: "VI manual",
+          section3Title: "Mirinda Co-branded Transition",
           section4Title: "Large-screen visuals",
           section5Title: "Merchandise",
           section6Title: "Promotional design",
-          videoCredit: "Visual creative design: Shadow (Li Ying) | Motion design: Li Chuyi",
           soundOn: "Sound",
           soundOff: "Mute",
           playAll: "Play all",
@@ -921,13 +1048,12 @@
         entries.forEach(function (entry) {
           var slot = entry.target;
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-            // 手机端交给显式播放按钮，不自动播放
-            if (!mobileQuery.matches && slot.dataset.played !== "1") {
-              slot.dataset.played = "1";
+            // 只在首次入场自动播放；滚走再回来不再自动播，改用播放按钮
+            if (!mobileQuery.matches && slot.dataset.autoplayed !== "1") {
+              slot.dataset.autoplayed = "1";
               play(slot);
             }
           } else if (!entry.isIntersecting) {
-            delete slot.dataset.played;
             stop(slot);
           }
         });

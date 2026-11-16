@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     .case-body .case-pair + .case-frame {
@@ -151,12 +151,6 @@
       gap: 6px;
     }
 
-    /* 城市官宣 + 主视觉：双栏填满行高，避免亚像素缝 */
-    .eggy-city-pair .case-frame--image img {
-      height: 100%;
-      object-fit: cover;
-    }
-
     /* 竖版海报：2 张一行起排，可扩展到 3 / 4 张（6 张仅用于次次要系列） */
     .case-row[data-layout="portrait-2"] {
       display: grid;
@@ -193,6 +187,23 @@
 
     @media (max-width: 720px) {
       .case-row[data-layout="portrait-4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* 长图条：桌面与手机端都保持五张并排 */
+    .case-row[data-layout="poster-5"] {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .case-row[data-layout="poster-5"] > .case-frame { margin: 0; }
+
+    .case-body .case-row[data-layout="poster-5"] .case-frame { margin: 0 !important; }
+
+    .case-row[data-layout="poster-5"] img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     /* 动画静帧垫底：播放结束后回到静图，而不是视频首帧 */
@@ -284,8 +295,6 @@
       /* 系列条：手机端保持三列并排，让系列作为一组被看完 */
       .case-row[data-layout="strip"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .case-row[data-layout="banners"] { grid-template-columns: 1fr; }
-      /* 群像海报文字密集，手机上两列会看不清，改单列 */
-      .case-row.eggy-poster-pair { grid-template-columns: 1fr; }
     }
 
     /* 署名模块：参考 FlowX 案例页 */
@@ -462,34 +471,19 @@
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
         </div>
-        <!-- 《蛋仔派对》· 全国总决赛城市官宣 + 主视觉 -->
-        <div class="case-row eggy-city-pair" data-layout="secondary">
+        <!-- 《蛋仔派对》· 全国总决赛城市官宣 -->
+        <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-coa-chengdu.webp?v=20261112d" alt="第三届《蛋仔派对》全国总决赛 · 成都城市官宣海报" data-i18n-alt="chengduAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/danzai-cover.webp" alt="第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像" data-i18n-alt="danzaiAlt" width="1400" height="788" loading="lazy" decoding="async">
-          </figure>
         </div>
-        <!-- 《蛋仔派对》· 全国总决赛 KV 多 LOGO 版本 -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-finals-kv-logos.webp?v=20261112c" alt="第三届《蛋仔派对》全国总决赛主视觉 · 多 LOGO 版本" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-        </div>
-        <!-- 《蛋仔派对》挑战杯 KV -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-challenge-cup.webp?v=20261114a" alt="《蛋仔派对》挑战杯主视觉：粉色网点背景上的蛋仔角色群像与金色奖杯，底部为网易游戏与赞助商标识" data-i18n-alt="challengeCupAlt" width="1920" height="1080" loading="lazy" decoding="async">
-          </figure>
-        </div>
-        <!-- 《蛋仔派对》· 综艺《寻宝吧！蛋搭子》主视觉 + 巅峰热身赛 DSG 战队冠军海报 -->
+        <!-- 《蛋仔派对》· 综艺《寻宝吧！蛋搭子》主视觉 + 挑战杯主视觉 -->
         <div class="case-row eggy-poster-pair" data-layout="secondary">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-eggy-treasure-hunt.webp" alt="《蛋仔派对》× 网易游戏乐园嘉年华 2025 综艺《寻宝吧！蛋搭子》主视觉：内容创作者与赛事选手的群像海报" data-i18n-alt="treasureHuntAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-eggy-dsg-champion.webp" alt="《蛋仔派对》全国总决赛·巅峰热身赛冠军海报：DSG 战队四人群像与金色全国总决赛奖杯" data-i18n-alt="dsgChampionAlt" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../assets/campaign-eggy-challenge-cup.webp?v=20261114a" alt="《蛋仔派对》挑战杯主视觉：粉色网点背景上的蛋仔角色群像与金色奖杯，底部为网易游戏与赞助商标识" data-i18n-alt="challengeCupAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
         </div>
         <!-- 《蛋仔派对》· 赛事活动横幅系列 -->
@@ -579,11 +573,20 @@
             <img src="../assets/campaign-mengshou-s13-cd1.webp" alt="《梦幻西游》手游 S13 巅峰联赛倒计时海报 · 1 天" width="1500" height="2668" loading="lazy" decoding="async">
           </figure>
         </div>
-        <!-- 《梦幻西游》手游 S11 精锐组冠军板 + S10 神威组冠军板：次要两张一行 -->
-        <div class="case-row" data-layout="secondary">
+        <!-- 《梦幻西游》手游 S8 季后赛倒计时：三张一行 -->
+        <div class="case-row" data-layout="portrait-3">
           <figure class="case-frame case-frame--image">
-            <img src="../assets/campaign-mengshou-s11-champion.webp?v=20261112c" alt="《梦幻西游》手游 S11 精锐组冠军板：冠军战队成员群像" width="1920" height="1080" loading="lazy" decoding="async">
+            <img src="../assets/campaign-mengshou-s8-playoff-cd3.webp" alt="《梦幻西游》手游 S8 季后赛倒计时海报 · 还有 3 天：三界再聚" width="1000" height="1779" loading="lazy" decoding="async">
           </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s8-playoff-cd2.webp" alt="《梦幻西游》手游 S8 季后赛倒计时海报 · 还有 2 天：棋逢对手" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-mengshou-s8-playoff-cd1.webp" alt="《梦幻西游》手游 S8 季后赛倒计时海报 · 还有 1 天：再指巅峰" width="1000" height="1779" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 《梦幻西游》手游 S10 神威组冠军板 -->
+        <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-mengshou-s10-champion-shenwei.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组总冠军「天下无双」战队冠军板" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
@@ -611,6 +614,24 @@
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-naraka-wc2024-matchpoint.webp" alt="《永劫无间》2024 世界冠军赛赛事包装：赛点选手数据条，Mike（麦克）当前总积分 28.1，赛点局分数线 26" data-i18n-alt="narakaMatchPointAlt" width="1267" height="713" loading="lazy" decoding="async">
+          </figure>
+        </div>
+        <!-- 长图海报：五张并排一行 -->
+        <div class="case-row" data-layout="poster-5">
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-long-eggy-tickets.webp?v=20261116-1" alt="《蛋仔派对》第三届全国总决赛长图：购票指南 2.0、票价档位与场内座位图" width="376" height="1231" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-long-eggy-jinghun.webp?v=20261116-1" alt="《蛋仔派对》惊魂杯长图：赛事日程、报名方式与赛事奖励" width="376" height="1231" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-long-mengshou-s13.webp?v=20261116-1" alt="《梦幻西游》手游 S13 巅峰联赛长图：常规赛 9 月 28 日开赛与全月赛程" width="376" height="1231" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-long-acerace.webp?v=20261116-1" alt="王牌竞速全国年度总决赛长图：六强选手赛场就位与冠军奖励" width="376" height="1231" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-frame--image">
+            <img src="../assets/campaign-long-naraka-city.webp?v=20261116-1" alt="《永劫无间》城市联赛长图：每日任务与抽奖活动规则" width="376" height="1231" loading="lazy" decoding="async">
           </figure>
         </div>
       </section>
@@ -740,7 +761,6 @@
           danzaiAlt: "第三届《蛋仔派对》全国总决赛主视觉：金色奖杯、城市沙盘与蛋仔角色群像",
           chengduAlt: "第三届《蛋仔派对》全国总决赛 · 成都城市官宣海报",
           treasureHuntAlt: "《蛋仔派对》× 网易游戏乐园嘉年华 2025 综艺《寻宝吧！蛋搭子》主视觉：内容创作者与赛事选手的群像海报",
-          dsgChampionAlt: "《蛋仔派对》全国总决赛·巅峰热身赛冠军海报：DSG 战队四人群像与金色全国总决赛奖杯",
           challengeCupAlt: "《蛋仔派对》挑战杯主视觉：粉色网点背景上的蛋仔角色群像与金色奖杯，底部为网易游戏与赞助商标识",
           section3Title: "《梦幻西游》手游巅峰联赛",
           section2Body: "同一套宣发语言会延展到不同项目：主视觉负责建立记忆点，系列海报负责把信息拆成可传播的单元，联动物料则把品牌与赛事放进同一个画面里。",
@@ -799,7 +819,7 @@
           statBadge6: "Douyin · 4K+ likes",
           statBadge7: "Douyin · 3K+ likes",
           statBadge8: "3M-impression show",
-          credit1: "3D & Visual Creative Design: Shadow (Li Ying)",
+          credit1: "3D & Visual Creative Design: 影子（李颖）",
           badgeTwitter10k: "Twitter · 10K reposts",
           badgeTwitter1k: "Twitter · 1K reposts",
           badgeTwitter35w: "Twitter · 350K+ impressions, high-engagement 10K-like post",
@@ -814,7 +834,6 @@
           danzaiAlt: "Eggy Party National Finals key visual: a gold trophy, city diorama and the Eggy cast",
           chengduAlt: "Eggy Party 3rd National Finals · Chengdu city announcement poster",
           treasureHuntAlt: "Eggy Party × NetEase Games Park Carnival 2025 variety show 'Treasure Hunt, Egg Pals!' key visual with creators and esports players",
-          dsgChampionAlt: "Eggy Party National Finals warm-up tournament champion poster: the DSG team of four with the gold National Finals trophy",
           challengeCupAlt: "Eggy Party Challenge Cup key visual: the Eggy cast and a gold trophy on a pink halftone backdrop, with NetEase Games and sponsor logos along the bottom",
           section3Title: "Fantasy Westward Journey Mobile Peak League",
           section2Body: "One campaign language travels across projects: the key visual builds the memory hook, series posters break the message into shareable pieces, and partnership assets put brand and event in the same frame.",

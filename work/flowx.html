@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261114-4">
+  <link rel="stylesheet" href="../styles.css?v=20261116-8">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -175,7 +175,10 @@
       .pillar { padding: 18px 14px 20px; }
       .case-body .pillar-title { font-size: 16px; }
       .case-body .pillar-desc { font-size: 11.5px; }
-      .case-body .pillar-stat strong { font-size: 24px; }
+      /* 手机上四列并排，数字按列宽收缩，避免「5,300+」挤出卡片 */
+      .case-body .pillar-stat strong { font-size: clamp(17px, 4.6vw, 22px); }
+      /* 单位统一换到数字下方，四张卡片的数值基线保持一致 */
+      .case-body .pillar-stat { flex-direction: column; align-items: flex-start; gap: 3px; }
     }
 
     /* 窄屏压缩为电脑端 6 列数据 + 4 列价值卡，不出现横向滚动 */
@@ -280,8 +283,7 @@
         </figure>
       </section>
 
-      <section class="case-section flowx-value" aria-labelledby="flowx-value-title">
-        <h2 id="flowx-value-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="valueTitle">平台价值</span></h2>
+      <section class="case-section flowx-value" aria-label="平台价值">
         <div class="case-stats">
           <div class="case-stat">
             <strong>55+</strong>
@@ -388,7 +390,6 @@
           credit10: "动画支持：刘星、刘佰强、邹文君",
           credit11: "项目指导：胡煦升、刘星",
           credit12: "业务支持：胡煦升、刘星",
-          valueTitle: "平台价值",
           value1: "AI 管线",
           value2: "覆盖游戏",
           value3: "累计调用 · 套",
@@ -417,19 +418,18 @@
           navWork: "Work",
           navAbout: "About",
           footerNote: "Shadow · Visual Design Portfolio",
-          credit1: "Project Sponsor: Shadow (Li Ying)",
-          credit2: "Project Lead: Shadow (Li Ying)",
-          credit3: "Product Manager: Shadow (Li Ying), 张喆涵",
-          credit4: "Core Development: Shadow (Li Ying), 匡振威, 张喆涵",
+          credit1: "Project Sponsor: 影子（李颖）",
+          credit2: "Project Lead: 影子（李颖）",
+          credit3: "Product Manager: 影子（李颖）, 张喆涵",
+          credit4: "Core Development: 影子（李颖）, 匡振威, 张喆涵",
           credit5: "Assistant Development: 钟丰骏",
-          credit6: "Operations & Maintenance: Shadow (Li Ying), 匡振威",
-          credit7: "AI Application Engineering: Shadow (Li Ying), 匡振威, 张喆涵, 钟丰骏",
-          credit8: "UI/UX Design: Shadow (Li Ying)",
-          credit9: "Art Support: Shadow (Li Ying), 匡振威",
+          credit6: "Operations & Maintenance: 影子（李颖）, 匡振威",
+          credit7: "AI Application Engineering: 影子（李颖）, 匡振威, 张喆涵, 钟丰骏",
+          credit8: "UI/UX Design: 影子（李颖）",
+          credit9: "Art Support: 影子（李颖）, 匡振威",
           credit10: "Animation Support: 刘星, 刘佰强, 邹文君",
           credit11: "Project Advisors: 胡煦升, 刘星",
           credit12: "Business Support: 胡煦升, 刘星",
-          valueTitle: "Platform Value",
           value1: "AI pipelines",
           value2: "games covered",
           value3: "cumulative calls",
