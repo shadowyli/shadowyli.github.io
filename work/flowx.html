@@ -262,7 +262,7 @@
         <li data-i18n-key="credit2">项目负责人：影子（李颖）</li>
         <li data-i18n-key="credit3">产品经理：影子（李颖）、张喆涵</li>
         <li data-i18n-key="credit4">核心开发：影子（李颖）、匡振威、张喆涵</li>
-        <li data-i18n-key="credit5">协助开发：钟丰骏</li>
+        <li data-i18n-key="credit5">开发实习：钟丰骏</li>
         <li data-i18n-key="credit6">运营维护：影子（李颖）、匡振威</li>
         <li data-i18n-key="credit7">AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏</li>
         <li data-i18n-key="credit8">UI/UX设计：影子（李颖）</li>
@@ -276,7 +276,7 @@
         <figure class="case-frame">
           <div class="case-frame-inner">
             <video class="case-frame-video" controls playsinline preload="metadata" poster="../assets/flowx-platform-intro-poster.jpg?v=20261113-2" aria-label="FlowX 平台介绍" width="1920" height="1080">
-              <source src="../assets/flowx-platform-intro.mp4" type="video/mp4">
+              <source src="../assets/flowx-platform-intro.mp4" data-mobile-src="../assets/flowx-platform-intro-mobile.mp4" type="video/mp4">
               你的浏览器不支持 HTML5 视频。
             </video>
           </div>
@@ -382,7 +382,7 @@
           credit2: "项目负责人：影子（李颖）",
           credit3: "产品经理：影子（李颖）、张喆涵",
           credit4: "核心开发：影子（李颖）、匡振威、张喆涵",
-          credit5: "协助开发：钟丰骏",
+          credit5: "开发实习：钟丰骏",
           credit6: "运营维护：影子（李颖）、匡振威",
           credit7: "AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏",
           credit8: "UI/UX设计：影子（李颖）",
@@ -422,7 +422,7 @@
           credit2: "Project Lead: 影子（李颖）",
           credit3: "Product Manager: 影子（李颖）, 张喆涵",
           credit4: "Core Development: 影子（李颖）, 匡振威, 张喆涵",
-          credit5: "Assistant Development: 钟丰骏",
+          credit5: "Development Intern: 钟丰骏",
           credit6: "Operations & Maintenance: 影子（李颖）, 匡振威",
           credit7: "AI Application Engineering: 影子（李颖）, 匡振威, 张喆涵, 钟丰骏",
           credit8: "UI/UX Design: 影子（李颖）",
@@ -581,6 +581,20 @@
       dialog.addEventListener("click", closeDialog);
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();
+      });
+    })();
+  </script>
+  <script>
+    /* 手机端换用低码率版本：2 分钟长视频，720p 降到 960 宽可显著减少卡顿 */
+    (function () {
+      if (!window.matchMedia("(max-width: 720px)").matches) return;
+      var sources = document.querySelectorAll("source[data-mobile-src]");
+      Array.prototype.forEach.call(sources, function (source) {
+        var src = source.getAttribute("data-mobile-src");
+        if (!src || source.getAttribute("src") === src) return;
+        source.setAttribute("src", src);
+        var video = source.parentElement;
+        try { video.load(); } catch (error) {}
       });
     })();
   </script>

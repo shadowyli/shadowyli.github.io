@@ -65,14 +65,13 @@
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
-    /* 项目背景与 01 KV 之间收紧留白 */
+    /* 关于与画廊之间收紧留白 */
     .case-body .case-intro + .case-gallery { margin-top: clamp(20px, 2.2vw, 28px); }
 
-    /* 01 KV 与 02 VI 手册之间收紧，不沿用区块之间的默认大间距 */
-    #case-gallery-vi { margin-top: clamp(24px, 3vw, 40px); }
-
-    /* 标题与图之间只留一点呼吸，不沿用区块之间的默认大间距 */
-    .case-gallery > h2 { margin-bottom: clamp(16px, 1.6vw, 22px); }
+    /* 去掉模块标题后连成一条画廊：分组之间只留图片同款 6px 缝 */
+    .case-body .case-gallery + .case-gallery { margin-top: 6px; }
+    /* 站内全局给 #case-gallery-video 留了大间距，这里压平 */
+    .case-body #case-gallery-video { margin-top: 6px; }
 
     .case-row + .case-row { margin-top: 6px; }
 
@@ -446,13 +445,12 @@
       </ul>
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
-        <h2 id="case-intro-title"><span data-i18n-key="introTitle">项目背景</span></h2>
-        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是这款游戏赛事体系里最高级别的年度赛事，自 2024 年起由官方举办；2026 年第三届在四川省体育馆开票一分钟售罄。我所在的内容团队负责整场视觉：主 KV、品牌规范、直播与节目包装、大屏和周边。</p>
-        <p data-i18n-key="introP2">派对游戏本来是轻的，做成比赛又得有排面，这两边很容易打架。我的做法是先定住蛋仔的圆润造型和奖杯的体量，再把颜色、字体、版式固化成规范；后面直播、大屏、周边都从这套规范里出，赛事加了新玩法，视觉也不用重做。</p>
+        <h2 id="case-intro-title"><span data-i18n-key="introTitle">关于</span></h2>
+        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是《蛋仔派对》游戏内最高级别的年度赛事，自 2024 年起举办。我负责整场赛事的视觉：主 KV、赛事 VI 手册、直播与节目包装、大屏与周边。</p>
+        <p data-i18n-key="introP2">视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。</p>
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery" aria-labelledby="case-title">
-        <h2 id="case-title"><span class="case-section-index" aria-hidden="true">01</span><span data-i18n-key="section1Title">KV</span></h2>
+      <section class="case-section case-gallery" id="case-gallery" aria-label="KV">
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">
@@ -463,7 +461,7 @@
           </figure>
         </div>
         <div class="case-row" data-layout="main">
-          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-play="enter">
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-mobile-video="../assets/danzai-kv-process-mobile.mp4" data-play="enter">
             <img src="../assets/danzai-s2-kv.webp" alt="第二届《蛋仔派对》全国总决赛主视觉：星城共聚，再战巅峰（湖南长沙）" width="2400" height="1350" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="第二届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
@@ -480,8 +478,7 @@
              data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery-vi" aria-labelledby="case-title-vi">
-        <h2 id="case-title-vi"><span class="case-section-index" aria-hidden="true">02</span><span data-i18n-key="section2Title">VI 手册</span></h2>
+      <section class="case-section case-gallery" id="case-gallery-vi" aria-label="VI 手册">
         <!-- VI 手册：一行五张，未定图的位置留空占位 -->
         <div class="case-vi-row">
           <figure class="case-frame case-frame--image">
@@ -592,10 +589,9 @@
         </div>
       </section>
 
-      <section class="case-section case-gallery" id="case-gallery-video" aria-labelledby="case-title-video">
-        <h2 id="case-title-video"><span class="case-section-index" aria-hidden="true">03</span><span data-i18n-key="section3Title">美年达联名转场</span></h2>
+      <section class="case-section case-gallery" id="case-gallery-video" aria-label="美年达联名转场">
         <div class="case-video-split">
-          <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-play="enter">
+          <figure class="case-frame case-media-slot" data-video="../assets/mirinda-kv.mp4" data-mobile-video="../assets/mirinda-kv-mobile.mp4" data-play="enter">
             <img src="../assets/mirinda-kv.webp" alt="美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品" data-i18n-alt="mirindaAlt" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="美年达主宣转场动画：品牌标识与蛋仔角色在橙色视觉中切换"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
@@ -634,30 +630,6 @@
             </figure>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="case-section case-gallery" id="case-gallery-screen" aria-labelledby="case-title-screen">
-        <h2 id="case-title-screen"><span class="case-section-index" aria-hidden="true">04</span><span data-i18n-key="section4Title">大屏视觉</span></h2>
-        <!-- 内容待补充：大屏视觉的现场图/界面图，按 case-row data-layout 追加 -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
-        </div>
-      </section>
-
-      <section class="case-section case-gallery" id="case-gallery-merch" aria-labelledby="case-title-merch">
-        <h2 id="case-title-merch"><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">周边物料</span></h2>
-        <!-- 内容待补充：周边物料的实物图/延展图，按 case-row data-layout 追加 -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
-        </div>
-      </section>
-
-      <section class="case-section case-gallery" id="case-gallery-promo" aria-labelledby="case-title-promo">
-        <h2 id="case-title-promo"><span class="case-section-index" aria-hidden="true">06</span><span data-i18n-key="section6Title">宣发设计</span></h2>
-        <!-- 内容待补充：宣发物料的海报/长图/户外图，按 case-row data-layout 追加 -->
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image case-frame--empty" aria-hidden="true"></figure>
         </div>
       </section>
 
@@ -745,15 +717,9 @@
           credit2: "美术监修：影子（李颖）",
           credit3: "动效设计：纪云、李楚怡、郑斯锴、刘佰强",
           credit4: "美术督导：胡煦升、刘星",
-          introTitle: "项目背景",
-          introP1: "《蛋仔派对》全国总决赛是这款游戏赛事体系里最高级别的年度赛事，自 2024 年起由官方举办；2026 年第三届在四川省体育馆开票一分钟售罄。我所在的内容团队负责整场视觉：主 KV、品牌规范、直播与节目包装、大屏和周边。",
-          introP2: "派对游戏本来是轻的，做成比赛又得有排面，这两边很容易打架。我的做法是先定住蛋仔的圆润造型和奖杯的体量，再把颜色、字体、版式固化成规范；后面直播、大屏、周边都从这套规范里出，赛事加了新玩法，视觉也不用重做。",
-          section1Title: "KV",
-          section2Title: "VI 手册",
-          section3Title: "美年达联名转场",
-          section4Title: "大屏视觉",
-          section5Title: "周边物料",
-          section6Title: "宣发设计",
+          introTitle: "关于",
+          introP1: "《蛋仔派对》全国总决赛是《蛋仔派对》游戏内最高级别的年度赛事，自 2024 年起举办。我负责整场赛事的视觉：主 KV、赛事 VI 手册、直播与节目包装、大屏与周边。",
+          introP2: "视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。",
           soundOn: "声音",
           soundOff: "静音",
           playAll: "一键播放",
@@ -783,15 +749,9 @@
           credit2: "Art Supervision: 影子（李颖）",
           credit3: "Motion Design: 纪云, 李楚怡, 郑斯锴, 刘佰强",
           credit4: "Art Direction: 胡煦升, 刘星",
-          introTitle: "Project background",
-          introP1: "The Eggy Party National Finals is the top-tier annual event within the game's own esports system, run by the official team since 2024; the 2026 edition sold out in a minute at the Sichuan Provincial Gymnasium. Our content team owns its full visual: key visuals, brand guidelines, broadcast and program packaging, large screens and merchandise.",
-          introP2: "A party game is light by nature; a final has to feel big, and those two pull against each other. I locked the Eggies' rounded shapes and the trophy's weight first, then fixed color, type and layout into guidelines. Broadcast, screens and merch all come out of that set, so adding a new game mode didn't mean redesigning the look.",
-          section1Title: "Key Visual",
-          section2Title: "VI manual",
-          section3Title: "Mirinda Co-branded Transition",
-          section4Title: "Large-screen visuals",
-          section5Title: "Merchandise",
-          section6Title: "Promotional design",
+          introTitle: "About",
+          introP1: "The Eggy Party National Finals is the game's top-tier annual esports event, held since 2024. I own its full visual output: key visuals, the event VI manual, broadcast and program packaging, large screens and merchandise.",
+          introP2: "The visual has to hold two things at once: the lightness of a party game and the ceremony of an esports final. I built around the Eggies' rounded shapes, with a weighty trophy and stage composition anchoring the frame, then fixed the palette, type and layout into a manual. Broadcast, screens and merchandise all derive from it, so new game modes could reuse the same assets.",
           soundOn: "Sound",
           soundOff: "Mute",
           playAll: "Play all",
@@ -957,9 +917,22 @@
 
       var mobileQuery = window.matchMedia("(max-width: 720px)");
 
+      // 同一时间只播一个动画，避免多路解码互相抢资源导致卡顿
+      document.addEventListener("play", function (event) {
+        var current = event.target;
+        if (!current || current.tagName !== "VIDEO") return;
+        slots.forEach(function (slot) {
+          var other = slot.querySelector("video");
+          if (other && other !== current && !other.paused) other.pause();
+        });
+      }, true);
+
       function attach(slot) {
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
+        // 手机端优先用低码率版本，保证小屏播放流畅
+        var mobileSrc = slot.getAttribute("data-mobile-video");
+        if (mobileSrc && mobileQuery.matches) src = mobileSrc;
         if (!video || !src) return null;
         video.loop = false; // 只播一次：结束后停在末帧，末帧与静图呼应
         if (video.getAttribute("src") !== src) {

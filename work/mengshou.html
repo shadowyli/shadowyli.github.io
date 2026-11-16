@@ -88,6 +88,8 @@
     @media (max-width: 720px), (hover: none) {
       .case-gallery .slot-play { display: grid; }
     }
+    /* 手动播放的动画（主视觉 KV）：桌面端也常驻播放按钮，不自动播 */
+    .case-gallery .case-media-slot[data-play="manual"] .slot-play { display: grid; }
     /* 手机端一键播放：页面上有动画在视野里才浮出，避免常驻遮挡回声带与页脚 */
     @media (max-width: 720px) {
       .case-page .mobile-play { display: none; }
@@ -386,26 +388,38 @@
 
       <!-- 内容待补充 -->
       <section class="case-section case-gallery">
-        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-play="enter">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-mobile-video="../assets/mengshou-s13-kv-mobile.mp4" data-play="manual">
           <img src="../assets/mengshou-s13-kv.webp?v=20261112d" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S13 巅峰联赛主视觉动画：从 C4D 场景搭建到成片落版"></video>
           <button class="slot-play" type="button" aria-label="播放动画">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
           </button>
         </figure>
-        <figure class="case-frame case-frame--image">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s12-kv-process.mp4" data-mobile-video="../assets/mengshou-s12-kv-process-mobile.mp4" data-play="manual">
           <img src="../assets/mengshou-s12-kv.webp" alt="《梦幻西游》手游 S12 巅峰联赛主视觉：星环奖杯、宇宙星球与门派角色" width="1920" height="1080" loading="lazy" decoding="async">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S12 巅峰联赛主视觉动画：星环奖杯、宇宙星球与门派角色"></video>
+          <button class="slot-play" type="button" aria-label="播放动画">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
         </figure>
-        <figure class="case-frame case-frame--image">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s11-kv-process.mp4" data-mobile-video="../assets/mengshou-s11-kv-process-mobile.mp4" data-play="manual">
           <img src="../assets/mengshou-s11-kv.webp" alt="《梦幻西游》手游 S11 巅峰联赛主视觉：星旋三界，决胜穹巅" width="1920" height="1080" loading="lazy" decoding="async">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S11 巅峰联赛主视觉动画：星旋三界，决胜穹巅"></video>
+          <button class="slot-play" type="button" aria-label="播放动画">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
         </figure>
-        <figure class="case-frame case-frame--image">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s10-kv-process.mp4" data-mobile-video="../assets/mengshou-s10-kv-process-mobile.mp4" data-play="manual">
           <img src="../assets/mengshou-s10-kv.webp" alt="《梦幻西游》手游 S10 巅峰联赛主视觉：缚天纪命，问鼎巅峰" width="1920" height="1080" loading="lazy" decoding="async">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛主视觉动画：缚天纪命，问鼎巅峰"></video>
+          <button class="slot-play" type="button" aria-label="播放动画">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
         </figure>
       </section>
 
       <section class="case-section case-gallery">
-        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4">
+        <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-bg-animation.mp4" data-mobile-video="../assets/mengshou-group-bg-animation-mobile.mp4">
           <img src="../assets/mengshou-gallery-bg.webp" alt="《梦幻西游》手游巅峰联赛赛事通用背景：环形机械算盘与红金青四色门派徽记" width="1920" height="1080" loading="lazy" decoding="async">
           <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛通用背景动画"></video>
           <button class="slot-play" type="button" aria-label="播放动画">
@@ -413,29 +427,29 @@
           </button>
         </figure>
         <div class="case-media-grid case-media-grid--three brand-mosaic">
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-1.mp4" data-mobile-video="../assets/mengshou-group-jingrui-1-mobile.mp4">
             <img src="../assets/mengshou-group-jingrui-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组背景：蓝色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组背景动画"></video>
           </figure>
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-1.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-1.mp4" data-mobile-video="../assets/mengshou-group-shenwei-1-mobile.mp4">
             <img src="../assets/mengshou-group-shenwei-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组背景：暖金色环形机关与红色宝石" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组背景动画"></video>
           </figure>
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-1.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-1.mp4" data-mobile-video="../assets/mengshou-group-yongwu-1-mobile.mp4">
             <img src="../assets/mengshou-group-yongwu-1.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组背景：金色环形机关与赛道刻度" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组背景动画"></video>
           </figure>
         </div>
         <div class="case-media-grid case-media-grid--three brand-mosaic brand-mosaic--mirror">
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-jingrui-2.mp4" data-mobile-video="../assets/mengshou-group-jingrui-2-mobile.mp4">
             <img src="../assets/mengshou-group-jingrui-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛精锐组徽记特写：蓝色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛精锐组徽记动画"></video>
           </figure>
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-2.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-shenwei-2.mp4" data-mobile-video="../assets/mengshou-group-shenwei-2-mobile.mp4">
             <img src="../assets/mengshou-group-shenwei-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛神威组徽记特写：红色宝石与金色边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛神威组徽记动画"></video>
           </figure>
-          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-2.mp4">
+          <figure class="case-frame case-media-slot" data-video="../assets/mengshou-group-yongwu-2.mp4" data-mobile-video="../assets/mengshou-group-yongwu-2-mobile.mp4">
             <img src="../assets/mengshou-group-yongwu-2.webp" alt="《梦幻西游》手游 S10 巅峰联赛勇武组徽记特写：金色宝石与暗金边框" width="1920" height="1080" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="《梦幻西游》手游 S10 巅峰联赛勇武组徽记动画"></video>
           </figure>
@@ -735,6 +749,9 @@
       function attach(slot) {
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
+        // 手机端优先用低码率版本：屏幕小，清晰度损失不明显，但解码和带宽压力明显更小
+        var mobileSrc = slot.getAttribute("data-mobile-video");
+        if (mobileSrc && window.matchMedia("(max-width: 720px)").matches) src = mobileSrc;
         if (!video || !src) return null;
         video.loop = false; // 只播一次：结束后停在末帧，末帧与静图一致
         if (video.getAttribute("src") !== src) {
@@ -761,6 +778,16 @@
       }
 
       var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+      // 手机端同一时间只播一个动画，避免多路解码互相抢资源导致卡顿
+      document.addEventListener("play", function (event) {
+        var current = event.target;
+        if (!current || current.tagName !== "VIDEO") return;
+        slots.forEach(function (slot) {
+          var other = slot.querySelector("video");
+          if (other && other !== current && !other.paused) other.pause();
+        });
+      }, true);
 
       slots.forEach(function (slot) {
         var video = slot.querySelector("video");
@@ -799,7 +826,8 @@
         entries.forEach(function (entry) {
           var slot = entry.target;
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-            if (slot.dataset.played !== "1") {
+            // data-play="manual" 的动画只靠按钮触发，进场不自动播
+            if (slot.dataset.play !== "manual" && slot.dataset.played !== "1") {
               slot.dataset.played = "1";
               play(slot);
             }
