@@ -51,23 +51,20 @@
     }
   }
 
-  var normalizing = false;
-
   function normalizeLoop() {
-    if (normalizing) return;
     var width = copyWidth();
     if (!width) return;
-    var max = track.scrollWidth - track.clientWidth;
     var left = track.scrollLeft;
-    if (left < width * 0.5) {
-      normalizing = true;
-      track.scrollLeft = left + width;
-      window.requestAnimationFrame(function () { normalizing = false; });
-    } else if (left > max - width * 0.5) {
-      normalizing = true;
-      track.scrollLeft = left - width;
-      window.requestAnimationFrame(function () { normalizing = false; });
+    var min = width * 0.5;
+    var max = track.scrollWidth - track.clientWidth - width * 0.5;
+    if (max <= min) { syncCurrent(); return; }
+    /* 一次校正就回到循环中段：快速滑动也不会撞到两端，出现「划到头、选中态消失」 */
+    if (left < min) {
+      track.scrollLeft = left + width * Math.ceil((min - left) / width);
+    } else if (left > max) {
+      track.scrollLeft = left - width * Math.ceil((left - max) / width);
     }
+    syncCurrent();
   }
 
   track.addEventListener("scroll", normalizeLoop, { passive: true });
@@ -169,6 +166,7 @@
         link.draggable = false;
         link.textContent = english ? item.en : item.zh;
         link.setAttribute("data-copy", String(copy));
+        if (item.id === current) link.setAttribute("data-current", "1");
         if (copy === MIDDLE && item.id === current) {
           link.setAttribute("aria-current", "page");
         }
@@ -180,9 +178,40 @@
       });
     }
 
-    window.requestAnimationFrame(function () { centerActive("instant"); });
+    window.requestAnimationFrame(function () { centerActive("instant"); requestSync(); });
     updateOverflow();
   }
+
+  /* 循环条里有 5 份同样的列表：把「选中」标到当前落在视口里的那一份，
+     这样无论划到哪一段，选中胶囊都在，不会因为用的是中间那份而消失 */
+  var currentFrame = 0;
+  function syncCurrent() {
+    currentFrame = 0;
+    var marked = track.querySelectorAll('.case-tab[data-current="1"]');
+    if (!marked.length) return;
+    var trackRect = track.getBoundingClientRect();
+    var middle = trackRect.left + trackRect.width / 2;
+    var best = null;
+    var bestScore = Infinity;
+    Array.prototype.forEach.call(marked, function (tab) {
+      var rect = tab.getBoundingClientRect();
+      var visible = rect.right > trackRect.left && rect.left < trackRect.right;
+      if (!visible) return;
+      var score = Math.abs(rect.left + rect.width / 2 - middle);
+      if (score < bestScore) { bestScore = score; best = tab; }
+    });
+    Array.prototype.forEach.call(marked, function (tab) {
+      if (tab === best) tab.setAttribute("aria-current", "page");
+      else tab.removeAttribute("aria-current");
+    });
+  }
+
+  function requestSync() {
+    if (currentFrame) return;
+    currentFrame = window.requestAnimationFrame(syncCurrent);
+  }
+
+  track.addEventListener("scroll", requestSync, { passive: true });
 
   render();
 
@@ -192,10 +221,12 @@
 
   window.addEventListener("resize", function () {
     centerActive("instant");
+    requestSync();
     updateOverflow();
   });
   window.addEventListener("load", function () {
     centerActive("instant");
+    requestSync();
     updateOverflow();
   });
 
