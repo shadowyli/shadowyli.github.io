@@ -220,6 +220,11 @@
     /* 网格里不需要再叠行间距 */
     .flowx-demos .case-frame + .case-frame { margin-top: 0; }
 
+    /* 电脑端：自动播放 + 循环，不需要播放按钮 */
+    @media (min-width: 721px) {
+      .flowx-demos .flowx-demo .case-frame-inner .case-video-play { display: none; }
+    }
+
     .flowx-demo-label {
       position: absolute;
       top: 10px;
@@ -606,15 +611,31 @@
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
   <script>
-    /* 管线演示：默认静帧 + 播放按钮，点击播放/暂停，同时只播一条 */
+    /* 管线演示：电脑端自动播放 + 循环；手机端静帧 + 播放按钮，同时只播一条 */
     (function () {
       var frames = Array.prototype.slice.call(document.querySelectorAll(".flowx-demo .case-frame-inner"));
       if (!frames.length) return;
+
+      var desktop = window.matchMedia("(min-width: 721px)");
 
       function pause(frame) {
         var video = frame.querySelector("video");
         if (video && !video.paused) video.pause();
         frame.classList.add("is-paused");
+      }
+
+      function start(frame) {
+        var video = frame.querySelector("video");
+        if (!video) return;
+        if (!desktop.matches) {
+          frames.forEach(function (other) {
+            if (other !== frame) pause(other);
+          });
+        }
+        var promise = video.play();
+        if (promise && promise.catch) {
+          promise.catch(function () { frame.classList.add("is-paused"); });
+        }
       }
 
       frames.forEach(function (frame) {
@@ -624,16 +645,6 @@
 
         frame.classList.add("is-paused");
 
-        function start() {
-          frames.forEach(function (other) {
-            if (other !== frame) pause(other);
-          });
-          var promise = video.play();
-          if (promise && promise.catch) {
-            promise.catch(function () { frame.classList.add("is-paused"); });
-          }
-        }
-
         video.addEventListener("playing", function () {
           frame.classList.remove("is-paused");
         });
@@ -641,8 +652,9 @@
           frame.classList.add("is-paused");
         });
 
+        // 电脑端点击只是暂停/继续（按钮不显示），手机端按钮负责起播
         frame.addEventListener("click", function () {
-          if (video.paused) start();
+          if (video.paused) start(frame);
           else pause(frame);
         });
 
@@ -650,9 +662,11 @@
           button.addEventListener("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            start();
+            start(frame);
           });
         }
+
+        if (desktop.matches) start(frame);
       });
     })();
   </script>
