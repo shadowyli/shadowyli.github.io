@@ -78,8 +78,8 @@
       gap: 6px;
     }
 
-    /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐（主图除外，手机端需要单独出血） */
-    .case-page .case-section .nbpl-opening-grid > .case-frame:not(.nbpl-opening-hero) { margin: 0 !important; }
+    /* 覆盖全局相邻图片的 6px 上边距，保证网格内所有图片顶对齐 */
+    .case-page .case-section .nbpl-opening-grid > .case-frame { margin: 0 !important; }
 
     .nbpl-opening-grid .case-frame--image img {
       display: block;
@@ -87,24 +87,12 @@
       height: auto;
     }
 
-    .nbpl-opening-hero {
-      grid-column: 1 / -1;
-      margin: 0;
-    }
+    .nbpl-opening-hero { margin: 0; }
 
     .nbpl-opening-hero img {
       display: block;
       width: 100%;
       height: auto;
-    }
-
-    @media (max-width: 720px) {
-      /* 主图在手机端出血到屏幕两侧，作为整组的分镜头图 */
-      .nbpl-opening-grid .nbpl-opening-hero {
-        grid-column: 1 / -1;
-        margin-left: calc(-1 * (clamp(16px, 2.2vw, 40px) + 2vw));
-        margin-right: calc(-1 * (clamp(16px, 2.2vw, 40px) + 2vw));
-      }
     }
 
     /* 02 模块：蛋仔麦克疯包装，一行四个 */
