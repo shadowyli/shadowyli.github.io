@@ -1,14 +1,15 @@
 /* 手机端悬浮案例 tab：在已有案例页之间切换 */
 (function () {
   var CASES = [
-    { id: "mengshou", zh: "梦幻西游", en: "Fantasy League" },
     { id: "danzai", zh: "蛋仔派对", en: "Eggy Party" },
+    { id: "mengshou", zh: "梦幻西游", en: "Fantasy League" },
+    { id: "flowx", zh: "FlowX", en: "FlowX" },
     { id: "large-screen", zh: "大屏", en: "Large Screen" },
     { id: "campaign", zh: "宣发", en: "Campaign" },
     { id: "merchandise", zh: "周边", en: "Merch" },
     { id: "stage", zh: "舞美", en: "Stage" },
-    { id: "video", zh: "视频", en: "Video" },
-    { id: "flowx", zh: "FlowX", en: "FlowX" }
+    { id: "ai-pipeline", zh: "AI 管线", en: "AI Pipelines" },
+    { id: "video", zh: "视频", en: "Video" }
   ];
   var REPEAT = 5;
   var MIDDLE = Math.floor(REPEAT / 2);
