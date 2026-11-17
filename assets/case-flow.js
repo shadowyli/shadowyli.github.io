@@ -121,9 +121,17 @@
     section.style.setProperty("--pull", pull.toFixed(3));
   }
 
+  /* 到达页尾的时刻：用来跳过「一路惯性滚到底」的残余滚动量，避免误跳页 */
+  var bottomSince = 0;
   function atBottom() {
     var doc = document.documentElement;
-    return window.innerHeight + window.scrollY >= doc.scrollHeight - 4;
+    var at = window.innerHeight + window.scrollY >= doc.scrollHeight - 4;
+    if (at) {
+      if (!bottomSince) bottomSince = Date.now();
+    } else {
+      bottomSince = 0;
+    }
+    return at;
   }
 
   /* 滚到页尾时把接力块点亮，作为「再滑一下就进去」的提示 */
@@ -159,6 +167,7 @@
       return;
     }
     if (!armed || !atBottom()) return;
+    if (Date.now() - bottomSince < 260) return;
 
     var now = Date.now();
     if (now - lastWheel > 420) wheelAcc = 0;
@@ -176,6 +185,7 @@
     touched = false;
     if (event.touches.length !== 1 || blocked(event.target)) return;
     if (!armed || !atBottom()) return;
+    if (Date.now() - bottomSince < 120) return;
     touchY = event.touches[0].clientY;
   }, { passive: true });
 
