@@ -29,8 +29,9 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261117-1">
+  <link rel="stylesheet" href="../styles.css?v=20261117-3">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-echo.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -201,137 +202,12 @@
       grid-column: 1;
       grid-row: 2;
     }
-    /* 设计的回声：通栏 WebGL 展示带，中间最宽、两侧渐窄，左右边缘渐隐到底色 */
-    .social-badge--long {
-      white-space: normal;
-      font-size: 12.5px;
-      letter-spacing: 0;
-      z-index: 6;
+
+    /* 回声带上方的分割线：与蛋仔案例页同款，与图集 6px 缝同一节奏 */
+    .case-body .case-divider.case-echo-divider {
+      margin: 16px 0;
     }
 
-    .case-body .social-sign {
-      position: relative;
-      z-index: 6;
-      width: 100%;
-      max-width: none;
-      margin: 0 0 6px;
-      color: #ffffff;
-      font-family: "PingFangShangShangQian", var(--font-cjk);
-      font-size: clamp(30px, 3.6vw, 42px);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      text-align: center;
-    }
-
-    /* 浅色主题下回声标题不能是白字（卡片本身是深色截图，标题跟随正文色） */
-    :root[data-theme="light"] .case-body .social-sign { color: var(--text); }
-
-    /* 回声带上方的分割线：与蛋仔案例页同款，线上下各留白（插入分隔后段间 120px 自动不再叠加） */
-    .case-body .case-echo-divider {
-      margin: clamp(56px, 7vw, 88px) 0 clamp(18px, 2vw, 26px);
-    }
-
-    .echo-reel {
-      position: relative;
-      width: 100vw;
-      height: clamp(190px, 19vw, 280px);
-      margin: 0 0 0 calc(50% - 50vw);
-      outline: none;
-    }
-
-    .echo-reel:focus-visible .echo-canvas {
-      outline: 1px solid color-mix(in srgb, var(--text) 35%, transparent);
-      outline-offset: -4px;
-    }
-
-    .echo-canvas {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: grab;
-      touch-action: pan-y;
-      transition: opacity 700ms ease;
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
-    }
-
-    .echo-reel.is-gl .echo-canvas { opacity: 1; }
-    .echo-reel.is-dragging .echo-canvas { cursor: grabbing; }
-
-    .echo-list {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 max(20px, calc(50vw - 496px));
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-    }
-
-    .echo-list::-webkit-scrollbar { display: none; }
-
-    .echo-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      flex: none;
-      height: 97%;
-      margin: 0;
-      scroll-snap-align: center;
-    }
-
-    .echo-card img {
-      display: block;
-      width: auto;
-      height: calc(100% - 31px);
-      max-height: calc(100% - 31px);
-      margin: 0 auto;
-      border: 1px solid rgba(255, 255, 255, .16);
-      border-radius: 5px;
-    }
-
-    .echo-card .social-badge {
-      position: static;
-      order: -1;
-      align-self: flex-start;
-      max-width: 100%;
-      margin: 0 0 6px;
-      border-color: rgba(255, 255, 255, .48);
-      background: rgba(8, 7, 10, .94);
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.4;
-      padding: 5px 11px;
-      white-space: normal;
-    }
-
-    /* WebGL 接管后，DOM 列表只留给读屏与搜索引擎 */
-    .echo-reel.is-gl .echo-list {
-      inset: auto;
-      width: 1px;
-      height: 1px;
-      margin: -1px;
-      padding: 0;
-      overflow: hidden;
-      clip-path: inset(50%);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 720px) {
-      .echo-reel { height: clamp(180px, 52vw, 240px); }
-      .echo-canvas {
-        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
-      }
-    }
   </style>
 </head>
 <body class="case-page">
@@ -361,13 +237,23 @@
       <ul class="case-credits" data-case-credits="mengshou" aria-label="项目署名"></ul>
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
-        <h2 id="case-intro-title">关于</h2>
-        <p>我们为这项游戏内最高规格的职业化电竞赛事打造了一套视觉系统，希望把赛事的量级与声望，在观众第一眼看到时就传达出去。</p>
-        <p>从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。</p>
-        <p>赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。</p>
+        <h2 id="case-intro-title" data-i18n-key="introTitle">关于</h2>
+        <p data-i18n-key="introP1">我们为这项游戏内最高规格的职业化电竞赛事打造了一套视觉系统，希望把赛事的量级与声望，在观众第一眼看到时就传达出去。</p>
+        <p data-i18n-key="introP2">从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。</p>
+        <p data-i18n-key="introP3">赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。</p>
       </section>
 
       <!-- 内容待补充 -->
+      <section class="case-section case-gallery" id="case-gallery-quickcut" aria-label="项目快剪">
+        <figure class="case-frame case-media-slot case-quickcut" data-video="../assets/mengshou-quickcut.mp4" data-mobile-video="../assets/mengshou-quickcut-mobile.mp4" data-play="enter" data-replay="enter">
+          <img src="../assets/mengshou-quickcut.webp" alt="《梦幻西游》手游巅峰联赛项目快剪：赛事舞台、奖杯与现场灯光" width="1280" height="720" loading="eager" decoding="async">
+          <video muted playsinline preload="none" aria-label="《梦幻西游》手游巅峰联赛项目快剪"></video>
+          <button class="slot-play" type="button" aria-label="播放项目快剪">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
+        </figure>
+      </section>
+
       <section class="case-section case-gallery">
         <figure class="case-frame case-media-slot" data-video="../assets/mengshou-s13-kv.mp4" data-mobile-video="../assets/mengshou-s13-kv-mobile.mp4" data-play="manual">
           <img src="../assets/mengshou-s13-kv.webp?v=20261112d" alt="《梦幻西游》手游 S13 巅峰联赛主视觉：金色奖杯、岭南山水与门派角色" width="1920" height="1080" decoding="async" fetchpriority="high">
@@ -469,50 +355,7 @@
 
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
-      <section class="case-section case-echo" aria-labelledby="echo-sign">
-        <p class="social-sign" id="echo-sign" data-i18n-key="socialSign">设计的回声</p>
-        <div class="echo-reel" tabindex="0" role="region" aria-label="社交媒体反响截图，可左右拖动或用方向键浏览">
-          <canvas class="echo-canvas" aria-hidden="true"></canvas>
-          <div class="echo-list">
-            <figure class="echo-card">
-              <span class="social-badge social-badge--long" data-i18n-key="statBadge1">推特420w+曝光·3万赞+破圈爆款</span>
-              <img src="../assets/social-stat-1-20261112.webp" alt="《第五人格》COA 推特 420 万曝光、3 万赞破圈爆款帖" width="1429" height="782" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge social-badge--long" data-i18n-key="statBadge2">推特35w+曝光·高互动万赞热帖</span>
-              <img src="../assets/social-stat-2-20261112.webp" alt="《第五人格》COA 推特 35 万曝光、高互动万赞热帖" width="1428" height="780" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge3">抖音47w赞</span>
-              <img src="../assets/social-stat-3.webp?v=20261112b" alt="《蛋仔派对》抖音 47 万赞、30 万转超高裂变视频" width="900" height="1248" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge4">抖音5W+赞万转直拍</span>
-              <img src="../assets/social-stat-4-20261112.webp" alt="《逆水寒》大屏现场抖音 5W+ 赞、万转直拍" width="900" height="688" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge9">抖音3.8w赞3k+转发</span>
-              <img src="../assets/social-stat-9-20261112.webp" alt="《逆水寒》赛事现场抖音 3.8w 赞、3k+ 转发" width="900" height="544" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge5">抖音万赞热门</span>
-              <img src="../assets/social-stat-5.webp?v=20261112b" alt="《第五人格》COA 冠军采访抖音万赞热门视频" width="900" height="529" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge6">抖音4千+赞</span>
-              <img src="../assets/social-stat-6.webp?v=20261112b" alt="《第五人格》COA 冠军群访抖音 4 千赞视频" width="900" height="451" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge7">抖音3k+赞</span>
-              <img src="../assets/social-stat-7.webp?v=20261112b" alt="《蛋仔派对》惊魂杯抖音 3 千赞视频" width="900" height="1249" loading="lazy" decoding="async">
-            </figure>
-            <figure class="echo-card">
-              <span class="social-badge" data-i18n-key="statBadge8">全网300w曝光节目</span>
-              <img src="../assets/social-stat-8.webp?v=20261112b" alt="《第五人格》情报局节目全网 300 万曝光" width="900" height="567" loading="lazy" decoding="async">
-            </figure>
-          </div>
-        </div>
-      </section>
+      <section class="case-section case-echo" data-case-echo aria-labelledby="echo-sign"></section>
     </div>
   </main>
 
@@ -549,16 +392,10 @@
           navWork: "作品",
           navAbout: "关于我",
           footerNote: "影子 · 视觉设计作品集",
-          socialSign: "设计的回声",
-          statBadge1: "推特420w+曝光·3万赞+破圈爆款",
-          statBadge2: "推特35w+曝光·高互动万赞热帖",
-          statBadge3: "抖音47w赞",
-          statBadge4: "抖音5W+赞万转直拍",
-          statBadge9: "抖音3.8w赞3k+转发",
-          statBadge5: "抖音万赞热门",
-          statBadge6: "抖音4千+赞",
-          statBadge7: "抖音3k+赞",
-          statBadge8: "全网300w曝光节目",
+          introTitle: "关于",
+          introP1: "我们为这项游戏内最高规格的职业化电竞赛事打造了一套视觉系统，希望把赛事的量级与声望，在观众第一眼看到时就传达出去。",
+          introP2: "从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。",
+          introP3: "赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。",
           pageTitle: "《梦幻西游》手游巅峰联赛 | Shadowyli",
           metaDescription: "《梦幻西游》手游巅峰联赛项目案例。"
         },
@@ -570,16 +407,10 @@
           navWork: "Work",
           navAbout: "About",
           footerNote: "Shadow · Visual Design Portfolio",
-          socialSign: "The echo of design",
-          statBadge1: "Twitter · 4.2M impressions · 30K likes",
-          statBadge2: "Twitter · 350K impressions · 10K-like hit",
-          statBadge3: "Douyin · 470K likes",
-          statBadge4: "Douyin · 50K likes · 10K reposts",
-          statBadge9: "Douyin · 38K likes · 3K reposts",
-          statBadge5: "Douyin · 10K-like hit",
-          statBadge6: "Douyin · 4K+ likes",
-          statBadge7: "Douyin · 3K+ likes",
-          statBadge8: "3M-impression show",
+          introTitle: "About",
+          introP1: "We created a visual system for the game's highest-tier professional esports event, so its scale and prestige register at first glance.",
+          introP2: "Drawing on the Chinese aesthetics and classic scenes of Fantasy Westward Journey, we kept the Eastern fantasy atmosphere players know while breaking away from conventional esports visual language. Mountains, sects and the trophy build a competitive stage with strong visual impact.",
+          introP3: "Tens of millions of impressions and ongoing media coverage during the event amplified the influence of star commanders and club teams, deepened fans' and potential players' emotional connection to the event, and drove sustained user growth and market attention for Fantasy Westward Journey Mobile.",
           pageTitle: "Fantasy Westward Journey Mobile Peak League | Shadowyli",
           metaDescription: "Fantasy Westward Journey Mobile Peak League case study."
         }
@@ -726,13 +557,14 @@
     (function () {
       var slots = Array.prototype.slice.call(document.querySelectorAll(".case-media-slot[data-video]"));
       if (!slots.length) return;
+      var mobileQuery = window.matchMedia("(max-width: 720px)");
 
       function attach(slot) {
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
         // 手机端优先用低码率版本：屏幕小，清晰度损失不明显，但解码和带宽压力明显更小
         var mobileSrc = slot.getAttribute("data-mobile-video");
-        if (mobileSrc && window.matchMedia("(max-width: 720px)").matches) src = mobileSrc;
+        if (mobileSrc && mobileQuery.matches) src = mobileSrc;
         if (!video || !src) return null;
         video.loop = false; // 只播一次：结束后停在末帧，末帧与静图一致
         if (video.getAttribute("src") !== src) {
@@ -742,9 +574,13 @@
         return video;
       }
 
-      function play(slot) {
+      function play(slot, manual) {
         var video = attach(slot);
         if (!video) return;
+        var replayOnEnter = slot.getAttribute("data-replay") === "enter";
+        // 手机端播完后只认手动点击；标记 data-replay="enter" 的快剪例外
+        if (!manual && mobileQuery.matches && slot.dataset.finished === "1" && !replayOnEnter) return;
+        if (manual || replayOnEnter) delete slot.dataset.finished;
         if (!video.paused && !video.ended) return;
         try { video.currentTime = 0; } catch (error) {}
         video.muted = true;
@@ -760,8 +596,9 @@
 
       var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-      // 手机端同一时间只播一个动画，避免多路解码互相抢资源导致卡顿
+      // 桌面端保持单路播放；手机端允许多个视频同时播放，点击第二个不打断第一个
       document.addEventListener("play", function (event) {
+        if (mobileQuery.matches) return;
         var current = event.target;
         if (!current || current.tagName !== "VIDEO") return;
         slots.forEach(function (slot) {
@@ -781,14 +618,15 @@
         video.addEventListener("ended", function () {
           // 停在末帧淡出到静图（末帧与静图一致，不会跳回首帧）
           slot.classList.remove("is-playing");
+          slot.dataset.finished = "1";
         });
 
         // data-play="enter"：只跟随视口入场播放，悬停不打断静态展示
-        if (canHover && slot.getAttribute("data-play") !== "enter") {
+        if (canHover && !mobileQuery.matches && slot.getAttribute("data-play") !== "enter") {
           slot.addEventListener("pointerenter", function () { play(slot); });
         }
         // 点击 = 手动重播（触屏设备没有悬停，也能重看）
-        slot.addEventListener("click", function () { play(slot); });
+        slot.addEventListener("click", function () { play(slot, true); });
 
         // 手机端：按钮直接播放这块动画（点整块也能播，按钮是给出手势入口）
         var playButton = slot.querySelector(".slot-play");
@@ -796,7 +634,7 @@
           playButton.addEventListener("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            play(slot);
+            play(slot, true);
           });
         }
       });
@@ -814,14 +652,15 @@
             }
           } else if (!entry.isIntersecting) {
             delete slot.dataset.played;
-            stop(slot);
+            // 手机端已开始的动画继续播完，不因滚动离开视口而中断
+            if (!mobileQuery.matches) stop(slot);
           }
         });
       }, { threshold: [0, 0.35] });
 
       slots.forEach(function (slot) { observer.observe(slot); });
 
-      // 手机端「一键播放」：只播当前在视野里的动画（同时解码多个会互相抢资源），
+      // 手机端「一键播放」：播放当前在视野里的动画（用户主动触发，可并行播放），
       // 按钮仅在页面上有动画时才浮出，滚到回声带/页脚前自动收起。
       var playAllButton = document.querySelector(".mobile-play");
       if (playAllButton && window.matchMedia("(max-width: 720px)").matches) {
@@ -842,11 +681,12 @@
         }, { threshold: [0, 0.25] });
         slots.forEach(function (slot) { buttonObserver.observe(slot); });
         playAllButton.addEventListener("click", function () {
-          visibleSlots.slice().forEach(function (slot) { play(slot); });
+          visibleSlots.slice().forEach(function (slot) { play(slot, true); });
         });
       }
     })();
   </script>
+  <script src="../assets/case-echo-widget.js?v=20261117-1"></script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>

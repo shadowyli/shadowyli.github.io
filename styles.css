@@ -946,7 +946,7 @@ html.reveal-enabled .project-card.revealed { opacity: 1; }
 
 :root[data-theme="light"] .tool-tag,
 :root[data-theme="light"] .language-tag { background: #ffffff; }
-.about-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 24px; border-top: 1px solid var(--line); }
+.about-facts { display: grid; grid-template-columns: repeat(2, 1fr); margin-top: 24px; border-top: 1px solid var(--line); }
 .about-facts div { display: grid; gap: 8px; padding: 24px 16px; }
 .about-facts div:first-child { padding-left: 0; }
 .about-facts span { color: var(--text-muted); font-size: 10px; font-weight: 700; }
@@ -1673,7 +1673,8 @@ body.case-page .case-body h2 {
 }
 
 /* 触控波纹：以按压点为圆心扩散到 2.4 倍按钮宽度，450ms 内淡出 */
-.mobile-play > span { position: relative; z-index: 1; }
+/* 只抬升图标与文字，波纹本身保持绝对定位，否则会被当成 flex 子项撑大按钮 */
+.mobile-play > span:not(.mobile-play-ripple) { position: relative; z-index: 1; }
 
 .mobile-play-ripple {
   position: absolute;

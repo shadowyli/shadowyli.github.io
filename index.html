@@ -30,7 +30,7 @@
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261117-1">
+  <link rel="stylesheet" href="styles.css?v=20261117-3">
   <link rel="stylesheet" href="assets/site-wide.css?v=20261115-1">
   <style>
     /* 首页底部：与案例页一致的弧形自动播放回声 */
@@ -147,10 +147,10 @@
       }
     }
 
-    /* 关于我底部信息：窄屏也保持电脑端三列 */
+    /* 关于我底部信息：窄屏也保持电脑端两列 */
     @media (max-width: 560px) {
       .about-facts {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         margin-top: 24px;
       }
 
@@ -406,7 +406,7 @@
               </button>
             </div>
           </section>
-          <h2 class="about-section-title" data-i18n="workSummary">我的工作简介</h2>
+          <h2 class="about-section-title" data-i18n="workSummary">工作简介</h2>
           <ol class="about-list">
             <li data-i18n="aboutPoint1">3 年以上游戏赛事与品牌视觉创意经验，具备独立负责视觉项目、风格探索与系列化设计的能力</li>
             <li data-i18n="aboutPoint2">负责主视觉 KV、角色海报、版本宣传物料、品牌 VI及品牌联动视觉的创意与系列化延展</li>
@@ -445,7 +445,7 @@
             </ul>
           </section>
           <div class="about-facts">
-            <div><span data-i18n="focusLabel">专注方向</span><strong data-i18n="focusValue">品牌视觉 / 技术美术</strong></div><div><span data-i18n="baseLabel">所在地</span><strong data-i18n="baseValue">中国 广州</strong></div><div><span data-i18n="targetCitiesLabel">意向城市</span><strong data-i18n="targetCitiesValue">广州/深圳</strong></div>
+            <div><span data-i18n="focusLabel">专注方向</span><strong data-i18n="focusValue">品牌视觉 / 技术美术</strong></div><div><span data-i18n="targetCitiesLabel">意向城市</span><strong data-i18n="targetCitiesValue">广州/深圳</strong></div>
           </div>
         </div>
       </section>
@@ -467,7 +467,7 @@
   </div>
 
   <script src="assets/vendor/lucide.min.js" defer></script>
-  <script src="script.js?v=20261117-1" defer></script>
+  <script src="script.js?v=20261117-3" defer></script>
   <script type="module" src="assets/home-echo.js?v=20261112-2"></script>
 </body>
 </html>
