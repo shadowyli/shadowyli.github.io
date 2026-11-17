@@ -163,6 +163,11 @@
     .case-row[data-layout="three"] > .case-frame { margin: 0; }
     .case-row[data-layout="three"] img { width: 100%; height: auto; }
 
+    /* 单张横版海报：独占一行、铺满宽度 */
+    .case-row[data-layout="solo"] { display: block; }
+    .case-row[data-layout="solo"] > .case-frame { margin: 0; }
+    .case-row[data-layout="solo"] img { width: 100%; height: auto; }
+
     /* 竖版海报：2 张一行起排，可扩展到 3 / 4 张（6 张仅用于次次要系列） */
     .case-row[data-layout="portrait-2"] {
       display: grid;
@@ -334,14 +339,17 @@
             <img src="../assets/campaign-fmvp.webp" alt="2025 COA VIII 全球总决赛 FMVP · ZETA_Peter" width="1234" height="2195" decoding="async">
           </figure>
         </div>
-        <!-- 《蛋仔派对》· 城市官宣 / 综艺主视觉 / 挑战杯主视觉：三张一行 -->
-        <div class="case-row eggy-poster-pair" data-layout="three">
+        <!-- 《蛋仔派对》· 城市官宣 / 综艺主视觉：两张一行 -->
+        <div class="case-row eggy-poster-pair" data-layout="secondary">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-coa-chengdu.webp?v=20261112d" alt="第三届《蛋仔派对》全国总决赛 · 成都城市官宣海报" data-i18n-alt="chengduAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-eggy-treasure-hunt.webp" alt="《蛋仔派对》× 网易游戏乐园嘉年华 2025 综艺《寻宝吧！蛋搭子》主视觉：内容创作者与赛事选手的群像海报" data-i18n-alt="treasureHuntAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
+        </div>
+        <!-- 《蛋仔派对》· 挑战杯主视觉：单独一行 -->
+        <div class="case-row eggy-poster-solo" data-layout="solo">
           <figure class="case-frame case-frame--image">
             <img src="../assets/campaign-eggy-challenge-cup.webp?v=20261114a" alt="《蛋仔派对》挑战杯主视觉：粉色网点背景上的蛋仔角色群像与金色奖杯，底部为网易游戏与赞助商标识" data-i18n-alt="challengeCupAlt" width="1920" height="1080" loading="lazy" decoding="async">
           </figure>
