@@ -31,20 +31,8 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
-    .case-credits {
-      margin: 0 0 clamp(18px, 2.4vw, 28px);
-      padding: 0;
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
 
     .merch-gallery { margin-top: 0; }
 
@@ -174,10 +162,6 @@
       .merch-bag-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 560px) {
-      .case-credits li { font-size: 11px; }
-    }
-
     /* 空白案例页：内容未填时让页脚落在视口底部 */
     @media (min-width: 721px) {
       body.case-page {
@@ -216,9 +200,7 @@
     <div class="case-body case-body--flush">
       <h1 class="sr-only" data-i18n-key="pageHeading">周边物料</h1>
 
-      <ul class="case-credits" aria-label="项目署名" data-i18n-aria="creditsLabel">
-        <li data-i18n-key="credit1">3D &amp; 视觉设计 &amp; 包装设计：影子（李颖）</li>
-      </ul>
+      <ul class="case-credits" data-case-credits="merchandise" aria-label="项目署名"></ul>
 
       <section class="case-section case-gallery merch-gallery" aria-label="奖牌与奖杯" data-i18n-aria="galleryLabel">
         <div class="merch-medal-gift-pair">
@@ -312,8 +294,7 @@
           navWork: "作品",
           navAbout: "关于我",
           pageHeading: "周边物料",
-          creditsLabel: "项目署名",
-          credit1: "3D & 视觉设计 & 包装设计：影子（李颖）",
+
           galleryLabel: "奖牌与奖杯",
           cupFrontAlt: "《蛋仔派对》挑战杯奖杯正面视图：金色杯身与环绕的白色翅膀",
           cupViewsAlt: "《蛋仔派对》挑战杯奖杯模型三视图：正面、侧视与背面",
@@ -343,8 +324,7 @@
           navWork: "Work",
           navAbout: "About Me",
           pageHeading: "Merchandise",
-          creditsLabel: "Credits",
-          credit1: "3D & Visual Design & Packaging Design: 影子（李颖）",
+
           galleryLabel: "Medals and Trophies",
           cupFrontAlt: "Eggy Party Challenge Cup trophy front view with gold cup body and white wings",
           cupViewsAlt: "Eggy Party Challenge Cup trophy model in front, side and back views",
@@ -514,6 +494,7 @@
       });
     })();
   </script>
+  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
 </body>
 </html>

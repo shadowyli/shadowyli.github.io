@@ -31,34 +31,10 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
     main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
-
-    /* 署名：左栏 5 条、右栏 4 条，每条一行，避免一长串名字挤在一起 */
-    .case-credits {
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(6, auto);
-      gap: 4px 36px;
-      margin: 0 0 clamp(20px, 2.6vw, 30px);
-      padding: 0;
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .case-credits { grid-template-columns: max-content minmax(0, 1fr); gap: 3px 12px; }
-      .case-credits li { font-size: 9.5px; line-height: 1.75; letter-spacing: 0; }
-    }
 
     @media (max-width: 400px) {
       .flowx-value .case-stat strong { font-size: 22px; }
@@ -257,20 +233,7 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <ul class="case-credits" aria-label="项目署名">
-        <li data-i18n-key="credit1">项目发起人：影子（李颖）</li>
-        <li data-i18n-key="credit2">项目负责人：影子（李颖）</li>
-        <li data-i18n-key="credit3">产品经理：影子（李颖）、张喆涵</li>
-        <li data-i18n-key="credit4">核心开发：影子（李颖）、匡振威、张喆涵</li>
-        <li data-i18n-key="credit5">开发实习：钟丰骏</li>
-        <li data-i18n-key="credit6">运营维护：影子（李颖）、匡振威</li>
-        <li data-i18n-key="credit7">AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏</li>
-        <li data-i18n-key="credit8">UI/UX设计：影子（李颖）</li>
-        <li data-i18n-key="credit9">美术支持：影子（李颖）、匡振威</li>
-        <li data-i18n-key="credit10">动画支持：刘星、刘佰强、邹文君</li>
-        <li data-i18n-key="credit11">项目指导：胡煦升、刘星</li>
-        <li data-i18n-key="credit12">业务支持：胡煦升、刘星</li>
-      </ul>
+      <ul class="case-credits" data-case-credits="flowx" aria-label="项目署名"></ul>
 
       <section class="case-section flowx-intro">
         <figure class="case-frame">
@@ -378,18 +341,7 @@
           navWork: "作品",
           navAbout: "关于我",
           footerNote: "影子 · 视觉设计作品集",
-          credit1: "项目发起人：影子（李颖）",
-          credit2: "项目负责人：影子（李颖）",
-          credit3: "产品经理：影子（李颖）、张喆涵",
-          credit4: "核心开发：影子（李颖）、匡振威、张喆涵",
-          credit5: "开发实习：钟丰骏",
-          credit6: "运营维护：影子（李颖）、匡振威",
-          credit7: "AI应用工程：影子（李颖）、匡振威、张喆涵、钟丰骏",
-          credit8: "UI/UX设计：影子（李颖）",
-          credit9: "美术支持：影子（李颖）、匡振威",
-          credit10: "动画支持：刘星、刘佰强、邹文君",
-          credit11: "项目指导：胡煦升、刘星",
-          credit12: "业务支持：胡煦升、刘星",
+
           value1: "AI 管线",
           value2: "覆盖游戏",
           value3: "累计调用 · 套",
@@ -418,18 +370,7 @@
           navWork: "Work",
           navAbout: "About",
           footerNote: "Shadow · Visual Design Portfolio",
-          credit1: "Project Sponsor: 影子（李颖）",
-          credit2: "Project Lead: 影子（李颖）",
-          credit3: "Product Manager: 影子（李颖）, 张喆涵",
-          credit4: "Core Development: 影子（李颖）, 匡振威, 张喆涵",
-          credit5: "Development Intern: 钟丰骏",
-          credit6: "Operations & Maintenance: 影子（李颖）, 匡振威",
-          credit7: "AI Application Engineering: 影子（李颖）, 匡振威, 张喆涵, 钟丰骏",
-          credit8: "UI/UX Design: 影子（李颖）",
-          credit9: "Art Support: 影子（李颖）, 匡振威",
-          credit10: "Animation Support: 刘星, 刘佰强, 邹文君",
-          credit11: "Project Advisors: 胡煦升, 刘星",
-          credit12: "Business Support: 胡煦升, 刘星",
+
           value1: "AI pipelines",
           value2: "games covered",
           value3: "cumulative calls",
@@ -598,6 +539,7 @@
       });
     })();
   </script>
+  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
 </body>
 </html>

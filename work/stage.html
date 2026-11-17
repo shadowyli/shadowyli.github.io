@@ -31,6 +31,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
 <style>
     /* 舞美模块：一大 + 其余小；相邻模块的大图左右交替，保持原比例并等高 */
     .stage-media-grid {
@@ -88,26 +89,6 @@
     .stage-ratio-dcdc { --stage-large-col: calc(66.6667% + 0.74px); }
     /* TapTap 年度游戏大赏：大图 + 右侧两张上下排 */
     .stage-ratio-awards { --stage-large-col: calc(66.6667% + 0.74px); }
-
-    /* 署名模块 */
-    .case-credits {
-      margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: 0 0 clamp(14px, 1.6vw, 20px);
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .case-credits li { font-size: 11px; }
-    }
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
@@ -303,10 +284,7 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <ul class="case-credits" aria-label="项目署名">
-        <li data-i18n-key="credit1">舞美设计：影子（李颖）</li>
-        <li data-i18n-key="credit2">舞美监制&amp;执行：黎夏、戴泽宣、文鸿</li>
-      </ul>
+      <ul class="case-credits" data-case-credits="stage" aria-label="项目署名"></ul>
 
       <section class="case-section case-gallery stage-module stage-ratio-mengshou" data-stage-side="left" id="case-gallery-03" aria-label="梦幻西游手游巅峰联赛 S11 舞台">
 
@@ -466,8 +444,7 @@
           contactMe: "联系我",
           navWork: "作品",
           navAbout: "关于我",
-          credit1: "舞美设计：影子（李颖）",
-          credit2: "舞美监制&执行：黎夏、戴泽宣、文鸿",
+
           section1Title: "网易电竞 NeXT 舞台",
           stageAlt1: "网易电竞 NeXT 冬季赛舞台正面全景：蓝色三角结构与中央主屏",
           stageAlt2: "网易电竞 NeXT 冬季赛舞台正面近景：选手席、主屏与冰蓝灯光",
@@ -497,8 +474,7 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          credit1: "Stage Design: 影子（李颖）",
-          credit2: "Stage Supervision & Execution: Li Xia, Dai Zexuan, Wen Hong",
+
           section1Title: "NetEase Esports NeXT Stage",
           stageAlt1: "NetEase Esports NeXT winter stage front panorama with blue triangular structures and central screen",
           stageAlt2: "NetEase Esports NeXT winter stage front view with player desks, main screen and ice-blue lighting",
@@ -662,6 +638,7 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
+  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
   <script>
     (function () {

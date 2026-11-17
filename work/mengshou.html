@@ -31,6 +31,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
     main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
@@ -116,36 +117,6 @@
       width: 100%;
       height: auto;
       object-fit: contain;
-    }
-
-    /* 署名模块：参考 FlowX，两列两行，窄屏单列 */
-    .case-credits {
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(2, auto);
-      gap: 4px 36px;
-      margin: 0 0 clamp(18px, 2.4vw, 28px);
-      padding: 0;
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .case-credits {
-        grid-auto-flow: row;
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-        gap: 2px;
-      }
-      .case-credits li { font-size: 9.5px; }
     }
 
     /* 关于与画廊之间收紧留白 */
@@ -387,12 +358,7 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <ul class="case-credits" aria-label="项目署名">
-        <li>3D &amp; 视觉创意设计：影子（李颖）</li>
-        <li>动效设计：李楚怡、纪云、郑斯锴、程禹涵、刘佰强</li>
-        <li>美术督导：胡煦升、刘星</li>
-        <li>美术监修：影子（李颖）</li>
-      </ul>
+      <ul class="case-credits" data-case-credits="mengshou" aria-label="项目署名"></ul>
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
         <h2 id="case-intro-title">关于</h2>
@@ -883,6 +849,7 @@
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
+  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
 </body>
 </html>

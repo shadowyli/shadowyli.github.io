@@ -1,20 +1,20 @@
 (function () {
   var PEOPLE = {
-    shadow: { zh: "影子（李颖）", en: "Shadow (Li Ying)" },
-    jiYun: { zh: "纪云", en: "Ji Yun" },
-    liChuyi: { zh: "李楚怡", en: "Li Chuyi" },
-    zhengSikai: { zh: "郑斯锴", en: "Zheng Sikai" },
-    chengYuhan: { zh: "程禹涵", en: "Cheng Yuhan" },
-    liuBaiqiang: { zh: "刘佰强", en: "Liu Baiqiang" },
-    huXusheng: { zh: "胡煦升", en: "Hu Xusheng" },
-    liuXing: { zh: "刘星", en: "Liu Xing" },
-    liXia: { zh: "黎夏", en: "Li Xia" },
-    daiZexuan: { zh: "戴泽宣", en: "Dai Zexuan" },
-    wenHong: { zh: "文鸿", en: "Wen Hong" },
-    zhangZhehan: { zh: "张喆涵", en: "Zhang Zhehan" },
-    kuangZhenwei: { zh: "匡振威", en: "Kuang Zhenwei" },
-    zhongFengjun: { zh: "钟丰骏", en: "Zhong Fengjun" },
-    zouWenjun: { zh: "邹文君", en: "Zou Wenjun" }
+    shadow: { zh: "影子（李颖）", en: "Shadow (Li\u00a0Ying)" },
+    jiYun: { zh: "纪云", en: "Ji\u00a0Yun" },
+    liChuyi: { zh: "李楚怡", en: "Li\u00a0Chuyi" },
+    zhengSikai: { zh: "郑斯锴", en: "Zheng\u00a0Sikai" },
+    chengYuhan: { zh: "程禹涵", en: "Cheng\u00a0Yuhan" },
+    liuBaiqiang: { zh: "刘佰强", en: "Liu\u00a0Baiqiang" },
+    huXusheng: { zh: "胡煦升", en: "Hu\u00a0Xusheng" },
+    liuXing: { zh: "刘星", en: "Liu\u00a0Xing" },
+    liXia: { zh: "黎夏", en: "Li\u00a0Xia" },
+    daiZexuan: { zh: "戴泽宣", en: "Dai\u00a0Zexuan" },
+    wenHong: { zh: "文鸿", en: "Wen\u00a0Hong" },
+    zhangZhehan: { zh: "张喆涵", en: "Zhang\u00a0Zhehan" },
+    kuangZhenwei: { zh: "匡振威", en: "Kuang\u00a0Zhenwei" },
+    zhongFengjun: { zh: "钟丰骏", en: "Zhong\u00a0Fengjun" },
+    zouWenjun: { zh: "邹文君", en: "Zou\u00a0Wenjun" }
   };
 
   var CREDITS = {

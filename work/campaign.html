@@ -31,6 +31,7 @@
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
     .case-body .case-pair + .case-frame {
       margin-top: 6px;
@@ -307,26 +308,6 @@
       .case-row[data-layout="banners"] { grid-template-columns: 1fr; }
     }
 
-    /* 署名模块：参考 FlowX 案例页 */
-    .case-credits {
-      margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: 0 0 clamp(14px, 1.6vw, 20px);
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .case-credits li { font-size: 11px; }
-    }
-
     /* 底部收口：分割线与回声区之间的留白压到最小可用值 */
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
@@ -467,9 +448,7 @@
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <ul class="case-credits" aria-label="项目署名">
-        <li data-i18n-key="credit1">3D &amp; 视觉创意设计：影子（李颖）</li>
-      </ul>
+      <ul class="case-credits" data-case-credits="campaign" aria-label="项目署名"></ul>
 
       <section class="case-section case-gallery">
         <!-- 《第五人格》COA VIII · 横版 + 竖版并排：竖版不单独成行 -->
@@ -756,7 +735,7 @@
           statBadge6: "抖音4千+赞",
           statBadge7: "抖音3k+赞",
           statBadge8: "全网300w曝光节目",
-          credit1: "3D & 视觉创意设计：影子（李颖）",
+
           badgeTwitter10k: "推特万转",
           badgeTwitter1k: "推特千转",
           badgeTwitter35w: "推特 35w+ 曝光 · 高互动万赞热帖",
@@ -829,7 +808,7 @@
           statBadge6: "Douyin · 4K+ likes",
           statBadge7: "Douyin · 3K+ likes",
           statBadge8: "3M-impression show",
-          credit1: "3D & Visual Creative Design: 影子（李颖）",
+
           badgeTwitter10k: "Twitter · 10K reposts",
           badgeTwitter1k: "Twitter · 1K reposts",
           badgeTwitter35w: "Twitter · 350K+ impressions, high-engagement 10K-like post",
@@ -1109,6 +1088,7 @@
     })();
   </script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
+  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
 </body>
 </html>

@@ -33,37 +33,6 @@
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
   <style>
-    /* 署名模块：4 条，左 2 右 2，窄屏单列 */
-    .case-credits {
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: repeat(2, auto);
-      gap: 4px 36px;
-      margin: 0 0 clamp(22px, 2.6vw, 32px);
-      padding: 0 0 clamp(14px, 1.6vw, 20px);
-      border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
-      list-style: none;
-    }
-
-    .case-credits li {
-      color: var(--text-muted);
-      font-family: var(--font-cjk);
-      font-size: 12px;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    @media (max-width: 560px) {
-      .case-credits {
-        grid-auto-flow: row;
-        grid-template-columns: 1fr;
-        grid-template-rows: none;
-        gap: 2px;
-      }
-      .case-credits li { font-size: 11px; }
-    }
-
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
     /* 关于与画廊之间收紧留白 */
@@ -731,10 +700,7 @@
           contactMe: "联系我",
           navWork: "作品",
           navAbout: "关于我",
-          credit1: "3D & 视觉创意设计：影子（李颖）",
-          credit2: "美术监修：影子（李颖）",
-          credit3: "动效设计：纪云、李楚怡、郑斯锴、刘佰强",
-          credit4: "美术督导：胡煦升、刘星",
+
           introTitle: "关于",
           introP1: "《蛋仔派对》全国总决赛是《蛋仔派对》游戏内最高级别的年度赛事，自 2024 年起举办。我负责整场赛事的视觉：主 KV、赛事 VI 手册、直播与节目包装、大屏与周边。",
           introP2: "视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。",
@@ -763,10 +729,7 @@
           contactMe: "Contact me",
           navWork: "Work",
           navAbout: "About Me",
-          credit1: "3D & Visual Creative Design: 影子（李颖）",
-          credit2: "Art Supervision: 影子（李颖）",
-          credit3: "Motion Design: 纪云, 李楚怡, 郑斯锴, 刘佰强",
-          credit4: "Art Direction: 胡煦升, 刘星",
+
           introTitle: "About",
           introP1: "The Eggy Party National Finals is the game's top-tier annual esports event, held since 2024. I own its full visual output: key visuals, the event VI manual, broadcast and program packaging, large screens and merchandise.",
           introP2: "The visual has to hold two things at once: the lightness of a party game and the ceremony of an esports final. I built around the Eggies' rounded shapes, with a weighty trophy and stage composition anchoring the frame, then fixed the palette, type and layout into a manual. Broadcast, screens and merchandise all derive from it, so new game modes could reuse the same assets.",
