@@ -14,7 +14,9 @@
     zhangZhehan: { zh: "张喆涵", en: "Zhang\u00a0Zhehan" },
     kuangZhenwei: { zh: "匡振威", en: "Kuang\u00a0Zhenwei" },
     zhongFengjun: { zh: "钟丰骏", en: "Zhong\u00a0Fengjun" },
-    zouWenjun: { zh: "邹文君", en: "Zou\u00a0Wenjun" }
+    zouWenjun: { zh: "邹文君", en: "Zou\u00a0Wenjun" },
+    maXiangle: { zh: "马相乐", en: "Ma\u00a0Xiangle" },
+    linKewei: { zh: "林可威", en: "Lin\u00a0Kewei" }
   };
 
   var CREDITS = {
@@ -22,10 +24,11 @@
       { zh: "3D & 视觉创意设计", en: "3D & Visual Creative Design", people: ["shadow"] }
     ],
     danzai: [
-      { zh: "3D & 视觉创意设计", en: "3D & Visual Creative Design", people: ["shadow"] },
+      { zh: "主视觉设计", en: "Key Visual Design", people: ["shadow"] },
       { zh: "美术监修", en: "Art Supervision", people: ["shadow"] },
       { zh: "动效设计", en: "Motion Design", people: ["jiYun", "liChuyi", "zhengSikai", "liuBaiqiang"] },
-      { zh: "美术督导", en: "Art Direction", people: ["huXusheng", "liuXing"] }
+      { zh: "美术督导", en: "Art Direction", people: ["huXusheng", "liuXing"] },
+      { zh: "设计团队", en: "Design Team", people: ["maXiangle", "zouWenjun", "linKewei"] }
     ],
     flowx: [
       { zh: "项目发起人", en: "Project Sponsor", people: ["shadow"] },

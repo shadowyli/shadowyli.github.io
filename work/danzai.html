@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-echo.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
+  <link rel="stylesheet" href="../assets/vi-collage.css?v=20261117-1">
   <style>
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
 
@@ -314,8 +315,9 @@
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
         <h2 id="case-intro-title"><span data-i18n-key="introTitle">关于</span></h2>
-        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是《蛋仔派对》游戏内最高级别的年度赛事，自 2024 年起举办。我负责整场赛事的视觉：主 KV、赛事 VI 手册、直播与节目包装、大屏与周边。</p>
-        <p data-i18n-key="introP2">视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。</p>
+        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是蛋仔派对赛事体系中的最高级别年度赛事，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。</p>
+        <p data-i18n-key="introP2">我们为这个系列赛事建立可延续的视觉系统：从主 KV、赛事 VI 手册，到宣发、直播与节目包装、大屏和周边。在轻松派对游戏与硬核电竞赛事之间取得平衡，打造令人难忘的线上线下电竞盛宴。</p>
+        <p data-i18n-key="introP3">全网直播峰值突破 2800 万，线下门票 1 分钟售罄，吸引超 3.2 万观众入场。</p>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-quickcut" aria-label="项目快剪">
@@ -357,8 +359,8 @@
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-vi" aria-label="VI 手册">
-        <!-- VI 手册：一行五张，未定图的位置留空占位 -->
-        <div class="case-vi-row">
+        <!-- VI 手册：平面拼贴墙 -->
+        <div class="vi-collage" data-vi-collage role="group" aria-label="VI 手册，共 35 页">
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-vi-01-cover.webp" alt="《蛋仔派对》2025 全国总决赛赛事视觉规范手册封面" width="1200" height="675" loading="lazy" decoding="async">
           </figure>
@@ -550,8 +552,9 @@
           navAbout: "关于我",
 
           introTitle: "关于",
-          introP1: "《蛋仔派对》全国总决赛是《蛋仔派对》游戏内最高级别的年度赛事，自 2024 年起举办。我负责整场赛事的视觉：主 KV、赛事 VI 手册、直播与节目包装、大屏与周边。",
-          introP2: "视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。",
+          introP1: "《蛋仔派对》全国总决赛是蛋仔派对赛事体系中的最高级别年度赛事，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。",
+          introP2: "我们为这个系列赛事建立可延续的视觉系统：从主 KV、赛事 VI 手册，到宣发、直播与节目包装、大屏和周边。在轻松派对游戏与硬核电竞赛事之间取得平衡，打造令人难忘的线上线下电竞盛宴。",
+          introP3: "全网直播峰值突破 2800 万，线下门票 1 分钟售罄，吸引超 3.2 万观众入场。",
           soundOn: "声音",
           soundOff: "静音",
           playAll: "一键播放",
@@ -569,8 +572,9 @@
           navAbout: "About Me",
 
           introTitle: "About",
-          introP1: "The Eggy Party National Finals is the game's top-tier annual esports event, held since 2024. I own its full visual output: key visuals, the event VI manual, broadcast and program packaging, large screens and merchandise.",
-          introP2: "The visual has to hold two things at once: the lightness of a party game and the ceremony of an esports final. I built around the Eggies' rounded shapes, with a weighty trophy and stage composition anchoring the frame, then fixed the palette, type and layout into a manual. Broadcast, screens and merchandise all derive from it, so new game modes could reuse the same assets.",
+          introP1: "The Eggy Party National Finals is the highest-tier annual event in the Eggy Party esports system, drawing more than 13 million participants a year, with over 1.1 billion views on its Douyin hashtag.",
+          introP2: "For this series we built a visual system designed to carry forward: from the key visual and event VI manual to campaign artwork, broadcast and program packaging, LED screens and merchandise. Balancing the lightness of a party game with the intensity of hardcore esports, it creates an unforgettable esports celebration on site and online.",
+          introP3: "Peak live viewership across platforms exceeded 28 million, tickets sold out within one minute, and more than 32,000 people attended in person.",
           soundOn: "Sound",
           soundOff: "Mute",
           playAll: "Play all",
@@ -726,17 +730,6 @@
 
       var mobileQuery = window.matchMedia("(max-width: 720px)");
 
-      // 桌面端保持单路播放；手机端允许多个视频同时播放，点击第二个不打断第一个
-      document.addEventListener("play", function (event) {
-        if (mobileQuery.matches) return;
-        var current = event.target;
-        if (!current || current.tagName !== "VIDEO") return;
-        slots.forEach(function (slot) {
-          var other = slot.querySelector("video");
-          if (other && other !== current && !other.paused) other.pause();
-        });
-      }, true);
-
       function attach(slot) {
         var video = slot.querySelector("video");
         var src = slot.getAttribute("data-video");
@@ -881,6 +874,7 @@
   </script>
   <script src="../assets/case-echo-widget.js?v=20261117-1"></script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
+  <script src="../assets/vi-collage.js?v=20261117-1" defer></script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>

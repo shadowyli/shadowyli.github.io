@@ -596,17 +596,6 @@
 
       var canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-      // 桌面端保持单路播放；手机端允许多个视频同时播放，点击第二个不打断第一个
-      document.addEventListener("play", function (event) {
-        if (mobileQuery.matches) return;
-        var current = event.target;
-        if (!current || current.tagName !== "VIDEO") return;
-        slots.forEach(function (slot) {
-          var other = slot.querySelector("video");
-          if (other && other !== current && !other.paused) other.pause();
-        });
-      }, true);
-
       slots.forEach(function (slot) {
         var video = slot.querySelector("video");
         if (!video) return;

@@ -44,7 +44,7 @@
 
     /* 平台价值：复用站内 case-stats 数据卡 */
     .flowx-value .case-stats {
-      grid-template-columns: repeat(6, max-content);
+      grid-template-columns: repeat(5, max-content);
       justify-content: space-between;
       gap: 24px 20px;
       margin-top: clamp(24px, 3vw, 34px);
@@ -65,7 +65,7 @@
     }
 
     @media (max-width: 900px) {
-      .flowx-value .case-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 20px; }
+      .flowx-value .case-stats { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px 20px; }
     }
 
     @media (max-width: 720px) {
@@ -93,15 +93,6 @@
       padding-left: 0;
     }
 
-    .pillar-index {
-      order: 1;
-      color: var(--text-muted);
-      font-family: "Space Grotesk", "Archivo", sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-    }
-
     .case-body .pillar-title {
       order: 3;
       margin: 12px 0 0;
@@ -119,11 +110,11 @@
     }
 
     .case-body .pillar-stat {
-      order: 2;
+      order: 1;
       display: flex;
       align-items: baseline;
       gap: 6px;
-      margin: 10px 0 0;
+      margin: 0;
       padding-top: 0;
     }
 
@@ -160,7 +151,7 @@
     /* 窄屏压缩为电脑端 6 列数据 + 4 列价值卡，不出现横向滚动 */
     @media (max-width: 900px) {
       .flowx-value .case-stats {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 10px 8px;
         overflow-x: visible;
       }
@@ -200,7 +191,6 @@
         border-top: 0;
       }
 
-      .pillar-index { font-size: 9px; }
       .case-body .pillar-title { font-size: 13px; }
       .case-body .pillar-desc { font-size: 9px; line-height: 1.45; }
       .pillar-stat strong { font-size: clamp(16px, 2.4vw, 26px); }
@@ -253,6 +243,12 @@
         letter-spacing: 0.02em;
       }
     }
+
+    /* 手机端四列并排：价值卡的数字与标题收小，避免一个字占满整格 */
+    @media (max-width: 720px) {
+      .case-body .pillar-stat strong { font-size: clamp(12px, 3.4vw, 20px); }
+      .case-body .pillar-title { font-size: 12px; }
+    }
   </style>
 </head>
 <body class="case-page">
@@ -299,10 +295,6 @@
             <span data-i18n-key="value1">AI 管线</span>
           </div>
           <div class="case-stat">
-            <strong>58</strong>
-            <span data-i18n-key="value2">覆盖游戏</span>
-          </div>
-          <div class="case-stat">
             <strong>54,986</strong>
             <span data-i18n-key="value3">累计调用 · 套</span>
           </div>
@@ -324,25 +316,21 @@
       <section class="case-section flowx-pillars" aria-label="平台价值亮点">
         <div class="pillars">
           <article class="pillar">
-            <span class="pillar-index" aria-hidden="true">01</span>
             <h3 class="pillar-title" data-i18n-key="pillar1Title">提效</h3>
             <p class="pillar-desc" data-i18n-key="pillar1Desc">单月产量峰值</p>
             <p class="pillar-stat"><strong>5,300+</strong><span data-i18n-key="pillar1Unit">套 / 月</span></p>
           </article>
           <article class="pillar">
-            <span class="pillar-index" aria-hidden="true">02</span>
             <h3 class="pillar-title" data-i18n-key="pillar2Title">降低门槛</h3>
             <p class="pillar-desc" data-i18n-key="pillar2Desc">上传素材，接收结果</p>
             <p class="pillar-stat"><strong>2</strong><span data-i18n-key="pillar2Unit">步</span></p>
           </article>
           <article class="pillar">
-            <span class="pillar-index" aria-hidden="true">03</span>
             <h3 class="pillar-title" data-i18n-key="pillar3Title">资产沉淀</h3>
             <p class="pillar-desc" data-i18n-key="pillar3Desc">规范内置，管线复用</p>
             <p class="pillar-stat"><strong>900+</strong><span data-i18n-key="pillar3Unit">套广告位</span></p>
           </article>
           <article class="pillar">
-            <span class="pillar-index" aria-hidden="true">04</span>
             <h3 class="pillar-title" data-i18n-key="pillar4Title">业务适配</h3>
             <p class="pillar-desc" data-i18n-key="pillar4Desc">赛事 · 运营 · 营销</p>
             <p class="pillar-stat"><strong>22+</strong><span data-i18n-key="pillar4Unit">业务环节</span></p>
@@ -408,7 +396,6 @@
           footerNote: "影子 · 视觉设计作品集",
 
           value1: "AI 管线",
-          value2: "覆盖游戏",
           value3: "累计调用 · 套",
           value4: "单模块效率提升",
           value5: "月均产量提升",
@@ -439,7 +426,6 @@
           footerNote: "Shadow · Visual Design Portfolio",
 
           value1: "AI pipelines",
-          value2: "games covered",
           value3: "cumulative calls",
           value4: "efficiency gain per module",
           value5: "average monthly output increase",
@@ -611,7 +597,7 @@
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
   <script>
-    /* 管线演示：电脑端自动播放 + 循环；手机端静帧 + 播放按钮，同时只播一条 */
+    /* 管线演示：电脑端自动播放 + 循环；手机端静帧 + 播放按钮，各条互不打扰 */
     (function () {
       var frames = Array.prototype.slice.call(document.querySelectorAll(".flowx-demo .case-frame-inner"));
       if (!frames.length) return;
@@ -627,11 +613,6 @@
       function start(frame) {
         var video = frame.querySelector("video");
         if (!video) return;
-        if (!desktop.matches) {
-          frames.forEach(function (other) {
-            if (other !== frame) pause(other);
-          });
-        }
         var promise = video.play();
         if (promise && promise.catch) {
           promise.catch(function () { frame.classList.add("is-paused"); });

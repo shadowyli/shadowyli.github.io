@@ -1,0 +1,56 @@
+/* VI 手册：平面拼贴墙
+   紧密排列的图墙，缝隙压到 2px，尺寸有大有小，底部自然参差。 */
+.vi-collage {
+  --vi-gap: 2px;
+  --vi-row: 4px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: var(--vi-row);
+  grid-auto-flow: row dense;
+  gap: var(--vi-gap);
+  margin: clamp(14px, 1.8vw, 22px) 0 0;
+}
+
+.case-page .case-body .vi-collage > .case-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  overflow: hidden;
+  background: #0b0b0e;
+}
+
+.case-page .case-body .vi-collage > .case-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(9, 8, 11, 0.08);
+  transition: background-color 0.25s ease;
+}
+
+.case-page .case-body .vi-collage > .case-frame:hover::after {
+  background: rgba(9, 8, 11, 0);
+}
+
+.case-page .case-body .vi-collage img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  -webkit-user-drag: none;
+}
+
+@media (min-width: 721px) {
+  .vi-collage {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .vi-collage {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
