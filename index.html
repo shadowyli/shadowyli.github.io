@@ -12,6 +12,15 @@
       }
     })();
   </script>
+  <script>
+    (function () {
+      var theme = "dark";
+      try {
+        if (localStorage.getItem("portfolio-theme") === "light") theme = "light";
+      } catch (error) { /* ignore */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Shadowyli 的个人作品集。">
   <title>Shadowyli - 个人作品集</title>
@@ -21,7 +30,7 @@
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261116-8">
+  <link rel="stylesheet" href="styles.css?v=20261117-1">
   <link rel="stylesheet" href="assets/site-wide.css?v=20261115-1">
   <style>
     /* 首页底部：与案例页一致的弧形自动播放回声 */
@@ -387,11 +396,6 @@
                     <strong data-i18n="internCompanies">网易互娱、雷霆游戏、钛动科技</strong>
                     <span data-i18n="internRole">视觉设计实习</span>
                   </article>
-                  <article class="timeline-item">
-                    <time>2019.09</time>
-                    <strong data-i18n="szu">深圳大学</strong>
-                    <span data-i18n="fineArts">美术学（版画）</span>
-                  </article>
                 </div>
               </div>
               <button class="timeline-nav timeline-nav--prev" type="button" aria-label="向左查看更多">
@@ -463,7 +467,7 @@
   </div>
 
   <script src="assets/vendor/lucide.min.js" defer></script>
-  <script src="script.js?v=20261116-3" defer></script>
+  <script src="script.js?v=20261117-1" defer></script>
   <script type="module" src="assets/home-echo.js?v=20261112-2"></script>
 </body>
 </html>

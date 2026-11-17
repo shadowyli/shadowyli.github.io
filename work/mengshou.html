@@ -17,11 +17,11 @@
   <title>《梦幻西游》手游巅峰联赛 | Shadowyli</title>
   <script>
     (function () {
+      var theme = "dark";
       try {
-        if (localStorage.getItem("portfolio-theme") === "light") {
-          document.documentElement.dataset.theme = "light";
-        }
+        if (localStorage.getItem("portfolio-theme") === "light") theme = "light";
       } catch (error) { /* ignore */ }
+      document.documentElement.dataset.theme = theme;
     })();
   </script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261116-8">
+  <link rel="stylesheet" href="../styles.css?v=20261117-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
@@ -397,7 +397,8 @@
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
         <h2 id="case-intro-title">关于</h2>
         <p>我们为这项游戏内最高规格的职业化电竞赛事打造了一套视觉系统，希望把赛事的量级与声望，在观众第一眼看到时就传达出去。</p>
-        <p>从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。</p>
+        <p>从《梦幻西游》的国风美学与经典场景中汲取灵感，我们让赛场延续玩家熟悉的东方幻想气质，同时跳出传统电竞赛事的视觉套路，用山水、门派与奖杯搭起一个视觉冲击力极强的竞技舞台。</p>
+        <p>赛事期间的千万级别持续曝光与媒体互动，放大明星指挥与俱乐部战队的影响力，也让粉丝与潜在用户和赛事建立更深的情感联结，为《梦幻西游》手游带来持续的用户增长与市场关注。</p>
       </section>
 
       <!-- 内容待补充 -->
@@ -881,6 +882,7 @@
     })();
   </script>
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
+  <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
 </body>
 </html>

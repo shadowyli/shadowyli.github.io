@@ -1,0 +1,33 @@
+/* 案例页署名：全站统一排版，数据与渲染见 case-credits.js */
+.case-body .case-credits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 36px;
+  margin: 0 0 clamp(18px, 2.4vw, 28px);
+  padding: 0 0 clamp(14px, 1.6vw, 20px);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+  list-style: none;
+}
+
+.case-body .case-credits[data-count="1"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.case-body .case-credits li {
+  color: var(--text-muted);
+  font-family: var(--font-cjk);
+  font-size: 12px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 560px) {
+  .case-body .case-credits {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .case-body .case-credits li {
+    font-size: 11px;
+  }
+}
