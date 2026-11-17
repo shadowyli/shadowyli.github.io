@@ -171,29 +171,13 @@
       .ivl-bureau-layout { grid-template-columns: 1fr; }
     }
 
-    /* 05 模块：蛋仔派对挑战杯赛制，分镜一行五张 */
-    .challenge-cup-grid {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 6px;
-    }
-
-    .case-page .case-section .challenge-cup-grid > .case-frame { margin: 0 !important; }
-
-    .challenge-cup-grid .case-frame--image img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
     /* 手机端全页收紧：画框 4px，模块之间 24px */
     @media (max-width: 720px) {
       .nbpl-opening-grid,
       .egg-mic-grid,
       .top5-grid,
       .ivl-bureau-layout,
-      .ivl-bureau-thumbs,
-      .challenge-cup-grid {
+      .ivl-bureau-thumbs {
         gap: 4px;
       }
 
@@ -312,32 +296,6 @@
         </div>
       </section>
 
-      <section class="case-section challenge-cup" aria-labelledby="challenge-cup-title">
-        <h2 id="challenge-cup-title"><span class="case-section-index" aria-hidden="true">05</span><span data-i18n-key="section5Title">蛋仔派对挑战杯赛制</span></h2>
-        <div class="challenge-cup-grid">
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-01.webp" alt="《蛋仔派对》挑战杯 · 字体规范" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-02.webp" alt="《蛋仔派对》挑战杯 · 开场词「蛋启新征程」" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-03.webp" alt="《蛋仔派对》挑战杯 · 赛事介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-04.webp" alt="《蛋仔派对》挑战杯 · 金字塔选拔通道" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-05.webp" alt="《蛋仔派对》挑战杯 · 直通名额" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-06.webp" alt="《蛋仔派对》挑战杯 · 个人赛与团队赛直通名额" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-07.webp" alt="《蛋仔派对》挑战杯 · 单人参赛与组队参赛" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-08.webp" alt="《蛋仔派对》挑战杯 · 赛事日程" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-09.webp" alt="《蛋仔派对》挑战杯 · 个人赛奖金板" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-10.webp" alt="《蛋仔派对》挑战杯 · 团队赛奖金板" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-11.webp" alt="《蛋仔派对》挑战杯 · 参赛就拿奖" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-12.webp" alt="《蛋仔派对》挑战杯 · 个人赛赛制介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-13.webp" alt="《蛋仔派对》挑战杯 · 团队赛赛制介绍" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-14.webp" alt="《蛋仔派对》挑战杯 · 决赛规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-15.webp" alt="《蛋仔派对》挑战杯 · 阶段式淘汰积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-16.webp" alt="《蛋仔派对》挑战杯 · 前 3 关积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-17.webp" alt="《蛋仔派对》挑战杯 · 第 4 关积分规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-18.webp" alt="《蛋仔派对》挑战杯 · 赛点激活规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-19.webp" alt="《蛋仔派对》挑战杯 · 获胜规则" width="640" height="360" loading="lazy" decoding="async"></figure>
-          <figure class="case-frame case-frame--image"><img src="../assets/video-packaging-challenge-cup-21.webp" alt="《蛋仔派对》挑战杯 · 结束语「操刀为刃 破局为王」" width="640" height="360" loading="lazy" decoding="async"></figure>
-        </div>
-      </section>
-
       <!-- 往这里继续追加内容，例如
       <section class="case-section">
         <h2><span class="case-section-index" aria-hidden="true">06</span><span data-i18n-key="section6Title">区块标题</span></h2>
@@ -388,7 +346,6 @@
           section2Title: "蛋仔麦克疯",
           section3Title: "第五人格 COA VIII 全球总决赛 TOP10",
           section4Title: "第五人格 IVL 第五情报局",
-          section5Title: "蛋仔派对挑战杯赛制",
           closeDialog: "关闭",
           wechatTitle: "微信二维码",
           saveHint: "长按图片保存二维码",
@@ -408,7 +365,6 @@
           section2Title: "Eggy Party Mic Check",
           section3Title: "Identity V COA VIII Global Finals TOP 10",
           section4Title: "Identity V IVL · The Fifth Intelligence Bureau",
-          section5Title: "Eggy Party Challenge Cup Rules",
           closeDialog: "Close",
           wechatTitle: "WeChat QR code",
           saveHint: "Long-press the image to save the QR code",

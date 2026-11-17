@@ -318,6 +318,16 @@
         <p data-i18n-key="introP2">视觉要在派对游戏的轻松感和电竞赛事的仪式感之间取得平衡：以蛋仔的圆润造型为主体，用有分量的奖杯和场地构图撑住画面，再把配色、字体、版式固化成手册。直播、大屏、周边都从这本手册派生；赛事后来增加新玩法赛道，视觉资产可以直接复用。</p>
       </section>
 
+      <section class="case-section case-gallery" id="case-gallery-quickcut" aria-label="项目快剪">
+        <figure class="case-frame case-media-slot case-quickcut" data-video="../assets/danzai-quickcut.mp4" data-mobile-video="../assets/danzai-quickcut-mobile.mp4" data-play="enter" data-replay="enter">
+          <img src="../assets/danzai-quickcut.webp" alt="《蛋仔派对》全国总决赛项目快剪：赛事舞台、主屏与奖杯" width="1280" height="720" loading="eager" decoding="async">
+          <video muted playsinline preload="none" aria-label="《蛋仔派对》全国总决赛项目快剪"></video>
+          <button class="slot-play" type="button" aria-label="播放项目快剪">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
+        </figure>
+      </section>
+
       <section class="case-section case-gallery" id="case-gallery" aria-label="KV">
         <div class="case-row" data-layout="main">
           <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
@@ -764,9 +774,13 @@
         return !!button && button.getAttribute("aria-pressed") === "true";
       }
 
-      function play(slot) {
+      function play(slot, manual) {
         var video = attach(slot);
         if (!video) return;
+        var replayOnEnter = slot.getAttribute("data-replay") === "enter";
+        // 手机端普通视频仍不自动播；快剪允许每次入场自动播放
+        if (!manual && mobileQuery.matches && slot.dataset.finished === "1" && !replayOnEnter) return;
+        if (manual || replayOnEnter) delete slot.dataset.finished;
         if (!video.paused && !video.ended) return;
         try { video.currentTime = 0; } catch (error) {}
         video.muted = !isSoundOn(slot);
@@ -798,6 +812,7 @@
 
         video.addEventListener("ended", function () {
           slot.classList.remove("is-playing");
+          slot.dataset.finished = "1";
         });
 
         // 手机端：按钮直接播放这块动画（点整块也能播，按钮是给出手势入口）
@@ -806,7 +821,7 @@
           playButton.addEventListener("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
-            play(slot);
+            play(slot, true);
           });
         }
 
@@ -821,6 +836,7 @@
             syncSoundLabel(slot, on);
             target.muted = !on;
             if (target.ended || target.paused) {
+              delete slot.dataset.finished;
               try { target.currentTime = 0; } catch (error) {}
               var promise = target.play();
               if (promise && promise.catch) promise.catch(function () {});
@@ -829,7 +845,7 @@
         }
 
         // 点击 = 手动重播（触屏设备没有悬停，也能重看）
-        slot.addEventListener("click", function () { play(slot); });
+        slot.addEventListener("click", function () { play(slot, true); });
       });
 
       if (!("IntersectionObserver" in window)) return;
@@ -838,8 +854,11 @@
         entries.forEach(function (entry) {
           var slot = entry.target;
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-            // 只在首次入场自动播放；滚走再回来不再自动播，改用播放按钮
-            if (!mobileQuery.matches && slot.dataset.autoplayed !== "1") {
+            if (slot.getAttribute("data-replay") === "enter") {
+              // 快剪：每次入场自动播放；播完后再次入场从头重播
+              play(slot);
+            } else if (!mobileQuery.matches && slot.dataset.autoplayed !== "1") {
+              // 其余视频：只在桌面端首次入场自动播放
               slot.dataset.autoplayed = "1";
               play(slot);
             }
@@ -872,7 +891,7 @@
         }, { threshold: [0, 0.25] });
         slots.forEach(function (slot) { buttonObserver.observe(slot); });
         playAllButton.addEventListener("click", function () {
-          visibleSlots.slice().forEach(function (slot) { play(slot); });
+          visibleSlots.slice().forEach(function (slot) { play(slot, true); });
         });
       }
     })();
