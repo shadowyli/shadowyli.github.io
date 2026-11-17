@@ -207,6 +207,47 @@
       .pillar-stat span { font-size: 8.5px; }
       .case-body .pillar-stat { margin-top: 6px; gap: 4px; }
     }
+
+    /* 两条管线演示：同一行并排，每块左上角标注小标题 */
+    .case-body .case-section.flowx-demos {
+      margin-top: clamp(28px, 4vw, 40px);
+    }
+
+    .flowx-demo { position: relative; }
+
+    .flowx-demo .case-frame-inner { aspect-ratio: 16 / 9; }
+
+    /* 网格里不需要再叠行间距 */
+    .flowx-demos .case-frame + .case-frame { margin-top: 0; }
+
+    .flowx-demo-label {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      padding: 5px 9px;
+      border-radius: 2px;
+      background: rgba(8, 8, 10, 0.62);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.06em;
+      pointer-events: none;
+    }
+
+    @media (max-width: 720px) {
+      .flowx-demos .case-media-grid { gap: 4px; }
+      .flowx-demo-label {
+        top: 6px;
+        left: 6px;
+        padding: 4px 6px;
+        font-size: 8.5px;
+        letter-spacing: 0.02em;
+      }
+    }
   </style>
 </head>
 <body class="case-page">
@@ -304,15 +345,34 @@
         </div>
       </section>
 
-      <!-- 往这里继续追加内容，例如：
-      <section class="case-section">
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-frame--image">
-            <img src="../assets/文件名.webp" alt="图片说明" width="1920" height="1080" loading="lazy" decoding="async">
+      <section class="case-section flowx-demos" aria-label="管线演示">
+        <div class="case-media-grid">
+          <figure class="case-frame flowx-demo">
+            <div class="case-frame-inner">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/flowx-marketing-demo.webp" aria-label="买量营销管线演示" width="1600" height="900">
+                <source src="../assets/flowx-marketing-demo.mp4" data-mobile-src="../assets/flowx-marketing-demo-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <span class="flowx-demo-label" data-i18n-key="demoMarketing">买量营销管线</span>
+              <button class="case-video-play" type="button" aria-label="播放买量营销管线演示">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
+          </figure>
+          <figure class="case-frame flowx-demo">
+            <div class="case-frame-inner">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/flowx-gif-demo.webp" aria-label="GIF 生成管线演示" width="1600" height="900">
+                <source src="../assets/flowx-gif-demo.mp4" data-mobile-src="../assets/flowx-gif-demo-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <span class="flowx-demo-label" data-i18n-key="demoGif">GIF 生成管线</span>
+              <button class="case-video-play" type="button" aria-label="播放 GIF 生成管线演示">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
           </figure>
         </div>
       </section>
-      data-layout 可选：main / secondary / portrait / strip / duo / banners。 -->
     </div>
   </main>
 
@@ -360,6 +420,8 @@
           pillar4Title: "业务适配",
           pillar4Desc: "赛事 · 运营 · 营销",
           pillar4Unit: "业务环节",
+          demoMarketing: "买量营销管线",
+          demoGif: "GIF 生成管线",
           pageTitle: "FlowX - 面向跨岗位协作的 AI 内容生产平台 | Shadowyli",
           metaDescription: "FlowX 面向跨岗位协作的 AI 内容生产平台项目案例。"
         },
@@ -389,6 +451,8 @@
           pillar4Title: "Business fit",
           pillar4Desc: "Esports · Operations · Marketing",
           pillar4Unit: "business stages",
+          demoMarketing: "Marketing pipeline",
+          demoGif: "GIF pipeline",
           pageTitle: "FlowX — AI Content Production Platform | Shadowyli",
           metaDescription: "FlowX AI content production platform case study."
         }
@@ -541,5 +605,56 @@
   </script>
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
   <script src="../assets/case-tabs.js?v=20261114-1" defer></script>
+  <script>
+    /* 管线演示：默认静帧 + 播放按钮，点击播放/暂停，同时只播一条 */
+    (function () {
+      var frames = Array.prototype.slice.call(document.querySelectorAll(".flowx-demo .case-frame-inner"));
+      if (!frames.length) return;
+
+      function pause(frame) {
+        var video = frame.querySelector("video");
+        if (video && !video.paused) video.pause();
+        frame.classList.add("is-paused");
+      }
+
+      frames.forEach(function (frame) {
+        var video = frame.querySelector("video");
+        var button = frame.querySelector(".case-video-play");
+        if (!video) return;
+
+        frame.classList.add("is-paused");
+
+        function start() {
+          frames.forEach(function (other) {
+            if (other !== frame) pause(other);
+          });
+          var promise = video.play();
+          if (promise && promise.catch) {
+            promise.catch(function () { frame.classList.add("is-paused"); });
+          }
+        }
+
+        video.addEventListener("playing", function () {
+          frame.classList.remove("is-paused");
+        });
+        video.addEventListener("pause", function () {
+          frame.classList.add("is-paused");
+        });
+
+        frame.addEventListener("click", function () {
+          if (video.paused) start();
+          else pause(frame);
+        });
+
+        if (button) {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            start();
+          });
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
