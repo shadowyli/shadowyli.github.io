@@ -37,6 +37,7 @@
   section.className = "case-next";
   section.innerHTML =
     '<span class="case-next-progress" aria-hidden="true"></span>' +
+    '<span class="case-next-meter" aria-hidden="true"></span>' +
     '<a class="case-next-link" href="' + nextUrl + '">' +
       '<span class="case-next-body">' +
         '<span class="case-next-eyebrow"></span>' +
@@ -49,7 +50,15 @@
         '</svg>' +
       '</span>' +
     '</a>';
+  /* 接力块作为内容区的最后一块，并把页脚收进来：
+     标题在上、版权与联系方式在下，滚到底看到的就是「下一个案例」，
+     不会出现标题下面还压着一条页脚的错位感 */
   host.appendChild(section);
+  var footer = document.querySelector(".case-footer");
+  if (footer) section.appendChild(footer);
+
+  var main = document.querySelector("main.case-main");
+  if (main) main.classList.add("has-case-next");
 
   var eyebrowEl = section.querySelector(".case-next-eyebrow");
   var titleEl = section.querySelector(".case-next-title");
@@ -65,7 +74,9 @@
     var name = en ? next.en : next.zh;
     eyebrowEl.textContent = en ? "Next case" : "下一个案例";
     titleEl.textContent = name;
-    hintEl.textContent = en ? "Keep scrolling / swipe up" : "继续下滑 / 轻扫进入";
+    hintEl.textContent = released
+      ? (en ? "Release to open" : "松手进入")
+      : (en ? "Keep scrolling / swipe up" : "继续下滑 / 轻扫进入");
     linkEl.setAttribute("aria-label", (en ? "Next case: " : "下一个案例：") + name);
   }
 
@@ -111,6 +122,7 @@
   }
 
   var pull = 0;
+  var released = false;
   var navigating = false;
   var armed = false;
   var wheelAcc = 0;
@@ -119,6 +131,14 @@
   function setPull(value) {
     pull = Math.max(0, Math.min(1, value));
     section.style.setProperty("--pull", pull.toFixed(3));
+    syncCue();
+    var strong = pull > 0.6;
+    if (strong !== released) {
+      released = strong;
+      hintEl.textContent = strong
+        ? (english() ? "Release to open" : "松手进入")
+        : (english() ? "Keep scrolling / swipe up" : "继续下滑 / 轻扫进入");
+    }
   }
 
   /* 到达页尾的时刻：用来跳过「一路惯性滚到底」的残余滚动量，避免误跳页 */
@@ -167,14 +187,14 @@
       return;
     }
     if (!armed || !atBottom()) return;
-    if (Date.now() - bottomSince < 260) return;
+    if (Date.now() - bottomSince < 140) return;
 
     var now = Date.now();
     if (now - lastWheel > 420) wheelAcc = 0;
     lastWheel = now;
     wheelAcc += event.deltaY;
-    setPull(wheelAcc / 320);
-    if (wheelAcc >= 320) go();
+    setPull(wheelAcc / 240);
+    if (wheelAcc >= 240) go();
   }, { passive: true });
 
   var touchY = null;
@@ -185,7 +205,7 @@
     touched = false;
     if (event.touches.length !== 1 || blocked(event.target)) return;
     if (!armed || !atBottom()) return;
-    if (Date.now() - bottomSince < 120) return;
+    if (Date.now() - bottomSince < 110) return;
     touchY = event.touches[0].clientY;
   }, { passive: true });
 
@@ -204,7 +224,7 @@
     }
     if (event.cancelable && distance > 8) event.preventDefault();
     touched = true;
-    setPull(distance / 170);
+    setPull(distance / 150);
   }, { passive: false });
 
   function endTouch() {
