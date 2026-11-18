@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="影子（李颖）的 AI 管线开发实践。项目发起与负责、产品体验与核心开发，以及面向真实业务的技术组合和团队能力建设。">
+  <meta name="description" content="影子（李颖）的 AI 管线搭建、LoRA 风格训练、AI 应用与 Agent 开发实践。项目发起人、负责人，亲自承担关键设计与开发。">
   <meta name="theme-color" content="#101214">
   <title>AI 管线开发 · 影子 李颖 | Shadowyli</title>
   <script>
@@ -16,100 +16,171 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-pipeline.css?v=20261118-1">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-12">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
-  <script src="../assets/vendor/gsap.min.js" defer></script>
-  <script src="../assets/vendor/ScrollTrigger.min.js" defer></script>
-  <script src="../assets/ai-pipeline.js?v=20261118-1" defer></script>
+  <script src="../assets/ai-capabilities.js?v=20261118-9" defer></script>
 </head>
 <body class="case-page pipeline-page">
   <a class="skip-link" href="#pipeline-main" data-copy="skip">跳到正文</a>
-  <header class="pipeline-header">
+  <header class="case-header pipeline-header">
     <a class="brand" href="../index.html">SHADOWYLI</a>
-    <span class="header-context" data-copy="context">AI 管线开发</span>
-    <div class="pipeline-actions">
-      <a href="../index.html#portfolio" data-copy="back">返回作品集 ↗</a>
-      <button class="pipeline-theme" type="button" aria-label="切换到浅色模式" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
-      <button class="pipeline-language" type="button" aria-label="切换到英文" hidden>EN</button>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="../index.html#portfolio" data-copy="navWork">作品</a>
+      <a href="../index.html#about" data-copy="navAbout">关于我</a>
+    </nav>
+    <div class="case-header-actions">
+      <a class="case-back" href="../index.html#portfolio" data-copy="back">← 返回作品集</a>
+      <button class="theme-toggle icon-button case-theme pipeline-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button>
+      <button class="case-lang pipeline-language" type="button" aria-label="切换到英文" title="切换到英文" hidden><span>EN</span></button>
     </div>
   </header>
   <main id="pipeline-main" tabindex="-1">
-    <div class="pipeline-film">
-      <div class="film-stage">
-        <section class="film-scene scene-intro" aria-labelledby="intro-title">
-          <div class="intro-meta">
-            <p><strong data-copy="name">影子 · 李颖</strong><span data-copy="role">项目发起人 / 负责人</span></p>
-            <span class="mono">AI NATIVE<br>SINCE 2023</span>
-          </div>
-          <h1 id="intro-title" data-copy="heroTitle">AI 管线开发</h1>
-          <p class="intro-subtitle" data-copy="titleCn">把制作经验，做成可复用的生产能力。</p>
-          <div class="ownership-map" role="list" aria-label="我的责任范围">
-            <div class="ownership-item" role="listitem"><span class="ownership-index mono" aria-hidden="true">01</span><h2 data-copy="ownershipBusiness">定义业务</h2><p data-copy="ownershipBusinessDetail">评估投入产出，决定开发优先级</p></div>
-            <div class="ownership-item" role="listitem"><span class="ownership-index mono" aria-hidden="true">02</span><h2 data-copy="ownershipBuild">构建系统</h2><p data-copy="ownershipBuildDetail">独立完成首版，主导后续协作开发</p></div>
-            <div class="ownership-item" role="listitem"><span class="ownership-index mono" aria-hidden="true">03</span><h2 data-copy="ownershipTeam">推动采用</h2><p data-copy="ownershipTeamDetail">发布规范 · 实操培训 · 项目带教</p></div>
-          </div>
-          <div class="intro-bottom">
-            <p data-copy="introStatement">从一线视觉制作出发，<br><strong>发起平台建设，负责产品与关键开发。</strong></p>
-            <span class="scroll-cue" data-copy="scroll">向下滚动，看生产方式如何改变 <b>↓</b></span>
-          </div>
-        </section>
-        <section class="film-scene scene-routing" aria-labelledby="routing-title">
-          <div class="scene-heading"><h2 id="routing-title" data-copy="routingTitle">把需求，重新分工。</h2><p data-copy="routingIntro">从集中交给美术，到业务自助与专业制作各得其所。</p></div>
-          <div class="routing-board" role="group" aria-label="业务需求分流示意">
-            <svg class="routing-lines" viewBox="0 0 1100 400" preserveAspectRatio="none" aria-hidden="true">
-              <g class="routes-before"><path d="M118 72 C390 72 420 200 720 200"></path><path d="M118 144 C390 144 420 200 720 200"></path><path d="M118 216 C390 216 420 200 720 200"></path><path d="M118 320 C390 320 420 200 720 200"></path></g>
-              <g class="routes-after"><path d="M118 72 C300 72 300 144 440 144"></path><path d="M118 144 L440 144"></path><path d="M118 216 C300 216 300 144 440 144"></path><path class="route-self" d="M570 144 C720 144 710 94 940 94"></path><path class="route-assisted" d="M570 144 C720 144 710 300 940 300"></path><path d="M118 320 C440 320 620 300 940 300"></path></g>
-            </svg>
-            <div class="request-source"><span class="diagram-caption" data-copy="requests">业务需求</span><span class="request-item" data-copy="request1">图文替换</span><span class="request-item" data-copy="request2">多规格物料</span><span class="request-item" data-copy="request3">批量图像处理</span><span class="request-item request-creative" data-copy="request4">创意与精修</span></div>
-            <div class="old-queue"><div class="queue-stack" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><strong data-copy="oldQueue">排期 · 人工制作</strong><span data-copy="oldQueueDetail">不同需求，共用人工承接路径</span></div>
-            <div class="routing-hub"><strong data-copy="routeHub">业务定制管线</strong><span data-copy="routeHubDetail">规范与步骤内置</span></div>
-            <div class="route-destination destination-self"><span class="destination-number">A</span><div><h3 data-copy="selfService">业务自助</h3><p data-copy="selfDetail">运营 / 导演完成适合标准化的需求</p></div></div>
-            <div class="route-destination destination-pro"><span class="destination-number">B</span><div><h3 data-copy="professional">专业制作</h3><p data-copy="proDetail">管线辅助执行，美术保留专业判断</p></div></div>
-          </div>
-          <div class="routing-caption"><span data-copy="beforeLabel">原先 · 大量需求集中提给美术</span><span class="caption-arrow" aria-hidden="true">→</span><strong data-copy="afterLabel">现在 · 按业务需求设计完成路径</strong></div>
-        </section>
-        <section class="film-scene scene-engineering" aria-labelledby="engineering-title">
-          <div class="scene-heading"><h2 id="engineering-title" data-copy="engineeringTitle">该生成的生成，<br>该精确的精确。</h2><p data-copy="engineeringIntro">处理逻辑示意：AI 提供生成能力，Logo、版式与输出规格交给确定性的工具处理。</p></div>
-          <div class="engineering-board">
-            <div class="agent-track"><span class="mono">AI / AGENT</span><p data-copy="agentRole">生成内容 · 理解需求 · 组织执行</p><span class="agent-track-arrow" aria-hidden="true">↓</span></div>
-            <div class="production-chain">
-              <div class="data-module"><h3 data-copy="dataTitle">一份业务表</h3>
-                <div class="data-table" role="table" aria-label="示意业务数据">
-                  <div role="row"><span role="columnheader" data-copy="columnTeam">战队</span><span role="columnheader" data-copy="columnAsset">图片</span><span role="columnheader" data-copy="columnName">名称</span></div>
-                  <div class="data-row" role="row"><span role="cell">A</span><span role="cell">a.png</span><span role="cell" data-copy="nameA">战队 A</span></div>
-                  <div class="data-row" role="row"><span role="cell">B</span><span role="cell">b.png</span><span role="cell" data-copy="nameB">战队 B</span></div>
-                  <div class="data-row" role="row"><span role="cell">C</span><span role="cell">c.png</span><span role="cell" data-copy="nameC">战队 C</span></div>
-                </div><p class="module-note" data-copy="dataNote">一行数据，对应一套物料</p>
-              </div>
-              <span class="chain-arrow" aria-hidden="true">→</span>
-              <div class="template-module"><h3 data-copy="templateTitle">已有专业模板</h3>
-                <div class="template-outline" aria-hidden="true"><span class="template-logo">LOGO</span><div class="template-portrait"><span>+ + + + + +<br>+ + + + + +<br>+ + + + + +</span><b data-copy="imageSlot">图片槽位</b></div><span class="template-name" data-copy="nameSlot">名称槽位</span><span class="template-size" data-copy="templateLayers">版式 / 图层</span></div>
-                <p class="module-note" data-copy="templateNote">沿用专业版式，保留不可修改的品牌资产</p>
-              </div>
-              <span class="chain-arrow" aria-hidden="true">→</span>
-              <div class="output-module"><h3 data-copy="outputTitle">批量成品</h3>
-                <div class="output-stack" aria-hidden="true"><div class="output-sheet sheet-c"><span>C</span><i></i><small>PNG</small></div><div class="output-sheet sheet-b"><span>B</span><i></i><small>PNG</small></div><div class="output-sheet sheet-a"><span>A</span><i></i><small>PNG</small></div></div>
-                <p class="module-note" data-copy="outputNote">保持版式，按数据分别输出</p>
-              </div>
-            </div>
-            <div class="quality-track"><span class="quality-label" data-copy="qualityLabel">交付边界</span><div><strong data-copy="ruleCheck">规格校验</strong><span data-copy="ruleDetail">尺寸 / 格式 / 槽位</span></div><span aria-hidden="true">→</span><div><strong data-copy="visualCheck">效果检查</strong><span data-copy="visualDetail">检查成品与需求</span></div><span aria-hidden="true">→</span><div><strong data-copy="humanCheck">人工终验</strong><span data-copy="humanDetail">确认最终使用效果</span></div><p class="quality-return"><span aria-hidden="true">↶</span><span data-copy="qualityReturn">不合格则重做，无法判断则交回人工</span></p></div>
-          </div>
-          <p class="engineering-end" data-copy="engineeringEnd">Canvas 处理精准适配，FFmpeg 处理动效；按效果、成本与速度选择方案。</p>
-        </section>
-        <div class="film-position" aria-hidden="true"><span class="film-current">00</span><i><b></b></i><span>02</span></div>
+    <section class="capability-intro" aria-labelledby="intro-title">
+      <div class="intro-identity"><strong data-copy="name">影子 · 李颖</strong><span data-copy="role">项目发起人 / 负责人</span><span class="since">2023 → NOW</span></div>
+      <h1 id="intro-title" data-copy="title">AI 管线开发</h1>
+      <p class="intro-description" data-copy="intro">从生成与训练，到业务流程与应用落地。</p>
+    </section>
+
+    <figure class="tool-network" aria-labelledby="tools-title">
+      <h2 class="sr-only" id="tools-title" data-copy="toolsTitle">管线工具链</h2>
+      <div class="network-canvas" role="group" aria-label="管线工具连接示意">
+        <svg class="network-lines" viewBox="0 0 1200 460" preserveAspectRatio="none" aria-hidden="true">
+          <g class="network-wire">
+            <path d="M220 70V390"></path>
+            <path d="M600 70V390"></path>
+            <path d="M980 70V390"></path>
+            <path d="M220 230H980"></path>
+          </g>
+          <g class="network-ticks">
+            <path d="M380 224v12"></path>
+            <path d="M460 224v12"></path>
+            <path d="M740 224v12"></path>
+            <path d="M820 224v12"></path>
+            <path d="M594 140h12"></path>
+            <path d="M594 320h12"></path>
+          </g>
+          <g class="network-joints">
+            <circle cx="220" cy="230" r="3"></circle>
+            <circle cx="980" cy="230" r="3"></circle>
+          </g>
+        </svg>
+
+        <div class="network-node" data-tool="comfyui" style="left:18.33%;top:15.22%">
+          <span class="node-tile"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M31.01 30.48a1.17 1.17 0 0 0 .07-.48 1.08 1.08 0 0 0-1.68-.7h-7.54a.92.92 0 0 1-.9-.94c0-.07.01-.14.03-.2l2.03-7.11c.09-.31.37-.54.71-.54h7.56a3.2 3.2 0 0 0 3.35-2.57l1.14-3.96c.04-.14.06-.29.06-.44a1.68 1.68 0 0 0-1.68-1.68h-9.15a3.2 3.2 0 0 0-3.34 2.53l-.77 2.7c-.09.31-.37.54-.7.54h-2.2a3.2 3.2 0 0 0-3.33 2.5l-2.77 9.71a1.7 1.7 0 0 0-.06.46c0 .93.75 1.69 1.68 1.69h2.16c.4 0 .74.33.74.74 0 .07-.01.14-.03.2l-.77 2.68a1.69 1.69 0 0 0-.06.44c0 .93.75 1.68 1.67 1.68l9.16-.01a3.2 3.2 0 0 0 3.34-2.55l1.11-3.9.01-.01Z"/></svg></span>
+          <span class="node-label">ComfyUI</span>
+        </div>
+
+        <div class="network-node" data-tool="lora" style="left:50%;top:15.22%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.6 7.4 12 11.8l8.4-4.4L12 3Z"/><path d="M3.6 12 12 16.4 20.4 12"/><path d="M3.6 16.4 12 20.8l8.4-4.4"/></svg></span>
+          <span class="node-label" data-copy="loraLabel">LoRA 训练</span>
+        </div>
+
+        <div class="network-node" data-tool="agent" style="left:81.67%;top:15.22%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.2 3.4 12.8 9l5.6 1.6-5.6 1.6-1.6 5.6-1.6-5.6L4 10.6 9.6 9l1.6-5.6Z"/><path d="M18.4 15.2l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8.8-2.4Z"/></svg></span>
+          <span class="node-label">Agent</span>
+        </div>
+
+        <div class="network-node" data-tool="n8n" style="left:18.33%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.47 5.68a2.53 2.53 0 0 0-2.44 1.9h-2.9c-1.23 0-2.29.89-2.49 2.11l-.1.62a1.26 1.26 0 0 1-1.25 1.06h-1c-.28-1.09-1.27-1.9-2.44-1.9s-2.17.81-2.45 1.9H4.97a2.53 2.53 0 1 0 0 1.26h1.43a2.53 2.53 0 1 0 4.89 0h1a1.26 1.26 0 0 1 1.25 1.06l.1.62a2.52 2.52 0 0 0 2.5 2.11h.36a2.53 2.53 0 1 0 0-1.26h-.36a1.26 1.26 0 0 1-1.25-1.06l-.1-.62a2.52 2.52 0 0 0-.83-1.48 2.52 2.52 0 0 0 .82-1.48l.1-.62a1.26 1.26 0 0 1 1.25-1.06h2.9a2.53 2.53 0 1 0 2.44-1.9Zm0 1.27a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52ZM2.53 10.74a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm6.31 0a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm10.11 3.79a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Z"/></svg></span>
+          <span class="node-label">n8n</span>
+        </div>
+
+        <div class="network-node network-core" style="left:50%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.4 2.6 4.8 13.3h5.4L9.4 21.4l8.8-11h-5.4l.6-7.8Z"/></svg></span>
+          <span class="node-label" data-copy="coreLabel">AI 管线</span>
+        </div>
+
+        <div class="network-node" data-tool="ffmpeg" style="left:81.67%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.72 17.91V6.5l-.53-.49L9.05 18.52l-1.29-.06L24 1.53l-.33-.95-11.93 1-5.75 6.6v-.23l4.7-5.39-1.38-.77-9.11.77v2.85l1.91.46v.01l.19-.01-.56.66v10.6c.61-.13 1.22-.24 1.83-.36L14.12 5.22l.83-.04L0 21.44l9.67.82 1.35-.77 6.82-6.74v2.15l-5.72 5.57 11.26.95.35-.94v-3.16l-3.29-.18c.44-.4.86-.82 1.28-1.23Z"/></svg></span>
+          <span class="node-label">FFmpeg</span>
+        </div>
+
+        <div class="network-node" data-tool="uniface" style="left:18.33%;top:84.78%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5V6.5A2.5 2.5 0 0 1 6.5 4h2M15.5 4h2A2.5 2.5 0 0 1 20 6.5v2M20 15.5v2a2.5 2.5 0 0 1-2.5 2.5h-2M8.5 20h-2A2.5 2.5 0 0 1 4 17.5v-2"/><circle cx="12" cy="10.8" r="2.4"/><path d="M8.6 16.2c.9-1.4 2-2.1 3.4-2.1s2.5.7 3.4 2.1"/></svg></span>
+          <span class="node-label">UNIFACE</span>
+        </div>
+
+        <div class="network-node" data-tool="canvas" style="left:50%;top:84.78%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="m20.5 16.5-5.5-4.5-6.5 7.5"/></svg></span>
+          <span class="node-label">Canvas</span>
+        </div>
+
+        <div class="network-node" data-tool="web" style="left:81.67%;top:84.78%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 8.4-4.1 3.6 4.1 3.6"/><path d="m15.4 8.4 4.1 3.6-4.1 3.6"/><path d="m13.6 5.8-3.2 12.4"/></svg></span>
+          <span class="node-label">Web / API</span>
+        </div>
+
+        <span class="network-chip" style="left:41.67%;top:50%">生成 · 编排</span>
+        <span class="network-chip" style="left:66%;top:50%">校验 · 导出</span>
       </div>
-    </div>
-    <section class="team-section" aria-labelledby="team-title">
-      <div class="team-heading"><h2 id="team-title" data-copy="teamTitle">首版自己做，<br>后续带着团队做。</h2><p data-copy="teamIntro">从首个 MVP 验证，到需求优先级、版本排期、测试验收与推广。</p></div>
-      <div class="team-system">
-        <div class="team-deliverables"><div><h3 data-copy="teamPipelines">协作与发布规范</h3><p data-copy="teamPipelinesDetail">需求、实现、测试、发布与反馈形成循环</p></div><div><h3 data-copy="teamPlaybooks">ComfyUI / n8n 手册</h3><p data-copy="teamPlaybooksDetail">把实践整理成可查阅、可复用的方法</p></div><div><h3 data-copy="teamTraining">实操作业与项目带教</h3><p data-copy="teamTrainingDetail">用真实任务训练工作流搭建与质量判断</p></div></div>
-        <div class="team-distribution" aria-hidden="true"><span></span><span></span><span></span><i></i></div>
-        <div class="team-recipients"><p><strong data-copy="businessAudience">运营 · 导演</strong><span data-copy="businessBenefit">获得自助完成需求的能力</span></p><span class="recipient-connector">+</span><p><strong data-copy="productionAudience">美术 · 动画 · AR</strong><span data-copy="productionBenefit">复用管线，提升制作效率</span></p></div>
+    </figure>
+
+    <section class="capability-section" id="pipelines" aria-labelledby="pipelines-title">
+      <div class="capability-heading">
+        <span class="section-number" aria-hidden="true">01</span>
+        <div><h2 id="pipelines-title" data-copy="module1">AI 管线搭建</h2><p data-copy="pipelineLead">按业务规范，把生成、处理、合成与导出连成可复用流程。</p></div>
+        <ul class="skill-tags" aria-label="管线技术与能力"><li>ComfyUI</li><li>n8n</li><li data-copy="custom">业务定制</li><li data-copy="batch">批量处理</li></ul>
       </div>
-      <div class="experience-strip"><span class="mono">2023 → NOW</span><p data-copy="experience">生成实践 / ComfyUI 工作流 / n8n 自动化 / Agent 与应用工程</p></div>
-      <div class="practice-reference"><p><span data-copy="practiceLabel">代表实践</span><strong>FlowX</strong><span data-copy="practiceRole">项目发起人、负责人；亲自承担关键设计与开发，与核心成员协作建设。</span></p><a href="flowx.html" data-copy="practiceLink">产品与成果，见独立案例 ↗</a></div>
+      <article class="pipeline-example">
+        <div class="example-heading"><h3 data-copy="portraitExample">选手定妆照管线</h3><small data-copy="workflowNote">实际业务流程示意</small></div>
+        <ol class="workflow-track">
+          <li><span class="step-index">INPUT</span><strong data-copy="portraitInput">选手照片 + 赛事要求</strong><p data-copy="portraitInputDetail">输入原始照片，明确服装、背景与交付规格。</p></li>
+          <li><span class="step-index">GENERATE</span><strong data-copy="portraitGenerate">AI 生成与形象调整</strong><p data-copy="portraitGenerateDetail">按赛事风格调整服装与背景，关注人物身份保持。</p></li>
+          <li><span class="step-index">PROCESS</span><strong data-copy="portraitProcess">抠图、识别与对齐</strong><p data-copy="portraitProcessDetail">结合 UNIFACE 人脸识别，对齐并按指定尺寸裁切。</p></li>
+          <li><span class="step-index">OUTPUT</span><strong data-copy="portraitOutput">规范导出与验收</strong><p data-copy="portraitOutputDetail">转换格式，输出统一规格，由专业人员确认效果。</p></li>
+        </ol>
+      </article>
+      <aside class="pipeline-decision"><strong data-copy="decision">生成用 AI，准确性用成熟工具。</strong><p data-copy="decisionDetail">Logo、品牌资产与固定版式保留原件；Canvas 做精准适配，FFmpeg 处理动效。选型同时考虑效果、速度和成本。</p></aside>
+      <div class="production-examples">
+        <article><h3 data-copy="resourceTitle">多规格营销物料</h3><p data-copy="resourceDetail">已有素材与版式 → 多图层适配 → 裁切、压缩、转换格式 → 按资源位命名归档。</p></article>
+        <article><h3 data-copy="automationTitle">战队 Logo 延展</h3><p data-copy="automationDetail">上传 Logo → 自动加描边 → 延展多种尺寸 → 分类与命名，避免重复人工操作。</p></article>
+      </div>
+      <div class="responsibility-note"><strong data-copy="pipelineResponsibility">让同事掌握这些方法</strong><p data-copy="pipelineResponsibilityDetail">编写 ComfyUI / n8n 手册，用内部培训、实操作业和项目带教传递搭建方法。</p></div>
+    </section>
+
+    <section class="capability-section" id="lora" aria-labelledby="lora-title">
+      <div class="capability-heading">
+        <span class="section-number" aria-hidden="true">02</span>
+        <div><h2 id="lora-title" data-copy="module2">LoRA 风格训练</h2><p data-copy="loraLead">围绕目标风格，完成训练数据准备与模型训练。</p></div>
+        <ul class="skill-tags" aria-label="训练能力"><li data-copy="datasetTag">图集处理</li><li>Bucket</li><li>LoRA</li><li data-copy="styleTag">风格定制</li></ul>
+      </div>
+      <div class="training-layout">
+        <div class="bucket-visual" role="img" aria-label="图集按相近宽高比分桶，再用于风格 LoRA 训练">
+          <span class="bucket-label" data-copy="bucketLabel">Bucket 分桶示意</span>
+          <div class="bucket-groups" aria-hidden="true">
+            <div class="bucket-group"><div class="buckets"><i class="portrait"></i><i class="portrait"></i><i class="portrait"></i></div><span data-copy="portrait">竖幅</span></div>
+            <div class="bucket-group"><div class="buckets"><i class="square"></i><i class="square"></i><i class="square"></i></div><span data-copy="square">方幅</span></div>
+            <div class="bucket-group"><div class="buckets"><i class="landscape"></i><i class="landscape"></i><i class="landscape"></i></div><span data-copy="landscape">横幅</span></div>
+          </div>
+          <div class="training-output"><span>LoRA</span><strong data-copy="loraOutput">对应风格的 LoRA 模型</strong></div>
+        </div>
+        <div class="training-copy">
+          <ol class="training-steps">
+            <li><strong data-copy="training1">图集准备</strong><p data-copy="training1Detail">整理、处理对应风格的训练图片。</p></li>
+            <li><strong data-copy="training2">Bucket 分桶</strong><p data-copy="training2Detail">按相近宽高比分组，组织训练批次。</p></li>
+            <li><strong data-copy="training3">LoRA 训练</strong><p data-copy="training3Detail">使用处理后的图集训练，将风格沉淀为可加载的模型。</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="capability-section" id="applications" aria-labelledby="applications-title">
+      <div class="capability-heading">
+        <span class="section-number" aria-hidden="true">03</span>
+        <div><h2 id="applications-title" data-copy="module3">AI 应用与 Agent 开发</h2><p data-copy="appLead">把专业工作流封装为网页服务，让业务通过表单或自然语言使用。</p></div>
+        <ul class="skill-tags" aria-label="应用开发能力"><li>Web / API</li><li data-copy="toolTag">工具调用</li><li data-copy="orchestrationTag">任务编排</li><li data-copy="qualityTag">质量与异常处理</li></ul>
+      </div>
+      <div class="application-flow" role="group" aria-label="应用与 Agent 任务链示意">
+        <div><span>REQUEST</span><strong data-copy="app1">业务表达需求</strong><p data-copy="app1Detail">填写业务参数，或用自然语言描述目标。</p></div>
+        <div><span>ORCHESTRATE</span><strong data-copy="app2">Agent 组织任务</strong><p data-copy="app2Detail">拆解需求，选择管线与工具。</p></div>
+        <div><span>EXECUTE</span><strong data-copy="app3">服务执行与检查</strong><p data-copy="app3Detail">调用接口、跟进任务，核对规格与效果。</p></div>
+        <div><span>DELIVER</span><strong data-copy="app4">交付或转人工</strong><p data-copy="app4Detail">汇总结果；失败重试，无法确认则升级处理。</p></div>
+      </div>
+      <div class="responsibility-note"><strong data-copy="appResponsibility">首版独立完成，后续主导协作开发。</strong><p data-copy="appResponsibilityDetail">负责产品与 UI/UX、关键开发、需求优先级、版本排期和测试验收；建立开发发布规范、新人引导与反馈迭代流程。</p></div>
+      <div class="practice-link"><div><strong>FlowX</strong><p data-copy="flowxDescription">代表实践，产品功能与业务成果见独立案例。</p></div><a href="flowx.html" data-copy="flowxLink">查看产品案例 ↗</a></div>
     </section>
   </main>
+  <div class="page-reading-progress" aria-hidden="true"><span></span></div>
   <footer class="case-footer">
     <span class="case-copyright">© <span id="pipeline-year">2026</span> <span data-copy="footerNote">影子 · 视觉设计作品集</span></span>
     <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-copy="contactMe">联系我</span></button>
@@ -128,9 +199,13 @@
       var trigger = document.querySelector("#case-contact");
       var dialog = document.querySelector("#case-contact-dialog");
       if (!trigger || !dialog) return;
+      var lastTrigger = trigger;
       function openDialog() { dialog.hidden = false; document.body.classList.add("dialog-open"); dialog.focus(); }
-      function closeDialog() { dialog.hidden = true; document.body.classList.remove("dialog-open"); trigger.focus(); }
-      trigger.addEventListener("click", openDialog);
+      function closeDialog() { dialog.hidden = true; document.body.classList.remove("dialog-open"); (lastTrigger || trigger).focus(); }
+      trigger.addEventListener("click", function () { lastTrigger = trigger; openDialog(); });
+      Array.prototype.forEach.call(document.querySelectorAll("[data-open-contact]"), function (button) {
+        button.addEventListener("click", function () { lastTrigger = button; openDialog(); });
+      });
       dialog.addEventListener("click", closeDialog);
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape" && !dialog.hidden) closeDialog();

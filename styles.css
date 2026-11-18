@@ -984,6 +984,15 @@ html.reveal-enabled .project-card.revealed { opacity: 1; }
   content: "";
 }
 
+/* 语言胶囊这一行比文字高，圆点改为垂直居中，避免与胶囊错位 */
+.other-list li.other-item-tags {
+  align-items: center;
+}
+
+.other-list li.other-item-tags::before {
+  margin-top: 0;
+}
+
 :root[data-theme="light"] .other-list { color: #4c4850; }
 
 .contact-dialog {

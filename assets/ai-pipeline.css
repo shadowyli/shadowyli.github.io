@@ -16,7 +16,7 @@
 html:has(.pipeline-page) { scroll-behavior: auto; scroll-padding-top: 80px; }
 [data-theme="light"] .pipeline-page { --ink: #181e23; --muted: #535e68; --faint: #6e7983; --paper: #eef0f1; --rule: #c2c9ce; --signal: #315b7c; }
 .pipeline-page a { color: inherit; text-decoration: none; }
-.pipeline-page button { color: inherit; font: inherit; }
+.pipeline-page button:not(.sidebar-contact) { color: inherit; font: inherit; }
 .pipeline-page a:focus-visible, .pipeline-page button:focus-visible { outline: 2px solid var(--signal); outline-offset: 5px; }
 .pipeline-page .mono { font-family: "Space Grotesk", monospace; }
 .pipeline-page ::selection { background: var(--signal); color: var(--paper); }
@@ -304,6 +304,27 @@ html:has(.pipeline-page) { scrollbar-color: var(--muted, #a4a9ae) var(--paper, #
   .scene-heading h2 { font-size: 28px; }
   .engineering-board { margin-top: 15px; }
   .quality-track { margin-top: 18px; }
+}
+@media (max-width: 720px) {
+  .pipeline-header .pipeline-actions > a { display: none; }
+  .pipeline-page .team-section { padding-bottom: calc(104px + env(safe-area-inset-bottom, 0px)); }
+  .pipeline-header .is-header-contact.sidebar-contact {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none !important;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 500;
+    transform: none;
+    box-shadow: none;
+  }
+  .pipeline-header .is-header-contact.sidebar-contact:hover { color: var(--ink); transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .pipeline-page *, .pipeline-page *::before, .pipeline-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
