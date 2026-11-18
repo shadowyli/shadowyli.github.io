@@ -108,12 +108,6 @@
   line-height: var(--fx-lh-heading);
   letter-spacing: -.01em;
 }
-.flowx-page .case-body .fx-brief-sub {
-  margin: 0;
-  color: var(--fx-muted);
-  font-size: 13.5px;
-  line-height: var(--fx-lh-body);
-}
 .flowx-page .case-body .fx-painlist {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
