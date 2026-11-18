@@ -1653,7 +1653,7 @@ body.case-page .case-body h2 {
 
 .mobile-play {
   position: fixed;
-  left: 16px;
+  right: 16px;
   bottom: 24px;
   z-index: 60;
   display: none;
@@ -1839,7 +1839,7 @@ body.case-page.is-leaving {
     max-width: none;
     transform: none;
   }
-  .mobile-play { bottom: 78px; }
+  .mobile-play { bottom: 64px; }
 }
 
 /* 桌面端保留案例切换，但收成底部一颗紧凑胶囊，不再横跨整屏压住画面 */

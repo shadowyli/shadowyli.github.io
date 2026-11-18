@@ -29,10 +29,10 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261117-5">
+  <link rel="stylesheet" href="../styles.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
-  <link rel="stylesheet" href="../assets/case-echo.css?v=20261117-1">
-  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
+  <link rel="stylesheet" href="../assets/case-echo.css?v=20261118-2">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/vi-collage.css?v=20261117-1">
   <style>
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
@@ -246,7 +246,11 @@
 
     /* 回声带上方的分割线：与图集 6px 缝同一节奏，只做轻微分隔 */
     .case-body .case-divider.case-echo-divider {
-      margin: 16px 0;
+      margin: 6px 0;
+    }
+
+    @media (max-width: 720px) {
+      .case-body .case-divider.case-echo-divider { margin: 4px 0; }
     }
 
     /* 空灯箱：还没填内容时的占位框，虚线 + 对角线 */
@@ -286,7 +290,7 @@
     }
 
   </style>
-  <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-5">
+  <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -878,7 +882,7 @@
   <script src="../assets/vi-collage.js?v=20261117-1" defer></script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
-  <script src="../assets/case-tabs.js?v=20261117-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261118-1" defer></script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
 </body>
 </html>

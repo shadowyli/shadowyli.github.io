@@ -34,3 +34,33 @@
   ::view-transition-old(root),
   ::view-transition-new(root) { animation-duration: 1ms; }
 }
+
+/* 手机端：联系我进顶栏，返回作品集与页脚让位给内容 */
+@media (max-width: 720px) {
+  body.case-page .case-back,
+  body.case-page .case-footer { display: none; }
+
+  .case-header .is-header-contact.sidebar-contact {
+    display: inline-flex;
+    align-items: center;
+    position: static;
+    top: auto;
+    right: auto;
+    min-height: 44px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none !important;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    gap: 0;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .case-header .is-header-contact.sidebar-contact:hover,
+  .case-header .is-header-contact.sidebar-contact:focus-visible { color: var(--text); }
+
+  :root[data-theme="light"] .case-header .is-header-contact.sidebar-contact { background: none !important; color: var(--text-muted); }
+}

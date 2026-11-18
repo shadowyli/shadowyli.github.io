@@ -12,6 +12,7 @@ const excludedPaths = [
   ".git/**",
   "node_modules/**",
   "scripts/**",
+  ".impeccable/**",
   "deploy.cmd",
   "publish.cmd",
   "*.md",

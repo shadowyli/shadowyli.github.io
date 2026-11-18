@@ -135,3 +135,8 @@
 @media (min-width: 2400px) {
   .echo-card .social-badge { padding: 6px 12px; font-size: 14px; }
 }
+
+/* 回声带是内容区最后一块时，收掉外层预留的大段底部留白 */
+main.case-main:has(> .case-body > .case-echo:last-child) {
+  padding-bottom: clamp(18px, 2.4vw, 34px);
+}

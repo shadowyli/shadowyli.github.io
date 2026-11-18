@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261117-5">
+  <link rel="stylesheet" href="../styles.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <style>
     /* 空白案例页：内容未填时让页脚落在视口底部 */
@@ -44,6 +44,18 @@
     }
 
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
+
+    /* 手机端：小节标题收小，尽量避免折行 */
+    @media (max-width: 720px) {
+      .case-body h2 {
+        gap: 8px;
+        font-size: 12.5px;
+        line-height: 1.4;
+        letter-spacing: 0;
+      }
+
+      .case-section-index { font-size: 11px; }
+    }
 
     /* 页首署名：参考 FlowX 的 credit 列表样式 */
     .video-credits {
@@ -177,7 +189,7 @@
     }
 
   </style>
-  <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-5">
+  <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -352,7 +364,7 @@
           navWork: "Work",
           navAbout: "About",
           pageHeading: "Video Packaging",
-          creditLine: "3D & Visual Creative Design: 影子（李颖）",
+          creditLine: "3D & Visual Creative Design: Shadow (Li Ying)",
           section1Title: "Naraka: Bladepoint NBPL Summer Split Opening Title",
           section2Title: "Eggy Party Mic Check",
           section3Title: "Identity V COA VIII Global Finals TOP 10",
@@ -516,7 +528,7 @@
       });
     })();
   </script>
-  <script src="../assets/case-tabs.js?v=20261117-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261118-1" defer></script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
 </body>
 </html>

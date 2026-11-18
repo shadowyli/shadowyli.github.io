@@ -29,10 +29,10 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261117-5">
+  <link rel="stylesheet" href="../styles.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
-  <link rel="stylesheet" href="../assets/case-echo.css?v=20261117-1">
-  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
+  <link rel="stylesheet" href="../assets/case-echo.css?v=20261118-2">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
     main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
@@ -205,11 +205,15 @@
 
     /* 回声带上方的分割线：与蛋仔案例页同款，与图集 6px 缝同一节奏 */
     .case-body .case-divider.case-echo-divider {
-      margin: 16px 0;
+      margin: 6px 0;
+    }
+
+    @media (max-width: 720px) {
+      .case-body .case-divider.case-echo-divider { margin: 4px 0; }
     }
 
   </style>
-  <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-5">
+  <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
 <body class="case-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -636,12 +640,11 @@
           var slot = entry.target;
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
             // data-play="manual" 的动画只靠按钮触发，进场不自动播
-            if (slot.dataset.play !== "manual" && slot.dataset.played !== "1") {
+            if (slot.dataset.played !== "1") {
               slot.dataset.played = "1";
               play(slot);
             }
           } else if (!entry.isIntersecting) {
-            delete slot.dataset.played;
             // 手机端已开始的动画继续播完，不因滚动离开视口而中断
             if (!mobileQuery.matches) stop(slot);
           }
@@ -680,7 +683,7 @@
   <script type="module" src="../assets/case-echo.js?v=20261112-1"></script>
   <script src="../assets/tap-ripple.js?v=20261117-1" defer></script>
   <script src="../assets/case-credits.js?v=20261117-1" defer></script>
-  <script src="../assets/case-tabs.js?v=20261117-7" defer></script>
+  <script src="../assets/case-tabs.js?v=20261118-1" defer></script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
 </body>
 </html>

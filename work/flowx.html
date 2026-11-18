@@ -29,9 +29,9 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261115-1" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261117-5">
+  <link rel="stylesheet" href="../styles.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
-  <link rel="stylesheet" href="../assets/case-credits.css?v=20261117-1">
+  <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
     main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
@@ -220,16 +220,17 @@
       top: 10px;
       left: 10px;
       z-index: 2;
-      padding: 5px 9px;
+      padding: 6px 11px;
       border-radius: 2px;
-      background: rgba(8, 8, 10, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(8, 8, 10, 0.82);
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       color: #ffffff;
-      font-size: 10.5px;
-      font-weight: 500;
+      font-size: 12px;
+      font-weight: 600;
       line-height: 1;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       pointer-events: none;
     }
 
@@ -241,6 +242,7 @@
         padding: 4px 6px;
         font-size: 8.5px;
         letter-spacing: 0.02em;
+        border: 0;
       }
     }
 
@@ -249,10 +251,43 @@
       .case-body .pillar-stat strong { font-size: clamp(12px, 3.4vw, 20px); }
       .case-body .pillar-title { font-size: 12px; }
     }
+
+    /* 标签移到画面上方：不遮挡录屏 */
+    .flowx-demo .flowx-demo-label {
+      position: static;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 0 0 9px;
+      padding: 0;
+      border: 0;
+      background: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: .02em;
+    }
+
+    .flowx-demo .flowx-demo-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow, currentColor);
+    }
+
+    @media (max-width: 720px) {
+      .flowx-demo .flowx-demo-label { margin-bottom: 5px; gap: 5px; font-size: 10px; }
+      .flowx-demo .flowx-demo-label::before { width: 5px; height: 5px; }
+    }
   </style>
-  <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-5">
+  <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
+  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261118-2">
 </head>
-<body class="case-page">
+<body class="case-page flowx-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
 
   <header class="case-header">
@@ -278,10 +313,19 @@
     <div class="case-body case-body--flush">
       <ul class="case-credits" data-case-credits="flowx" aria-label="项目署名"></ul>
 
+      <section class="fx-hero" aria-labelledby="fx-title">
+        <p class="fx-lead" data-fx-zh="我发起并持续推进这个项目，参与产品设计、UI/UX、核心开发与AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。" data-fx-en="I initiated and continue to lead FlowX, contributing to product design, UI/UX, core development and AI pipelines so more teams can use the production methods we have developed.">我发起并持续推进这个项目，参与产品设计、UI/UX、核心开发与AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。</p>
+        <p class="fx-kicker">AI CONTENT PRODUCTION</p>
+        <h1 id="fx-title">FlowX</h1>
+        <div class="fx-introduction">
+          <p data-fx-zh="面向美术、运营与导演，将制作工具、业务模板和 AI 能力整合到一个平台。选择管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。" data-fx-en="A shared production platform for artists, operations teams and directors. Submit assets to a pipeline or describe a task to Agent Xiaonai to create images, motion content and marketing assets.">面向美术、运营与导演，将制作工具、业务模板和 AI 能力整合到一个平台。选择管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。</p>
+        </div>
+      </section>
+
       <section class="case-section flowx-intro">
         <figure class="case-frame">
           <div class="case-frame-inner">
-            <video class="case-frame-video" controls playsinline preload="metadata" poster="../assets/flowx-platform-intro-poster.jpg?v=20261113-2" aria-label="FlowX 平台介绍" width="1920" height="1080">
+            <video class="case-frame-video" controls playsinline preload="metadata" poster="../assets/flowx/platform-v180.webp" aria-label="FlowX 平台介绍" width="1920" height="1080">
               <source src="../assets/flowx-platform-intro.mp4" data-mobile-src="../assets/flowx-platform-intro-mobile.mp4" type="video/mp4">
               你的浏览器不支持 HTML5 视频。
             </video>
@@ -289,83 +333,186 @@
         </figure>
       </section>
 
-      <section class="case-section flowx-value" aria-label="平台价值">
-        <div class="case-stats">
-          <div class="case-stat">
-            <strong>55+</strong>
-            <span data-i18n-key="value1">AI 管线</span>
+      <aside class="fx-context">
+        <h2 data-fx-zh="从反复出现的制作需求出发。" data-fx-en="Built around recurring production needs.">从反复出现的制作需求出发。</h2>
+        <p data-fx-zh="赛事、运营与渠道内容常常需要集中交付：换人物、改文案、适配规格，再逐份检查与导出。FlowX 把这些重复环节组织成可调用的流程，让业务同事能提交标准需求，也让美术团队把更多时间留给创意与效果把控。" data-fx-en="Esports, operations and channel campaigns often need assets in batches: different people, updated copy, new formats, then checks and exports. FlowX turns recurring steps into reusable workflows, helping business teams submit standard requests while artists focus on creative direction and quality.">赛事、运营与渠道内容常常需要集中交付：换人物、改文案、适配规格，再逐份检查与导出。FlowX 把这些重复环节组织成可调用的流程，让业务同事能提交标准需求，也让美术团队把更多时间留给创意与效果把控。</p>
+      </aside>
+
+      <section class="case-section fx-section fx-structure" id="fx-structure" aria-labelledby="fx-structure-title">
+        <div class="fx-section-head fx-section-head--solo">
+          <div><p class="fx-kicker">STRUCTURE</p><h2 id="fx-structure-title" data-fx-zh="一条需求，走完一条链路。" data-fx-en="One request, one flow.">一条需求，走完一条链路。</h2></div>
+        </div>
+        <div class="fx-flow">
+          <div class="fx-flow-row fx-flow-row--old">
+            <p class="fx-flow-label" data-fx-zh="传统流程" data-fx-en="Before">传统流程</p>
+            <ol class="fx-flow-steps">
+              <li data-fx-zh="提单" data-fx-en="Request">提单</li>
+              <li data-fx-zh="需求对接" data-fx-en="Briefing">需求对接</li>
+              <li data-fx-zh="排期" data-fx-en="Scheduling">排期</li>
+              <li data-fx-zh="规范查找" data-fx-en="Spec lookup">规范查找</li>
+              <li data-fx-zh="设计制作" data-fx-en="Production">设计制作</li>
+              <li data-fx-zh="审核" data-fx-en="Review">审核</li>
+              <li data-fx-zh="修改" data-fx-en="Rework">修改</li>
+              <li data-fx-zh="交付" data-fx-en="Delivery">交付</li>
+            </ol>
+            <p class="fx-flow-note" data-fx-zh="每一步都要人工对接，经验留在个人手里。" data-fx-en="Every step depends on hand-offs; know-how stays with individuals.">每一步都要人工对接，经验留在个人手里。</p>
           </div>
-          <div class="case-stat">
-            <strong>54,986</strong>
-            <span data-i18n-key="value3">累计调用 · 套</span>
-          </div>
-          <div class="case-stat">
-            <strong>50–200%+</strong>
-            <span data-i18n-key="value4">单模块效率提升</span>
-          </div>
-          <div class="case-stat">
-            <strong>31.6%</strong>
-            <span data-i18n-key="value5">月均产量提升</span>
-          </div>
-          <div class="case-stat">
-            <strong>54.3%</strong>
-            <span data-i18n-key="value6">渠道单素材成本降低</span>
+          <div class="fx-flow-row fx-flow-row--new">
+            <p class="fx-flow-label" data-fx-zh="FlowX" data-fx-en="FlowX">FlowX</p>
+            <ol class="fx-flow-steps">
+              <li><b data-fx-zh="提交需求" data-fx-en="Submit">提交需求</b><span data-fx-zh="业务卡片 / Agent 小奈" data-fx-en="Business card / Agent">业务卡片 / Agent 小奈</span></li>
+              <li><b data-fx-zh="选择管线" data-fx-en="Pick a pipeline">选择管线</b><span data-fx-zh="业务专项 / 通用能力" data-fx-en="Business or general">业务专项 / 通用能力</span></li>
+              <li><b data-fx-zh="制作" data-fx-en="Produce">制作</b><span data-fx-zh="模板与工具链执行" data-fx-en="Templates and tools">模板与工具链执行</span></li>
+              <li><b data-fx-zh="质检" data-fx-en="Check">质检</b><span data-fx-zh="客观校验 + 美术评审" data-fx-en="Rules + art review">客观校验 + 美术评审</span></li>
+              <li><b data-fx-zh="交付" data-fx-en="Deliver">交付</b><span data-fx-zh="成品与素材包" data-fx-en="Assets and packages">成品与素材包</span></li>
+            </ol>
+            <p class="fx-flow-note" data-fx-zh="异常回到修复与复核，制作方法沉淀成可复用管线。" data-fx-en="Exceptions loop back for repair and recheck; methods become reusable pipelines.">异常回到修复与复核，制作方法沉淀成可复用管线。</p>
           </div>
         </div>
       </section>
 
-      <section class="case-section flowx-pillars" aria-label="平台价值亮点">
-        <div class="pillars">
-          <article class="pillar">
-            <h3 class="pillar-title" data-i18n-key="pillar1Title">提效</h3>
-            <p class="pillar-desc" data-i18n-key="pillar1Desc">单月产量峰值</p>
-            <p class="pillar-stat"><strong>5,300+</strong><span data-i18n-key="pillar1Unit">套 / 月</span></p>
-          </article>
-          <article class="pillar">
-            <h3 class="pillar-title" data-i18n-key="pillar2Title">降低门槛</h3>
-            <p class="pillar-desc" data-i18n-key="pillar2Desc">上传素材，接收结果</p>
-            <p class="pillar-stat"><strong>2</strong><span data-i18n-key="pillar2Unit">步</span></p>
-          </article>
-          <article class="pillar">
-            <h3 class="pillar-title" data-i18n-key="pillar3Title">资产沉淀</h3>
-            <p class="pillar-desc" data-i18n-key="pillar3Desc">规范内置，管线复用</p>
-            <p class="pillar-stat"><strong>900+</strong><span data-i18n-key="pillar3Unit">套广告位</span></p>
-          </article>
-          <article class="pillar">
-            <h3 class="pillar-title" data-i18n-key="pillar4Title">业务适配</h3>
-            <p class="pillar-desc" data-i18n-key="pillar4Desc">赛事 · 运营 · 营销</p>
-            <p class="pillar-stat"><strong>22+</strong><span data-i18n-key="pillar4Unit">业务环节</span></p>
-          </article>
+      <section class="case-section fx-section flowx-demos" id="fx-experience" aria-labelledby="fx-experience-title">
+        <div class="fx-section-head fx-section-head--solo">
+          <div><p class="fx-kicker">WORKSPACE</p><h2 id="fx-experience-title" data-fx-zh="精选AI管线案例" data-fx-en="Selected AI pipeline cases">精选AI管线案例</h2></div>
         </div>
-      </section>
-
-      <section class="case-section flowx-demos" aria-label="管线演示">
         <div class="case-media-grid">
           <figure class="case-frame flowx-demo">
+            <span class="flowx-demo-label" data-i18n-key="demoMarketing">买量营销管线</span>
             <div class="case-frame-inner">
               <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/flowx-marketing-demo.webp" aria-label="买量营销管线演示" width="1600" height="900">
                 <source src="../assets/flowx-marketing-demo.mp4" data-mobile-src="../assets/flowx-marketing-demo-mobile.mp4" type="video/mp4">
                 你的浏览器不支持 HTML5 视频。
               </video>
-              <span class="flowx-demo-label" data-i18n-key="demoMarketing">买量营销管线</span>
               <button class="case-video-play" type="button" aria-label="播放买量营销管线演示">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
               </button>
             </div>
           </figure>
           <figure class="case-frame flowx-demo">
+            <span class="flowx-demo-label" data-i18n-key="demoGif">GIF 生成管线</span>
             <div class="case-frame-inner">
               <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/flowx-gif-demo.webp" aria-label="GIF 生成管线演示" width="1600" height="900">
                 <source src="../assets/flowx-gif-demo.mp4" data-mobile-src="../assets/flowx-gif-demo-mobile.mp4" type="video/mp4">
                 你的浏览器不支持 HTML5 视频。
               </video>
-              <span class="flowx-demo-label" data-i18n-key="demoGif">GIF 生成管线</span>
               <button class="case-video-play" type="button" aria-label="播放 GIF 生成管线演示">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
               </button>
             </div>
           </figure>
         </div>
+      </section>
+
+      <section class="case-section fx-section" aria-labelledby="fx-agent-title">
+        <div class="fx-section-head">
+          <div><p class="fx-kicker" data-fx-zh="AGENT 小奈" data-fx-en="AGENT XIAONAI">AGENT 小奈</p><h2 id="fx-agent-title" data-fx-zh="也可以，直接说出需求。" data-fx-en="Or simply describe the task.">也可以，直接说出需求。</h2></div>
+          <p data-fx-zh="提供参考素材，说明需要的内容与规格。小奈把需求与制作工具连接起来，在同一个会话里反馈过程、预览成品并提供下载。" data-fx-en="Provide reference assets and describe the content and formats you need. Xiaonai connects the request to production tools, with progress, previews and downloads in one conversation.">提供参考素材，说明需要的内容与规格。小奈把需求与制作工具连接起来，在同一个会话里反馈过程、预览成品并提供下载。</p>
+        </div>
+        <div class="fx-agent-layout">
+          <figure class="fx-media">
+            <video controls playsinline preload="none" poster="../assets/flowx/agent.webp" width="1280" height="720" aria-label="小奈需求到交付演示">
+              <source src="../assets/flowx/agent-demo.mp4" data-mobile-src="../assets/flowx/agent-demo-mobile.mp4" type="video/mp4">
+            </video>
+            <figcaption data-fx-zh="约 25 秒 · 基于产品界面与已有产物的流程回放" data-fx-en="25-second walkthrough · Product UI and existing outputs replay the workflow">约 25 秒 · 基于产品界面与已有产物的流程回放</figcaption>
+          </figure>
+          <ol class="fx-steps">
+            <li><span>01</span><div><h3 data-fx-zh="提交需求" data-fx-en="Describe">提交需求</h3><p data-fx-zh="上传 KV，说明需要的弹窗、动态 GIF 与交付要求。" data-fx-en="Upload a KV and request popup assets, an animated GIF and a delivery package.">上传 KV，说明需要的弹窗、动态 GIF 与交付要求。</p></div></li>
+            <li><span>02</span><div><h3 data-fx-zh="制作与预览" data-fx-en="Create & preview">制作与预览</h3><p data-fx-zh="在会话中跟进制作，查看返回的静态与动态成品。" data-fx-en="Follow the task and preview still and animated outputs in the conversation.">在会话中跟进制作，查看返回的静态与动态成品。</p></div></li>
+            <li><span>03</span><div><h3 data-fx-zh="打包获取" data-fx-en="Download">打包获取</h3><p data-fx-zh="确认结果，下载文件包，进入后续使用与验收。" data-fx-en="Review the outputs and download the package for use and final approval.">确认结果，下载文件包，进入后续使用与验收。</p></div></li>
+          </ol>
+        </div>
+        <p class="fx-responsibility" data-fx-zh="业务提供目标与素材，小奈理解需求并组织工具执行；模板和处理工具承担规格适配，最终使用与视觉效果由人确认。" data-fx-en="Teams provide the goal and assets; Xiaonai interprets the request and coordinates tools. Templates and processing tools handle format adaptation, with people reviewing visual quality and final use.">业务提供目标与素材，小奈理解需求并组织工具执行；模板和处理工具承担规格适配，最终使用与视觉效果由人确认。</p>
+      </section>
+
+      <section class="case-section fx-section" id="fx-results" aria-labelledby="fx-results-title">
+        <div class="fx-section-head">
+          <div><p class="fx-kicker">OUTPUT / MARKETING</p><h2 id="fx-results-title" data-fx-zh="一组素材，多种投放规格。" data-fx-en="One set of assets. Multiple formats.">一组素材，多种投放规格。</h2></div>
+          <p data-fx-zh="同一活动需要竖版、方形与横版物料，也需要不同视觉方向。以下选自买量营销的 110 张交付文件，展示其中两套方向的规格适配。" data-fx-en="A campaign needs portrait, square and landscape assets as well as visual variants. These examples come from a 110-file marketing delivery set, showing format adaptations across two directions.">同一活动需要竖版、方形与横版物料，也需要不同视觉方向。以下选自买量营销的 110 张交付文件，展示其中两套方向的规格适配。</p>
+        </div>
+        <div class="fx-marketing-layout">
+          <div class="fx-marketing-grid">
+            <a href="../assets/flowx/marketing-1.webp" data-fx-image><img src="../assets/flowx/marketing-1.webp" width="564" height="750" loading="lazy" alt="买量营销竖版 A"></a>
+            <a href="../assets/flowx/marketing-2.webp" data-fx-image><img src="../assets/flowx/marketing-2.webp" width="564" height="750" loading="lazy" alt="买量营销竖版 B"></a>
+            <a href="../assets/flowx/marketing-3.webp" data-fx-image><img src="../assets/flowx/marketing-3.webp" width="240" height="240" loading="lazy" alt="买量营销方形 A"></a>
+            <a href="../assets/flowx/marketing-4.webp" data-fx-image><img src="../assets/flowx/marketing-4.webp" width="240" height="240" loading="lazy" alt="买量营销方形 B"></a>
+            <a href="../assets/flowx/marketing-5.webp" data-fx-image><img src="../assets/flowx/marketing-5.webp" width="668" height="376" loading="lazy" alt="买量营销横版 A"></a>
+            <a href="../assets/flowx/marketing-6.webp" data-fx-image><img src="../assets/flowx/marketing-6.webp" width="668" height="376" loading="lazy" alt="买量营销横版 B"></a>
+          </div>
+        </div>
+        <p class="fx-caption" data-fx-zh="交付样例节选 · 点击图片查看大图" data-fx-en="Selected delivery assets · Select an image to enlarge">交付样例节选 · 点击图片查看大图</p>
+      </section>
+
+      <section class="case-section fx-section" aria-labelledby="fx-posters-title">
+        <div class="fx-section-head">
+          <div><p class="fx-kicker">OUTPUT / SERIES</p><h2 id="fx-posters-title" data-fx-zh="把系列物料一起做完。" data-fx-en="Produce the whole series.">把系列物料一起做完。</h2></div>
+          <p data-fx-zh="围绕同一活动主题，组织人物、姓名与版式信息，生成系列宣发图。这里展示海报机闭环测试中的主 KV 与六张嘉宾图，观察系列的一致性与人物变化。" data-fx-en="Organize people, names and layouts around one campaign theme. The campaign KV and six guest posters below come from a poster-pipeline test, showing consistent treatment across different people.">围绕同一活动主题，组织人物、姓名与版式信息，生成系列宣发图。这里展示海报机闭环测试中的主 KV 与六张嘉宾图，观察系列的一致性与人物变化。</p>
+        </div>
+        <figure class="fx-series-kv"><a href="../assets/flowx/poster-kv.webp" data-fx-image><img src="../assets/flowx/poster-kv.webp" width="1280" height="720" loading="lazy" alt="蛋仔嘉年华系列海报测试主 KV"></a></figure>
+        <div class="fx-poster-grid">
+          <a href="../assets/flowx/poster-1.webp" data-fx-image><img src="../assets/flowx/poster-1.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：半岛铁蛋"></a>
+          <a href="../assets/flowx/poster-2.webp" data-fx-image><img src="../assets/flowx/poster-2.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：叫我小蓝蛋吧"></a>
+          <a href="../assets/flowx/poster-3.webp" data-fx-image><img src="../assets/flowx/poster-3.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：小柒姐姐"></a>
+          <a href="../assets/flowx/poster-4.webp" data-fx-image><img src="../assets/flowx/poster-4.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：月半小胖曲"></a>
+          <a href="../assets/flowx/poster-5.webp" data-fx-image><img src="../assets/flowx/poster-5.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：碳酸天使"></a>
+          <a href="../assets/flowx/poster-6.webp" data-fx-image><img src="../assets/flowx/poster-6.webp" width="800" height="1066" loading="lazy" alt="嘉宾海报测试：章鱼pia"></a>
+        </div>
+      </section>
+
+      <section class="case-section fx-section" aria-labelledby="fx-pbr-title">
+        <div class="fx-section-head">
+          <div><p class="fx-kicker">WORKFLOW / 3D</p><h2 id="fx-pbr-title" data-fx-zh="从网页，接到三维制作。" data-fx-en="From the browser into 3D.">从网页，接到三维制作。</h2></div>
+          <p data-fx-zh="贴图工作台生成与预览材质，配套插件将贴图送入 Blender 或 C4D / Octane，创建材质并连接通道。选中对象时可直接赋予材质，减少下载、找文件与逐项接线。" data-fx-en="Generate and preview materials in the texture workspace, then use companion plugins to send maps into Blender or C4D / Octane, create a material and connect its channels. A selected object can receive the material directly.">贴图工作台生成与预览材质，配套插件将贴图送入 Blender 或 C4D / Octane，创建材质并连接通道。选中对象时可直接赋予材质，减少下载、找文件与逐项接线。</p>
+        </div>
+        <div class="fx-pbr-layout">
+        <figure><a href="../assets/flowx/pbr-tool.webp" data-fx-image><img src="../assets/flowx/pbr-tool.webp" width="480" height="640" loading="lazy" alt="FlowX 图片转 PBR 贴图工具宣传图"></a><figcaption data-fx-zh="图片转 PBR 贴图 · 工具展示" data-fx-en="Image-to-PBR · Tool visual">图片转 PBR 贴图 · 工具展示</figcaption></figure>
+        <div>
+        <p class="fx-caption" data-fx-zh="通道导入测试样本" data-fx-en="Channel import test samples">通道导入测试样本</p>
+        <div class="fx-map-grid">
+          <figure><a href="../assets/flowx/pbr-basecolor.webp" data-fx-image><img src="../assets/flowx/pbr-basecolor.webp" width="512" height="512" loading="lazy" alt="木纹材质 Base Color 通道"></a><figcaption>Base Color</figcaption></figure>
+          <figure><a href="../assets/flowx/pbr-normal.webp" data-fx-image><img src="../assets/flowx/pbr-normal.webp" width="512" height="512" loading="lazy" alt="木纹材质 Normal 通道"></a><figcaption>Normal</figcaption></figure>
+          <figure><a href="../assets/flowx/pbr-roughness.webp" data-fx-image><img src="../assets/flowx/pbr-roughness.webp" width="512" height="512" loading="lazy" alt="木纹材质 Roughness 通道"></a><figcaption>Roughness</figcaption></figure>
+          <figure><a href="../assets/flowx/pbr-height.webp" data-fx-image><img src="../assets/flowx/pbr-height.webp" width="512" height="512" loading="lazy" alt="木纹材质 Height 通道"></a><figcaption>Height</figcaption></figure>
+          <figure><a href="../assets/flowx/pbr-metalness.webp" data-fx-image><img src="../assets/flowx/pbr-metalness.webp" width="512" height="512" loading="lazy" alt="木纹材质 Metalness 通道"></a><figcaption>Metalness</figcaption></figure>
+        </div>
+        <div class="fx-dcc"><span data-fx-zh="网页生成与预览" data-fx-en="Browser preview">网页生成与预览</span><span aria-hidden="true">→</span><span data-fx-zh="材质与通道导入" data-fx-en="Material & map import">材质与通道导入</span><span aria-hidden="true">→</span><strong>Blender / C4D · Octane</strong></div>
+        <p class="fx-caption" data-fx-zh="通道图用于验证贴图传递与材质连接。配套插件已在 Blender 4.5.3 LTS 与 C4D R21 / Octane 2020.2.4 环境验证导入；最终效果取决于灯光与渲染设置。" data-fx-en="Channel samples test map transfer and material connections. Plugin import verified in Blender 4.5.3 LTS and C4D R21 / Octane 2020.2.4. Final appearance depends on lighting and render settings.">通道图用于验证贴图传递与材质连接。配套插件已在 Blender 4.5.3 LTS 与 C4D R21 / Octane 2020.2.4 环境验证导入；最终效果取决于灯光与渲染设置。</p>
+        </div>
+        </div>
+      </section>
+
+      <section class="case-section fx-section" aria-labelledby="fx-capabilities-title">
+        <div class="fx-section-head fx-section-head--solo"><div><p class="fx-kicker">TOOLBOX</p><h2 id="fx-capabilities-title" data-fx-zh="覆盖制作中的不同环节。" data-fx-en="Across the production workflow.">覆盖制作中的不同环节。</h2></div></div>
+        <div class="fx-toolbox">
+          <figure class="case-frame flowx-demo fx-workspace-media">
+            <div class="case-frame-inner">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/flowx/home-demo.webp" width="1502" height="720" aria-label="FlowX AI 应用首页演示">
+                <source src="../assets/flowx/home-demo.mp4" data-mobile-src="../assets/flowx/home-demo-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <button class="case-video-play" type="button" aria-label="播放 AI 应用首页演示">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
+          </figure>
+          <dl class="fx-capabilities">
+            <div><dt data-fx-zh="人物与图像" data-fx-en="People & images">人物与图像</dt><dd data-fx-zh="AI 定妆照、图像生成与加工" data-fx-en="AI portraits, image generation and processing">AI 定妆照、图像生成与加工</dd></div>
+            <div><dt data-fx-zh="营销与批量物料" data-fx-en="Marketing & batches">营销与批量物料</dt><dd data-fx-zh="资源位、模板替换、系列海报" data-fx-en="Placements, template replacement and poster sets">资源位、模板替换、系列海报</dd></div>
+            <div><dt data-fx-zh="动态内容" data-fx-en="Motion">动态内容</dt><dd data-fx-zh="GIF 生成、视频转 GIF、大屏批量制作" data-fx-en="GIF generation, video conversion and batch screen content">GIF 生成、视频转 GIF、大屏批量制作</dd></div>
+            <div><dt data-fx-zh="素材加工" data-fx-en="Asset processing">素材加工</dt><dd data-fx-zh="图片压缩、组件提取与规格适配" data-fx-en="Compression, component extraction and format adaptation">图片压缩、组件提取与规格适配</dd></div>
+            <div><dt data-fx-zh="三维工具衔接" data-fx-en="3D integration">三维工具衔接</dt><dd data-fx-zh="PBR 贴图、材质预览与 DCC 导入" data-fx-en="PBR maps, material previews and DCC import">PBR 贴图、材质预览与 DCC 导入</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="case-section fx-section fx-reach" id="fx-reach" aria-labelledby="fx-reach-title">
+        <div class="fx-section-head"><div><p class="fx-kicker">IN USE</p><h2 id="fx-reach-title" data-fx-zh="进入实际业务，持续迭代。" data-fx-en="In production. Still evolving.">进入实际业务，持续迭代。</h2></div><p data-fx-zh="从单次制作到重复调用，平台服务于多款游戏的内容生产，让已有流程与工具在后续需求中继续使用。" data-fx-en="From individual tasks to repeat use, FlowX supports content production across games, carrying established workflows into new requests.">从单次制作到重复调用，平台服务于多款游戏的内容生产，让已有流程与工具在后续需求中继续使用。</p></div>
+        <dl class="fx-metrics">
+          <div><dt>55+</dt><dd data-fx-zh="AI 管线" data-fx-en="AI pipelines">AI 管线</dd></div>
+          <div><dt>58</dt><dd data-fx-zh="覆盖游戏" data-fx-en="Games supported">覆盖游戏</dd></div>
+          <div><dt>54,986</dt><dd data-fx-zh="累计调用" data-fx-en="Cumulative calls">累计调用</dd></div>
+          <div><dt>54.3<span>%</span></dt><dd data-fx-zh="渠道单素材成本下降" data-fx-en="Lower cost per channel asset">渠道单素材成本下降</dd></div>
+        </dl>
+        <p class="fx-caption" data-fx-zh="数据统计截至 2026.11。" data-fx-en="Data as of November 2026.">数据统计截至 2026.11。</p>
       </section>
     </div>
   </main>
@@ -595,8 +742,8 @@
       });
     })();
   </script>
-  <script src="../assets/case-credits.js?v=20261117-1" defer></script>
-  <script src="../assets/case-tabs.js?v=20261117-7" defer></script>
+  <script src="../assets/case-credits.js?v=20261118-1" defer></script>
+  <script src="../assets/case-tabs.js?v=20261118-1" defer></script>
   <script>
     /* 管线演示：电脑端自动播放 + 循环；手机端静帧 + 播放按钮，各条互不打扰 */
     (function () {
@@ -604,6 +751,15 @@
       if (!frames.length) return;
 
       var desktop = window.matchMedia("(min-width: 721px)");
+      var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var visibleFrames = new Set();
+
+      function syncPlayback() {
+        frames.forEach(function (frame) {
+          if (desktop.matches && !reducedMotion.matches && visibleFrames.has(frame) && !document.hidden && frame.dataset.userPaused !== "true") start(frame);
+          else pause(frame);
+        });
+      }
 
       function pause(frame) {
         var video = frame.querySelector("video");
@@ -636,6 +792,7 @@
 
         // 电脑端点击只是暂停/继续（按钮不显示），手机端按钮负责起播
         frame.addEventListener("click", function () {
+          frame.dataset.userPaused = video.paused ? "false" : "true";
           if (video.paused) start(frame);
           else pause(frame);
         });
@@ -644,14 +801,35 @@
           button.addEventListener("click", function (event) {
             event.preventDefault();
             event.stopPropagation();
+            frame.dataset.userPaused = "false";
             start(frame);
           });
         }
 
-        if (desktop.matches) start(frame);
       });
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              visibleFrames.add(entry.target);
+              if (desktop.matches && !reducedMotion.matches && !document.hidden && entry.target.dataset.userPaused !== "true") start(entry.target);
+            } else {
+              visibleFrames.delete(entry.target);
+              pause(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        frames.forEach(function (frame) { observer.observe(frame); });
+      } else {
+        frames.forEach(function (frame) { visibleFrames.add(frame); });
+        syncPlayback();
+      }
+      desktop.addEventListener("change", syncPlayback);
+      reducedMotion.addEventListener("change", syncPlayback);
+      document.addEventListener("visibilitychange", syncPlayback);
     })();
   </script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
+  <script src="../assets/flowx-case.js?v=20261118-2" defer></script>
 </body>
 </html>

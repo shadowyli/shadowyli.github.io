@@ -236,4 +236,32 @@
       attributeFilter: ["lang"]
     });
   }
+
+  /* 手机端：把「联系我」移到顶栏，隐藏「返回作品集」与页脚 */
+  (function () {
+    var mq = window.matchMedia("(max-width: 720px)");
+    var contact = document.getElementById("case-contact");
+    var actions = document.querySelector(".case-header-actions");
+    if (!contact || !actions) return;
+
+    var home = contact.parentElement;
+    var anchor = contact.nextSibling;
+
+    function sync() {
+      if (mq.matches) {
+        if (contact.parentElement !== actions) actions.insertBefore(contact, actions.firstChild);
+        contact.classList.add("is-header-contact");
+        return;
+      }
+      contact.classList.remove("is-header-contact");
+      if (contact.parentElement === actions) {
+        if (anchor && anchor.parentElement === home) home.insertBefore(contact, anchor);
+        else home.appendChild(contact);
+      }
+    }
+
+    sync();
+    if (mq.addEventListener) mq.addEventListener("change", sync);
+    else mq.addListener(sync);
+  })();
 })();
