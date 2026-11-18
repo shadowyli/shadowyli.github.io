@@ -5,7 +5,7 @@
   --fx-lh-heading: 1.3;
   --fx-lh-body: 1.75;
   --fx-lh-meta: 1.55;
-  --fx-gap-section: clamp(36px, 4vw, 56px);
+  --fx-gap-section: clamp(28px, 3.2vw, 44px);
   --fx-gap-head: clamp(18px, 2vw, 26px);
   --fx-gap-block: clamp(22px, 2.4vw, 32px);
 }
@@ -208,7 +208,8 @@
 .flowx-page .case-body .fx-section.flowx-intro { margin-top: 0; padding-top: 0; border-top: 0; }
 .flowx-page .case-body .fx-section {
   margin-top: var(--fx-gap-section);
-  padding-top: var(--fx-gap-head);
+  /* 分隔线上下保持同宽留白 */
+  padding-top: var(--fx-gap-section);
   border-top: 1px solid var(--line);
   scroll-margin-top: 90px;
 }
@@ -386,7 +387,7 @@
 }
 
 @media (max-width: 720px) {
-  .flowx-page { --fx-gap-section: clamp(32px, 6vw, 48px); }
+  .flowx-page { --fx-gap-section: clamp(24px, 5vw, 36px); }
   .flowx-page .case-main { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
   .fx-intro-grid .case-frame { order: 2; }
   .fx-intro-grid .fx-intro-copy { order: 1; }
