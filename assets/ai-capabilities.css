@@ -532,13 +532,14 @@ html:has(body.pipeline-page) {
 
 .network-wire path {
   fill: none;
-  stroke: color-mix(in srgb, var(--signal) 30%, var(--rule));
-  stroke-width: 1.5;
+  stroke: color-mix(in srgb, var(--signal) 14%, var(--panel));
+  stroke-width: 5;
+  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
 .network-ticks path {
-  stroke: color-mix(in srgb, var(--signal) 45%, var(--rule));
+  stroke: color-mix(in srgb, var(--signal) 20%, var(--rule));
   stroke-width: 1;
   vector-effect: non-scaling-stroke;
 }
@@ -547,23 +548,25 @@ html:has(body.pipeline-page) {
 .network-flow path {
   fill: none;
   stroke: var(--signal);
-  stroke-width: 2;
+  stroke-width: 1.5;
   stroke-linecap: round;
-  stroke-dasharray: 3 22;
+  stroke-dasharray: 1.2 98.8;
   stroke-dashoffset: 100;
-  opacity: 0.85;
+  opacity: 0.7;
   vector-effect: non-scaling-stroke;
-  animation: network-flow 3.2s linear infinite;
+  animation: network-flow 5s linear infinite;
 }
 
-.network-flow path:nth-child(1) { animation-delay: 0s; }
-.network-flow path:nth-child(2) { animation-delay: 0.6s; }
-.network-flow path:nth-child(3) { animation-delay: 1.2s; }
-.network-flow path:nth-child(4) { animation-delay: 1.8s; }
-.network-flow path:nth-child(5) { animation-delay: 2.4s; }
-.network-flow path:nth-child(6) { animation-delay: 3s; }
-.network-flow path:nth-child(7) { animation-delay: 3.6s; }
-.network-flow path:nth-child(8) { animation-delay: 4.2s; }
+.network-flow path:nth-child(2) { animation-delay: -2.8s; }
+.network-flow path:nth-child(3) { animation-delay: -1.2s; }
+.network-flow path:nth-child(4) { animation-delay: -3.4s; }
+.network-flow path:nth-child(5) { animation-delay: -2.4s; }
+.network-flow path:nth-child(6) { animation-delay: -4s; }
+.network-flow path:nth-child(7) { animation-delay: -1.8s; }
+.network-flow path:nth-child(8) { animation-delay: -0.6s; }
+.network-flow path:nth-child(9) { animation-delay: -3s; }
+.network-flow path:nth-child(10) { animation-delay: -4.6s; }
+.network-flow path:nth-child(11) { animation-delay: -2s; }
 
 @keyframes network-flow {
   from { stroke-dashoffset: 100; }
@@ -575,8 +578,10 @@ html:has(body.pipeline-page) {
 }
 
 .network-joints circle {
-  fill: var(--signal);
-  opacity: 0.7;
+  fill: var(--muted);
+  stroke: var(--panel);
+  stroke-width: 1;
+  opacity: 0.8;
 }
 
 .network-node {
@@ -585,28 +590,31 @@ html:has(body.pipeline-page) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .node-tile {
   display: grid;
-  width: 60px;
-  height: 60px;
+  width: 44px;
+  height: 44px;
   place-items: center;
   border: 1px solid var(--rule);
-  border-radius: 15px;
+  border-radius: 12px;
   background: var(--panel);
-  box-shadow: var(--tile-shadow, 0 16px 36px rgba(0, 0, 0, 0.4));
+  box-shadow: none;
   transition: transform 200ms ease, border-color 200ms ease;
 }
 
-.node-tile svg { display: block; width: 26px; height: 26px; }
+.node-tile svg { display: block; width: 22px; height: 22px; }
 
 .node-label {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
   color: var(--muted);
-  font-size: 11.5px;
+  font-size: 10px;
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -636,10 +644,10 @@ html:has(body.pipeline-page) {
 }
 
 .network-core .node-tile {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   border: 0;
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--signal);
   box-shadow: none;
 }
@@ -689,18 +697,88 @@ body.pipeline-page .case-footer {
 @media (max-width: 860px) {
   .network-canvas {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px 4px;
     aspect-ratio: auto;
+    justify-items: center;
   }
-  .network-lines,
-  .network-chip { display: none; }
-  .network-node { position: static; transform: none; }
+  .network-lines { display: none; }
+  .network-node {
+    position: relative;
+    left: auto !important;
+    top: auto !important;
+    transform: none;
+    gap: 7px;
+    min-width: 0;
+  }
   .node-tile { width: 54px; height: 54px; border-radius: 15px; }
   .node-tile svg { width: 26px; height: 26px; }
-  .network-core .node-tile { width: 62px; height: 62px; border-radius: 18px; }
+  .node-label {
+    position: static;
+    transform: none;
+    max-width: 100%;
+    font-size: 10.5px;
+    line-height: 1.3;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  /* 手机端：分支 → 主干 → 中心枢纽 → 主干 → 分支 */
+  .network-core {
+    grid-column: 1 / -1;
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding-block: 2px;
+  }
+  .network-core .node-tile {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+  }
   .network-core .node-tile svg { width: 28px; height: 28px; }
-  .node-label { font-size: 11.5px; }
+
+  .nm-rail {
+    position: relative;
+    grid-column: 1 / -1;
+    width: 86%;
+    height: 26px;
+    margin-inline: auto;
+  }
+  .nm-rail::before {
+    position: absolute;
+    inset: 10px 0 auto;
+    height: 3px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--signal) 26%, var(--rule));
+    content: "";
+  }
+  .nm-rail::after {
+    position: absolute;
+    left: 50%;
+    width: 3px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--signal) 26%, var(--rule));
+    transform: translateX(-1.5px);
+    content: "";
+  }
+  .nm-rail--down::after { top: 10px; bottom: -2px; }
+  .nm-rail--up::after { top: -2px; bottom: 10px; }
+
+  /* 每个分支节点向下/向上伸出一小段连线 */
+  .network-node::after { content: none; }
+  .network-node:nth-of-type(-n + 4)::after {
+    position: absolute;
+    left: 50%;
+    bottom: -12px;
+    width: 3px;
+    height: 10px;
+    border-radius: 3px;
+    background: color-mix(in srgb, var(--signal) 26%, var(--rule));
+    transform: translateX(-1.5px);
+    content: "";
+  }
+  .network-core::after { display: none; }
 }
 
 @media (max-width: 1000px) {
