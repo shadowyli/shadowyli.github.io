@@ -161,6 +161,7 @@
   align-items: center;
   padding: clamp(20px, 2.2vw, 30px);
   border: 1px solid var(--line);
+  border-radius: 14px;
   background: color-mix(in srgb, var(--text) 4%, transparent);
 }
 .flowx-page .case-body .fx-solution-brand {
