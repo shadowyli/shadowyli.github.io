@@ -153,21 +153,22 @@
 }
 .flowx-page .case-body .fx-solution {
   display: grid;
-  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) auto minmax(0, 1.15fr);
-  gap: clamp(18px, 2.2vw, 36px);
-  align-items: center;
-  padding: clamp(20px, 2.2vw, 30px);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--text) 4%, transparent);
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(10px, 1.2vw, 16px);
+  align-items: stretch;
+  padding: 0;
+  border: 0;
+  background: none;
 }
 .flowx-page .case-body .fx-solution-brand {
   display: grid;
-  gap: 6px;
+  gap: 8px;
   align-content: center;
   min-width: 0;
-  padding-right: clamp(14px, 1.6vw, 24px);
-  border-right: 1px solid var(--line);
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--fx-accent) 34%, var(--line));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--fx-accent) 9%, transparent);
 }
 .flowx-page .case-body .fx-solution-brand strong {
   font: 700 clamp(20px, 1.9vw, 26px)/1.1 "Archivo", var(--font-cjk), sans-serif;
@@ -186,6 +187,12 @@
   font-weight: 600;
   line-height: var(--fx-lh-heading);
 }
+.flowx-page .case-body .fx-solution-item {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
 .flowx-page .case-body .fx-solution-item p {
   margin: 0;
   color: var(--fx-muted);
@@ -193,6 +200,7 @@
   line-height: var(--fx-lh-body);
 }
 .flowx-page .case-body .fx-solution-plus {
+  align-self: center;
   color: var(--fx-accent);
   font: 300 28px/1 "Archivo", sans-serif;
 }
@@ -416,10 +424,11 @@
   .flowx-page .case-body .fx-brief { margin-bottom: 24px; padding-left: 14px; }
   .flowx-page .case-body .fx-solution {
     grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
-    padding: 20px 16px;
+    gap: 10px;
+    padding: 0;
   }
-  .flowx-page .case-body .fx-solution-brand { border-right: 0; padding-right: 0; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+  .flowx-page .case-body .fx-solution-brand { padding: 16px 18px; }
+  .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-plus { display: none; }
   .fx-poster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
   .fx-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
