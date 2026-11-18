@@ -11,7 +11,7 @@
   z-index: 6;
   width: 100%;
   max-width: none;
-  margin: 0 0 6px;
+  margin: 0 0 12px;
   color: #ffffff;
   font-family: "PingFangShangShangQian", var(--font-cjk);
   font-size: clamp(30px, 3.6vw, 42px);
@@ -20,6 +20,9 @@
   letter-spacing: 0.02em;
   text-align: center;
 }
+
+/* 与上一条分隔线之间留出呼吸，避免标题贴线 */
+.case-body .case-echo { padding-top: clamp(14px, 1.8vw, 22px); }
 
 /* 浅色主题下卡片仍是深色截图，标题跟随正文色 */
 :root[data-theme="light"] .case-body .social-sign { color: var(--text); }

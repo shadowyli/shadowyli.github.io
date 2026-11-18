@@ -8,7 +8,7 @@
   grid-auto-rows: var(--vi-row);
   grid-auto-flow: row dense;
   gap: var(--vi-gap);
-  margin: clamp(14px, 1.8vw, 22px) 0 0;
+  margin: 6px 0 0;
 }
 
 .case-page .case-body .vi-collage > .case-frame {
