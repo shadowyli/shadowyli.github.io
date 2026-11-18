@@ -90,12 +90,15 @@
     frame = 0;
     var viewport = window.innerHeight;
     var documentRange = document.documentElement.scrollHeight - viewport;
-    var stepBounds = document.querySelector(".workflow-track").getBoundingClientRect();
+    var track = document.querySelector(".workflow-track");
+    var stepBounds = track ? track.getBoundingClientRect() : null;
     var trainingBounds = training.getBoundingClientRect();
     var sectionBounds = sections.map(function (section) { return section.getBoundingClientRect(); });
-    var progress = clamp((viewport * .85 - stepBounds.top) / (viewport * .6 + stepBounds.height * .45));
-    var selected = Math.min(steps.length - 1, Math.floor(progress * steps.length));
-    steps.forEach(function (step, index) { step.classList.toggle("is-current", !reducedMotion.matches && index === selected && stepBounds.bottom > 0 && stepBounds.top < viewport); });
+    if (stepBounds && steps.length) {
+      var progress = clamp((viewport * .85 - stepBounds.top) / (viewport * .6 + stepBounds.height * .45));
+      var selected = Math.min(steps.length - 1, Math.floor(progress * steps.length));
+      steps.forEach(function (step, index) { step.classList.toggle("is-current", !reducedMotion.matches && index === selected && stepBounds.bottom > 0 && stepBounds.top < viewport); });
+    }
     sections.forEach(function (section, index) { section.classList.toggle("is-in-view", sectionBounds[index].top < viewport * .65 && sectionBounds[index].bottom > viewport * .2); });
     document.body.style.setProperty("--read-progress", documentRange > 0 ? clamp(window.scrollY / documentRange) : 1);
     training.style.setProperty("--training-progress", reducedMotion.matches ? 1 : clamp((viewport - trainingBounds.top) / (viewport + trainingBounds.height)));

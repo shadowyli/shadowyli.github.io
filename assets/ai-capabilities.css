@@ -796,6 +796,15 @@ body.pipeline-page .case-footer {
   html:has(body.pipeline-page) { scroll-padding-top: 80px; }
   .pipeline-page #pipeline-main { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
 
+  /* 能力标签压缩到一行 */
+  .skill-tags { gap: 6px; }
+  .skill-tags li {
+    padding: 4px 9px;
+    font-size: 10.5px;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
   .capability-intro { padding-block: 40px 32px; }
   .capability-intro h1 { font-size: clamp(38px, 10vw, 52px); letter-spacing: -0.04em; }
   .capability-intro .intro-description { font-size: 15.5px; }
