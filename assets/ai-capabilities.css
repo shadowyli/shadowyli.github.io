@@ -118,16 +118,6 @@ html:has(body.pipeline-page) {
   padding-block: clamp(56px, 7vw, 104px) clamp(36px, 4vw, 56px);
 }
 
-.capability-intro::before {
-  position: absolute;
-  inset: -4% 0 auto;
-  z-index: -1;
-  height: 46%;
-  background: radial-gradient(480px 320px at 50% 0%, var(--glow), transparent 72%);
-  content: "";
-  pointer-events: none;
-}
-
 .intro-identity {
   display: inline-flex;
   align-items: center;
@@ -285,7 +275,6 @@ html:has(body.pipeline-page) {
 
 .workflow-track li.is-current {
   border-color: color-mix(in srgb, var(--signal) 55%, var(--rule));
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--signal) 35%, transparent), 0 16px 40px var(--glow);
 }
 
 .step-index {
@@ -378,17 +367,6 @@ html:has(body.pipeline-page) {
   border-radius: 22px;
   background: var(--panel);
   box-shadow: var(--shadow-card);
-}
-
-.bucket-visual::after {
-  position: absolute;
-  inset: auto 24px 0;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--signal);
-  transform: scaleX(clamp(0, var(--training-progress, 0), 1));
-  transform-origin: left;
-  content: "";
 }
 
 .bucket-label { display: block; color: var(--muted); font-size: 13px; }
@@ -503,9 +481,7 @@ html:has(body.pipeline-page) {
   padding: 24px 28px;
   border: 1px solid color-mix(in srgb, var(--signal) 30%, var(--rule));
   border-radius: 22px;
-  background:
-    radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--signal) 12%, transparent), transparent 62%),
-    var(--panel);
+  background: var(--panel);
 }
 
 .practice-link > div { min-width: 0; }
@@ -541,9 +517,9 @@ html:has(body.pipeline-page) {
 .network-canvas {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1080px;
   margin-inline: auto;
-  aspect-ratio: 1200 / 460;
+  aspect-ratio: 1200 / 360;
 }
 
 .network-lines {
@@ -567,6 +543,37 @@ html:has(body.pipeline-page) {
   vector-effect: non-scaling-stroke;
 }
 
+/* 管线流动：短线沿路径朝核心节点汇聚 */
+.network-flow path {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 3 22;
+  stroke-dashoffset: 100;
+  opacity: 0.85;
+  vector-effect: non-scaling-stroke;
+  animation: network-flow 3.2s linear infinite;
+}
+
+.network-flow path:nth-child(1) { animation-delay: 0s; }
+.network-flow path:nth-child(2) { animation-delay: 0.6s; }
+.network-flow path:nth-child(3) { animation-delay: 1.2s; }
+.network-flow path:nth-child(4) { animation-delay: 1.8s; }
+.network-flow path:nth-child(5) { animation-delay: 2.4s; }
+.network-flow path:nth-child(6) { animation-delay: 3s; }
+.network-flow path:nth-child(7) { animation-delay: 3.6s; }
+.network-flow path:nth-child(8) { animation-delay: 4.2s; }
+
+@keyframes network-flow {
+  from { stroke-dashoffset: 100; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-flow path { animation: none; opacity: 0.4; }
+}
+
 .network-joints circle {
   fill: var(--signal);
   opacity: 0.7;
@@ -578,28 +585,28 @@ html:has(body.pipeline-page) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 9px;
+  gap: 7px;
   transform: translate(-50%, -50%);
   text-align: center;
 }
 
 .node-tile {
   display: grid;
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   place-items: center;
   border: 1px solid var(--rule);
-  border-radius: 17px;
+  border-radius: 15px;
   background: var(--panel);
   box-shadow: var(--tile-shadow, 0 16px 36px rgba(0, 0, 0, 0.4));
   transition: transform 200ms ease, border-color 200ms ease;
 }
 
-.node-tile svg { display: block; width: 30px; height: 30px; }
+.node-tile svg { display: block; width: 26px; height: 26px; }
 
 .node-label {
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 11.5px;
   line-height: 1.4;
   white-space: nowrap;
 }
@@ -616,6 +623,9 @@ html:has(body.pipeline-page) {
 .network-node[data-tool="lora"] .node-tile svg,
 .network-node[data-tool="agent"] .node-tile svg,
 .network-node[data-tool="uniface"] .node-tile svg,
+.network-node[data-tool="stable-diffusion"] .node-tile svg,
+.network-node[data-tool="midjourney"] .node-tile svg,
+.network-node[data-tool="doc"] .node-tile svg,
 .network-node[data-tool="canvas"] .node-tile svg,
 .network-node[data-tool="web"] .node-tile svg {
   fill: none;
@@ -626,33 +636,17 @@ html:has(body.pipeline-page) {
 }
 
 .network-core .node-tile {
-  width: 96px;
-  height: 96px;
+  width: 64px;
+  height: 64px;
   border: 0;
-  border-radius: 24px;
-  background: linear-gradient(150deg, color-mix(in srgb, var(--signal) 88%, #ffffff), var(--signal));
-  box-shadow:
-    0 0 0 10px color-mix(in srgb, var(--signal) 8%, transparent),
-    0 24px 60px var(--glow);
+  border-radius: 16px;
+  background: var(--signal);
+  box-shadow: none;
 }
 
-.network-core .node-tile svg { width: 34px; height: 34px; fill: var(--accent-ink); }
+.network-core .node-tile svg { width: 26px; height: 26px; fill: var(--accent-ink); }
 
 .network-core .node-label { color: var(--ink); font-weight: 600; }
-
-.network-chip {
-  position: absolute;
-  z-index: 2;
-  transform: translate(-50%, -50%);
-  padding: 4px 12px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: var(--panel);
-  color: var(--muted);
-  font-size: 11.5px;
-  line-height: 1.6;
-  white-space: nowrap;
-}
 
 @media (hover: hover) {
   .network-node:hover .node-tile {

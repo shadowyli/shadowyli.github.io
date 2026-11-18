@@ -37,52 +37,61 @@
   <main id="pipeline-main" tabindex="-1">
     <section class="capability-intro" aria-labelledby="intro-title">
       <div class="intro-identity"><strong data-copy="name">影子 · 李颖</strong><span data-copy="role">项目发起人 / 负责人</span><span class="since">2023 → NOW</span></div>
-      <h1 id="intro-title" data-copy="title">AI 管线开发</h1>
+      <h1 id="intro-title" class="sr-only" data-copy="title">AI 管线开发</h1>
       <p class="intro-description" data-copy="intro">从生成与训练，到业务流程与应用落地。</p>
     </section>
 
     <figure class="tool-network" aria-labelledby="tools-title">
       <h2 class="sr-only" id="tools-title" data-copy="toolsTitle">管线工具链</h2>
       <div class="network-canvas" role="group" aria-label="管线工具连接示意">
-        <svg class="network-lines" viewBox="0 0 1200 460" preserveAspectRatio="none" aria-hidden="true">
+        <svg class="network-lines" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true">
           <g class="network-wire">
-            <path d="M220 70V390"></path>
-            <path d="M600 70V390"></path>
-            <path d="M980 70V390"></path>
-            <path d="M220 230H980"></path>
+            <path d="M144 72V288"></path>
+            <path d="M402 72V288"></path>
+            <path d="M798 72V288"></path>
+            <path d="M1056 72V180"></path>
+            <path d="M144 180H1056"></path>
+          </g>
+          <g class="network-flow" aria-hidden="true">
+            <path pathLength="100" d="M144 180H600"></path>
+            <path pathLength="100" d="M1056 180H600"></path>
+            <path pathLength="100" d="M144 72V288"></path>
+            <path pathLength="100" d="M402 72V288"></path>
+            <path pathLength="100" d="M798 72V288"></path>
+            <path pathLength="100" d="M1056 72V180"></path>
           </g>
           <g class="network-ticks">
-            <path d="M380 224v12"></path>
-            <path d="M460 224v12"></path>
-            <path d="M740 224v12"></path>
-            <path d="M820 224v12"></path>
-            <path d="M594 140h12"></path>
-            <path d="M594 320h12"></path>
+            <path d="M273 174v12"></path>
+            <path d="M927 174v12"></path>
+            <path d="M396 126h12"></path>
+            <path d="M792 234h12"></path>
           </g>
           <g class="network-joints">
-            <circle cx="220" cy="230" r="3"></circle>
-            <circle cx="980" cy="230" r="3"></circle>
+            <circle cx="144" cy="180" r="3"></circle>
+            <circle cx="402" cy="180" r="3"></circle>
+            <circle cx="798" cy="180" r="3"></circle>
+            <circle cx="1056" cy="180" r="3"></circle>
           </g>
         </svg>
 
-        <div class="network-node" data-tool="comfyui" style="left:18.33%;top:15.22%">
+        <div class="network-node" data-tool="comfyui" style="left:12%;top:20%">
           <span class="node-tile"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M31.01 30.48a1.17 1.17 0 0 0 .07-.48 1.08 1.08 0 0 0-1.68-.7h-7.54a.92.92 0 0 1-.9-.94c0-.07.01-.14.03-.2l2.03-7.11c.09-.31.37-.54.71-.54h7.56a3.2 3.2 0 0 0 3.35-2.57l1.14-3.96c.04-.14.06-.29.06-.44a1.68 1.68 0 0 0-1.68-1.68h-9.15a3.2 3.2 0 0 0-3.34 2.53l-.77 2.7c-.09.31-.37.54-.7.54h-2.2a3.2 3.2 0 0 0-3.33 2.5l-2.77 9.71a1.7 1.7 0 0 0-.06.46c0 .93.75 1.69 1.68 1.69h2.16c.4 0 .74.33.74.74 0 .07-.01.14-.03.2l-.77 2.68a1.69 1.69 0 0 0-.06.44c0 .93.75 1.68 1.67 1.68l9.16-.01a3.2 3.2 0 0 0 3.34-2.55l1.11-3.9.01-.01Z"/></svg></span>
           <span class="node-label">ComfyUI</span>
         </div>
 
-        <div class="network-node" data-tool="lora" style="left:50%;top:15.22%">
+        <div class="network-node" data-tool="stable-diffusion" style="left:12%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="3.2" width="7.2" height="7.2" rx="1.6"/><rect x="13.6" y="3.2" width="7.2" height="7.2" rx="1.6"/><rect x="3.2" y="13.6" width="7.2" height="7.2" rx="1.6"/><path d="M17.2 13.8v7M13.7 17.3h7"/></svg></span>
+          <span class="node-label">Stable Diffusion</span>
+        </div>
+
+        <div class="network-node" data-tool="midjourney" style="left:12%;top:80%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M12 5.4 6.2 13.4H12Z"/><path d="M12 8.2l3.6 5.2H12"/><path d="M3.6 16.6h16.8l-1.9 3.2H5.5l-1.9-3.2Z"/></svg></span>
+          <span class="node-label">Midjourney</span>
+        </div>
+
+        <div class="network-node" data-tool="lora" style="left:33.5%;top:20%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 3.6 7.4 12 11.8l8.4-4.4L12 3Z"/><path d="M3.6 12 12 16.4 20.4 12"/><path d="M3.6 16.4 12 20.8l8.4-4.4"/></svg></span>
           <span class="node-label" data-copy="loraLabel">LoRA 训练</span>
-        </div>
-
-        <div class="network-node" data-tool="agent" style="left:81.67%;top:15.22%">
-          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.2 3.4 12.8 9l5.6 1.6-5.6 1.6-1.6 5.6-1.6-5.6L4 10.6 9.6 9l1.6-5.6Z"/><path d="M18.4 15.2l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8.8-2.4Z"/></svg></span>
-          <span class="node-label">Agent</span>
-        </div>
-
-        <div class="network-node" data-tool="n8n" style="left:18.33%;top:50%">
-          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.47 5.68a2.53 2.53 0 0 0-2.44 1.9h-2.9c-1.23 0-2.29.89-2.49 2.11l-.1.62a1.26 1.26 0 0 1-1.25 1.06h-1c-.28-1.09-1.27-1.9-2.44-1.9s-2.17.81-2.45 1.9H4.97a2.53 2.53 0 1 0 0 1.26h1.43a2.53 2.53 0 1 0 4.89 0h1a1.26 1.26 0 0 1 1.25 1.06l.1.62a2.52 2.52 0 0 0 2.5 2.11h.36a2.53 2.53 0 1 0 0-1.26h-.36a1.26 1.26 0 0 1-1.25-1.06l-.1-.62a2.52 2.52 0 0 0-.83-1.48 2.52 2.52 0 0 0 .82-1.48l.1-.62a1.26 1.26 0 0 1 1.25-1.06h2.9a2.53 2.53 0 1 0 2.44-1.9Zm0 1.27a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52ZM2.53 10.74a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm6.31 0a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm10.11 3.79a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Z"/></svg></span>
-          <span class="node-label">n8n</span>
         </div>
 
         <div class="network-node network-core" style="left:50%;top:50%">
@@ -90,28 +99,41 @@
           <span class="node-label" data-copy="coreLabel">AI 管线</span>
         </div>
 
-        <div class="network-node" data-tool="ffmpeg" style="left:81.67%;top:50%">
-          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.72 17.91V6.5l-.53-.49L9.05 18.52l-1.29-.06L24 1.53l-.33-.95-11.93 1-5.75 6.6v-.23l4.7-5.39-1.38-.77-9.11.77v2.85l1.91.46v.01l.19-.01-.56.66v10.6c.61-.13 1.22-.24 1.83-.36L14.12 5.22l.83-.04L0 21.44l9.67.82 1.35-.77 6.82-6.74v2.15l-5.72 5.57 11.26.95.35-.94v-3.16l-3.29-.18c.44-.4.86-.82 1.28-1.23Z"/></svg></span>
-          <span class="node-label">FFmpeg</span>
+        <div class="network-node" data-tool="n8n" style="left:33.5%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.47 5.68a2.53 2.53 0 0 0-2.44 1.9h-2.9c-1.23 0-2.29.89-2.49 2.11l-.1.62a1.26 1.26 0 0 1-1.25 1.06h-1c-.28-1.09-1.27-1.9-2.44-1.9s-2.17.81-2.45 1.9H4.97a2.53 2.53 0 1 0 0 1.26h1.43a2.53 2.53 0 1 0 4.89 0h1a1.26 1.26 0 0 1 1.25 1.06l.1.62a2.52 2.52 0 0 0 2.5 2.11h.36a2.53 2.53 0 1 0 0-1.26h-.36a1.26 1.26 0 0 1-1.25-1.06l-.1-.62a2.52 2.52 0 0 0-.83-1.48 2.52 2.52 0 0 0 .82-1.48l.1-.62a1.26 1.26 0 0 1 1.25-1.06h2.9a2.53 2.53 0 1 0 2.44-1.9Zm0 1.27a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52ZM2.53 10.74a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm6.31 0a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Zm10.11 3.79a1.26 1.26 0 1 1 0 2.52 1.26 1.26 0 0 1 0-2.52Z"/></svg></span>
+          <span class="node-label">n8n</span>
         </div>
 
-        <div class="network-node" data-tool="uniface" style="left:18.33%;top:84.78%">
+        <div class="network-node" data-tool="uniface" style="left:33.5%;top:80%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5V6.5A2.5 2.5 0 0 1 6.5 4h2M15.5 4h2A2.5 2.5 0 0 1 20 6.5v2M20 15.5v2a2.5 2.5 0 0 1-2.5 2.5h-2M8.5 20h-2A2.5 2.5 0 0 1 4 17.5v-2"/><circle cx="12" cy="10.8" r="2.4"/><path d="M8.6 16.2c.9-1.4 2-2.1 3.4-2.1s2.5.7 3.4 2.1"/></svg></span>
           <span class="node-label">UNIFACE</span>
         </div>
 
-        <div class="network-node" data-tool="canvas" style="left:50%;top:84.78%">
+        <div class="network-node" data-tool="agent" style="left:66.5%;top:20%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.2 3.4 12.8 9l5.6 1.6-5.6 1.6-1.6 5.6-1.6-5.6L4 10.6 9.6 9l1.6-5.6Z"/><path d="M18.4 15.2l.8 2.4 2.4.8-2.4.8-.8 2.4-.8-2.4-2.4-.8 2.4-.8.8-2.4Z"/></svg></span>
+          <span class="node-label">Agent</span>
+        </div>
+
+        <div class="network-node" data-tool="ffmpeg" style="left:66.5%;top:50%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.72 17.91V6.5l-.53-.49L9.05 18.52l-1.29-.06L24 1.53l-.33-.95-11.93 1-5.75 6.6v-.23l4.7-5.39-1.38-.77-9.11.77v2.85l1.91.46v.01l.19-.01-.56.66v10.6c.61-.13 1.22-.24 1.83-.36L14.12 5.22l.83-.04L0 21.44l9.67.82 1.35-.77 6.82-6.74v2.15l-5.72 5.57 11.26.95.35-.94v-3.16l-3.29-.18c.44-.4.86-.82 1.28-1.23Z"/></svg></span>
+          <span class="node-label">FFmpeg</span>
+        </div>
+
+        <div class="network-node" data-tool="doc" style="left:66.5%;top:80%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.2 3.4h7.4l4.2 4.2v13H6.2z"/><path d="M13.6 3.4v4.2h4.2"/><path d="M9 12.2h6M9 15.6h6"/></svg></span>
+          <span class="node-label" data-copy="docLabel">文档手册</span>
+        </div>
+
+        <div class="network-node" data-tool="canvas" style="left:88%;top:20%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.6"/><path d="m20.5 16.5-5.5-4.5-6.5 7.5"/></svg></span>
           <span class="node-label">Canvas</span>
         </div>
 
-        <div class="network-node" data-tool="web" style="left:81.67%;top:84.78%">
+        <div class="network-node" data-tool="web" style="left:88%;top:50%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 8.4-4.1 3.6 4.1 3.6"/><path d="m15.4 8.4 4.1 3.6-4.1 3.6"/><path d="m13.6 5.8-3.2 12.4"/></svg></span>
           <span class="node-label">Web / API</span>
         </div>
 
-        <span class="network-chip" style="left:41.67%;top:50%">生成 · 编排</span>
-        <span class="network-chip" style="left:66%;top:50%">校验 · 导出</span>
       </div>
     </figure>
 
