@@ -115,7 +115,7 @@ html:has(body.pipeline-page) {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-block: clamp(20px, 2.4vw, 26px) clamp(8px, 1vw, 12px);
+  padding-block: clamp(16px, 2vw, 24px);
 }
 
 .intro-identity {
@@ -152,7 +152,7 @@ html:has(body.pipeline-page) {
 
 .capability-intro .intro-description {
   max-width: 46ch;
-  margin-top: clamp(8px, 1vw, 10px);
+  margin-top: 0;
   color: var(--muted);
   font-size: clamp(16px, 1.3vw, 19px);
   line-height: 1.75;
@@ -173,7 +173,7 @@ html:has(body.pipeline-page) {
 
 .capability-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 28%);
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
   gap: 12px 24px;
   margin-bottom: clamp(24px, 3vw, 34px);
@@ -182,10 +182,10 @@ html:has(body.pipeline-page) {
 .capability-heading > div { min-width: 0; }
 
 .capability-heading h2 {
-  font-size: clamp(30px, 3.4vw, 44px);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.035em;
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0;
 }
 
 .capability-heading p {
@@ -198,7 +198,7 @@ html:has(body.pipeline-page) {
 .skill-tags {
   display: flex;
   justify-content: flex-end;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   padding: 6px 0 0;
   list-style: none;
@@ -234,7 +234,7 @@ html:has(body.pipeline-page) {
   margin-bottom: 20px;
 }
 
-.example-heading h3 { font-size: 20px; font-weight: 600; line-height: 1.4; }
+.example-heading h3 { font-size: 17px; font-weight: 600; line-height: 1.4; }
 .example-heading small { color: var(--muted); font-size: 13px; }
 
 .workflow-track {
@@ -342,7 +342,7 @@ html:has(body.pipeline-page) {
   background: var(--panel);
 }
 
-.production-examples h3 { font-size: 19px; font-weight: 600; line-height: 1.5; }
+.production-examples h3 { font-size: 17px; font-weight: 600; line-height: 1.5; }
 .production-examples p { max-width: 62ch; margin-top: 9px; color: var(--muted); font-size: 14.5px; }
 
 .capability-section .scope-note {
@@ -650,6 +650,8 @@ body.pipeline-page .case-footer {
 
 @media (max-width: 720px) {
   body.pipeline-page { --header-size: 60px; --gutter: 22px; }
+  .example-heading h3,
+  .production-examples h3 { font-size: 16px; }
   html:has(body.pipeline-page) { scroll-padding-top: 80px; }
   .pipeline-page #pipeline-main { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
 
@@ -673,7 +675,6 @@ body.pipeline-page .case-footer {
   .capability-section,
   .capability-section#pipelines { min-height: 0; padding-block: 36px 44px; }
   .capability-heading { grid-template-columns: minmax(0, 1fr); margin-bottom: 20px; }
-  .capability-heading h2 { font-size: 28px; }
   .capability-heading p { font-size: 14.5px; }
 
   .pipeline-example { padding: 18px; border-radius: 20px; }
