@@ -656,6 +656,15 @@ html:has(body.pipeline-page) {
 
 .vfx-pair a + a { border-left: 1px solid var(--rule); }
 
+.vfx-xp {
+  display: grid;
+  grid-template-columns: minmax(0, 2.33fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(9px, 0.9vw, 12px);
+}
+
+.vfx-xp > .vfx-figure img { width: 100%; height: auto; }
+
 .vfx-figure {
   margin: 0;
   border: 1px solid var(--rule);
@@ -670,6 +679,7 @@ html:has(body.pipeline-page) {
 @media (max-width: 720px) {
   .vfx-layout { grid-template-columns: 1fr; }
   .vfx-c4d { grid-template-columns: 1fr; }
+  .vfx-xp { grid-template-columns: minmax(0, 1fr); }
   .vfx-pair { grid-template-columns: minmax(0, 1fr); }
   .vfx-pair a + a {
     border-left: 0;

@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-40">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-41">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261118-26" defer></script>
 </head>
@@ -252,11 +252,24 @@
       </div>
       <div class="vfx-more">
         <h3 class="vfx-subtitle" data-copy="vfxXparticles">X-Particles 流沙粒子效果</h3>
-        <figure class="vfx-figure">
-          <a href="../assets/mengshou-s9-screen-yongwu-1.webp?v=20261116c" target="_blank" rel="noopener" aria-label="查看 X-Particles 流沙粒子效果大图">
-            <img src="../assets/mengshou-s9-screen-yongwu-1.webp?v=20261116c" alt="X-Particles 流沙粒子效果：金色沙粒沿地形起伏流动，边缘散出细碎光点" width="2400" height="579" loading="lazy" decoding="async">
-          </a>
-        </figure>
+        <div class="vfx-xp">
+          <figure class="vfx-figure">
+            <a href="../assets/mengshou-s9-screen-yongwu-1.webp?v=20261116c" target="_blank" rel="noopener" aria-label="查看 X-Particles 流沙粒子效果大图">
+              <img src="../assets/mengshou-s9-screen-yongwu-1.webp?v=20261116c" alt="X-Particles 流沙粒子效果：金色沙粒沿地形起伏流动，边缘散出细碎光点" width="2400" height="579" loading="lazy" decoding="async">
+            </a>
+          </figure>
+          <figure class="vfx-figure vfx-xp-video">
+            <div class="case-frame-inner is-paused">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/vfx-xp-particles-poster.webp" width="1280" height="720" aria-label="X-Particles 流沙粒子效果演示">
+                <source src="../assets/vfx-xp-particles.mp4" data-mobile-src="../assets/vfx-xp-particles-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <button class="case-video-play" type="button" aria-label="播放 X-Particles 流沙粒子效果">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
+          </figure>
+        </div>
       </div>
     </section>
   </main>
@@ -272,6 +285,55 @@
     </div>
     <p class="dialog-hint">长按图片保存二维码</p>
   </div>
+  <script>
+    (function () {
+      var box = document.querySelector(".vfx-xp-video");
+      if (!box) return;
+      var video = box.querySelector("video");
+      var frame = box.querySelector(".case-frame-inner");
+      var button = box.querySelector(".case-video-play");
+      if (!video) return;
+      var mobile = window.matchMedia("(max-width: 720px)");
+
+      if (mobile.matches) {
+        var source = video.querySelector("source[data-mobile-src]");
+        if (source) {
+          source.src = source.getAttribute("data-mobile-src");
+          try { video.load(); } catch (error) { /* ignore */ }
+        }
+      }
+
+      function play() {
+        video.muted = true;
+        var promise = video.play();
+        if (promise && promise.catch) promise.catch(function () {});
+      }
+
+      video.addEventListener("playing", function () {
+        if (frame) frame.classList.remove("is-paused");
+      });
+      video.addEventListener("pause", function () {
+        if (frame) frame.classList.add("is-paused");
+      });
+
+      if (button) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          play();
+        });
+      }
+
+      if (!mobile.matches && "IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !document.hidden) play();
+            else if (!video.paused) video.pause();
+          });
+        }, { threshold: 0.4 }).observe(box);
+      }
+    })();
+  </script>
   <script src="../assets/case-tabs.js?v=20261118-2" defer></script>
   <script src="../assets/case-flow.js?v=20261117-2" defer></script>
   <script>
