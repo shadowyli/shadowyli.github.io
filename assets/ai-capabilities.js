@@ -5,7 +5,7 @@
     name: "Shadow · Li Ying", role: "Project initiator / Lead", title: "AI pipeline development",
     intro: "Tools are the lever; problem-solving is the fulcrum.",
     toolsTitle: "Pipeline toolchain",
-    loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
+    loraLabel: "LoRA training", coreLabel: "My creative tech stack", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
     vfxLead: "Blender toon shading",
     upscaleTitle: "Perfect HD upscaling and restoration",
