@@ -283,11 +283,12 @@
 .fx-toolbox-copy { min-width: 0; }
 .flowx-page .fx-toolbox .fx-section-head { margin-bottom: var(--fx-gap-head); }
 .flowx-page .case-body .fx-toolbox h2 {
-  max-width: 10em;
+  max-width: none;
   text-wrap: balance;
   font-size: clamp(26px, 2.6vw, 36px);
   line-height: var(--fx-lh-heading);
 }
+.flowx-page #fx-capabilities-title span { display: block; }
 .flowx-page .fx-toolbox .fx-kicker { font-size: 11px; margin-bottom: 14px; }
 .fx-workspace-media {
   display: grid;
