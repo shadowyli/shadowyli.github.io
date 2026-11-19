@@ -35,6 +35,11 @@
   <style>
     .case-body .case-related-divider { margin: 56px 0 22px; }
     main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
+    /* 手机端全页收紧模块间距：分割线两侧、区块之间与抖音现场统一节奏 */
+    @media (max-width: 720px) {
+      body.case-page { --case-gap: 22px; }
+      .case-body .douyin-embed { margin-top: 18px; }
+    }
     .nsh-banners { grid-template-columns: 3.5fr 1.778fr; }
     .nsh-banners .case-slot-media { margin: 0; }
     .nsh-banners .case-slot-cover {

@@ -645,7 +645,7 @@
     padding-left: 18px;
     border-left: 1px solid var(--line);
   }
-  .flowx-page .case-body .fx-brief { margin-bottom: 24px; padding-left: 14px; }
+  .flowx-page .case-body .fx-brief { margin-bottom: 18px; }
   .flowx-page .case-body .fx-solution {
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
@@ -670,7 +670,7 @@
   .flowx-page .flowx-demos .case-media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .flowx-page .flowx-demo .case-video-play { width: 36px; height: 36px; }
   .flowx-page .flowx-demo .case-video-play svg { width: 17px; height: 17px; }
-  .flowx-page #fx-experience .fx-section-head { margin-bottom: 26px; gap: 10px; }
+  .flowx-page #fx-experience .fx-section-head { margin-bottom: 14px; gap: 10px; }
   .flowx-page #fx-experience .fx-case-grid { grid-template-columns: minmax(0, 1fr); }
   .flowx-page #fx-experience .fx-case-card { padding: 22px 12px; }
   .flowx-page #fx-experience .fx-case-card { border-left: 0; }

@@ -285,7 +285,7 @@
     }
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261118-33">
+  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261118-34">
 </head>
 <body class="case-page flowx-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -882,6 +882,37 @@
       desktop.addEventListener("change", syncPlayback);
       reducedMotion.addEventListener("change", syncPlayback);
       document.addEventListener("visibilitychange", syncPlayback);
+    })();
+  </script>
+  <button class="mobile-play" type="button" aria-label="播放当前可见演示">
+    <span class="mobile-play-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+    </span>
+    <span data-fx-zh="一键播放" data-fx-en="Play all">一键播放</span>
+  </button>
+  <script>
+    (function () {
+      var button = document.querySelector(".mobile-play");
+      if (!button) return;
+      if (!window.matchMedia("(max-width: 720px)").matches) return;
+
+      function isVisible(element) {
+        var rect = element.getBoundingClientRect();
+        var viewport = window.innerHeight || document.documentElement.clientHeight;
+        var overlap = Math.min(rect.bottom, viewport) - Math.max(rect.top, 0);
+        return overlap > Math.min(rect.height, viewport) * 0.3;
+      }
+
+      button.addEventListener("click", function () {
+        Array.prototype.forEach.call(document.querySelectorAll(".flowx-demo video, .fx-workspace-media video"), function (video) {
+          if (!isVisible(video)) return;
+          var frame = video.closest(".case-frame-inner");
+          if (frame) frame.dataset.userPaused = "false";
+          video.muted = true;
+          var promise = video.play();
+          if (promise && promise.catch) promise.catch(function () {});
+        });
+      });
     })();
   </script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
