@@ -73,17 +73,16 @@
   font: 600 clamp(34px, 3.6vw, 50px)/var(--fx-lh-display) "Archivo", var(--font-cjk), sans-serif;
   letter-spacing: -.035em;
 }
-.flowx-page .fx-intro-copy .fx-lead {
-  margin: 0 0 12px;
-  max-width: none;
-  font-size: clamp(13px, 1vw, 15px);
-}
-.fx-intro-copy .fx-intro-note {
+.flowx-page .fx-intro-copy .fx-lead,
+.flowx-page .fx-intro-copy .fx-intro-note {
   margin: 0;
+  max-width: none;
   color: var(--fx-muted);
   font-size: clamp(13px, 1vw, 15px);
+  font-weight: 400;
   line-height: var(--fx-lh-body);
 }
+.flowx-page .fx-intro-copy .fx-lead { margin-bottom: 12px; }
 .flowx-page .fx-responsibility { margin: 0; font-size: 13px; line-height: var(--fx-lh-body); color: var(--fx-muted); }
 /* 结构：问题四列 + 方案总结带 */
 .flowx-page .case-body .fx-brief {
