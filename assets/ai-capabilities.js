@@ -23,10 +23,10 @@
     pipelineResponsibilityDetail: "Write ComfyUI and n8n guides, and teach workflow building through internal training, exercises and project coaching.",
     appLead: "Package specialist workflows as web services, accessible through business forms or natural language.",
     toolTag: "Tool calling", orchestrationTag: "Orchestration", qualityTag: "Quality & error handling",
-    app1: "Express the request", app1Detail: "I turn high-frequency scenarios into form fields and natural-language inputs so business teams can start on their own.",
-    app2: "Agent plans the work", app2Detail: "I define task breakdown rules and tool boundaries so the same request yields consistent output.",
-    app3: "Execute & check", app3Detail: "I set up specification and visual acceptance, with retries that can be traced.",
-    app4: "Deliver or escalate", app4Detail: "I design escalation and feedback loops that turn one-off cases into release standards.",
+    app1: "Need & product definition", app1Detail: "Distil the high-frequency scenarios from the field, then define entry points, fields and priorities by value rather than feature count.",
+    app2: "Service & agent development", app2Detail: "Own the form entry, agent orchestration and API work that turn pipelines into callable services.",
+    app3: "Quality & acceptance", app3Detail: "Set specification and visual acceptance criteria, plus retry, escalation and release standards.",
+    app4: "Rollout & iteration", app4Detail: "Write ComfyUI and n8n guides, run internal training and iterate releases on usage feedback.",
     footerNote: "Shadow · Visual Design Portfolio", contactMe: "Contact me"
   };
   var elements = Array.from(document.querySelectorAll("[data-copy]"));
