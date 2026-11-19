@@ -10,6 +10,7 @@
     vfxLead: "Blender toon shading",
     upscaleTitle: "Perfect HD upscaling and restoration",
     characterVideoTitle: "One-click audio-visual video for game characters",
+    outfitVideoTitle: "Game outfit to real-person dance video",
     starfieldTitle: "C4D starfield performance optimisation",
     caseCta: "View project case",
     vfxC4d: "C4D toon shading",
