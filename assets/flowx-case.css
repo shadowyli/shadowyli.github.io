@@ -623,9 +623,11 @@
   .fx-marketing-layout,
   .fx-toolbox { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .fx-toolbox { padding: 0; gap: 24px; }
-  .flowx-page .fx-toolbox .fx-section-head { margin-bottom: var(--fx-gap-head); }
+  .fx-toolbox-copy { display: contents; }
+  .flowx-page .fx-toolbox .fx-section-head { order: 0; margin-bottom: 0; }
   .flowx-page .case-body .fx-toolbox h2 { max-width: none; }
-  .flowx-page .fx-toolbox .fx-workspace-media { order: -1; }
+  .flowx-page .fx-toolbox .fx-workspace-media { order: 1; }
+  .flowx-page .fx-toolbox .fx-capabilities { order: 2; }
   .fx-capabilities > div { grid-template-columns: minmax(96px, .8fr) minmax(0, 1.2fr); gap: 12px; padding: 13px 0; }
   .fx-workspace-media { border-radius: 12px; }
   .fx-pbr-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; }
