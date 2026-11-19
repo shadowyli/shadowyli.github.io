@@ -166,6 +166,10 @@ html:has(body.pipeline-page) {
   scroll-margin-top: 16px;
 }
 
+.capability-section#pipelines {
+  padding-top: clamp(20px, 2.2vw, 30px);
+}
+
 .capability-heading {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr) minmax(180px, 28%);
@@ -511,7 +515,7 @@ html:has(body.pipeline-page) {
   width: min(100%, calc(var(--content-width) + var(--gutter) * 2));
   margin: 0 auto;
   padding-inline: var(--gutter);
-  padding-block: 0 clamp(16px, 2vw, 28px);
+  padding-block: 0 clamp(10px, 1.2vw, 16px);
 }
 
 .network-canvas {
