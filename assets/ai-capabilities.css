@@ -343,6 +343,16 @@ html:has(body.pipeline-page) {
 .capability-section#pipelines .capability-heading { margin-bottom: clamp(10px, 1.1vw, 14px); }
 .capability-section#pipelines .capability-heading + .pipe-block { margin-top: 0; }
 
+/* 管线区块：技能标签紧跟标题，而不是被推到内容栏最右侧（窄屏仍保持上下排布） */
+@media (min-width: 1001px) {
+  .capability-section#pipelines .capability-heading {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 20px;
+  }
+  .capability-section#pipelines .skill-tags { justify-content: flex-start; }
+}
+
 .pipe-pair {
   display: grid;
   grid-template-columns: minmax(0, 2.66fr) minmax(0, 1fr);
