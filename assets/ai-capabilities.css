@@ -706,13 +706,9 @@ html:has(body.pipeline-page) {
 
 @media (max-width: 720px) {
   .vfx-layout { grid-template-columns: 1fr; }
-  .vfx-c4d { grid-template-columns: 1fr; }
   .vfx-xp { grid-template-columns: minmax(0, 1fr); }
-  .vfx-pair { grid-template-columns: minmax(0, 1fr); }
-  .vfx-pair a + a {
-    border-left: 0;
-    border-top: 1px solid var(--rule);
-  }
+  .vfx-c4d { gap: 6px; }
+  .vfx-pair { gap: 0; }
 }
 
 /* ---------- footer ---------- */
