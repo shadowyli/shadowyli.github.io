@@ -285,7 +285,7 @@
     }
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261118-17">
+  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261118-18">
 </head>
 <body class="case-page flowx-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -403,6 +403,83 @@
           </ul>
           <p class="fx-positioning-note" data-fx-zh="不重复造模型，只把高频、可标准化、可验收的生产环节做成业务服务。" data-fx-en="No duplicate models — turn high-frequency, standardisable, verifiable production steps into business services.">不重复造模型，只把高频、可标准化、可验收的生产环节做成业务服务。</p>
         </div>
+      </section>
+
+      <section class="case-section fx-section fx-productization" id="fx-productization" aria-labelledby="fx-productization-title">
+        <div class="fx-section-head fx-section-head--solo">
+          <div><p class="fx-kicker">PRODUCTIZATION</p><h2 id="fx-productization-title" data-fx-zh="产品化与质量门槛" data-fx-en="Productisation and quality gates">产品化与质量门槛</h2></div>
+        </div>
+
+        <ol class="fx-timeline" aria-label="版本与阶段">
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="Demo" data-fx-en="Demo">Demo</span>
+            <strong data-fx-zh="识别最后一公里" data-fx-en="Identify the last mile">识别最后一公里</strong>
+            <span class="fx-timeline-desc" data-fx-zh="想法变成原型" data-fx-en="Idea to prototype">想法变成原型</span>
+          </li>
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="V1.0" data-fx-en="V1.0">V1.0</span>
+            <strong data-fx-zh="独立跑通 MVP" data-fx-en="Ship the MVP solo">独立跑通 MVP</strong>
+            <span class="fx-timeline-desc" data-fx-zh="验证真实可用" data-fx-en="Prove it works in practice">验证真实可用</span>
+          </li>
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="V1.1" data-fx-en="V1.1">V1.1</span>
+            <strong data-fx-zh="组建协作小组" data-fx-en="Build a delivery team">组建协作小组</strong>
+            <span class="fx-timeline-desc" data-fx-zh="从个人到团队" data-fx-en="From solo to team">从个人到团队</span>
+          </li>
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="V1.2–V1.4" data-fx-en="V1.2–V1.4">V1.2–V1.4</span>
+            <strong data-fx-zh="需求与功能扩展" data-fx-en="Expand scope">需求与功能扩展</strong>
+            <span class="fx-timeline-desc" data-fx-zh="建立开发规范" data-fx-en="Establish development standards">建立开发规范</span>
+          </li>
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="V1.5" data-fx-en="V1.5">V1.5</span>
+            <strong data-fx-zh="体验与质量验收" data-fx-en="Experience and quality acceptance">体验与质量验收</strong>
+            <span class="fx-timeline-desc" data-fx-zh="推动业务使用" data-fx-en="Drive business adoption">推动业务使用</span>
+          </li>
+          <li>
+            <span class="fx-timeline-version" data-fx-zh="未来版本方向" data-fx-en="Next">未来版本方向</span>
+            <strong data-fx-zh="Agent / 小奈" data-fx-en="Agent Xiaonai">Agent / 小奈</strong>
+            <span class="fx-timeline-desc" data-fx-zh="复杂任务编排" data-fx-en="Complex task orchestration">复杂任务编排</span>
+          </li>
+        </ol>
+
+        <div class="fx-gates">
+          <div class="fx-gate">
+            <span class="fx-gate-index" aria-hidden="true">01</span><p class="fx-gate-label" data-fx-zh="缺什么" data-fx-en="What is missing">缺什么</p>
+            <h3 data-fx-zh="需求价值" data-fx-en="Need value">需求价值</h3>
+            <p data-fx-zh="优先解决一线真实、高频、可复用的问题，不按功能数量排版本。" data-fx-en="Solve real, high-frequency, reusable frontline problems first; plan releases by value, not feature count.">优先解决一线真实、高频、可复用的问题，不按功能数量排版本。</p>
+          </div>
+          <div class="fx-gate">
+            <span class="fx-gate-index" aria-hidden="true">02</span><p class="fx-gate-label" data-fx-zh="怎么做" data-fx-en="How">怎么做</p>
+            <h3 data-fx-zh="技术边界与成本控制" data-fx-en="Technical boundaries and cost">技术边界与成本控制</h3>
+            <p data-fx-zh="生成性任务调用 AI；确定性任务优先算法、本地或成熟工具。" data-fx-en="Use AI for generative tasks; prefer algorithms, local or proven tools for deterministic work.">生成性任务调用 AI；确定性任务优先算法、本地或成熟工具。</p>
+          </div>
+          <div class="fx-gate">
+            <span class="fx-gate-index" aria-hidden="true">03</span><p class="fx-gate-label" data-fx-zh="何时上线" data-fx-en="When to ship">何时上线</p>
+            <h3 data-fx-zh="业务验收" data-fx-en="Business acceptance">业务验收</h3>
+            <p data-fx-zh="按真实交付标准验收品牌、规格、防呆、异常恢复与结果追溯。" data-fx-en="Accept against real delivery standards: brand, specs, mistake-proofing, failure recovery and traceability.">按真实交付标准验收品牌、规格、防呆、异常恢复与结果追溯。</p>
+          </div>
+          <aside class="fx-contribution">
+            <p class="fx-gate-label" data-fx-zh="我的核心贡献" data-fx-en="My core contribution">我的核心贡献</p>
+            <h3 data-fx-zh="定义问题，不断优化" data-fx-en="Define the problem, keep refining">定义问题，不断优化</h3>
+            <ul>
+              <li data-fx-zh="发起构思并完成 MVP 验证" data-fx-en="Initiated the concept and validated the MVP">发起构思并完成 MVP 验证</li>
+              <li data-fx-zh="判断需求价值与开发优先级" data-fx-en="Judged need value and development priority">判断需求价值与开发优先级</li>
+              <li data-fx-zh="指定用户体验与功能验收标准" data-fx-en="Set UX and functional acceptance criteria">指定用户体验与功能验收标准</li>
+              <li data-fx-zh="功能开发、测试推广与回收反馈闭环" data-fx-en="Closed the loop across development, testing, rollout and feedback">功能开发、测试推广与回收反馈闭环</li>
+            </ul>
+          </aside>
+        </div>
+
+        <p class="fx-gates-quote" data-fx-zh="不是「能跑」就够了，而是达到真实业务交付质量，融入内容生产工作。" data-fx-en="Running is not enough — it must meet real delivery quality and fit into content production.">不是「能跑」就够了，而是达到真实业务交付质量，融入内容生产工作。</p>
+
+        <dl class="fx-team-metrics">
+          <div><dt>20,000+</dt><dd data-fx-zh="AI 生产方法手册字数" data-fx-en="Words in the AI production handbook">AI 生产方法手册字数</dd></div>
+          <div><dt>2,000+</dt><dd data-fx-zh="手册累计阅读" data-fx-en="Cumulative handbook reads">手册累计阅读</dd></div>
+          <div><dt>10+</dt><dd data-fx-zh="员工完成实践" data-fx-en="Staff completed hands-on practice">员工完成实践</dd></div>
+          <div><dt>6+</dt><dd data-fx-zh="带教实习生" data-fx-en="Interns mentored">带教实习生</dd></div>
+          <div class="fx-team-metrics-note"><dt data-fx-zh="从个人经验到团队资产" data-fx-en="From personal experience to team assets">从个人经验到团队资产</dt><dd data-fx-zh="知识 → 实践 → 流程 → 平台复用" data-fx-en="Knowledge → practice → process → platform reuse">知识 → 实践 → 流程 → 平台复用</dd></div>
+        </dl>
       </section>
 
       <section class="case-section fx-section flowx-demos" id="fx-experience" aria-labelledby="fx-experience-title">
