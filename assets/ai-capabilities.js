@@ -93,6 +93,16 @@
   function requestUpdate() {
     if (!frame) frame = requestAnimationFrame(updateScroll);
   }
+  var networkFrame = document.querySelector(".network-frame");
+  var networkCanvas = document.querySelector(".network-canvas");
+  function scaleNetwork() {
+    if (!networkFrame || !networkCanvas) return;
+    var scale = Math.min(1, networkFrame.clientWidth / 1080);
+    networkCanvas.style.setProperty("--net-scale", scale);
+    networkFrame.style.height = (324 * scale) + "px";
+    networkFrame.classList.toggle("is-scaled", scale < 1);
+  }
+  scaleNetwork();
   applyLanguage(stored("portfolio-language", "zh"));
   languageButton.hidden = false;
   themeButton.hidden = false;
@@ -108,8 +118,8 @@
   });
   document.getElementById("pipeline-year").textContent = new Date().getFullYear();
   window.addEventListener("scroll", requestUpdate, { passive: true });
-  window.addEventListener("resize", requestUpdate);
-  window.addEventListener("pageshow", requestUpdate);
+  window.addEventListener("resize", function () { scaleNetwork(); requestUpdate(); });
+  window.addEventListener("pageshow", function () { scaleNetwork(); requestUpdate(); });
   window.addEventListener("storage", function (event) {
     if (event.key === "portfolio-language") applyLanguage(event.newValue);
     if (event.key === "portfolio-theme") {
