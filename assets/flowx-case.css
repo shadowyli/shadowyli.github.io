@@ -238,8 +238,7 @@
   column-gap: clamp(28px, 3vw, 44px);
   row-gap: 10px;
   margin-top: clamp(24px, 2.6vw, 34px);
-  padding-top: clamp(20px, 2.2vw, 28px);
-  border-top: 1px solid var(--line);
+  padding-top: 0;
 }
 .fx-audiences-wrap, .fx-entries-wrap {
   display: grid;
