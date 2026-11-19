@@ -154,21 +154,22 @@
 .flowx-page .case-body .fx-solution {
   display: grid;
   grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) auto minmax(0, 1fr);
-  gap: clamp(10px, 1.2vw, 16px);
-  align-items: stretch;
-  padding: 0;
-  border: 0;
-  background: none;
+  gap: clamp(16px, 2vw, 30px);
+  align-items: center;
+  padding: clamp(20px, 2.2vw, 28px) clamp(22px, 2.4vw, 32px);
+  border: 1px solid color-mix(in srgb, var(--fx-accent) 24%, var(--line));
+  border-left: 3px solid var(--fx-accent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--fx-accent) 6%, transparent);
 }
 .flowx-page .case-body .fx-solution-brand {
   display: grid;
   gap: 8px;
   align-content: center;
   min-width: 0;
-  padding: 18px 20px;
-  border: 1px solid color-mix(in srgb, var(--fx-accent) 34%, var(--line));
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--fx-accent) 9%, transparent);
+  padding: 0;
+  border: 0;
+  background: none;
 }
 .flowx-page .case-body .fx-solution-brand strong {
   font: 700 clamp(20px, 1.9vw, 26px)/1.1 "Archivo", var(--font-cjk), sans-serif;
@@ -187,12 +188,7 @@
   font-weight: 600;
   line-height: var(--fx-lh-heading);
 }
-.flowx-page .case-body .fx-solution-item {
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--text) 3%, transparent);
-}
+.flowx-page .case-body .fx-solution-item { padding: 0; border: 0; background: none; }
 .flowx-page .case-body .fx-solution-item p {
   margin: 0;
   color: var(--fx-muted);
