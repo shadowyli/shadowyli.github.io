@@ -24,7 +24,7 @@
       { zh: "3D & 视觉创意设计", en: "3D & Visual Creative Design", people: ["shadow"] }
     ],
     danzai: [
-      { zh: "主视觉设计", en: "Key Visual Design", people: ["shadow"] },
+      { zh: "3D & 视觉创意设计", en: "3D & Visual Creative Design", people: ["shadow"] },
       { zh: "美术监修", en: "Art Supervision", people: ["shadow"] },
       { zh: "动效设计", en: "Motion Design", people: ["jiYun", "liChuyi", "zhengSikai", "liuBaiqiang"] },
       { zh: "美术督导", en: "Art Direction", people: ["huXusheng", "liuXing"] }
