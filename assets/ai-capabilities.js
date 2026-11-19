@@ -26,8 +26,6 @@
     app2: "Agent plans the work", app2Detail: "Break down the request and select pipelines and tools.",
     app3: "Execute & check", app3Detail: "Call APIs, follow task status and check specifications and visual quality.",
     app4: "Deliver or escalate", app4Detail: "Collect outputs, retry failures and escalate when results cannot be confirmed.",
-    appResponsibility: "Built the first MVP; led the development that followed.",
-    appResponsibilityDetail: "Own product and UI/UX, core development, priorities, release planning and acceptance. Establish development and release standards, onboarding and feedback loops.",
     footerNote: "Shadow · Visual Design Portfolio", contactMe: "Contact me"
   };
   var elements = Array.from(document.querySelectorAll("[data-copy]"));
