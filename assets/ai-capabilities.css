@@ -564,6 +564,16 @@ html[lang="en"] .intro-description .intro-clause { display: inline; }
 
 .network-core .node-tile svg { width: 26px; height: 26px; fill: var(--accent-ink); }
 
+.network-core .node-tile svg.core-brain {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--accent-ink);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .network-core .node-label { color: var(--ink); font-weight: 600; }
 
 @media (hover: hover) {
