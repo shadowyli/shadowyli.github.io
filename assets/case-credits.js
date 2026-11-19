@@ -27,8 +27,7 @@
       { zh: "主视觉设计", en: "Key Visual Design", people: ["shadow"] },
       { zh: "美术监修", en: "Art Supervision", people: ["shadow"] },
       { zh: "动效设计", en: "Motion Design", people: ["jiYun", "liChuyi", "zhengSikai", "liuBaiqiang"] },
-      { zh: "美术督导", en: "Art Direction", people: ["huXusheng", "liuXing"] },
-      { zh: "设计团队", en: "Design Team", people: ["maXiangle", "zouWenjun", "linKewei"] }
+      { zh: "美术督导", en: "Art Direction", people: ["huXusheng", "liuXing"] }
     ],
     flowx: [
       { zh: "项目发起人", en: "Project Sponsor", people: ["shadow"] },
