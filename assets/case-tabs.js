@@ -8,8 +8,8 @@
     { id: "campaign", zh: "宣发", en: "Campaign" },
     { id: "merchandise", zh: "周边", en: "Merch" },
     { id: "stage", zh: "舞美", en: "Stage" },
-    { id: "ai-pipeline", zh: "AI 管线", en: "AI Pipelines" },
-    { id: "video", zh: "视频", en: "Video" }
+    { id: "video", zh: "视频", en: "Video" },
+    { id: "ai-pipeline", zh: "AI 管线", en: "AI Pipelines" }
   ];
   var REPEAT = 5;
   var MIDDLE = Math.floor(REPEAT / 2);
