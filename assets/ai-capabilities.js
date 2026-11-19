@@ -5,7 +5,7 @@
     name: "Shadow · Li Ying", role: "Project initiator / Lead", title: "AI pipeline development",
     intro: "From image generation and model training to business workflows and applications.",
     toolsTitle: "Pipeline toolchain",
-    loraLabel: "LoRA training", coreLabel: "My AI practice", docLabel: "Doc writing",
+    loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents",
     pipelineLead: "Connect generation, processing, composition and export around business specifications.",
     custom: "Custom workflows", batch: "Batch processing",
