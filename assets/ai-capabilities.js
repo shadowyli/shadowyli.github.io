@@ -9,6 +9,7 @@
     module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
     vfxLead: "Blender toon shading",
     upscaleTitle: "Perfect HD upscaling and restoration",
+    characterVideoTitle: "One-click audio-visual video for game characters",
     caseCta: "View project case",
     vfxC4d: "C4D toon shading",
     vfxXparticles: "X-Particles procedural drifting sand",
