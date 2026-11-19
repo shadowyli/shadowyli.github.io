@@ -3,7 +3,7 @@
   var english = {
     skip: "Skip to content", back: "← Back to Work", navWork: "Work", navAbout: "About Me",
     name: "Shadow · Li Ying", role: "Project initiator / Lead", title: "AI pipeline development",
-    intro: "From image generation and model training to business workflows and applications.",
+    intro: "Tools don't define you. The real edge is the confidence to break down and solve unfamiliar problems.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents",

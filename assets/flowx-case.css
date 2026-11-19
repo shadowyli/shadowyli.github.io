@@ -198,34 +198,99 @@
 }
 .flowx-page .case-body .fx-positioning {
   display: grid;
-  gap: 12px;
+  gap: clamp(18px, 2.2vw, 28px);
   margin-top: clamp(28px, 3.2vw, 42px);
   padding-top: clamp(22px, 2.6vw, 32px);
   border-top: 1px solid var(--line);
 }
+.fx-positioning-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(20px, 2.6vw, 36px);
+  align-items: stretch;
+}
+.fx-positioning-lead { display: grid; align-content: start; gap: 8px; }
 .flowx-page .case-body .fx-positioning h3 {
   margin: 0;
-  font-size: clamp(23px, 2.5vw, 33px);
+  font-size: clamp(28px, 3.2vw, 44px);
   font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -.025em;
+  line-height: 1.15;
+  letter-spacing: -.03em;
 }
-.flowx-page .case-body .fx-positioning-copy {
+.fx-positioning-contrast { display: grid; gap: 4px; margin: 8px 0 0; }
+.fx-positioning-contrast span { color: var(--fx-muted); font-size: clamp(14px, 1.3vw, 17px); line-height: 1.5; }
+.fx-positioning-contrast strong { color: var(--text); font-size: clamp(17px, 1.7vw, 22px); font-weight: 600; line-height: 1.4; }
+.fx-positioning-statement {
+  display: grid;
+  align-content: center;
+  gap: 9px;
+  padding: clamp(20px, 2.2vw, 28px);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--fx-accent);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+}
+.fx-positioning-label { color: var(--fx-accent); font: 600 10.5px/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
+.fx-positioning-statement strong { color: var(--text); font-size: clamp(19px, 1.8vw, 24px); font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
+.fx-positioning-statement p { margin: 0; color: var(--fx-muted); font-size: 12.5px; line-height: 1.6; }
+.fx-positioning-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: clamp(20px, 2.6vw, 36px);
+}
+.fx-audiences-wrap, .fx-entries-wrap { min-width: 0; }
+.flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; color: var(--text); font-size: 14px; font-weight: 600; line-height: 1.5; }
+.fx-audiences { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 0; }
+.fx-audiences > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.fx-aud-index {
+  grid-row: 1 / span 2;
+  align-self: start;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid color-mix(in srgb, var(--fx-accent) 40%, var(--line));
+  border-radius: 50%;
+  color: var(--fx-accent);
+  font: 600 10px/1 "Space Grotesk", sans-serif;
+}
+.fx-audiences strong { grid-column: 2; color: var(--text); font-size: 14px; font-weight: 600; }
+.fx-audiences > div > span:last-child { grid-column: 2; color: var(--fx-muted); font-size: 12px; line-height: 1.6; }
+.fx-entries {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
   margin: 0;
-  max-width: 76ch;
-  color: var(--fx-muted);
-  font-size: 13px;
-  line-height: var(--fx-lh-body);
+  padding: 0;
+  list-style: none;
 }
-.flowx-page .case-body .fx-positioning-sub { margin: 6px 0 0; color: var(--text); font-size: 14px; font-weight: 600; line-height: 1.5; }
-.fx-audiences { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 6px; }
-.fx-audiences > div { padding: 12px 24px 12px 0; }
-.fx-audiences > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
-.fx-audiences strong { display: block; margin-bottom: 6px; color: var(--text); font-size: 14px; font-weight: 600; }
-.fx-audiences span { color: var(--fx-muted); font-size: 12.5px; line-height: var(--fx-lh-body); }
-.fx-entries { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
-.fx-entries li { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--fx-muted); font-size: 11.5px; line-height: 1.4; }
-.fx-positioning-note { margin: 6px 0 0; color: var(--fx-accent); font-size: clamp(13px, 1.1vw, 15px); font-weight: 500; line-height: var(--fx-lh-body); }
+.fx-entries li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.fx-entries li > span { color: var(--fx-accent); font: 600 10px/1 "Space Grotesk", sans-serif; letter-spacing: .04em; }
+.fx-entry-label { color: var(--text); font-size: 12.5px; line-height: 1.4; }
+.fx-positioning-note {
+  margin: 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--fx-accent);
+  color: var(--fx-accent);
+  font-size: clamp(13px, 1.2vw, 15px);
+  font-weight: 600;
+  line-height: 1.6;
+}
 .flowx-page .fx-responsibility { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
 .flowx-page .case-body .fx-section.flowx-intro { margin-top: 0; padding-top: 0; border-top: 0; }
 .flowx-page .case-body .fx-section {
@@ -458,6 +523,8 @@
 .fx-team-metrics-note dd { color: var(--fx-accent); font-size: 12px; }
 
 @media (max-width: 1000px) {
+  .fx-positioning-head { grid-template-columns: minmax(0, 1fr); }
+  .fx-positioning-grid { grid-template-columns: minmax(0, 1fr); }
   .fx-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
   .fx-gates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .fx-gate { padding: 16px 18px 18px 0; }
@@ -601,9 +668,6 @@
   .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-plus,
   .flowx-page .case-body .fx-solution-eq { display: none; }
-  .fx-audiences { grid-template-columns: minmax(0, 1fr); }
-  .fx-audiences > div { padding: 12px 0; }
-  .fx-audiences > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .fx-poster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
   .fx-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
   .fx-dcc { justify-content: flex-start; font-size: 11px; gap: 9px; }
@@ -627,6 +691,11 @@
   .flowx-page #fx-experience .fx-case-copy { margin-top: 16px; }
   .flowx-page #fx-experience .fx-case-copy h3 { font-size: 14px; margin-bottom: 6px; }
   .flowx-page #fx-experience .fx-case-copy p { font-size: 12px; }
+}
+
+@media (max-width: 420px) {
+  .fx-positioning-statement { padding: 18px; }
+  .fx-entries { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
