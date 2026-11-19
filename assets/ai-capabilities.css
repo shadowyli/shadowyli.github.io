@@ -639,6 +639,8 @@ html:has(body.pipeline-page) {
 .network-node[data-tool="midjourney"] .node-tile svg,
 .network-node[data-tool="doc"] .node-tile svg,
 .network-node[data-tool="canvas"] .node-tile svg,
+.network-node[data-tool="python"] .node-tile svg,
+.network-node[data-tool="github"] .node-tile svg,
 .network-node[data-tool="web"] .node-tile svg {
   fill: none;
   stroke: var(--signal);
@@ -646,6 +648,8 @@ html:has(body.pipeline-page) {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
+.network-node[data-tool="vscode"] .node-tile svg { fill: var(--signal); }
 
 .network-core .node-tile {
   width: 56px;

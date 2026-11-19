@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-17">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-18">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261118-10" defer></script>
 </head>
@@ -49,6 +49,7 @@
             <path d="M90 180H1110"></path>
             <path d="M180 60V300M1020 60V300M600 60V180"></path>
             <path d="M250 180V235M400 180V280M940 180V235"></path>
+            <path d="M480 300H720M600 180V300"></path>
           </g>
           <g class="network-flow" aria-hidden="true">
             <path pathLength="100" d="M180 60H600V180"></path>
@@ -62,11 +63,15 @@
             <path pathLength="100" d="M940 235V180H600"></path>
             <path pathLength="100" d="M420 60H600V180"></path>
             <path pathLength="100" d="M780 60H600V180"></path>
+            <path pathLength="100" d="M480 300H600V180"></path>
+            <path pathLength="100" d="M600 300V180"></path>
+            <path pathLength="100" d="M720 300H600V180"></path>
           </g>
           <g class="network-ticks">
             <path d="M306 48v12M506 60v12M870 48v12M945 60v12"></path>
             <path d="M312 168v12M474 180v12M738 168v12M846 180v12"></path>
             <path d="M168 112h12M180 244h12M1020 114h12M1008 258h12"></path>
+            <path d="M540 288v12M660 288v12"></path>
           </g>
           <g class="network-joints">
             <circle cx="180" cy="180" r="3"></circle>
@@ -138,6 +143,21 @@
         <div class="network-node" data-tool="web" style="left:85%;top:83.333%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 8.4-4.1 3.6 4.1 3.6"/><path d="m15.4 8.4 4.1 3.6-4.1 3.6"/><path d="m13.6 5.8-3.2 12.4"/></svg></span>
           <span class="node-label">Web / API</span>
+        </div>
+
+        <div class="network-node" data-tool="python" style="left:40%;top:83.333%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c-2.9 0-4.4 1.2-4.4 3.5V9h4.9v1.4H6.6C4.3 10.4 3 11.9 3 14.7s1.3 4.3 3.6 4.3h1.6"/><path d="M12 21c2.9 0 4.4-1.2 4.4-3.5V15h-4.9v-1.4h5.9c2.3 0 3.6-1.5 3.6-4.3s-1.3-4.3-3.6-4.3h-1.6"/><circle cx="9.6" cy="5.4" r=".8"/><circle cx="14.4" cy="18.6" r=".8"/></svg></span>
+          <span class="node-label">Python</span>
+        </div>
+
+        <div class="network-node" data-tool="github" style="left:50%;top:83.333%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+          <span class="node-label">GitHub</span>
+        </div>
+
+        <div class="network-node" data-tool="vscode" style="left:60%;top:83.333%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M23.15 2.587 18.21.064a1.5 1.5 0 0 0-1.71.27L9.54 6.75 3.95 2.5 2.1 3.41v17.18l1.85.91 5.59-4.25 6.96 6.42a1.5 1.5 0 0 0 1.71.27l4.94-2.52A1.5 1.5 0 0 0 24 19.95V4.05a1.5 1.5 0 0 0-.85-1.463ZM18 17.5l-6-5.5 6-5.5Z"/></svg></span>
+          <span class="node-label">VS Code</span>
         </div>
 
       </div>
