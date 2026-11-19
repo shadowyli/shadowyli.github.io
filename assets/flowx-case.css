@@ -78,14 +78,7 @@
   max-width: none;
   font-size: clamp(13px, 1vw, 15px);
 }
-.fx-reach-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 16px;
-}
-.fx-reach-head .fx-caption { margin: 0; }
-.fx-intro-copy p:last-child {
+.fx-intro-copy .fx-intro-note {
   margin: 0;
   color: var(--fx-muted);
   font-size: clamp(13px, 1vw, 15px);
@@ -323,13 +316,37 @@
 .fx-capabilities > div:last-child { border-bottom: 0; }
 .fx-capabilities dt { font-size: 14px; line-height: var(--fx-lh-meta); font-weight: 500; }
 .fx-capabilities dd { margin: 0; color: var(--fx-muted); font-size: 12.5px; line-height: var(--fx-lh-body); }
-.flowx-page .fx-reach { padding-top: var(--fx-gap-head); border-top: 0; }
 .fx-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 34px 0 20px; }
 .fx-metrics > div { padding: 6px 28px 6px 0; }
 .fx-metrics > div + div { padding-left: 28px; border-left: 1px solid var(--line); }
 .fx-metrics dt { font: 500 clamp(26px, 2.9vw, 40px)/1.15 "Archivo", sans-serif; letter-spacing: -.03em; }
 .fx-metrics dt span { font-size: .62em; }
 .fx-metrics dd { margin: 10px 0 0; font-size: 12.5px; color: var(--fx-muted); line-height: var(--fx-lh-meta); }
+
+/* 首屏右栏内嵌统计：随文案列宽收窄 */
+.fx-intro-copy .fx-metrics {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: clamp(22px, 2.4vw, 32px) 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.fx-intro-copy .fx-metrics > div { padding: 0 8px 0 0; }
+.fx-intro-copy .fx-metrics > div + div { padding-left: 8px; border-left: 1px solid var(--line); }
+.fx-intro-copy .fx-metrics dt { font-size: clamp(21px, 2vw, 27px); }
+.fx-intro-copy .fx-metrics dd { margin-top: 6px; font-size: clamp(10px, .78vw, 10.5px); line-height: 1.4; text-wrap: balance; }
+
+@media (max-width: 1200px) {
+  .fx-intro-copy .fx-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 0;
+  }
+  .fx-intro-copy .fx-metrics > div { padding-right: 14px; }
+  .fx-intro-copy .fx-metrics > div + div { padding-left: 0; border-left: 0; }
+  .fx-intro-copy .fx-metrics > div:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
+  .fx-intro-copy .fx-metrics > div:nth-child(n+3) { padding-top: 16px; border-top: 1px solid var(--line); }
+  .fx-intro-copy .fx-metrics dd { font-size: 11px; }
+}
 .fx-lightbox { width: min(96vw, 1500px); max-width: 96vw; max-height: 96dvh; padding: 48px 12px 12px; background: var(--bg, #121115); color: var(--text, #fff); border: 1px solid #555; }
 .fx-lightbox::backdrop { background: rgb(0 0 0 / .88); }
 .fx-lightbox img { display: block; max-height: 80dvh; max-width: 100%; width: auto; height: auto; margin: auto; object-fit: contain; }
