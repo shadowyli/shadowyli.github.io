@@ -210,16 +210,16 @@
 }
 .flowx-page .case-body .fx-positioning {
   display: grid;
-  gap: clamp(18px, 2.2vw, 28px);
+  gap: 0;
   margin-top: clamp(28px, 3.2vw, 42px);
   padding-top: clamp(22px, 2.6vw, 32px);
   border-top: 1px solid var(--line);
 }
 .fx-positioning-head {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: clamp(20px, 2.6vw, 36px);
-  align-items: stretch;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
+  gap: clamp(28px, 3vw, 44px);
+  align-items: start;
 }
 .fx-positioning-lead { display: grid; align-content: start; gap: 8px; }
 .flowx-page .case-body .fx-positioning h3 {
@@ -234,22 +234,19 @@
 .fx-positioning-contrast strong { color: var(--text); font-size: var(--fx-type-statement); font-weight: 600; line-height: 1.35; }
 .fx-positioning-statement {
   display: grid;
-  align-content: center;
+  align-content: start;
   gap: 9px;
-  padding: clamp(20px, 2.2vw, 28px);
-  border: 1px solid var(--line);
-  border-left: 3px solid var(--fx-accent);
-  border-radius: 12px;
-  background: transparent;
-  color: var(--text);
 }
 .fx-positioning-label { color: var(--fx-accent); font: 600 var(--fx-type-label)/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
 .fx-positioning-statement strong { color: var(--text); font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
 .fx-positioning-statement p { margin: 0; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-positioning-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  gap: clamp(20px, 2.6vw, 36px);
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
+  gap: clamp(28px, 3vw, 44px);
+  margin-top: clamp(24px, 2.6vw, 34px);
+  padding-top: clamp(20px, 2.2vw, 28px);
+  border-top: 1px solid var(--line);
 }
 .fx-audiences-wrap, .fx-entries-wrap { min-width: 0; }
 .flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.5; }
@@ -303,7 +300,7 @@
 .fx-entry-label { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
 .fx-entry-desc { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-caption); line-height: 1.5; }
 .flowx-page .case-body .fx-positioning-note {
-  margin: 0;
+  margin: 20px 0 0;
   padding: 14px 18px;
   border-left: 3px solid var(--fx-accent);
   color: var(--fx-accent);
