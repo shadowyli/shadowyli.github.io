@@ -179,6 +179,15 @@ html:has(body.pipeline-page) {
   margin-bottom: 0;
 }
 
+.capability-section#vfx .capability-heading p {
+  margin-top: 8px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .01em;
+}
+
 .capability-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
