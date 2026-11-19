@@ -98,6 +98,7 @@
     if (!networkFrame || !networkCanvas) return;
     var scale = networkFrame.clientWidth / 1080;
     networkCanvas.style.setProperty("--net-scale", scale);
+    networkFrame.style.setProperty("--net-scale", scale);
     networkFrame.style.height = (324 * scale) + "px";
     networkFrame.classList.toggle("is-scaled", scale < 1);
   }

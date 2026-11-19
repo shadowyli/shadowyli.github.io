@@ -459,6 +459,11 @@ html:has(body.pipeline-page) {
   max-width: 100%;
   margin-inline: auto;
 }
+
+/* 画布顶部有一圈空白（第一排节点距画布约 32px），按缩放比例抵掉，让文字上下留白接近 */
+@media (min-width: 721px) {
+  .network-frame { margin-top: calc(-34px * var(--net-scale, 1)); }
+}
 .network-frame.is-scaled { overflow: hidden; }
 
 .network-canvas {
