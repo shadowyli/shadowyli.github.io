@@ -16,9 +16,9 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-25">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261118-26">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
-  <script src="../assets/ai-capabilities.js?v=20261118-18" defer></script>
+  <script src="../assets/ai-capabilities.js?v=20261118-19" defer></script>
 </head>
 <body class="case-page pipeline-page">
   <a class="skip-link" href="#pipeline-main" data-copy="skip">跳到正文</a>
@@ -37,10 +37,7 @@
   <main id="pipeline-main" tabindex="-1">
     <section class="capability-intro" aria-labelledby="intro-title">
       <h1 id="intro-title" class="sr-only" data-copy="title">AI 管线开发</h1>
-      <p class="intro-description">
-        <span class="intro-clause" data-copy="introA">掌握工具是为了不被工具定义，最终极的竞争力，</span>
-        <span class="intro-clause" data-copy="introB">是面对未知问题时，依然能拆解并解决它的底气。</span>
-      </p>
+      <p class="intro-description" data-copy="intro">工具是杠杆，解决问题的能力才是支点。</p>
     </section>
 
     <figure class="tool-network" aria-labelledby="tools-title">
@@ -54,6 +51,7 @@
             <path d="M180 60V300M1020 60V300M600 60V180"></path>
             <path d="M250 180V235M400 180V280M940 180V235"></path>
             <path d="M480 300H720M600 180V300"></path>
+            <path d="M300 180V300M870 180V300"></path>
           </g>
           <g class="network-flow" aria-hidden="true">
             <path pathLength="100" d="M180 60H600V180"></path>
@@ -70,6 +68,8 @@
             <path pathLength="100" d="M480 300H600V180"></path>
             <path pathLength="100" d="M600 300V180"></path>
             <path pathLength="100" d="M720 300H600V180"></path>
+            <path pathLength="100" d="M300 300V180H600"></path>
+            <path pathLength="100" d="M870 300V180H600"></path>
           </g>
           <g class="network-ticks">
             <path d="M306 48v12M506 60v12M870 48v12M945 60v12"></path>
@@ -84,6 +84,8 @@
             <circle cx="250" cy="180" r="2.5"></circle>
             <circle cx="400" cy="180" r="2.5"></circle>
             <circle cx="940" cy="180" r="2.5"></circle>
+            <circle cx="300" cy="180" r="2.5"></circle>
+            <circle cx="870" cy="180" r="2.5"></circle>
           </g>
         </svg>
 
@@ -100,6 +102,11 @@
         <div class="network-node" data-tool="midjourney" style="left:15%;top:83.333%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M12 5.4 6.2 13.4H12Z"/><path d="M12 8.2l3.6 5.2H12"/><path d="M3.6 16.6h16.8l-1.9 3.2H5.5l-1.9-3.2Z"/></svg></span>
           <span class="node-label">Midjourney</span>
+        </div>
+
+        <div class="network-node" data-tool="toon" style="left:25%;top:83.333%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.3"/><path class="shade" d="M14.5 4.1a8.3 8.3 0 0 1 0 15.8 60 60 0 0 0 0-15.8Z"/><circle class="glint" cx="8.7" cy="8.7" r="1.2"/></svg></span>
+          <span class="node-label">Toon Shading</span>
         </div>
 
         <div class="network-node" data-tool="lora" style="left:35%;top:16.667%">
@@ -132,6 +139,11 @@
         <div class="network-node" data-tool="ffmpeg" style="left:78.333%;top:65.278%">
           <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.72 17.91V6.5l-.53-.49L9.05 18.52l-1.29-.06L24 1.53l-.33-.95-11.93 1-5.75 6.6v-.23l4.7-5.39-1.38-.77-9.11.77v2.85l1.91.46v.01l.19-.01-.56.66v10.6c.61-.13 1.22-.24 1.83-.36L14.12 5.22l.83-.04L0 21.44l9.67.82 1.35-.77 6.82-6.74v2.15l-5.72 5.57 11.26.95.35-.94v-3.16l-3.29-.18c.44-.4.86-.82 1.28-1.23Z"/></svg></span>
           <span class="node-label">FFmpeg</span>
+        </div>
+
+        <div class="network-node" data-tool="xparticles" style="left:72.5%;top:83.333%">
+          <span class="node-tile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9.6" cy="9.4" r="1.8"/><circle cx="15.4" cy="7" r="1"/><circle cx="6.4" cy="14.8" r="1.1"/><circle cx="14.6" cy="14.9" r="2"/><circle cx="18.4" cy="12.2" r="0.9"/><circle cx="11.4" cy="18.6" r="0.9"/></svg></span>
+          <span class="node-label">X-Particles</span>
         </div>
 
         <div class="network-node" data-tool="doc" style="left:95.5%;top:50%">

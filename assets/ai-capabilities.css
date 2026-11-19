@@ -159,9 +159,6 @@ html:has(body.pipeline-page) {
   text-wrap: balance;
 }
 
-.intro-description .intro-clause { display: block; }
-html[lang="en"] .intro-description .intro-clause { display: inline; }
-
 /* ---------- sections ---------- */
 .capability-section {
   position: relative;
@@ -536,6 +533,8 @@ html[lang="en"] .intro-description .intro-clause { display: inline; }
 
 .network-node[data-tool="lora"] .node-tile svg,
 .network-node[data-tool="agent"] .node-tile svg,
+.network-node[data-tool="toon"] .node-tile svg,
+.network-node[data-tool="xparticles"] .node-tile svg,
 .network-node[data-tool="uniface"] .node-tile svg,
 .network-node[data-tool="stable-diffusion"] .node-tile svg,
 .network-node[data-tool="midjourney"] .node-tile svg,
@@ -552,6 +551,10 @@ html[lang="en"] .intro-description .intro-clause { display: inline; }
 }
 
 .network-node[data-tool="vscode"] .node-tile svg { fill: var(--signal); }
+
+.network-node[data-tool="toon"] .node-tile svg .shade { fill: var(--signal); stroke: none; }
+.network-node[data-tool="toon"] .node-tile svg .glint { fill: var(--signal); stroke: none; }
+.network-node[data-tool="xparticles"] .node-tile svg circle { fill: var(--signal); stroke: none; }
 
 .network-core .node-tile {
   width: 56px;
