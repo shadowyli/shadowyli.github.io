@@ -593,8 +593,16 @@ html:has(body.pipeline-page) {
   transform-origin: left;
 }
 
+.vfx-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 20px);
+  margin-top: clamp(18px, 2.2vw, 26px);
+}
+
 .vfx-figure {
-  margin: clamp(18px, 2.2vw, 26px) 0 0;
+  margin: 0;
   border: 1px solid var(--rule);
   border-radius: 18px;
   overflow: hidden;
@@ -603,6 +611,10 @@ html:has(body.pipeline-page) {
 
 .vfx-figure a { display: block; cursor: zoom-in; }
 .vfx-figure img { display: block; width: 100%; height: auto; }
+
+@media (max-width: 720px) {
+  .vfx-gallery { grid-template-columns: 1fr; align-items: start; }
+}
 
 /* ---------- footer ---------- */
 body.pipeline-page .case-footer {
