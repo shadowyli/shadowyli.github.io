@@ -196,6 +196,36 @@
   color: var(--fx-accent);
   font: 300 28px/1 "Archivo", sans-serif;
 }
+.flowx-page .case-body .fx-positioning {
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(28px, 3.2vw, 42px);
+  padding-top: clamp(22px, 2.6vw, 32px);
+  border-top: 1px solid var(--line);
+}
+.flowx-page .case-body .fx-positioning h3 {
+  margin: 0;
+  font-size: clamp(23px, 2.5vw, 33px);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -.025em;
+}
+.flowx-page .case-body .fx-positioning-copy {
+  margin: 0;
+  max-width: 76ch;
+  color: var(--fx-muted);
+  font-size: 13px;
+  line-height: var(--fx-lh-body);
+}
+.flowx-page .case-body .fx-positioning-sub { margin: 6px 0 0; color: var(--text); font-size: 14px; font-weight: 600; line-height: 1.5; }
+.fx-audiences { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 6px; }
+.fx-audiences > div { padding: 12px 24px 12px 0; }
+.fx-audiences > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.fx-audiences strong { display: block; margin-bottom: 6px; color: var(--text); font-size: 14px; font-weight: 600; }
+.fx-audiences span { color: var(--fx-muted); font-size: 12.5px; line-height: var(--fx-lh-body); }
+.fx-entries { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.fx-entries li { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; color: var(--fx-muted); font-size: 11.5px; line-height: 1.4; }
+.fx-positioning-note { margin: 6px 0 0; color: var(--fx-accent); font-size: clamp(13px, 1.1vw, 15px); font-weight: 500; line-height: var(--fx-lh-body); }
 .flowx-page .fx-responsibility { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
 .flowx-page .case-body .fx-section.flowx-intro { margin-top: 0; padding-top: 0; border-top: 0; }
 .flowx-page .case-body .fx-section {
@@ -457,6 +487,9 @@
   .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-plus,
   .flowx-page .case-body .fx-solution-eq { display: none; }
+  .fx-audiences { grid-template-columns: minmax(0, 1fr); }
+  .fx-audiences > div { padding: 12px 0; }
+  .fx-audiences > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .fx-poster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
   .fx-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
   .fx-dcc { justify-content: flex-start; font-size: 11px; gap: 9px; }
