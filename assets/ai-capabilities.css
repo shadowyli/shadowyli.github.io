@@ -411,7 +411,7 @@ html:has(body.pipeline-page) {
 
 .network-frame {
   width: 100%;
-  max-width: 1080px;
+  max-width: 100%;
   margin-inline: auto;
 }
 .network-frame.is-scaled { overflow: hidden; }

@@ -97,7 +97,7 @@
   var networkCanvas = document.querySelector(".network-canvas");
   function scaleNetwork() {
     if (!networkFrame || !networkCanvas) return;
-    var scale = Math.min(1, networkFrame.clientWidth / 1080);
+    var scale = networkFrame.clientWidth / 1080;
     networkCanvas.style.setProperty("--net-scale", scale);
     networkFrame.style.height = (324 * scale) + "px";
     networkFrame.classList.toggle("is-scaled", scale < 1);
