@@ -145,12 +145,11 @@
 }
 .flowx-page .case-body .fx-solution {
   display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, .8fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
   gap: clamp(16px, 2vw, 30px);
   align-items: center;
-  padding: clamp(4px, .6vw, 8px) 0 clamp(4px, .6vw, 8px) clamp(16px, 1.8vw, 24px);
+  padding: clamp(4px, .6vw, 8px) 0;
   border: 0;
-  border-left: 3px solid var(--fx-accent);
   border-radius: 0;
   background: none;
 }
@@ -192,7 +191,8 @@
   font-size: 12px;
   line-height: var(--fx-lh-body);
 }
-.flowx-page .case-body .fx-solution-plus {
+.flowx-page .case-body .fx-solution-plus,
+.flowx-page .case-body .fx-solution-eq {
   align-self: center;
   color: var(--fx-accent);
   font: 300 28px/1 "Archivo", sans-serif;
@@ -453,7 +453,8 @@
   }
   .flowx-page .case-body .fx-solution-brand { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
-  .flowx-page .case-body .fx-solution-plus { display: none; }
+  .flowx-page .case-body .fx-solution-plus,
+  .flowx-page .case-body .fx-solution-eq { display: none; }
   .fx-poster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
   .fx-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
   .fx-dcc { justify-content: flex-start; font-size: 11px; gap: 9px; }
