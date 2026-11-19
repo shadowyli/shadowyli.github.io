@@ -429,25 +429,12 @@ html:has(body.pipeline-page) {
   transition: border-color 200ms ease, transform 200ms ease;
 }
 
-.application-flow > div > span {
-  display: inline-flex;
-  margin-bottom: 12px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--signal) 12%, transparent);
-  color: var(--signal);
-  font-size: 10.5px;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.09em;
-}
-
 .application-flow strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.5; }
 .application-flow p { margin-top: 8px; color: var(--muted); font-size: 14px; }
 
 .application-flow > div:not(:last-child)::after {
   position: absolute;
-  top: 24px;
+  top: 30px;
   right: -13px;
   width: 12px;
   height: 1px;
