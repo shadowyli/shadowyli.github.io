@@ -6,7 +6,7 @@
     intro: "Tools are the lever; problem-solving is the fulcrum.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
-    module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline building",
+    module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
     vfxLead: "Blender toon shading",
     upscaleTitle: "16K tiled restoration · AI upscaling pipeline",
     caseCta: "View project case",
