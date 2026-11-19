@@ -422,6 +422,7 @@
   .fx-toolbox { padding: 0; gap: 24px; }
   .flowx-page .fx-toolbox .fx-section-head { margin-bottom: var(--fx-gap-head); }
   .flowx-page .case-body .fx-toolbox h2 { max-width: none; font-size: 26px; }
+  .flowx-page .fx-toolbox .fx-workspace-media { order: -1; }
   .fx-capabilities > div { grid-template-columns: minmax(96px, .8fr) minmax(0, 1.2fr); gap: 12px; padding: 13px 0; }
   .fx-capabilities dt { font-size: 12px; }
   .fx-capabilities dd { font-size: 11px; }
