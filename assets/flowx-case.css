@@ -450,6 +450,7 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
     padding: 0;
+    border-left: 0;
   }
   .flowx-page .case-body .fx-solution-brand { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
