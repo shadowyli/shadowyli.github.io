@@ -3,7 +3,8 @@
   var english = {
     skip: "Skip to content", back: "← Back to Work", navWork: "Work", navAbout: "About Me",
     name: "Shadow · Li Ying", role: "Project initiator / Lead", title: "AI pipeline development",
-    intro: "Tools don't define you. The real edge is the confidence to break down and solve unfamiliar problems.",
+    introA: "Tools don't define you.",
+    introB: "The real edge is breaking down and solving the unknown.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents",
