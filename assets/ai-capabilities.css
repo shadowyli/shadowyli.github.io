@@ -344,6 +344,32 @@ html:has(body.pipeline-page) {
 }
 
 /* ---------- application flow ---------- */
+.application-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 20px);
+  margin-top: 8px;
+}
+
+.application-shot {
+  margin: 0;
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.application-shot a { display: block; cursor: zoom-in; }
+.application-shot img { display: block; width: 100%; height: auto; }
+
+.application-split .application-flow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 0;
+}
+
+.application-split .application-flow > div::after { display: none; }
+
 .application-flow {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -648,6 +674,7 @@ body.pipeline-page .case-footer {
 @media (max-width: 1000px) {
   .capability-heading { grid-template-columns: minmax(0, 1fr); gap: 12px 18px; }
   .skill-tags { grid-column: 1; justify-content: flex-start; padding-top: 0; }
+  .application-split { grid-template-columns: minmax(0, 1fr); }
   .workflow-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .workflow-track li:nth-child(2)::after { display: none; }
   .application-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -685,6 +712,7 @@ body.pipeline-page .case-footer {
   .pipeline-example { padding: 18px; border-radius: 20px; }
   .workflow-track,
   .application-flow { grid-template-columns: 1fr; }
+  .application-split .application-flow { grid-template-columns: 1fr; }
   .workflow-track li::after { display: none; }
   .workflow-track li { padding: 16px 16px 18px; }
   .step-index { margin-bottom: 10px; }
