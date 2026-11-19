@@ -568,13 +568,10 @@ html:has(body.pipeline-page) {
 .network-core .node-tile svg { width: 26px; height: 26px; fill: var(--accent-ink); }
 
 .network-core .node-tile svg.core-brain {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: var(--accent-ink);
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  width: 30px;
+  height: 30px;
+  fill: var(--accent-ink);
+  stroke: none;
 }
 
 .network-core .node-label { color: var(--ink); font-weight: 600; }
