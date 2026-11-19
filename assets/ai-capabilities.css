@@ -595,15 +595,13 @@ html:has(body.pipeline-page) {
 
 .vfx-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.69fr);
   align-items: start;
   gap: clamp(12px, 1.6vw, 20px);
   margin-top: clamp(18px, 2.2vw, 26px);
 }
 
 .vfx-col { display: grid; gap: clamp(12px, 1.6vw, 20px); align-content: start; }
-
-.vfx-pair { display: grid; grid-template-columns: minmax(0, 1.62fr) minmax(0, 1fr); gap: clamp(12px, 1.6vw, 20px); align-items: start; }
 
 .vfx-figure {
   margin: 0;
@@ -618,7 +616,6 @@ html:has(body.pipeline-page) {
 
 @media (max-width: 720px) {
   .vfx-layout { grid-template-columns: 1fr; }
-  .vfx-pair { grid-template-columns: 1fr; }
 }
 
 /* ---------- footer ---------- */
