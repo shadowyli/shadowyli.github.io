@@ -244,7 +244,7 @@
   color: var(--text);
 }
 .fx-positioning-label { color: var(--fx-accent); font: 600 var(--fx-type-label)/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
-.fx-positioning-statement strong { color: var(--text); font-size: var(--fx-type-statement); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
+.fx-positioning-statement strong { color: var(--text); font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
 .fx-positioning-statement p { margin: 0; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-positioning-grid {
   display: grid;
@@ -252,7 +252,7 @@
   gap: clamp(20px, 2.6vw, 36px);
 }
 .fx-audiences-wrap, .fx-entries-wrap { min-width: 0; }
-.flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.5; }
+.flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.5; }
 .fx-audiences { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 0; }
 .fx-audiences > div {
   display: grid;
@@ -300,14 +300,14 @@
   font: 600 var(--fx-type-label)/1.4 "Space Grotesk", sans-serif;
   letter-spacing: .04em;
 }
-.fx-entry-label { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); line-height: 1.4; }
+.fx-entry-label { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
 .fx-entry-desc { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-caption); line-height: 1.5; }
 .flowx-page .case-body .fx-positioning-note {
   margin: 0;
   padding: 14px 18px;
   border-left: 3px solid var(--fx-accent);
   color: var(--fx-accent);
-  font-size: var(--fx-type-body);
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.6;
 }
