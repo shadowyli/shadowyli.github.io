@@ -340,6 +340,9 @@ html:has(body.pipeline-page) {
   margin-top: clamp(16px, 1.8vw, 22px);
 }
 
+.capability-section#pipelines .capability-heading { margin-bottom: clamp(10px, 1.1vw, 14px); }
+.capability-section#pipelines .capability-heading + .pipe-block { margin-top: 0; }
+
 .pipe-pair {
   display: grid;
   grid-template-columns: minmax(0, 2.66fr) minmax(0, 1fr);
