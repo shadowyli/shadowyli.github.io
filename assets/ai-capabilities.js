@@ -12,7 +12,6 @@
     caseCta: "View project case",
     vfxC4d: "C4D toon shading",
     vfxXparticles: "X-Particles procedural drifting sand",
-    pipelineLead: "Connect generation, processing, composition and export around business specifications.",
     custom: "Custom workflows", batch: "Batch processing",
     portraitExample: "Player portrait pipeline", workflowNote: "Illustration of a real business workflow",
     portraitInput: "Photo + event requirements", portraitInputDetail: "Provide source photos and define clothing, background and delivery specifications.",
