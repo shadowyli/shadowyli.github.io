@@ -144,7 +144,7 @@
 }
 .flowx-page .case-body .fx-solution {
   display: grid;
-  grid-template-columns: minmax(0, .8fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, .8fr);
   gap: clamp(16px, 2vw, 30px);
   align-items: center;
   padding: clamp(4px, .6vw, 8px) 0;
