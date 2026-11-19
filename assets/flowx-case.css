@@ -226,7 +226,7 @@
 }
 .flowx-page .case-body .fx-positioning-copy {
   margin: 0;
-  max-width: 78ch;
+  max-width: 100ch;
   color: var(--fx-muted);
   font-size: var(--fx-type-body);
   line-height: var(--fx-lh-body);
