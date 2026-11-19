@@ -123,6 +123,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   column-gap: 8px;
   align-items: baseline;
+  align-content: start;
   min-width: 0;
   padding: 2px clamp(16px, 2vw, 28px);
   border: 0;
@@ -215,11 +216,6 @@
   padding-top: clamp(22px, 2.6vw, 32px);
   border-top: 1px solid var(--line);
 }
-.fx-positioning-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
-}
 .fx-positioning-lead { display: grid; align-content: start; gap: 8px; }
 .flowx-page .case-body .fx-positioning h3 {
   margin: 0;
@@ -228,17 +224,13 @@
   line-height: var(--fx-lh-heading);
   letter-spacing: -.025em;
 }
-.fx-positioning-contrast { display: grid; gap: 4px; margin: 8px 0 0; }
-.fx-positioning-contrast span { color: var(--fx-muted); font-size: var(--fx-type-body); line-height: 1.5; }
-.fx-positioning-contrast strong { color: var(--text); font-size: var(--fx-type-statement); font-weight: 600; line-height: 1.35; }
-.fx-positioning-statement {
-  display: block;
-  max-width: 76ch;
-  margin-top: 4px;
+.flowx-page .case-body .fx-positioning-copy {
+  margin: 0;
+  max-width: 78ch;
+  color: var(--fx-muted);
+  font-size: var(--fx-type-body);
+  line-height: var(--fx-lh-body);
 }
-.fx-positioning-label { display: inline; margin-right: 10px; color: var(--fx-accent); font: 600 var(--fx-type-label)/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
-.fx-positioning-statement strong { display: inline; color: var(--text); font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
-.fx-positioning-statement p { margin: 6px 0 0; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-positioning-grid {
   display: grid;
   grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
@@ -266,26 +258,14 @@
 }
 .fx-audiences > div {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  column-gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 4px;
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
 }
-.fx-aud-index {
-  grid-row: 1 / span 2;
-  align-self: start;
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border: 1px solid color-mix(in srgb, var(--fx-accent) 40%, var(--line));
-  border-radius: 50%;
-  color: var(--fx-accent);
-  font: 600 var(--fx-type-label)/1 "Space Grotesk", sans-serif;
-}
-.fx-audiences strong { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
-.fx-audiences > div > span:last-child { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
+.fx-audiences strong { grid-column: 1; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
+.fx-audiences > div > span:last-child { grid-column: 1; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-entries {
   grid-row: 2 / -1;
   display: grid;
@@ -314,14 +294,6 @@
 }
 .fx-entry-label { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
 .fx-entry-desc { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-caption); line-height: 1.5; }
-.flowx-page .case-body .fx-positioning-note {
-  margin: 0;
-  max-width: 76ch;
-  color: var(--text);
-  font-size: var(--fx-type-body);
-  font-weight: 500;
-  line-height: var(--fx-lh-body);
-}
 .flowx-page .fx-responsibility { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
 .flowx-page .case-body .fx-section.flowx-intro { margin-top: 0; padding-top: 0; border-top: 0; }
 .flowx-page .case-body .fx-section {
@@ -529,14 +501,6 @@
   background: var(--fx-accent);
   content: "";
 }
-.flowx-page .case-body .fx-gates-quote {
-  margin: 18px 0 0;
-  color: var(--fx-accent);
-  font-size: var(--fx-type-statement);
-  font-weight: 600;
-  line-height: var(--fx-lh-body);
-}
-
 @media (max-width: 1000px) {
   .fx-positioning-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -704,7 +668,6 @@
 }
 
 @media (max-width: 420px) {
-  .fx-positioning-statement { padding: 18px; }
   .fx-entries { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
