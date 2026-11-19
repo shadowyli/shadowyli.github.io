@@ -242,14 +242,28 @@
 .fx-positioning-grid {
   display: grid;
   grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
-  gap: clamp(28px, 3vw, 44px);
+  grid-template-rows: auto auto auto;
+  column-gap: clamp(28px, 3vw, 44px);
+  row-gap: 10px;
   margin-top: clamp(24px, 2.6vw, 34px);
   padding-top: clamp(20px, 2.2vw, 28px);
   border-top: 1px solid var(--line);
 }
-.fx-audiences-wrap, .fx-entries-wrap { min-width: 0; }
-.flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.5; }
-.fx-audiences { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin: 0; }
+.fx-audiences-wrap, .fx-entries-wrap {
+  display: grid;
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+  min-width: 0;
+}
+.flowx-page .case-body .fx-positioning-sub { margin: 0; color: var(--text); font-size: 16px; font-weight: 600; line-height: 1.5; }
+.fx-audiences {
+  grid-row: 2 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: subgrid;
+  column-gap: 0;
+  margin: 0;
+}
 .fx-audiences > div {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -273,9 +287,11 @@
 .fx-audiences strong { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
 .fx-audiences > div > span:last-child { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-entries {
+  grid-row: 2 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-rows: subgrid;
+  column-gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -299,13 +315,12 @@
 .fx-entry-label { grid-column: 2; color: var(--text); font-size: var(--fx-type-body); font-weight: 600; line-height: 1.4; }
 .fx-entry-desc { grid-column: 2; color: var(--fx-muted); font-size: var(--fx-type-caption); line-height: 1.5; }
 .flowx-page .case-body .fx-positioning-note {
-  margin: 20px 0 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--fx-accent);
-  color: var(--fx-accent);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 1.6;
+  margin: 0;
+  max-width: 76ch;
+  color: var(--text);
+  font-size: var(--fx-type-body);
+  font-weight: 500;
+  line-height: var(--fx-lh-body);
 }
 .flowx-page .fx-responsibility { margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line); }
 .flowx-page .case-body .fx-section.flowx-intro { margin-top: 0; padding-top: 0; border-top: 0; }
@@ -523,7 +538,16 @@
 }
 
 @media (max-width: 1000px) {
-  .fx-positioning-grid { grid-template-columns: minmax(0, 1fr); }
+  .fx-positioning-grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto;
+    row-gap: 0;
+  }
+  .fx-audiences-wrap, .fx-entries-wrap { display: block; grid-row: auto; }
+  .flowx-page .case-body .fx-positioning-sub { margin: 0 0 12px; }
+  .fx-audiences { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto; gap: 10px; }
+  .fx-entries { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto; gap: 10px; }
+  .fx-entries-wrap { margin-top: 24px; }
   .fx-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
   .fx-gates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .fx-gate { padding: 16px 18px 18px 0; }
