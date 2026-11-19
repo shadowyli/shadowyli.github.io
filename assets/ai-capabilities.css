@@ -172,7 +172,9 @@ html:has(body.pipeline-page) {
 }
 
 .capability-section#pipelines {
-  padding-top: 0;
+  margin-top: clamp(36px, 4vw, 52px);
+  padding-top: clamp(30px, 3.2vw, 44px);
+  border-top: 1px solid var(--rule);
 }
 
 .capability-section#vfx .capability-heading {
@@ -766,7 +768,7 @@ body.pipeline-page .case-footer {
   body.pipeline-page { --header-size: 60px; --gutter: 22px; }
   .pipe-pair { gap: 6px; }
   .pipe-pair--media { grid-template-columns: minmax(0, 1fr); }
-  body.pipeline-page .capability-section#pipelines { padding-top: 14px; }
+  body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
   .example-heading h3 { font-size: 16px; }
   html:has(body.pipeline-page) { scroll-padding-top: 80px; }
