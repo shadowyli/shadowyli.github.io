@@ -3,7 +3,7 @@
   var english = {
     skip: "Skip to content", back: "← Back to Work", navWork: "Work", navAbout: "About Me",
     name: "Shadow · Li Ying", role: "Project initiator / Lead", title: "AI pipeline development",
-    intro: "Generation and training, connected to business workflows and applications.",
+    intro: "From image generation and model training to business workflows and applications.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My AI practice", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents",
