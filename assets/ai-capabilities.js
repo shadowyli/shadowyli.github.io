@@ -8,6 +8,7 @@
     loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline building",
     vfxLead: "Blender toon shading",
+    upscaleTitle: "16K tiled restoration · AI upscaling pipeline",
     vfxC4d: "C4D toon shading",
     vfxXparticles: "X-Particles procedural drifting sand",
     pipelineLead: "Connect generation, processing, composition and export around business specifications.",

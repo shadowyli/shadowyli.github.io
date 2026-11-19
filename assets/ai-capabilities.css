@@ -334,6 +334,21 @@ html:has(body.pipeline-page) {
 
 .responsibility-note strong { color: var(--ink); font-weight: 600; }
 
+.pipe-block {
+  display: grid;
+  gap: clamp(10px, 1.1vw, 14px);
+  margin-top: clamp(16px, 1.8vw, 22px);
+}
+
+.pipe-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 2.66fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(9px, 0.9vw, 12px);
+}
+
+.pipe-pair .vfx-figure img { width: 100%; height: auto; }
+
 .capability-section .scope-note {
   max-width: 90ch;
   margin-top: 24px;
@@ -720,6 +735,7 @@ body.pipeline-page .case-footer {
 
 @media (max-width: 720px) {
   body.pipeline-page { --header-size: 60px; --gutter: 22px; }
+  .pipe-pair { grid-template-columns: minmax(0, 1fr); }
   .example-heading h3 { font-size: 16px; }
   html:has(body.pipeline-page) { scroll-padding-top: 80px; }
   .pipeline-page #pipeline-main { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
