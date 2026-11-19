@@ -401,41 +401,6 @@ html:has(body.pipeline-page) {
   .application-flow > div:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--signal) 35%, var(--rule)); }
 }
 
-/* ---------- practice banner ---------- */
-.practice-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 22px;
-  padding: 24px 28px;
-  border: 1px solid color-mix(in srgb, var(--signal) 30%, var(--rule));
-  border-radius: 22px;
-  background: var(--panel);
-}
-
-.practice-link > div { min-width: 0; }
-.practice-link strong { font-size: 20px; font-weight: 600; }
-.practice-link p { max-width: 66ch; margin-top: 6px; color: var(--muted); font-size: 14.5px; }
-
-.practice-link > a {
-  flex-shrink: 0;
-  max-width: 100%;
-  display: inline-flex;
-  align-items: center;
-  min-height: 42px;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: var(--signal);
-  color: var(--accent-ink);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 180ms ease;
-}
-
-.practice-link > a:hover { transform: translateY(-1px); }
-
 /* ---------- tool network ---------- */
 .tool-network {
   width: min(100%, calc(var(--content-width) + var(--gutter) * 2));
@@ -766,7 +731,6 @@ body.pipeline-page .case-footer {
   .production-examples article { padding: 18px; }
   .application-flow { gap: 12px; }
   .application-flow > div::after { display: none; }
-  .practice-link { flex-direction: column; align-items: flex-start; padding: 20px; }
 }
 
 @media (max-width: 380px) {
@@ -803,6 +767,5 @@ body.pipeline-page .case-footer {
   .capability-intro,
   .capability-section,
   .capability-section#pipelines { min-height: 0; padding-block: 24px; }
-  .pipeline-example,
-  .practice-link { box-shadow: none; }
+  .pipeline-example { box-shadow: none; }
 }

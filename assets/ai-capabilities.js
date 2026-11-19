@@ -28,8 +28,6 @@
     app4: "Deliver or escalate", app4Detail: "Collect outputs, retry failures and escalate when results cannot be confirmed.",
     appResponsibility: "Built the first MVP; led the development that followed.",
     appResponsibilityDetail: "Own product and UI/UX, core development, priorities, release planning and acceptance. Establish development and release standards, onboarding and feedback loops.",
-    flowxDescription: "Selected practice. Product features and business outcomes are covered in the separate case.",
-    flowxLink: "Explore the product case ↗",
     footerNote: "Shadow · Visual Design Portfolio", contactMe: "Contact me"
   };
   var elements = Array.from(document.querySelectorAll("[data-copy]"));
