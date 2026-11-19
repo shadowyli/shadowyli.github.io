@@ -175,6 +175,10 @@ html:has(body.pipeline-page) {
   padding-top: clamp(20px, 2.2vw, 30px);
 }
 
+.capability-section#vfx .capability-heading {
+  margin-bottom: 0;
+}
+
 .capability-heading {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
