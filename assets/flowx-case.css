@@ -120,15 +120,14 @@
   column-gap: 8px;
   align-items: baseline;
   min-width: 0;
-  padding: 18px 18px 20px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--text) 3%, transparent);
-  transition: border-color 200ms ease, background-color 200ms ease;
+  padding: 2px clamp(16px, 2vw, 28px);
+  border: 0;
+  border-radius: 0;
+  background: none;
 }
-.flowx-page .case-body .fx-painlist > li:hover {
-  border-color: color-mix(in srgb, var(--fx-accent) 40%, var(--line));
-  background: color-mix(in srgb, var(--text) 5%, transparent);
+.flowx-page .case-body .fx-painlist > li:first-child { padding-left: 0; }
+.flowx-page .case-body .fx-painlist > li + li {
+  border-left: 1px solid var(--line);
 }
 .flowx-page .case-body .fx-painlist span {
   display: block;
@@ -156,11 +155,11 @@
   grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) auto minmax(0, 1fr);
   gap: clamp(16px, 2vw, 30px);
   align-items: center;
-  padding: clamp(20px, 2.2vw, 28px) clamp(22px, 2.4vw, 32px);
-  border: 1px solid color-mix(in srgb, var(--fx-accent) 24%, var(--line));
+  padding: clamp(4px, .6vw, 8px) 0 clamp(4px, .6vw, 8px) clamp(16px, 1.8vw, 24px);
+  border: 0;
   border-left: 3px solid var(--fx-accent);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--fx-accent) 6%, transparent);
+  border-radius: 0;
+  background: none;
 }
 .flowx-page .case-body .fx-solution-brand {
   display: grid;
@@ -188,7 +187,12 @@
   font-weight: 600;
   line-height: var(--fx-lh-heading);
 }
-.flowx-page .case-body .fx-solution-item { padding: 0; border: 0; background: none; }
+.flowx-page .case-body .fx-solution-item {
+  padding: clamp(14px, 1.6vw, 18px) clamp(16px, 1.8vw, 22px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
 .flowx-page .case-body .fx-solution-item p {
   margin: 0;
   color: var(--fx-muted);
@@ -418,6 +422,12 @@
   .fx-marketing-grid { gap: 6px; }
   .flowx-page .fx-marketing-grid img { height: 150px; width: auto; }
   .flowx-page .case-body .fx-painlist { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 18px; margin-bottom: 24px; }
+  .flowx-page .case-body .fx-painlist > li { padding-inline: 0; }
+  .flowx-page .case-body .fx-painlist > li + li { border-left: 0; }
+  .flowx-page .case-body .fx-painlist > li:nth-child(even) {
+    padding-left: 18px;
+    border-left: 1px solid var(--line);
+  }
   .flowx-page .case-body .fx-brief { margin-bottom: 24px; padding-left: 14px; }
   .flowx-page .case-body .fx-solution {
     grid-template-columns: minmax(0, 1fr);
