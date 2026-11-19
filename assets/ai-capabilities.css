@@ -379,6 +379,9 @@ html:has(body.pipeline-page) {
 /* 三段拼图（2483×1150）与工作流（1157×871）按各自比例分栏，两个框自然等高 */
 .pipe-pair--outfit { grid-template-columns: minmax(0, 2.16fr) minmax(0, 1.33fr); }
 
+/* 翻拍对比（1193×1600）与工作流（1644×777）按各自比例分栏，两个框自然等高 */
+.pipe-pair--film { grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.12fr); }
+
 .capability-section .scope-note {
   max-width: 90ch;
   margin-top: 24px;
@@ -803,6 +806,7 @@ body.pipeline-page .case-footer {
   .pipe-pair { gap: 6px; }
   .pipe-pair--media { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--outfit { grid-template-columns: minmax(0, 1fr); }
+  .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
   body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
   .example-heading h3 { font-size: 16px; }
