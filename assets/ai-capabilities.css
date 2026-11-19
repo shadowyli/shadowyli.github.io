@@ -368,6 +368,7 @@ html:has(body.pipeline-page) {
 }
 
 .application-shot {
+  position: relative;
   margin: 0;
   border: 1px solid var(--rule);
   border-radius: 16px;
@@ -375,8 +376,34 @@ html:has(body.pipeline-page) {
   background: var(--panel);
 }
 
-.application-shot a { display: block; cursor: zoom-in; }
+.application-shot a { position: relative; display: block; cursor: pointer; }
 .application-shot img { display: block; width: 100%; height: auto; }
+
+.application-shot-cta {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--signal);
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.application-shot-cta svg { width: 14px; height: 14px; }
+
+@media (hover: hover) {
+  .application-shot a:hover .application-shot-cta {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  }
+}
 
 .application-split .application-flow {
   grid-template-columns: repeat(2, minmax(0, 1fr));
