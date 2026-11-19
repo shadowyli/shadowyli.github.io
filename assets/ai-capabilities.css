@@ -583,6 +583,23 @@ html:has(body.pipeline-page) {
 
 .vfx-col { display: grid; gap: clamp(9px, 0.9vw, 12px); align-content: start; }
 
+.vfx-more {
+  display: grid;
+  gap: clamp(12px, 1.4vw, 16px);
+  margin-top: clamp(18px, 2vw, 26px);
+  padding-top: clamp(16px, 1.8vw, 22px);
+  border-top: 1px solid var(--rule);
+}
+
+.vfx-subtitle {
+  margin: 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: .01em;
+}
+
 .vfx-figure {
   margin: 0;
   border: 1px solid var(--rule);

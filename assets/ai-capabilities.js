@@ -8,6 +8,7 @@
     loraLabel: "LoRA training", coreLabel: "My technical exploration", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline building",
     vfxLead: "Blender toon shading",
+    vfxXparticles: "X-Particles procedural drifting sand",
     pipelineLead: "Connect generation, processing, composition and export around business specifications.",
     custom: "Custom workflows", batch: "Batch processing",
     portraitExample: "Player portrait pipeline", workflowNote: "Illustration of a real business workflow",
