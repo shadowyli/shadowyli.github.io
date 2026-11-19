@@ -6,7 +6,7 @@
     intro: "Generation and training, connected to business workflows and applications.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My AI practice", docLabel: "Doc writing",
-    module1: "AI pipeline building", module2: "Style LoRA training", module3: "AI applications & agents",
+    module1: "AI pipeline building", module3: "AI applications & agents",
     pipelineLead: "Connect generation, processing, composition and export around business specifications.",
     custom: "Custom workflows", batch: "Batch processing",
     portraitExample: "Player portrait pipeline", workflowNote: "Illustration of a real business workflow",
@@ -20,13 +20,6 @@
     automationTitle: "Team logo adaptation", automationDetail: "Upload a logo → add outlines → adapt to multiple sizes → categorise and name outputs, reducing repetitive work.",
     pipelineResponsibility: "Help colleagues learn the methods",
     pipelineResponsibilityDetail: "Write ComfyUI and n8n guides, and teach workflow building through internal training, exercises and project coaching.",
-    loraLead: "Prepare training data and train a model around a target style.",
-    datasetTag: "Dataset preparation", styleTag: "Style customisation",
-    bucketLabel: "Bucket grouping illustration",
-    portrait: "Portrait", square: "Square", landscape: "Landscape", loraOutput: "A LoRA for the target style",
-    training1: "Prepare the dataset", training1Detail: "Organise and process training images for the target style.",
-    training2: "Group into buckets", training2Detail: "Group by similar aspect ratios to organise training batches.",
-    training3: "Train the LoRA", training3Detail: "Train on the prepared dataset to capture the style in a loadable model.",
     appLead: "Package specialist workflows as web services, accessible through business forms or natural language.",
     toolTag: "Tool calling", orchestrationTag: "Orchestration", qualityTag: "Quality & error handling",
     app1: "Express the request", app1Detail: "Fill in business parameters or describe a goal in natural language.",
@@ -68,20 +61,18 @@
       if (typeof dictionary[element.dataset.copy] === "string") element.textContent = dictionary[element.dataset.copy];
     });
     document.documentElement.lang = language === "en" ? "en" : "zh-CN";
-    document.title = language === "en" ? "AI Pipelines, LoRA & Agents · Shadow Li Ying | Shadowyli" : "AI 管线开发 · 影子 李颖 | Shadowyli";
+    document.title = language === "en" ? "AI Pipelines & Agents · Shadow Li Ying | Shadowyli" : "AI 管线开发 · 影子 李颖 | Shadowyli";
     document.querySelector('meta[name="description"]').content = language === "en"
-      ? "Shadow Li Ying's AI pipeline building, style LoRA training and AI application and agent development."
-      : "影子（李颖）的 AI 管线搭建、LoRA 风格训练、AI 应用与 Agent 开发实践。项目发起人、负责人，亲自承担关键设计与开发。";
+      ? "Shadow Li Ying's AI pipeline building, AI applications and agent development."
+      : "影子（李颖）的 AI 管线搭建、AI 应用与 Agent 开发实践。项目发起人、负责人，亲自承担关键设计与开发。";
     languageButton.textContent = language === "en" ? "CN" : "EN";
     languageButton.setAttribute("aria-label", language === "en" ? "Switch to Chinese" : "切换到英文");
-    document.querySelector(".bucket-visual").setAttribute("aria-label", language === "en" ? "Images grouped by similar aspect ratios for style LoRA training" : "图集按相近宽高比分桶，再用于风格 LoRA 训练");
     updateThemeLabel();
     requestUpdate();
   }
 
   var sections = Array.from(document.querySelectorAll(".capability-section"));
   var steps = Array.from(document.querySelectorAll(".workflow-track > li"));
-  var training = document.querySelector(".bucket-visual");
   var frame = 0;
   var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -92,7 +83,6 @@
     var documentRange = document.documentElement.scrollHeight - viewport;
     var track = document.querySelector(".workflow-track");
     var stepBounds = track ? track.getBoundingClientRect() : null;
-    var trainingBounds = training.getBoundingClientRect();
     var sectionBounds = sections.map(function (section) { return section.getBoundingClientRect(); });
     if (stepBounds && steps.length) {
       var progress = clamp((viewport * .85 - stepBounds.top) / (viewport * .6 + stepBounds.height * .45));
@@ -101,7 +91,6 @@
     }
     sections.forEach(function (section, index) { section.classList.toggle("is-in-view", sectionBounds[index].top < viewport * .65 && sectionBounds[index].bottom > viewport * .2); });
     document.body.style.setProperty("--read-progress", documentRange > 0 ? clamp(window.scrollY / documentRange) : 1);
-    training.style.setProperty("--training-progress", reducedMotion.matches ? 1 : clamp((viewport - trainingBounds.top) / (viewport + trainingBounds.height)));
   }
   function requestUpdate() {
     if (!frame) frame = requestAnimationFrame(updateScroll);

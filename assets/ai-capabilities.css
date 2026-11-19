@@ -344,69 +344,6 @@ html:has(body.pipeline-page) {
 .production-examples h3 { font-size: 19px; font-weight: 600; line-height: 1.5; }
 .production-examples p { max-width: 62ch; margin-top: 9px; color: var(--muted); font-size: 14.5px; }
 
-/* ---------- training ---------- */
-.training-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: start;
-  gap: 28px;
-}
-
-.bucket-visual {
-  position: relative;
-  min-width: 0;
-  padding: 26px;
-  border: 1px solid var(--rule);
-  border-radius: 22px;
-  background: var(--panel);
-  box-shadow: var(--shadow-card);
-}
-
-.bucket-label { display: block; color: var(--muted); font-size: 13px; }
-
-.bucket-groups {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-block: 26px;
-}
-
-.bucket-group { min-width: 0; }
-.buckets { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px; min-height: 72px; }
-
-.buckets i {
-  display: block;
-  flex: 0 0 auto;
-  width: 24px;
-  height: 32px;
-  border: 1px solid color-mix(in srgb, var(--signal) 55%, var(--rule));
-  border-radius: 5px;
-  background: color-mix(in srgb, var(--signal) 9%, transparent);
-}
-
-.buckets i.portrait { width: 22px; height: 34px; }
-.buckets i.square { width: 28px; height: 28px; }
-.buckets i.landscape { width: 34px; height: 22px; }
-.bucket-group > span { display: block; margin-top: 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
-
-.training-output {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid var(--rule);
-}
-
-.training-output span { color: var(--signal); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; }
-.training-output strong { font-size: 18px; font-weight: 600; }
-.training-copy { min-width: 0; }
-.training-steps { display: grid; gap: 14px; padding: 0 0 0 22px; }
-.training-steps li { padding-left: 6px; font-size: 15px; }
-.training-steps li::marker { color: var(--signal); font-variant-numeric: tabular-nums; }
-.training-steps strong { font-size: 16.5px; font-weight: 600; }
-.training-steps p { margin-top: 3px; color: var(--muted); font-size: 14.5px; }
-
 .capability-section .scope-note {
   max-width: 90ch;
   margin-top: 24px;
@@ -785,7 +722,6 @@ body.pipeline-page .case-footer {
   .workflow-track li:nth-child(2)::after { display: none; }
   .application-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .application-flow > div:nth-child(2)::after { display: none; }
-  .training-layout { gap: 22px; }
 }
 
 @media (max-width: 720px) {
@@ -819,7 +755,6 @@ body.pipeline-page .case-footer {
   .pipeline-example { padding: 18px; border-radius: 20px; }
   .workflow-track,
   .production-examples,
-  .training-layout,
   .application-flow { grid-template-columns: 1fr; }
   .workflow-track li::after { display: none; }
   .workflow-track li { padding: 16px 16px 18px; }
@@ -829,8 +764,6 @@ body.pipeline-page .case-footer {
   .responsibility-note { grid-template-columns: 1fr; gap: 6px; padding: 18px; }
   .production-examples { gap: 12px; }
   .production-examples article { padding: 18px; }
-  .training-layout { gap: 20px; }
-  .bucket-visual { padding: 20px; border-radius: 18px; }
   .application-flow { gap: 12px; }
   .application-flow > div::after { display: none; }
   .practice-link { flex-direction: column; align-items: flex-start; padding: 20px; }
@@ -838,8 +771,6 @@ body.pipeline-page .case-footer {
 
 @media (max-width: 380px) {
   body.pipeline-page { --gutter: 16px; }
-  .bucket-visual { padding: 16px; }
-  .bucket-groups { gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -873,6 +804,5 @@ body.pipeline-page .case-footer {
   .capability-section,
   .capability-section#pipelines { min-height: 0; padding-block: 24px; }
   .pipeline-example,
-  .bucket-visual,
   .practice-link { box-shadow: none; }
 }
