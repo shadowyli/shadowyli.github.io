@@ -469,6 +469,22 @@ html:has(body.pipeline-page) {
   content: "";
 }
 
+/* 桌面横排时让截图与右侧卡片同高：上沿、下沿都对齐，多出的高度放进行距 */
+@media (min-width: 1081px) {
+  .application-split { align-items: stretch; }
+  .application-shot { display: grid; }
+  .application-shot a { height: 100%; }
+  .application-shot img { height: 100%; object-fit: cover; object-position: center; }
+  .application-split .application-flow { height: 100%; grid-template-rows: repeat(2, minmax(auto, 1fr)); }
+}
+
+/* 1081–1240 右栏偏窄，卡片文字略收紧，避免为了对齐把截图横向裁掉 */
+@media (min-width: 1081px) and (max-width: 1240px) {
+  .application-flow > div { padding: 13px 15px 15px; }
+  .application-flow p { font-size: 13px; line-height: 1.5; }
+  .application-flow strong { font-size: 15.5px; }
+}
+
 @media (hover: hover) {
   .application-flow > div:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--signal) 35%, var(--rule)); }
 }
@@ -772,6 +788,11 @@ body.pipeline-page .case-footer {
   .workflow-track li:nth-child(2)::after { display: none; }
   .application-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .application-flow > div:nth-child(2)::after { display: none; }
+}
+
+/* 1080 以下截图占满整行、卡片另起一段，避免右栏被挤窄后截图被横向拉裁 */
+@media (max-width: 1080px) {
+  .application-split { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 720px) {
