@@ -217,7 +217,7 @@ html:has(body.pipeline-page) {
 .skill-tags {
   display: flex;
   justify-content: flex-end;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 8px;
   padding: 6px 0 0;
   list-style: none;
@@ -774,7 +774,7 @@ body.pipeline-page .case-footer {
   html:has(body.pipeline-page) { scroll-padding-top: 80px; }
   .pipeline-page #pipeline-main { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
 
-  /* 能力标签压缩到一行 */
+  /* 能力标签：放得下保持一行，窄屏/长文案自动换行，避免横向溢出 */
   .skill-tags { gap: 6px; }
   .skill-tags li {
     padding: 4px 9px;
