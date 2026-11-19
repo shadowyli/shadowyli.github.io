@@ -217,9 +217,8 @@
 }
 .fx-positioning-head {
   display: grid;
-  grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
-  gap: clamp(28px, 3vw, 44px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
 }
 .fx-positioning-lead { display: grid; align-content: start; gap: 8px; }
 .flowx-page .case-body .fx-positioning h3 {
@@ -233,13 +232,13 @@
 .fx-positioning-contrast span { color: var(--fx-muted); font-size: var(--fx-type-body); line-height: 1.5; }
 .fx-positioning-contrast strong { color: var(--text); font-size: var(--fx-type-statement); font-weight: 600; line-height: 1.35; }
 .fx-positioning-statement {
-  display: grid;
-  align-content: start;
-  gap: 9px;
+  display: block;
+  max-width: 76ch;
+  margin-top: 4px;
 }
-.fx-positioning-label { color: var(--fx-accent); font: 600 var(--fx-type-label)/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
-.fx-positioning-statement strong { color: var(--text); font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
-.fx-positioning-statement p { margin: 0; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
+.fx-positioning-label { display: inline; margin-right: 10px; color: var(--fx-accent); font: 600 var(--fx-type-label)/1.2 "Space Grotesk", var(--font-cjk), sans-serif; letter-spacing: .12em; }
+.fx-positioning-statement strong { display: inline; color: var(--text); font-size: clamp(16px, 1.4vw, 18px); font-weight: 600; line-height: 1.35; letter-spacing: -.02em; }
+.fx-positioning-statement p { margin: 6px 0 0; color: var(--fx-muted); font-size: var(--fx-type-meta); line-height: 1.6; }
 .fx-positioning-grid {
   display: grid;
   grid-template-columns: minmax(0, .82fr) minmax(0, 1.5fr);
@@ -524,7 +523,6 @@
 }
 
 @media (max-width: 1000px) {
-  .fx-positioning-head { grid-template-columns: minmax(0, 1fr); }
   .fx-positioning-grid { grid-template-columns: minmax(0, 1fr); }
   .fx-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
   .fx-gates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
