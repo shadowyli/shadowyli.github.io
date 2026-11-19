@@ -163,8 +163,12 @@ html:has(body.pipeline-page) {
 .capability-section {
   position: relative;
   min-height: 0;
-  padding-block: clamp(40px, 4.6vw, 64px);
+  padding-block: clamp(26px, 2.8vw, 38px);
   scroll-margin-top: 16px;
+}
+
+.capability-section + .capability-section {
+  border-top: 1px solid var(--rule);
 }
 
 .capability-section#pipelines {
@@ -644,7 +648,7 @@ body.pipeline-page .case-footer {
   .intro-identity .since { padding-left: 10px; }
 
   .capability-section,
-  .capability-section#pipelines { min-height: 0; padding-block: 36px 44px; }
+  .capability-section#pipelines { min-height: 0; padding-block: 24px 28px; }
   .capability-heading { grid-template-columns: minmax(0, 1fr); margin-bottom: 20px; }
   .capability-heading p { font-size: 14.5px; }
 
