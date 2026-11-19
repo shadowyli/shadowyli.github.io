@@ -593,6 +593,17 @@ html:has(body.pipeline-page) {
   transform-origin: left;
 }
 
+.vfx-figure {
+  margin: clamp(18px, 2.2vw, 26px) 0 0;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--panel);
+}
+
+.vfx-figure a { display: block; cursor: zoom-in; }
+.vfx-figure img { display: block; width: 100%; height: auto; }
+
 /* ---------- footer ---------- */
 body.pipeline-page .case-footer {
   display: flex;
