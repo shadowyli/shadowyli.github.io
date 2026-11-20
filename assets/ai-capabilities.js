@@ -29,7 +29,7 @@
     portraitGenerate: "AI generation & styling", portraitGenerateDetail: "Adapt clothing and backgrounds to the event, with attention to identity preservation.",
     portraitProcess: "Cutout, detection & alignment", portraitProcessDetail: "Use UNIFACE face detection, align the subject and crop to the required dimensions.",
     portraitOutput: "Export & acceptance", portraitOutputDetail: "Convert formats, export consistent specifications and have specialists confirm the result.",
-    pipelineResponsibility: "Help colleagues learn the methods",
+    pipelineResponsibility: "Growing together with the team",
     pipelineResponsibilityDetail: "Write ComfyUI and n8n guides, and teach workflow building through internal training, exercises and project coaching.",
     appLead: "Package specialist workflows as web services, accessible through business forms or natural language. This further lowers the barrier to use.",
     toolTag: "Tool calling", orchestrationTag: "Orchestration", qualityTag: "Quality & error handling",
