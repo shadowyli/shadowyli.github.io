@@ -879,7 +879,8 @@ body.pipeline-page .case-footer {
 @media (max-width: 720px) {
   body.pipeline-page { --header-size: 60px; --gutter: 22px; }
   .pipe-pair { gap: 6px; }
-  .pipe-pair--media { grid-template-columns: minmax(0, 1fr); }
+  .vfx-char-video .case-video-play { width: 40px; height: 40px; }
+  .vfx-char-video .case-video-play svg { width: 18px; height: 18px; }
   .pipe-pair--outfit { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
