@@ -375,7 +375,8 @@ html:has(body.pipeline-page) {
 
 .pipe-pair .vfx-figure img { width: 100%; height: auto; }
 
-.pipe-pair--media { grid-template-columns: minmax(0, 1fr) minmax(0, 2.28fr); }
+/* 左：竖版视频 720×856（0.84），右：工作流裁掉右侧 20% 后 1920×1255（1.53），按比例分栏保持等高 */
+.pipe-pair--media { grid-template-columns: minmax(0, 1fr) minmax(0, 1.82fr); }
 
 /* 游戏角色音画视频：竖版 720×856，占住原角色图的位置，高度与右侧工作流对齐 */
 .vfx-char-video .case-frame-inner { aspect-ratio: 720 / 856; }
