@@ -439,6 +439,12 @@ html:has(body.pipeline-page) {
   .vfx-film-video .case-video-play svg { width: 16px; height: 16px; }
 }
 
+/* 管线页「一键播放」：有视频进入视野才浮出，避免常驻遮挡底部切换栏 */
+@media (max-width: 720px) {
+  body.pipeline-page .mobile-play { display: none; }
+  body.pipeline-page .mobile-play.is-visible { display: inline-flex; }
+}
+
 @media (max-width: 480px) {
   .vfx-outfit-video .case-video-play { width: 26px; height: 26px; }
   .vfx-outfit-video .case-video-play svg { width: 12px; height: 12px; }
