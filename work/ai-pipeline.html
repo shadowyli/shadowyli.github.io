@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-5">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-6">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261119-8" defer></script>
 </head>
@@ -254,10 +254,16 @@
       <div class="pipe-block">
         <h3 class="vfx-subtitle" data-copy="filmRemakeTitle">游戏角色影视片段翻拍</h3>
         <div class="pipe-pair pipe-pair--film">
-          <figure class="vfx-figure">
-            <a href="../assets/ai-film-remake-compare.webp" target="_blank" rel="noopener" aria-label="查看影视片段翻拍对比大图">
-              <img src="../assets/ai-film-remake-compare.webp" alt="影视片段翻拍对比：上方为原片剧照，下方为游戏角色版本，构图与动作一致" width="1193" height="1600" loading="lazy" decoding="async">
-            </a>
+          <figure class="vfx-figure vfx-film-video">
+            <div class="case-frame-inner is-paused">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/vfx-film-demo-poster.webp" width="720" height="960" aria-label="影视片段翻拍对比演示：上为原片，下为游戏角色翻拍">
+                <source src="../assets/vfx-film-demo.mp4" data-mobile-src="../assets/vfx-film-demo-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <button class="case-video-play" type="button" aria-label="播放影视片段翻拍对比">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
           </figure>
           <figure class="vfx-figure">
             <a href="../assets/ai-film-remake-graph.webp" target="_blank" rel="noopener" aria-label="查看影视片段翻拍工作流大图">
@@ -371,51 +377,52 @@
   </div>
   <script>
     (function () {
-      var box = document.querySelector(".vfx-xp-video");
-      if (!box) return;
-      var video = box.querySelector("video");
-      var frame = box.querySelector(".case-frame-inner");
-      var button = box.querySelector(".case-video-play");
-      if (!video) return;
       var mobile = window.matchMedia("(max-width: 720px)");
 
-      if (mobile.matches) {
-        var source = video.querySelector("source[data-mobile-src]");
-        if (source) {
-          source.src = source.getAttribute("data-mobile-src");
-          try { video.load(); } catch (error) { /* ignore */ }
+      Array.prototype.forEach.call(document.querySelectorAll(".vfx-xp-video, .vfx-film-video"), function (box) {
+        var video = box.querySelector("video");
+        var frame = box.querySelector(".case-frame-inner");
+        var button = box.querySelector(".case-video-play");
+        if (!video) return;
+
+        if (mobile.matches) {
+          var source = video.querySelector("source[data-mobile-src]");
+          if (source) {
+            source.src = source.getAttribute("data-mobile-src");
+            try { video.load(); } catch (error) { /* ignore */ }
+          }
         }
-      }
 
-      function play() {
-        video.muted = true;
-        var promise = video.play();
-        if (promise && promise.catch) promise.catch(function () {});
-      }
+        function play() {
+          video.muted = true;
+          var promise = video.play();
+          if (promise && promise.catch) promise.catch(function () {});
+        }
 
-      video.addEventListener("playing", function () {
-        if (frame) frame.classList.remove("is-paused");
-      });
-      video.addEventListener("pause", function () {
-        if (frame) frame.classList.add("is-paused");
-      });
-
-      if (button) {
-        button.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          play();
+        video.addEventListener("playing", function () {
+          if (frame) frame.classList.remove("is-paused");
         });
-      }
+        video.addEventListener("pause", function () {
+          if (frame) frame.classList.add("is-paused");
+        });
 
-      if (!mobile.matches && "IntersectionObserver" in window) {
-        new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting && !document.hidden) play();
-            else if (!video.paused) video.pause();
+        if (button) {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            play();
           });
-        }, { threshold: 0.4 }).observe(box);
-      }
+        }
+
+        if (!mobile.matches && "IntersectionObserver" in window) {
+          new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting && !document.hidden) play();
+              else if (!video.paused) video.pause();
+            });
+          }, { threshold: 0.4 }).observe(box);
+        }
+      });
     })();
   </script>
   <script>

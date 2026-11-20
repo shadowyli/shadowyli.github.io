@@ -412,6 +412,8 @@ html:has(body.pipeline-page) {
 /* 翻拍对比（1193×1600）与工作流（1644×777）按各自比例分栏，两个框自然等高 */
 .pipe-pair--film { grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.12fr); }
 
+.vfx-film-video .case-frame-inner { aspect-ratio: 3 / 4; }
+
 .capability-section .scope-note {
   max-width: 90ch;
   margin-top: 24px;
