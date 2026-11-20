@@ -513,9 +513,9 @@
   .fx-entries-wrap { margin-top: 24px; }
   .fx-timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
   .fx-gates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .fx-gate { padding: 16px 18px 18px 0; }
+  .fx-gate { padding: 16px 0 18px 0; }
   .fx-gate + .fx-gate, .fx-contribution { padding-left: 0; border-left: 0; }
-  .fx-gate:nth-child(even), .fx-contribution { padding-left: 18px; border-left: 1px solid var(--line); }
+  .fx-gate:nth-child(even), .fx-contribution { padding-left: 18px; border-left: 1px solid var(--line); padding-right: 0; }
   .fx-gate:nth-child(3), .fx-contribution { border-top: 1px solid var(--line); }
 }
 
@@ -607,7 +607,8 @@
   .fx-gates { margin-top: 22px; }
   .fx-gates { grid-template-columns: minmax(0, 1fr); }
   .fx-gate, .fx-gate + .fx-gate, .fx-gate:nth-child(even), .fx-contribution { padding-left: 0; border-left: 0; }
-  .fx-gate { padding-top: 16px; padding-bottom: 16px; }
+  .fx-gate { padding-top: 16px; padding-bottom: 16px; padding-right: 0; }
+  .fx-contribution { padding-right: 0; }
   .fx-gate + .fx-gate, .fx-contribution { border-top: 1px solid var(--line); }
   .fx-intro-grid .case-frame { order: 2; }
   .fx-intro-grid .fx-intro-copy { order: 1; }
