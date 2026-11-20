@@ -639,12 +639,12 @@
   .fx-steps li { padding: 15px 0; }
   .fx-marketing-grid { gap: 6px; }
   .flowx-page .fx-marketing-grid img { height: 150px; width: auto; }
-  .flowx-page .case-body .fx-painlist { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 18px; margin-bottom: 24px; }
+  .flowx-page .case-body .fx-painlist { grid-template-columns: minmax(0, 1fr); gap: 18px; margin-bottom: 24px; }
   .flowx-page .case-body .fx-painlist > li { padding-inline: 0; }
   .flowx-page .case-body .fx-painlist > li + li { border-left: 0; }
   .flowx-page .case-body .fx-painlist > li:nth-child(even) {
-    padding-left: 18px;
-    border-left: 1px solid var(--line);
+    padding-left: 0;
+    border-left: 0;
   }
   .flowx-page .case-body .fx-brief { margin-bottom: 18px; }
   .flowx-page .case-body .fx-solution {
