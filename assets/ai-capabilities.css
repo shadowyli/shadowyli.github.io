@@ -436,11 +436,15 @@ html:has(body.pipeline-page) {
   /* 手机上仍并排，播放键缩小以免盖住过窄的画面 */
   .vfx-outfit-video .case-video-play { width: 34px; height: 34px; }
   .vfx-outfit-video .case-video-play svg { width: 16px; height: 16px; }
+  .vfx-film-video .case-video-play { width: 34px; height: 34px; }
+  .vfx-film-video .case-video-play svg { width: 16px; height: 16px; }
 }
 
 @media (max-width: 480px) {
   .vfx-outfit-video .case-video-play { width: 26px; height: 26px; }
   .vfx-outfit-video .case-video-play svg { width: 12px; height: 12px; }
+  .vfx-film-video .case-video-play { width: 26px; height: 26px; }
+  .vfx-film-video .case-video-play svg { width: 12px; height: 12px; }
 }
 
 /* 翻拍对比（1193×1600）与工作流（1644×777）按各自比例分栏，两个框自然等高 */
@@ -884,7 +888,6 @@ body.pipeline-page .case-footer {
   .pipe-pair { gap: 6px; }
   .vfx-char-video .case-video-play { width: 40px; height: 40px; }
   .vfx-char-video .case-video-play svg { width: 18px; height: 18px; }
-  .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
   body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
