@@ -372,7 +372,22 @@ html:has(body.pipeline-page) {
   margin-top: clamp(16px, 1.8vw, 22px);
 }
 
-.pipe-row > .pipe-block { margin-top: 0; }
+.pipe-row > .pipe-block { margin-top: 0; align-content: start; }
+
+/* 小标题后的补充说明 */
+.vfx-subtitle-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 6px;
+}
+
+.vfx-subtitle-note {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
 
 .capability-section#pipelines .capability-heading { margin-bottom: clamp(10px, 1.1vw, 14px); }
 .capability-section#pipelines .capability-heading + .pipe-block { margin-top: 0; }
@@ -860,6 +875,12 @@ body.pipeline-page .case-footer {
   .application-split { grid-template-columns: minmax(0, 1fr); }
 }
 
+/* 并排的两个小模块在窄屏放不下标题补充说明，改为上下排列 */
+@media (max-width: 1099px) {
+  .pipe-row { grid-template-columns: minmax(0, 1fr); }
+  .pipe-row > .pipe-block + .pipe-block { margin-top: clamp(16px, 1.8vw, 22px); }
+}
+
 @media (max-width: 720px) {
   body.pipeline-page { --header-size: 60px; --gutter: 22px; }
   .pipe-pair { gap: 6px; }
@@ -867,8 +888,6 @@ body.pipeline-page .case-footer {
   .pipe-pair--outfit { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
-  .pipe-row { grid-template-columns: minmax(0, 1fr); }
-  .pipe-row > .pipe-block + .pipe-block { margin-top: clamp(16px, 1.8vw, 22px); }
   body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
   .example-heading h3 { font-size: 16px; }
