@@ -191,6 +191,17 @@ html:has(body.pipeline-page) {
   margin-bottom: 0;
 }
 
+/* 桌面/平板：应用区块与上面的管线区块保持同一套垂直节奏 */
+@media (min-width: 721px) {
+  .capability-section#applications {
+    padding-top: clamp(30px, 3.2vw, 44px);
+  }
+
+  .capability-section#applications .capability-heading {
+    margin-bottom: clamp(10px, 1.1vw, 14px);
+  }
+}
+
 .capability-section#vfx .capability-heading p {
   margin-top: 8px;
   color: var(--ink);
@@ -414,8 +425,8 @@ html:has(body.pipeline-page) {
 
 .vfx-film-video .case-frame-inner { aspect-ratio: 3 / 4; }
 
-/* 游戏标题：成稿（2400×641）与字效风格库（1604×1034）按比例分栏，两框等高 */
-.pipe-pair--title { grid-template-columns: minmax(0, 3.745fr) minmax(0, 1.551fr); }
+/* 游戏标题：只保留字效风格库，单列铺满 */
+.pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
 
 .capability-section .scope-note {
   max-width: 90ch;
