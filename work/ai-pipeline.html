@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-2">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-3">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261119-8" defer></script>
 </head>
@@ -205,10 +205,16 @@
       <div class="pipe-block">
         <h3 class="vfx-subtitle" data-copy="characterVideoTitle">游戏角色一键生成音画视频</h3>
         <div class="pipe-pair pipe-pair--media">
-          <figure class="vfx-figure">
-            <a href="../assets/ai-character-rig.webp" target="_blank" rel="noopener" aria-label="查看游戏角色与绑定大图">
-              <img src="../assets/ai-character-rig.webp" alt="游戏角色三视图与骨骼绑定：红发少年造型与动作骨架" width="1305" height="1557" loading="lazy" decoding="async">
-            </a>
+          <figure class="vfx-figure vfx-char-video">
+            <div class="case-frame-inner is-paused">
+              <video class="case-frame-video" muted playsinline preload="none" poster="../assets/ai-character-rig.webp" width="720" height="856" aria-label="游戏角色音画视频演示">
+                <source src="../assets/vfx-char-video.mp4" data-mobile-src="../assets/vfx-char-video-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <button class="case-video-play" type="button" aria-label="播放游戏角色音画视频">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
           </figure>
           <figure class="vfx-figure">
             <a href="../assets/ai-character-graph.webp" target="_blank" rel="noopener" aria-label="查看音画视频生成工作流大图">
@@ -399,6 +405,59 @@
           });
         }, { threshold: 0.4 }).observe(box);
       }
+    })();
+  </script>
+  <script>
+    (function () {
+      var box = document.querySelector(".vfx-char-video");
+      if (!box) return;
+      var video = box.querySelector("video");
+      var frame = box.querySelector(".case-frame-inner");
+      var button = box.querySelector(".case-video-play");
+      if (!video) return;
+
+      if (window.matchMedia("(max-width: 720px)").matches) {
+        var source = video.querySelector("source[data-mobile-src]");
+        if (source) {
+          source.src = source.getAttribute("data-mobile-src");
+          try { video.load(); } catch (error) { /* ignore */ }
+        }
+      }
+
+      function play() {
+        video.muted = false;
+        var promise = video.play();
+        if (promise && promise.catch) {
+          promise.catch(function () {
+            video.muted = true;
+            var fallback = video.play();
+            if (fallback && fallback.catch) fallback.catch(function () {});
+          });
+        }
+      }
+
+      video.addEventListener("playing", function () {
+        if (frame) frame.classList.remove("is-paused");
+      });
+      video.addEventListener("pause", function () {
+        if (frame) frame.classList.add("is-paused");
+      });
+      video.addEventListener("ended", function () {
+        if (frame) frame.classList.add("is-paused");
+      });
+
+      if (button) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          play();
+        });
+      }
+
+      video.addEventListener("click", function () {
+        if (!video.paused) video.pause();
+        else play();
+      });
     })();
   </script>
   <script src="../assets/case-tabs.js?v=20261118-2" defer></script>
