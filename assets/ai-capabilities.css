@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "Long Cang";
-  src: url("fonts/LongCangSite.woff2?v=20261119-1") format("woff2");
+  font-family: "PingFang ShangShangQian Motto";
+  src: url("fonts/PingFangShangShangQianMotto.woff2?v=20261120-1") format("woff2");
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -162,10 +162,10 @@ html:has(body.pipeline-page) {
   max-width: min(100%, 52em);
   margin-top: 0;
   color: var(--muted);
-  font-family: "Long Cang", var(--font-cjk);
-  font-size: clamp(19px, 1.7vw, 25px);
-  line-height: 1.55;
-  letter-spacing: 0.02em;
+  font-family: "PingFang ShangShangQian Motto", var(--font-cjk);
+  font-size: clamp(28px, 2.7vw, 38px);
+  line-height: 1.5;
+  letter-spacing: 0.01em;
   text-wrap: balance;
 }
 
@@ -819,7 +819,7 @@ body.pipeline-page .case-footer {
 
   .capability-intro { padding-block: 34px 24px; }
   .capability-intro h1 { font-size: clamp(38px, 10vw, 52px); letter-spacing: -0.04em; }
-  .capability-intro .intro-description { font-size: 17.5px; }
+  .capability-intro .intro-description { font-size: 28px; }
   .intro-identity { gap: 2px 10px; padding: 6px 14px; }
   .intro-identity strong,
   .intro-identity span { font-size: 12px; }
@@ -848,7 +848,7 @@ body.pipeline-page .case-footer {
 }
 
 @media (max-width: 340px) {
-  .capability-intro .intro-description { font-size: 16px; }
+  .capability-intro .intro-description { font-size: 25px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

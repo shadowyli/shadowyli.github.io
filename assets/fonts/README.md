@@ -7,19 +7,18 @@
 - Internal PostScript name: `pingfangshangshangqian`
 - Subset scope: the Chinese and English profile bio text
 
-The website uses this font for the short profile bio only.
+The website uses this font for the short profile bio, and (via a separate subset) for the
+handwritten tagline on the AI pipeline page.
 
-## 龙藏体（Long Cang）
+### 首屏手写文案（AI 管线页）
 
-- 源文件：Google Fonts 的 `LongCang-Regular.ttf`
-- 网页字体：`LongCangSite.woff2`（约 15KB）
-- 许可：SIL Open Font License 1.1，见 `LongCang-OFL.txt`
-- 用途：AI 管线页首屏那句手写文案「工具是杠杆，解决问题的能力才是支点。」
+- 网页字体：`PingFangShangShangQianMotto.woff2`（约 11KB）
+- 用途：「工具是杠杆，解决问题的能力才是支点。」一句
 - 子集范围：该句中文 + `ai-capabilities.js` 里对应的英文译文 `intro` + ASCII
-- 子集没覆盖到的字会回退到 `--font-cjk`；改文案后重新生成（需要 fontTools + brotli）：
+- 改文案后重新生成（需要 fontTools + brotli）：
 
   ```powershell
-  python -m fontTools.subset LongCang-Regular.ttf --text="工具是杠杆，解决问题的能力才是支点。Tools are the lever; problem-solving is the fulcrum." --unicodes=U+0020-007E --flavor=woff2 --no-hinting --output-file=assets/fonts/LongCangSite.woff2
+  python -m fontTools.subset 平方上上谦体.ttf --text="工具是杠杆，解决问题的能力才是支点。Tools are the lever; problem-solving is the fulcrum." --unicodes=U+0020-007E --flavor=woff2 --no-hinting --output-file=assets/fonts/PingFangShangShangQianMotto.woff2
   ```
 
   `@font-face` 写在 `assets/ai-capabilities.css` 顶部，文件名后的 `?v=` 改动时同步加 1。
