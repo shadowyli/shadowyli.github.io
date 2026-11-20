@@ -14,6 +14,7 @@
     filmRemakeTitle: "Game-character remake of film scenes",
     gameTitleTitle: "Game title generation",
     motionTransferTitle: "Game character motion transfer",
+    imageSplitTitle: "AI image split with in-place reassembly",
     starfieldTitle: "C4D starfield performance optimisation",
     starfieldNote: "Spiral splines, displacement and noise-driven keyframed material opacity control the motion, while lights drive the highlight animation. Rendering is 140% faster than the particle-based approach.",
     caseCta: "View project case",
