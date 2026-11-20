@@ -12,6 +12,7 @@
     characterVideoTitle: "One-click audio-visual video for game characters",
     outfitVideoTitle: "Game outfit to real-person dance video",
     filmRemakeTitle: "Game-character remake of film scenes",
+    filmRemakeNote: " (In-house pipeline runs multi-device concurrent batches; offline models avoid likeness and copyright flags)",
     gameTitleTitle: "Game title generation",
     motionTransferTitle: "Game character motion transfer",
     motionTransferNote: " (400+ in-house character assets, not a single source)",
