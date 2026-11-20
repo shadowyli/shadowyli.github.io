@@ -15,7 +15,6 @@
     starfieldTitle: "C4D starfield performance optimisation",
     starfieldNote: "Spiral splines, displacement and noise-driven keyframed material opacity control the motion, while lights drive the highlight animation. Rendering is 140% faster than the particle-based approach.",
     caseCta: "View project case",
-    vfxC4d: "C4D toon shading",
     vfxXparticles: "X-Particles procedural drifting sand",
     custom: "Custom workflows", batch: "Batch processing",
     portraitExample: "Player portrait pipeline", workflowNote: "Illustration of a real business workflow",

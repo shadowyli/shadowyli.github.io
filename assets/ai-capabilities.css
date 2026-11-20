@@ -733,27 +733,6 @@ html:has(body.pipeline-page) {
   letter-spacing: .01em;
 }
 
-.vfx-c4d {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: clamp(9px, 0.9vw, 12px);
-}
-
-.vfx-c4d > .vfx-figure { height: 100%; }
-.vfx-c4d .vfx-figure a { height: 100%; }
-.vfx-c4d .vfx-figure img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.vfx-pair {
-  display: grid;
-  grid-template-columns: minmax(0, 1.478fr) minmax(0, 1fr);
-}
-
-.vfx-pair a + a { border-left: 1px solid var(--rule); }
-
 .vfx-xp {
   display: grid;
   grid-template-columns: minmax(0, 2.33fr) minmax(0, 1fr);
@@ -777,8 +756,6 @@ html:has(body.pipeline-page) {
 @media (max-width: 720px) {
   .vfx-layout { grid-template-columns: 1fr; }
   .vfx-xp { grid-template-columns: minmax(0, 1fr); }
-  .vfx-c4d { gap: 6px; }
-  .vfx-pair { gap: 0; }
   .vfx-more-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
 }
 
