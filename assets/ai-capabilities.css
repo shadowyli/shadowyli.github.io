@@ -822,12 +822,12 @@ body.pipeline-page .case-footer {
   .application-flow > div:nth-child(2)::after { display: none; }
 }
 
-/* 721–1000：应用区块的标签与标题同一行靠右，说明文字另起一行通栏 */
-@media (min-width: 721px) and (max-width: 1000px) {
-  .capability-section#applications .capability-heading { grid-template-columns: auto minmax(0, 1fr); }
+/* 桌面/平板：应用区块的标签与标题同一行靠右，说明文字另起一行通栏，保证不换行 */
+@media (min-width: 721px) {
+  .capability-section#applications .capability-heading { grid-template-columns: auto minmax(0, 1fr); align-items: center; }
   .capability-section#applications .capability-heading > div { display: contents; }
   .capability-section#applications .capability-heading h2 { grid-column: 1; grid-row: 1; }
-  .capability-section#applications .capability-heading p { grid-column: 1 / -1; grid-row: 2; margin-top: 10px; }
+  .capability-section#applications .capability-heading p { grid-column: 1 / -1; grid-row: 2; max-width: none; margin-top: 10px; }
   .capability-section#applications .capability-heading .skill-tags { grid-column: 2; grid-row: 1; justify-content: flex-end; padding-top: 0; }
 }
 
