@@ -381,8 +381,33 @@ html:has(body.pipeline-page) {
 /* 游戏角色音画视频：竖版 720×856，占住原角色图的位置，高度与右侧工作流对齐 */
 .vfx-char-video .case-frame-inner { aspect-ratio: 720 / 856; }
 
-/* 三段拼图（2483×1150）与工作流（1157×871）按各自比例分栏，两个框自然等高 */
-.pipe-pair--outfit { grid-template-columns: minmax(0, 2.16fr) minmax(0, 1.33fr); }
+/* 左：游戏原画 + 竖版变装视频（1199×1150 + 720×1260 ≈ 1.61），右：工作流 1.33，按比例分栏保持等高 */
+.pipe-pair--outfit { grid-template-columns: minmax(0, 1.61fr) minmax(0, 1.33fr); }
+
+.vfx-outfit-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.043fr) minmax(0, 0.571fr);
+  align-items: stretch;
+}
+
+.vfx-outfit-split > a { display: block; height: 100%; }
+
+.vfx-outfit-split img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vfx-outfit-video .case-frame-inner { aspect-ratio: auto; height: 100%; }
+
+@media (max-width: 720px) {
+  /* 手机上并排会把视频压得太窄，改成原画在上、视频在下 */
+  .vfx-outfit-split { grid-template-columns: minmax(0, 1fr); }
+  .vfx-outfit-video .case-frame-inner { aspect-ratio: 1088 / 1904; height: auto; }
+  .vfx-outfit-video .case-video-play { width: 52px; height: 52px; }
+  .vfx-outfit-video .case-video-play svg { width: 22px; height: 22px; }
+}
 
 /* 翻拍对比（1193×1600）与工作流（1644×777）按各自比例分栏，两个框自然等高 */
 .pipe-pair--film { grid-template-columns: minmax(0, 0.75fr) minmax(0, 2.12fr); }

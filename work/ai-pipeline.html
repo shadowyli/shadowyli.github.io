@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-4">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-5">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261119-8" defer></script>
 </head>
@@ -227,10 +227,21 @@
       <div class="pipe-block">
         <h3 class="vfx-subtitle" data-copy="outfitVideoTitle">游戏时装转真人变装舞蹈视频</h3>
         <div class="pipe-pair pipe-pair--outfit">
-          <figure class="vfx-figure">
-            <a href="../assets/ai-outfit-transform-strip.webp" target="_blank" rel="noopener" aria-label="查看游戏时装转真人变装过程大图">
-              <img src="../assets/ai-outfit-transform-strip.webp" alt="游戏时装转真人变装过程：游戏角色原画、真人便装与真人变装三段画面拼合" width="2483" height="1150" loading="lazy" decoding="async">
-            </a>
+          <figure class="vfx-figure vfx-outfit-video">
+            <div class="vfx-outfit-split">
+              <a href="../assets/ai-outfit-game-art.webp" target="_blank" rel="noopener" aria-label="查看游戏时装原画大图">
+                <img src="../assets/ai-outfit-game-art.webp" alt="游戏时装原画：粉色莲花套装的角色立绘" width="1199" height="1150" loading="lazy" decoding="async">
+              </a>
+              <div class="case-frame-inner is-paused">
+                <video class="case-frame-video" muted playsinline preload="none" poster="../assets/vfx-cos-dance-poster.webp" width="720" height="1260" aria-label="游戏时装转真人变装舞蹈视频">
+                  <source src="../assets/vfx-cos-dance.mp4" data-mobile-src="../assets/vfx-cos-dance-mobile.mp4" type="video/mp4">
+                  你的浏览器不支持 HTML5 视频。
+                </video>
+                <button class="case-video-play" type="button" aria-label="播放变装舞蹈视频">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                </button>
+              </div>
+            </div>
           </figure>
           <figure class="vfx-figure">
             <a href="../assets/ai-outfit-transform-graph.webp" target="_blank" rel="noopener" aria-label="查看变装视频生成工作流大图">
@@ -409,54 +420,56 @@
   </script>
   <script>
     (function () {
-      var box = document.querySelector(".vfx-char-video");
-      if (!box) return;
-      var video = box.querySelector("video");
-      var frame = box.querySelector(".case-frame-inner");
-      var button = box.querySelector(".case-video-play");
-      if (!video) return;
+      var mobile = window.matchMedia("(max-width: 720px)");
 
-      if (window.matchMedia("(max-width: 720px)").matches) {
-        var source = video.querySelector("source[data-mobile-src]");
-        if (source) {
-          source.src = source.getAttribute("data-mobile-src");
-          try { video.load(); } catch (error) { /* ignore */ }
+      Array.prototype.forEach.call(document.querySelectorAll(".vfx-char-video, .vfx-outfit-video"), function (box) {
+        var video = box.querySelector("video");
+        var frame = box.querySelector(".case-frame-inner");
+        var button = box.querySelector(".case-video-play");
+        if (!video) return;
+
+        if (mobile.matches) {
+          var source = video.querySelector("source[data-mobile-src]");
+          if (source) {
+            source.src = source.getAttribute("data-mobile-src");
+            try { video.load(); } catch (error) { /* ignore */ }
+          }
         }
-      }
 
-      function play() {
-        video.muted = false;
-        var promise = video.play();
-        if (promise && promise.catch) {
-          promise.catch(function () {
-            video.muted = true;
-            var fallback = video.play();
-            if (fallback && fallback.catch) fallback.catch(function () {});
+        function play() {
+          video.muted = false;
+          var promise = video.play();
+          if (promise && promise.catch) {
+            promise.catch(function () {
+              video.muted = true;
+              var fallback = video.play();
+              if (fallback && fallback.catch) fallback.catch(function () {});
+            });
+          }
+        }
+
+        video.addEventListener("playing", function () {
+          if (frame) frame.classList.remove("is-paused");
+        });
+        video.addEventListener("pause", function () {
+          if (frame) frame.classList.add("is-paused");
+        });
+        video.addEventListener("ended", function () {
+          if (frame) frame.classList.add("is-paused");
+        });
+
+        if (button) {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            play();
           });
         }
-      }
 
-      video.addEventListener("playing", function () {
-        if (frame) frame.classList.remove("is-paused");
-      });
-      video.addEventListener("pause", function () {
-        if (frame) frame.classList.add("is-paused");
-      });
-      video.addEventListener("ended", function () {
-        if (frame) frame.classList.add("is-paused");
-      });
-
-      if (button) {
-        button.addEventListener("click", function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          play();
+        video.addEventListener("click", function () {
+          if (!video.paused) video.pause();
+          else play();
         });
-      }
-
-      video.addEventListener("click", function () {
-        if (!video.paused) video.pause();
-        else play();
       });
     })();
   </script>
