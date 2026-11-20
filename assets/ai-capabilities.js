@@ -8,7 +8,7 @@
     loraLabel: "LoRA training", coreLabel: "My creative tech stack", docLabel: "Doc writing",
     module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
     vfxLead: "Blender toon shading",
-    upscaleTitle: "Perfect HD upscaling and restoration",
+    upscaleTitle: "Tiled HD upscaling and restoration, up to 16K",
     characterVideoTitle: "One-click audio-visual video for game characters",
     outfitVideoTitle: "Game outfit to real-person dance video",
     filmRemakeTitle: "Game-character remake of film scenes",
