@@ -31,7 +31,7 @@
     portraitOutput: "Export & acceptance", portraitOutputDetail: "Convert formats, export consistent specifications and have specialists confirm the result.",
     pipelineResponsibility: "Growing together with the team",
     pipelineResponsibilityDetail: "Write ComfyUI and n8n guides, and pass on the know-how through internal training, exercises and project coaching — 30+ colleagues now build and run complex pipelines on their own.",
-    appLead: "Package specialist workflows as web services, accessible through business forms or natural language. This further lowers the barrier to use.",
+    appLead: "Package specialist workflows as web services, accessible through business forms or simple interactions, further lowering the barrier to use.",
     toolTag: "Tool calling", orchestrationTag: "Orchestration", qualityTag: "Quality & error handling",
     app1: "Need & product definition", app1Detail: "Distil the high-frequency scenarios from the field, then define entry points, fields and priorities by value rather than feature count.",
     app2: "Service & agent development", app2Detail: "Own the form entry, agent orchestration and API work that turn pipelines into callable services.",
