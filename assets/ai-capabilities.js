@@ -18,6 +18,7 @@
     motionTransferTitle: "Game character motion transfer",
     motionTransferNote: " (400+ in-house character assets, not a single source)",
     imageSplitTitle: "AI image split with in-place reassembly",
+    kvExtendTitle: "Resource slot extension",
     starfieldTitle: "C4D starfield performance optimisation",
     starfieldNote: "Spiral splines, displacement and noise-driven keyframed material opacity control the motion, while lights drive the highlight animation. Rendering is 140% faster than the particle-based approach.",
     caseCta: "View project case",

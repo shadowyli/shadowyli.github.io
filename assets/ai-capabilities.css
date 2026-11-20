@@ -374,6 +374,9 @@ html:has(body.pipeline-page) {
 
 .pipe-row > .pipe-block { margin-top: 0; align-content: start; }
 
+/* 两个等宽模块（同为 16:9 视频） */
+.pipe-row--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+
 /* 小标题后的补充说明 */
 .vfx-subtitle-line {
   display: flex;
