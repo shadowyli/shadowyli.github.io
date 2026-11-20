@@ -364,6 +364,16 @@ html:has(body.pipeline-page) {
   margin-top: clamp(16px, 1.8vw, 22px);
 }
 
+/* 两个小模块并排：标题行同高，图片按 1.551 : 1.778 分栏，两框自然等高 */
+.pipe-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.551fr) minmax(0, 1.778fr);
+  gap: clamp(9px, 0.9vw, 12px);
+  margin-top: clamp(16px, 1.8vw, 22px);
+}
+
+.pipe-row > .pipe-block { margin-top: 0; }
+
 .capability-section#pipelines .capability-heading { margin-bottom: clamp(10px, 1.1vw, 14px); }
 .capability-section#pipelines .capability-heading + .pipe-block { margin-top: 0; }
 
@@ -857,6 +867,8 @@ body.pipeline-page .case-footer {
   .pipe-pair--outfit { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
+  .pipe-row { grid-template-columns: minmax(0, 1fr); }
+  .pipe-row > .pipe-block + .pipe-block { margin-top: clamp(16px, 1.8vw, 22px); }
   body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
   .example-heading h3 { font-size: 16px; }

@@ -16,7 +16,7 @@
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-10">
+  <link rel="stylesheet" href="../assets/ai-capabilities.css?v=20261120-11">
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261120-4" defer></script>
 </head>
@@ -273,30 +273,32 @@
         </div>
       </div>
 
-      <div class="pipe-block">
-        <h3 class="vfx-subtitle" data-copy="gameTitleTitle">游戏标题生成</h3>
-        <div class="pipe-pair pipe-pair--title">
-          <figure class="vfx-figure">
-            <a href="../assets/ai-game-title-styles.webp" target="_blank" rel="noopener" aria-label="查看字效风格库大图">
-              <img src="../assets/ai-game-title-styles.webp" alt="字效风格库界面：37 款游戏标题字效，覆盖暗黑、赛博、古风、卡通等风格" width="1604" height="1034" loading="lazy" decoding="async">
-            </a>
+      <div class="pipe-row">
+        <div class="pipe-block">
+          <h3 class="vfx-subtitle" data-copy="gameTitleTitle">游戏标题生成</h3>
+          <div class="pipe-pair pipe-pair--title">
+            <figure class="vfx-figure">
+              <a href="../assets/ai-game-title-styles.webp" target="_blank" rel="noopener" aria-label="查看字效风格库大图">
+                <img src="../assets/ai-game-title-styles.webp" alt="字效风格库界面：37 款游戏标题字效，覆盖暗黑、赛博、古风、卡通等风格" width="1604" height="1034" loading="lazy" decoding="async">
+              </a>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pipe-block">
+          <h3 class="vfx-subtitle" data-copy="motionTransferTitle">游戏角色动作迁移</h3>
+          <figure class="vfx-figure vfx-motion-video">
+            <div class="case-frame-inner is-paused">
+              <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/vfx-motion-transfer-poster.webp" width="1280" height="720" aria-label="游戏角色动作迁移演示">
+                <source src="../assets/vfx-motion-transfer.mp4" data-mobile-src="../assets/vfx-motion-transfer-mobile.mp4" type="video/mp4">
+                你的浏览器不支持 HTML5 视频。
+              </video>
+              <button class="case-video-play" type="button" aria-label="播放游戏角色动作迁移演示">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </button>
+            </div>
           </figure>
         </div>
-      </div>
-
-      <div class="pipe-block">
-        <h3 class="vfx-subtitle" data-copy="motionTransferTitle">游戏角色动作迁移</h3>
-        <figure class="vfx-figure vfx-motion-video">
-          <div class="case-frame-inner is-paused">
-            <video class="case-frame-video" muted playsinline loop preload="none" poster="../assets/vfx-motion-transfer-poster.webp" width="1280" height="720" aria-label="游戏角色动作迁移演示">
-              <source src="../assets/vfx-motion-transfer.mp4" data-mobile-src="../assets/vfx-motion-transfer-mobile.mp4" type="video/mp4">
-              你的浏览器不支持 HTML5 视频。
-            </video>
-            <button class="case-video-play" type="button" aria-label="播放游戏角色动作迁移演示">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
-          </div>
-        </figure>
       </div>
 
       <div class="responsibility-note"><strong data-copy="pipelineResponsibility">让同事掌握这些方法</strong><p data-copy="pipelineResponsibilityDetail">编写 ComfyUI / n8n 手册，用内部培训、实操作业和项目带教传递搭建方法。</p></div>
