@@ -543,13 +543,16 @@
 .flowx-page #fx-experience .fx-case-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0;
+  gap: 0 !important;
 }
 .flowx-page #fx-experience .fx-case-card {
+  --fx-case-pad: clamp(20px, 2.5vw, 32px);
   min-width: 0;
   margin: 0;
-  padding: clamp(20px, 2.5vw, 32px) clamp(20px, 2.5vw, 36px) clamp(16px, 2vw, 24px);
+  padding: var(--fx-case-pad) clamp(20px, 2.5vw, 36px) calc(var(--fx-case-pad) - 4px);
 }
+.flowx-page #fx-experience .fx-case-grid .case-frame + .case-frame { margin-top: 0 !important; }
+
 .flowx-page #fx-experience .fx-case-card:nth-child(even) {
   border-left: 1px solid var(--line);
 }
@@ -681,7 +684,7 @@
   .flowx-page .flowx-demo .case-video-play svg { width: 17px; height: 17px; }
   .flowx-page #fx-experience .fx-section-head { margin-bottom: 14px; gap: 10px; }
   .flowx-page #fx-experience .fx-case-grid { grid-template-columns: minmax(0, 1fr); }
-  .flowx-page #fx-experience .fx-case-card { padding: 22px 12px; }
+  .flowx-page #fx-experience .fx-case-card { padding: 22px 12px 18px; }
   .flowx-page #fx-experience .fx-case-card { border-left: 0; }
   .flowx-page #fx-experience .fx-case-card:nth-child(even) { border-left: 0; }
   .flowx-page #fx-experience .fx-case-card + .fx-case-card { border-top: 1px solid var(--line); }
