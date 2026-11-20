@@ -13,6 +13,7 @@ body.pipeline-page {
   --text: var(--ink);
   --text-muted: var(--muted);
   --line: var(--rule);
+  --section-rule: #353239;
   --radius-card: 20px;
   --shadow-card: 0 24px 70px rgba(0, 0, 0, 0.35);
   --tile-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
@@ -33,6 +34,7 @@ body.pipeline-page[data-theme="light"] {
   --paper: #f6f5f1;
   --panel: #ffffff;
   --rule: rgba(23, 22, 26, 0.09);
+  --section-rule: #d7d3d8;
   --signal: #6847d9;
   --accent-ink: #ffffff;
   --glow: rgba(104, 71, 217, 0.12);
@@ -169,13 +171,20 @@ html:has(body.pipeline-page) {
   scroll-margin-top: 16px;
 }
 
-.capability-section + .capability-section {
-  border-top: 1px solid var(--rule);
+.capability-section + .capability-section::before,
+.capability-section#pipelines::before {
+  position: absolute;
+  top: 0;
+  right: var(--gutter);
+  left: var(--gutter);
+  height: 1px;
+  background: var(--section-rule);
+  pointer-events: none;
+  content: "";
 }
 
 .capability-section#pipelines {
   margin-top: clamp(36px, 4vw, 52px);
-  border-top: 1px solid var(--rule);
 }
 
 .capability-section#vfx .capability-heading {
