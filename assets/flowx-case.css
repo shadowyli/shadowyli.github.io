@@ -657,11 +657,12 @@
   .flowx-page .case-body .fx-solution-item { padding: 16px 18px; }
   .flowx-page .case-body .fx-solution-plus { display: none; }
   .flowx-page .case-body .fx-solution-eq {
-    display: block;
+    display: none;
     margin: 2px 0;
     color: var(--fx-accent);
     font: 300 22px/1 "Archivo", sans-serif;
   }
+  .flowx-page .case-body .fx-solution-brand { display: none; }
   .fx-poster-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; margin-top: 12px; }
   .fx-map-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 8px; }
   .fx-dcc { justify-content: flex-start; gap: 9px; }
