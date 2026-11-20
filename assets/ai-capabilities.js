@@ -11,6 +11,7 @@
     upscaleTitle: "Tiled HD upscaling and restoration, up to 16K",
     characterVideoTitle: "One-click audio-visual video for game characters",
     outfitVideoTitle: "Game outfit to real-person dance video",
+    outfitVideoNote: " (In-house pipeline completes the rollout end-to-end at L4)",
     filmRemakeTitle: "Game-character remake of film scenes",
     filmRemakeNote: " (In-house pipeline runs multi-device concurrent batches; offline models avoid likeness and copyright flags)",
     gameTitleTitle: "Game title generation",
