@@ -29,7 +29,7 @@
     app1: "Need & product definition", app1Detail: "Distil the high-frequency scenarios from the field, then define entry points, fields and priorities by value rather than feature count.",
     app2: "Service & agent development", app2Detail: "Own the form entry, agent orchestration and API work that turn pipelines into callable services.",
     app3: "Quality & acceptance", app3Detail: "Set specification and visual acceptance criteria, plus retry, escalation and release standards.",
-    app4: "Rollout & iteration", app4Detail: "Write ComfyUI and n8n guides, run internal training and iterate releases on usage feedback.",
+    app4: "Rollout & iteration", app4Detail: "Roll proven scenarios out to more business teams and keep iterating releases on usage data and feedback.",
     footerNote: "Shadow · Visual Design Portfolio", contactMe: "Contact me"
   };
   var elements = Array.from(document.querySelectorAll("[data-copy]"));
