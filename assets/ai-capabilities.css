@@ -414,6 +414,9 @@ html:has(body.pipeline-page) {
 
 .vfx-film-video .case-frame-inner { aspect-ratio: 3 / 4; }
 
+/* 游戏标题：成稿（2400×641）与字效风格库（1604×1034）按比例分栏，两框等高 */
+.pipe-pair--title { grid-template-columns: minmax(0, 3.745fr) minmax(0, 1.551fr); }
+
 .capability-section .scope-note {
   max-width: 90ch;
   margin-top: 24px;
@@ -842,6 +845,7 @@ body.pipeline-page .case-footer {
   .pipe-pair--media { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--outfit { grid-template-columns: minmax(0, 1fr); }
   .pipe-pair--film { grid-template-columns: minmax(0, 1fr); }
+  .pipe-pair--title { grid-template-columns: minmax(0, 1fr); }
   body.pipeline-page .capability-section#pipelines { margin-top: 26px; padding-top: 24px; }
   .tool-network { padding-bottom: 8px; }
   .example-heading h3 { font-size: 16px; }
