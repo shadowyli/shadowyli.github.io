@@ -874,7 +874,7 @@ body.pipeline-page .case-footer {
   .capability-section#applications .capability-heading > div { display: contents; }
   .capability-section#applications .capability-heading h2 { grid-column: 1; grid-row: 1; }
   .capability-section#applications .capability-heading p { grid-column: 1 / -1; grid-row: 2; max-width: none; margin-top: 10px; }
-  .capability-section#applications .capability-heading .skill-tags { grid-column: 2; grid-row: 1; justify-content: flex-end; padding-top: 0; }
+  .capability-section#applications .capability-heading .skill-tags { grid-column: 2; grid-row: 1; justify-content: flex-start; padding-top: 0; }
 }
 
 /* 1080 以下截图占满整行、卡片另起一段，避免右栏被挤窄后截图被横向拉裁 */
