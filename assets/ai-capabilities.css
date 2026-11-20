@@ -175,7 +175,6 @@ html:has(body.pipeline-page) {
 
 .capability-section#pipelines {
   margin-top: clamp(36px, 4vw, 52px);
-  padding-top: clamp(30px, 3.2vw, 44px);
   border-top: 1px solid var(--rule);
 }
 
@@ -184,14 +183,9 @@ html:has(body.pipeline-page) {
 }
 
 /* 桌面/平板：应用区块与上面的管线区块保持同一套垂直节奏 */
-@media (min-width: 721px) {
-  .capability-section#applications {
-    padding-top: clamp(30px, 3.2vw, 44px);
-  }
-
-  .capability-section#applications .capability-heading {
-    margin-bottom: clamp(10px, 1.1vw, 14px);
-  }
+/* 应用区块与其它区块共用同一套垂直节奏 */
+.capability-section#applications .capability-heading {
+  margin-bottom: clamp(10px, 1.1vw, 14px);
 }
 
 .capability-section#vfx .capability-heading p {
@@ -243,7 +237,7 @@ html:has(body.pipeline-page) {
   border-radius: 999px;
   background: var(--panel);
   color: var(--muted);
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -335,8 +329,8 @@ html:has(body.pipeline-page) {
   grid-template-columns: minmax(160px, 250px) minmax(0, 1fr);
   gap: 8px 24px;
   padding: 20px 24px;
-  border-radius: 18px;
-  font-size: 15px;
+  border-radius: 16px;
+  font-size: 14px;
 }
 
 .responsibility-note p { max-width: 74ch; color: var(--muted); }
@@ -347,7 +341,7 @@ html:has(body.pipeline-page) {
   background: color-mix(in srgb, var(--panel) 60%, transparent);
 }
 
-.responsibility-note strong { color: var(--ink); font-weight: 600; }
+.responsibility-note strong { color: var(--ink); font-size: 16px; font-weight: 600; }
 
 .pipe-block {
   display: grid;
@@ -540,7 +534,7 @@ html:has(body.pipeline-page) {
   transition: border-color 200ms ease, transform 200ms ease;
 }
 
-.application-flow strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.5; }
+.application-flow strong { display: block; font-size: 15px; font-weight: 600; line-height: 1.5; }
 .application-flow p { margin-top: 8px; color: var(--muted); font-size: 14px; }
 
 .application-flow > div:not(:last-child)::after {
@@ -571,6 +565,18 @@ html:has(body.pipeline-page) {
 
 @media (hover: hover) {
   .application-flow > div:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--signal) 35%, var(--rule)); }
+}
+
+/* 播放键视觉尺寸不变，触控热区扩到 44×44 */
+.vfx-figure .case-video-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* ---------- tool network ---------- */
@@ -805,7 +811,7 @@ html:has(body.pipeline-page) {
 .vfx-subtitle {
   margin: 0;
   color: var(--ink);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: .01em;
@@ -912,8 +918,8 @@ body.pipeline-page .case-footer {
   /* 能力标签：放得下保持一行，窄屏/长文案自动换行，避免横向溢出 */
   .skill-tags { gap: 6px; }
   .skill-tags li {
-    padding: 4px 9px;
-    font-size: 10.5px;
+    padding: 4px 10px;
+    font-size: 12px;
     line-height: 1.25;
     white-space: nowrap;
   }
