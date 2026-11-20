@@ -820,10 +820,14 @@ html:has(body.pipeline-page) {
 .vfx-subtitle {
   margin: 0;
   color: var(--ink);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: .01em;
+}
+
+@media (max-width: 720px) {
+  .vfx-subtitle { font-size: 14px; }
 }
 
 .vfx-xp {
