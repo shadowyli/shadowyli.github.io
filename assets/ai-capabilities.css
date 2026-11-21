@@ -335,14 +335,14 @@ html:has(body.pipeline-page) {
 /* ---------- callouts ---------- */
 .responsibility-note {
   display: grid;
-  grid-template-columns: minmax(160px, 250px) minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
   gap: 8px 24px;
   padding: 20px 24px;
   border-radius: 16px;
   font-size: 14px;
 }
 
-.responsibility-note p { max-width: 74ch; color: var(--muted); }
+.responsibility-note p { max-width: none; color: var(--muted); }
 
 .responsibility-note {
   margin-top: 18px;
