@@ -8,8 +8,8 @@ body.pipeline-page {
   --accent-ink: #0c0c0e;
   --glow: rgba(255, 220, 25, 0.1);
   --header-size: 64px;
-  --gutter: clamp(24px, 5vw, 88px);
-  --content-width: 1180px;
+  --gutter: clamp(24px, 4.2vw, 60px);
+  --content-width: 1440px;
   --text: var(--ink);
   --text-muted: var(--muted);
   --line: var(--rule);
@@ -922,7 +922,7 @@ body.pipeline-page .case-footer {
 }
 
 @media (max-width: 720px) {
-  body.pipeline-page { --header-size: 60px; --gutter: 22px; }
+  body.pipeline-page { --header-size: 60px; --gutter: 24px; }
   .pipe-pair { gap: 6px; }
   .vfx-char-video .case-video-play { width: 40px; height: 40px; }
   .vfx-char-video .case-video-play svg { width: 18px; height: 18px; }
@@ -969,7 +969,7 @@ body.pipeline-page .case-footer {
 }
 
 @media (max-width: 380px) {
-  body.pipeline-page { --gutter: 16px; }
+  body.pipeline-page { --gutter: 24px; }
 }
 
 @media (max-width: 340px) {
