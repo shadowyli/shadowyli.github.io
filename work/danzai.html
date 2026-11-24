@@ -622,6 +622,17 @@
       line-height: 1.15;
       font-variant-numeric: tabular-nums;
     }
+    /* 三行统一成「标签列 + 内容列」，左边缘对齐 */
+    .case-aud-stat {
+      display: grid;
+      grid-template-columns: max-content minmax(0, 1fr);
+      align-items: baseline;
+      column-gap: clamp(10px, 1.2vw, 16px);
+    }
+    .case-aud-stat-label { margin: 0; white-space: nowrap; }
+    .case-aud-stat-value { margin: 0; }
+    .case-aud-stat--gender .case-aud-gender-row { margin-top: 0; }
+    .case-aud-demand .case-aud-tags { margin-top: 0; }
     .case-aud-stat-note {
       margin: 4px 0 0;
       color: var(--aud-yellow);
@@ -774,6 +785,12 @@
         border-top: 1px solid var(--aud-line);
         border-left: 0;
       }
+      .case-aud-tags {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .case-aud-tags li { text-align: center; }
       .case-aud-axis li { font-size: 10px; }
       .case-aud-axis b { display: block; margin: 2px 0 0; }
     }
@@ -923,28 +940,6 @@
     }
     .case-audience.is-bento-near::after,
     .case-analysis.is-bento-near::after { opacity: 1; }
-
-    .case-audience .bento-ripple,
-    .case-analysis .bento-ripple {
-      position: absolute;
-      z-index: 3;
-      width: 26px;
-      height: 26px;
-      margin: -13px 0 0 -13px;
-      border-radius: 50%;
-      border: 1px solid rgba(var(--bento-rgb), 0.55);
-      background: radial-gradient(circle, rgba(var(--bento-rgb), 0.16), rgba(var(--bento-rgb), 0) 70%);
-      pointer-events: none;
-      animation: bento-ripple 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-    @keyframes bento-ripple {
-      from { opacity: 0.85; transform: scale(0.25); }
-      to { opacity: 0; transform: scale(26); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .case-audience .bento-ripple,
-      .case-analysis .bento-ripple { display: none; }
-    }
 
     .case-audience.bento-intro,
     .case-analysis.bento-intro {
@@ -1156,7 +1151,7 @@
                 <p class="case-aud-stat-label" data-i18n-key="audStatAgeLabel">核心年龄</p>
                 <p class="case-aud-stat-value" data-i18n-key="audStatAgeValue">31-40 岁</p>
               </div>
-              <div class="case-aud-stat">
+              <div class="case-aud-stat case-aud-stat--gender">
                 <p class="case-aud-stat-label" data-i18n-key="audGenderLabel">性别占比</p>
                 <div class="case-aud-gender-row">
                   <span class="case-aud-gender-side">
@@ -2077,21 +2072,6 @@
 
         card.addEventListener("pointerleave", function () {
           card.classList.remove("is-bento-near", "is-bento-hot");
-        });
-
-        if (reduced) return;
-
-        card.addEventListener("pointerdown", function (event) {
-          if (event.button !== undefined && event.button !== 0) return;
-          var rect = card.getBoundingClientRect();
-          var ripple = document.createElement("span");
-          ripple.className = "bento-ripple";
-          ripple.style.left = (event.clientX - rect.left).toFixed(1) + "px";
-          ripple.style.top = (event.clientY - rect.top).toFixed(1) + "px";
-          card.appendChild(ripple);
-          ripple.addEventListener("animationend", function () {
-            ripple.remove();
-          });
         });
       });
 
