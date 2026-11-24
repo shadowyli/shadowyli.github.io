@@ -29,7 +29,7 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261118-1">
+  <link rel="stylesheet" href="../styles.css?v=20261124-3">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-echo.css?v=20261118-7">
   <style>
@@ -135,9 +135,6 @@
     </div>
   </header>
 
-  <div class="case-progress" aria-hidden="true">
-    <span class="case-progress-fill"></span>
-  </div>
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
@@ -825,32 +822,6 @@
           applyLanguage(nextLanguage);
         });
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      var bar = document.querySelector(".case-progress");
-      if (!bar) return;
-      var ticking = false;
-
-      function render() {
-        ticking = false;
-        var doc = document.documentElement;
-        var max = doc.scrollHeight - window.innerHeight;
-        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        var percent = (progress * 100).toFixed(2) + "%";
-        bar.style.setProperty("--progress", percent);
-      }
-
-      function request() {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(render);
-      }
-
-      window.addEventListener("scroll", request, { passive: true });
-      window.addEventListener("resize", request);
-      render();
     })();
   </script>
   <script>

@@ -29,13 +29,14 @@
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Bold.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261118-1">
+  <link rel="stylesheet" href="../styles.css?v=20261124-3">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-echo.css?v=20261118-7">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/vi-collage.css?v=20261118-2">
   <style>
-    main.case-main { padding-bottom: clamp(16px, 2vw, 24px); }
+    /* 顶部主 KV 满幅：上贴顶栏，左右到视口边缘 */
+    main.case-main { padding-top: 0; padding-bottom: clamp(16px, 2vw, 24px); }
 
     /* 关于与画廊之间收紧留白 */
     .case-body .case-intro + .case-gallery { margin-top: clamp(20px, 2.2vw, 28px); }
@@ -43,22 +44,22 @@
     /* 关于：与梦手案例统一为小号标签 + 正文排版 */
     .case-body .case-intro h2 {
       margin-bottom: 4px;
-      color: #a4a4ad;
-      font-size: 9px;
-      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 500;
       line-height: 1.3;
       letter-spacing: 0.08em;
     }
     .case-body .case-intro p {
-      color: #696969;
+      color: var(--text);
     }
 
     @media (max-width: 720px) {
-      .case-body .case-intro h2 { font-size: 8px; }
+      .case-body .case-intro h2 { font-size: 10px; }
       .case-body .case-intro p {
         margin-bottom: 12px;
-        font-size: 9.8px;
-        line-height: 1.8;
+        font-size: 14px;
+        line-height: 1.85;
       }
     }
 
@@ -68,6 +69,34 @@
     .case-body #case-gallery-video { margin-top: 6px; }
 
     .case-row + .case-row { margin-top: 6px; }
+
+    /* KV：左静态主视觉、右制作过程视频 */
+    .case-kv-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 6px;
+    }
+    .case-kv-split .case-frame {
+      margin: 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+    /* 覆盖全局“相邻 case-frame 上边距 6px”，保证左右严格齐平 */
+    .case-body .case-kv-split .case-frame,
+    .case-body .case-kv-split .case-frame + .case-frame { margin: 0; }
+    .case-body .case-kv-split .case-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .case-kv-split .case-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    @media (max-width: 720px) {
+      .case-kv-split { grid-template-columns: 1fr; }
+    }
 
     /* VI 手册：一行五张，未定图的位置留空占位 */
     .case-vi-row {
@@ -280,6 +309,747 @@
       );
     }
 
+    /* 顶部数据区：主 KV 作底图，数据压在底部的渐隐层上 */
+    .case-metrics {
+      --figures-inset: calc(2vw + clamp(16px, 2.2vw, 40px));
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: clamp(270px, 28vw, 410px);
+      width: 100vw;
+      margin: 0 calc(50% - 50vw) clamp(22px, 2.8vw, 34px);
+      padding: clamp(18px, 2vw, 26px) var(--figures-inset) clamp(22px, 2.6vw, 34px);
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .case-metrics::before,
+    .case-metrics::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .case-metrics::before {
+      z-index: -2;
+      background: url("../assets/danzai-kv-scene.webp") center 10% / cover no-repeat;
+    }
+    .case-metrics::after {
+      z-index: -1;
+      background: linear-gradient(
+        to top,
+        var(--bg) 0%,
+        color-mix(in srgb, var(--bg) 94%, transparent) 24%,
+        color-mix(in srgb, var(--bg) 78%, transparent) 46%,
+        color-mix(in srgb, var(--bg) 36%, transparent) 70%,
+        color-mix(in srgb, var(--bg) 0%, transparent) 100%
+      );
+    }
+
+    /* 首屏主 KV：下滑式入场（遮罩自上而下扫开 + 轻微回位） */
+    /* 满幅 KV 已经覆盖首屏，底层 72px 辅助网格只在 KV 下方露出一条线，直接关掉 */
+    body.case-page .case-main::before { display: none; }
+    .case-metrics::before {
+      animation: case-hero-curtain 1150ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 88%, transparent 100%);
+    }
+    .case-metrics .case-hero-title {
+      animation: case-hero-drop 820ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
+    }
+    .case-metrics .case-metric {
+      animation: case-hero-drop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .case-metrics .case-metric:nth-child(1) { animation-delay: 260ms; }
+    .case-metrics .case-metric:nth-child(2) { animation-delay: 330ms; }
+    .case-metrics .case-metric:nth-child(3) { animation-delay: 400ms; }
+    .case-metrics .case-metric:nth-child(4) { animation-delay: 470ms; }
+    .case-metrics .case-metric:nth-child(5) { animation-delay: 540ms; }
+    @keyframes case-hero-curtain {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -9%, 0) scale(1.04);
+      }
+      55% {
+        opacity: 1;
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @keyframes case-hero-drop {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -20px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-metrics::before,
+      .case-metrics .case-hero-title,
+      .case-metrics .case-metric { animation: none; }
+    }
+
+    /* 顶栏「联系我」：镜面玻璃按钮，描边光跟随指针（参考 Vue Bits SpecularButton） */
+    .case-header .case-back {
+      position: relative;
+      isolation: isolate;
+      padding: 8px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.045);
+      color: #f5f5f5;
+      box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.6);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 250ms ease;
+    }
+    .case-header .case-back::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      z-index: -1;
+      box-sizing: border-box;
+      padding: 1.2px;
+      border-radius: inherit;
+      background: conic-gradient(
+        from calc(var(--sb-angle, 0deg) - 26deg),
+        rgba(255, 255, 255, 0) 0deg,
+        rgba(255, 255, 255, 0.12) 12deg,
+        rgba(255, 255, 255, 0.95) 26deg,
+        rgba(255, 255, 255, 0.12) 40deg,
+        rgba(255, 255, 255, 0) 62deg
+      );
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+      opacity: var(--sb-level, 0.35);
+      transition: opacity 260ms ease;
+      pointer-events: none;
+    }
+    .case-header .case-back:hover { transform: translateY(-1px); }
+    .case-header .case-back:active { transform: scale(0.97); }
+    html[data-theme="light"] .case-header .case-back {
+      border-color: rgba(0, 0, 0, 0.16);
+      background: rgba(0, 0, 0, 0.04);
+      color: #111111;
+    }
+    html[data-theme="light"] .case-header .case-back::before {
+      background: conic-gradient(
+        from calc(var(--sb-angle, 0deg) - 26deg),
+        rgba(0, 0, 0, 0) 0deg,
+        rgba(0, 0, 0, 0.12) 12deg,
+        rgba(0, 0, 0, 0.8) 26deg,
+        rgba(0, 0, 0, 0.12) 40deg,
+        rgba(0, 0, 0, 0) 62deg
+      );
+    }
+    @media (max-width: 720px) {
+      .case-header .case-back {
+        padding: 6px 14px;
+        font-size: 13px;
+      }
+      /* 手机端顶栏的联系我由页脚按钮搬上来，补同样式 */
+      body.case-page .case-header .is-header-contact.sidebar-contact {
+        padding: 6px 14px;
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+        background: transparent !important;
+        box-shadow: inset 0 0 0 3px #000000;
+        color: #ffffff;
+        min-height: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      :root[data-theme="light"] body.case-page .case-header .is-header-contact.sidebar-contact {
+        border-color: #000000;
+        color: #000000;
+      }
+    }
+
+    /* 主标题：跟随内容压在数据行上方，不额外撑高首屏 */
+    .case-metrics .case-hero-title {
+      display: flex;
+      align-items: center;
+      gap: clamp(10px, 1.2vw, 18px);
+      margin: 0 0 clamp(18px, 1.8vw, 26px);
+      line-height: 0;
+    }
+    .case-metrics .case-hero-title img {
+      display: block;
+      height: auto;
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.32));
+    }
+    .case-metrics .case-hero-title .case-hero-logo { width: clamp(74px, 8.8vw, 126px); }
+    .case-metrics .case-hero-title .case-hero-wordmark { width: clamp(240px, 30vw, 430px); }
+    /* 浅色主题底图会被提亮，描边外加一层阴影保证标题不糊 */
+    html[data-theme="light"] .case-metrics .case-hero-title img {
+      filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.42));
+    }
+
+    /* 署名移到文末：从上分隔线开始，不再挂下边线 */
+    .case-body .case-credits--end {
+      margin: clamp(32px, 4.2vw, 56px) 0 0;
+      padding: clamp(18px, 2.2vw, 26px) 0 0;
+      border-top: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+      border-bottom: 0;
+    }
+
+    /* 正文高亮：渐变底块 + 扫入（参考 Aceternity Highlight） */
+    .case-highlight {
+      /* 左右含 0.05em 字距补偿：右侧扣掉末尾字距，视觉上与左侧等宽 */
+      padding: 0.22em 0.25em 0.22em 0.3em;
+      letter-spacing: 0.05em;
+      border-radius: 0;
+      background-image: linear-gradient(90deg, #f8ce0f, #ffd94a 55%, #f5c400);
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 100% 100%;
+      color: #161616;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+      animation: case-highlight-sweep 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes case-highlight-sweep {
+      from {
+        background-size: 0% 100%;
+        color: var(--text);
+      }
+      45% { color: var(--text); }
+      to { background-size: 100% 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-highlight { animation: none; }
+    }
+
+    /* From Uiverse.io by Gidarx - https://uiverse.io/Gidarx/clever-panther-6
+       MIT License, Copyright (c) Gidarx (Gidarx) */
+    /* 用户画像：数据卡片 */
+    .case-audience {
+      --aud-yellow: #f8ce0f;
+      --aud-blue: #3cbafd;
+      --aud-line: color-mix(in srgb, var(--text) 8%, transparent);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      margin-top: clamp(20px, 2vw, 28px);
+      padding: clamp(20px, 2.4vw, 32px);
+      border: 1px solid var(--aud-line);
+      border-radius: clamp(16px, 1.8vw, 26px);
+      background: color-mix(in srgb, var(--text) 4%, transparent);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.35);
+      transition: border-color 320ms ease;
+    }
+    html[data-theme="light"] .case-audience { --aud-yellow: #d9ad00; }
+    .case-aud-inner {
+      position: relative;
+      display: grid;
+      gap: clamp(14px, 1.8vw, 22px);
+    }
+    .case-aud-head {
+      display: flex;
+      align-items: center;
+      gap: 18px 32px;
+      flex-wrap: wrap;
+      padding-bottom: clamp(16px, 2vw, 22px);
+      border-bottom: 1px solid var(--aud-line);
+    }
+    .case-aud-id {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .case-aud-icon {
+      display: grid;
+      place-items: center;
+      flex: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--aud-yellow) 12%, transparent);
+      color: var(--aud-yellow);
+    }
+    .case-aud-icon svg { width: 20px; height: 20px; }
+    .case-aud-name {
+      margin: 0;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .case-aud-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: clamp(22px, 3vw, 44px);
+      align-items: stretch;
+    }
+    .case-aud-chart { min-width: 0; }
+    .case-aud-stats {
+      display: grid;
+      align-content: center;
+      gap: clamp(14px, 1.8vw, 20px);
+      padding-left: clamp(20px, 2.6vw, 36px);
+      border-left: 1px solid var(--aud-line);
+    }
+    .case-aud-stat { padding: 0; }
+    .case-aud-stat + .case-aud-stat {
+      padding-top: clamp(14px, 1.8vw, 20px);
+      border-top: 1px solid var(--aud-line);
+    }
+    .case-aud-stat-label {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .case-aud-stat-value {
+      margin: 4px 0 0;
+      color: var(--text);
+      font-size: clamp(20px, 1.9vw, 26px);
+      font-weight: 600;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+    }
+    .case-aud-stat-note {
+      margin: 4px 0 0;
+      color: var(--aud-yellow);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .case-aud-wake {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 48px;
+      flex: 1 1 auto;
+      min-width: 0;
+      margin: 0;
+    }
+    .case-aud-gender-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 4px 12px;
+      margin-top: 10px;
+    }
+    .case-aud-gender-side {
+      display: flex;
+      flex: none;
+      align-items: baseline;
+      gap: 5px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .case-aud-gender-side b {
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    @media (max-width: 720px) {
+      .case-aud-gender-row { gap: 2px 8px; }
+      .case-aud-gender-side { gap: 4px; font-size: 11px; }
+      .case-aud-gender-side b { font-size: 13px; }
+      .case-aud-wake { gap: 3px; }
+    }
+    .case-aud-wake-bar {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 100%;
+      transform: scaleY(0.26);
+      transform-origin: 50% 50%;
+      border-radius: 2px;
+      background: #6a6e71;
+      opacity: 0.55;
+      transition: opacity 220ms ease, background-color 220ms ease;
+      will-change: transform;
+    }
+    .case-aud-wake-bar.is-female {
+      background: #f4f4f4;
+      opacity: 1;
+    }
+    .case-aud-spark {
+      position: relative;
+      height: clamp(100px, 12vw, 150px);
+    }
+    .case-aud-spark svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    .case-aud-spark-line {
+      fill: none;
+      stroke: var(--aud-yellow);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .case-aud-dot {
+      position: absolute;
+      left: 87.5%;
+      top: 61.2%;
+      width: 10px;
+      height: 10px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--aud-yellow);
+      box-shadow: 0 0 14px color-mix(in srgb, var(--aud-yellow) 55%, transparent);
+      animation: case-aud-pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes case-aud-pulse {
+      0%, 100% { box-shadow: 0 0 10px color-mix(in srgb, var(--aud-yellow) 40%, transparent); }
+      50% { box-shadow: 0 0 22px color-mix(in srgb, var(--aud-yellow) 70%, transparent); }
+    }
+    .case-aud-axis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .case-aud-axis li {
+      color: var(--text-muted);
+      font-size: 11px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .case-aud-axis b {
+      margin-left: 4px;
+      color: var(--text);
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+    .case-aud-demand .case-aud-tags { margin-top: 12px; }
+    .case-aud-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .case-aud-tags li {
+      padding: 4px 12px;
+      border: 1px solid color-mix(in srgb, var(--aud-yellow) 35%, transparent);
+      border-radius: 999px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    @media (max-width: 720px) {
+      .case-audience { padding: 16px 14px; }
+      .case-aud-head { padding-bottom: 14px; }
+      .case-aud-body {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .case-aud-stats {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 0;
+        padding: 16px 0 0;
+        border-left: 0;
+        border-top: 1px solid var(--aud-line);
+      }
+      .case-aud-stat { padding: 0; }
+      .case-aud-stat + .case-aud-stat {
+        padding: 14px 0 0;
+        border-top: 1px solid var(--aud-line);
+        border-left: 0;
+      }
+      .case-aud-axis li { font-size: 10px; }
+      .case-aud-axis b { display: block; margin: 2px 0 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-aud-dot { animation: none; }
+    }
+
+    /* 综合分析：与画像卡片同构 */
+    .case-analysis {
+      --aud-yellow: #f8ce0f;
+      position: relative;
+      isolation: isolate;
+      margin-top: clamp(20px, 2vw, 28px);
+      padding: clamp(20px, 2.4vw, 32px);
+      border: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+      border-radius: clamp(16px, 1.8vw, 26px);
+      background: color-mix(in srgb, var(--text) 5%, transparent);
+      transition: border-color 320ms ease;
+    }
+    html[data-theme="light"] .case-analysis { --aud-yellow: #d9ad00; }
+    .case-analysis h3 {
+      margin: 0 0 clamp(10px, 1.2vw, 14px);
+      color: var(--text);
+      font-size: clamp(17px, 1.4vw, 20px);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .case-analysis p {
+      margin: 0;
+      max-width: none;
+      color: var(--text);
+      font-size: clamp(15px, 0.1vw + 14.5px, 16px);
+      line-height: 1.85;
+    }
+    .case-analysis-groups {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(10px, 1.4vw, 18px);
+      margin: clamp(18px, 2vw, 26px) 0;
+      padding: 0;
+      list-style: none;
+    }
+    .case-group {
+      padding: clamp(14px, 1.6vw, 20px);
+      border: 1px solid color-mix(in srgb, var(--text) 8%, transparent);
+      border-radius: 14px;
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--text) 6%, transparent),
+        color-mix(in srgb, var(--text) 2%, transparent)
+      );
+      box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 9%, transparent);
+      transition: border-color 300ms ease, transform 300ms ease;
+    }
+    .case-group:hover {
+      border-color: color-mix(in srgb, var(--aud-yellow) 45%, transparent);
+      transform: translateY(-2px);
+    }
+    .case-group-index {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--aud-yellow);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .case-group strong {
+      display: block;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .case-group em {
+      display: block;
+      margin-top: 6px;
+      color: var(--text-muted);
+      font-size: 8.5px;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
+    }
+    .case-analysis .case-analysis-strategy {
+      margin: clamp(18px, 2vw, 24px) 0 0;
+      padding-top: clamp(16px, 1.8vw, 22px);
+      border-top: 1px solid color-mix(in srgb, var(--text) 9%, transparent);
+    }
+    @media (max-width: 720px) {
+      .case-analysis { padding: 16px 14px; }
+      .case-analysis p { font-size: 14px; }
+      .case-analysis-groups { grid-template-columns: 1fr; }
+    }
+
+    /* Magic Bento 风格（参考 Vue Bits MagicBento）：跟随指针的描边光与内部柔光 */
+    .case-audience,
+    .case-analysis {
+      --bento-rgb: 248, 206, 15;
+      --bento-x: -999px;
+      --bento-y: -999px;
+    }
+    html[data-theme="light"] .case-audience,
+    html[data-theme="light"] .case-analysis { --bento-rgb: 206, 160, 0; }
+
+    .case-audience::before,
+    .case-analysis::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: radial-gradient(
+        440px circle at var(--bento-x) var(--bento-y),
+        rgba(var(--bento-rgb), 0.12) 0%,
+        rgba(var(--bento-rgb), 0.06) 40%,
+        rgba(var(--bento-rgb), 0) 72%
+      );
+      opacity: 0;
+      transition: opacity 340ms ease;
+      pointer-events: none;
+    }
+    .case-audience.is-bento-hot::before,
+    .case-analysis.is-bento-hot::before { opacity: 1; }
+
+    .case-audience::after,
+    .case-analysis::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      box-sizing: border-box;
+      padding: 1px;
+      border-radius: inherit;
+      background: radial-gradient(
+        460px circle at var(--bento-x) var(--bento-y),
+        rgba(var(--bento-rgb), 0.68) 0%,
+        rgba(var(--bento-rgb), 0.4) 24%,
+        rgba(var(--bento-rgb), 0.16) 50%,
+        rgba(var(--bento-rgb), 0.04) 76%,
+        rgba(var(--bento-rgb), 0) 100%
+      );
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+      opacity: 0;
+      transition: opacity 340ms ease;
+      pointer-events: none;
+    }
+    .case-audience.is-bento-near::after,
+    .case-analysis.is-bento-near::after { opacity: 1; }
+
+    .case-audience .bento-ripple,
+    .case-analysis .bento-ripple {
+      position: absolute;
+      z-index: 3;
+      width: 26px;
+      height: 26px;
+      margin: -13px 0 0 -13px;
+      border-radius: 50%;
+      border: 1px solid rgba(var(--bento-rgb), 0.55);
+      background: radial-gradient(circle, rgba(var(--bento-rgb), 0.16), rgba(var(--bento-rgb), 0) 70%);
+      pointer-events: none;
+      animation: bento-ripple 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    @keyframes bento-ripple {
+      from { opacity: 0.85; transform: scale(0.25); }
+      to { opacity: 0; transform: scale(26); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-audience .bento-ripple,
+      .case-analysis .bento-ripple { display: none; }
+    }
+
+    .case-audience.bento-intro,
+    .case-analysis.bento-intro {
+      opacity: 0;
+      transform: translate3d(0, 18px, 0);
+    }
+    .case-audience.bento-intro.bento-in,
+    .case-analysis.bento-intro.bento-in {
+      opacity: 1;
+      transform: none;
+      transition:
+        opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 820ms cubic-bezier(0.34, 1.26, 0.64, 1);
+    }
+
+    /* 顶部数据：五列布局 */
+    .case-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin: 0;
+    }
+    .case-metric {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 0 clamp(12px, 1.6vw, 24px);
+      border-left: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    }
+    .case-metric:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .case-metric:last-child { padding-right: 0; }
+    .case-metric dd {
+      order: 1;
+      display: flex;
+      align-items: baseline;
+      margin: 0 0 10px;
+      color: var(--text);
+      font-family: "Archivo", var(--font-cjk);
+      font-variant-numeric: tabular-nums;
+      line-height: 0.88;
+    }
+    .case-metric-num {
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .case-metric-unit {
+      margin-left: 3px;
+      color: var(--text-muted);
+      font-size: clamp(13px, 1.15vw, 17px);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .case-metric dt {
+      order: 2;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+    }
+    @media (max-width: 720px) {
+      .case-metrics {
+        min-height: 450px;
+        margin-bottom: 20px;
+        padding: 16px var(--figures-inset) 18px;
+      }
+      .case-metrics::before {
+        background-image: url("../assets/danzai-kv-scene-mobile.webp");
+        background-position: center 26%;
+      }
+      .case-metrics .case-hero-title {
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .case-metrics .case-hero-title .case-hero-logo { width: clamp(56px, 16vw, 74px); }
+      .case-metrics .case-hero-title .case-hero-wordmark { width: clamp(180px, 56vw, 260px); }
+      .case-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 14px;
+      }
+      .case-metric { padding: 0 12px; }
+      .case-metric:nth-child(odd) {
+        padding-left: 0;
+        border-left: 0;
+      }
+      .case-metric:nth-child(even) { padding-right: 0; }
+      .case-metric:nth-child(n + 3) {
+        padding-top: 14px;
+        border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+      }
+      .case-metric:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 10px;
+        padding-top: 14px;
+      }
+      .case-metric:last-child:nth-child(odd) dd { margin: 0; }
+      .case-metric-num { font-size: clamp(26px, 7.6vw, 34px); }
+      .case-metric-unit { font-size: 12px; }
+      .case-metric dt { font-size: 12px; }
+    }
+
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
@@ -293,7 +1063,7 @@
       <a href="../index.html#about" data-i18n-key="navAbout">关于我</a>
     </nav>
     <div class="case-header-actions">
-      <a class="case-back" href="../index.html#portfolio" data-i18n-key="back">← 返回作品集</a>
+      <button class="case-back" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog" data-contact-trigger data-i18n-key="contactMe">联系我</button>
       <button class="theme-toggle icon-button case-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
       </button>
@@ -301,19 +1071,140 @@
     </div>
   </header>
 
-  <div class="case-progress" aria-hidden="true">
-    <span class="case-progress-fill"></span>
-  </div>
 
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
-      <ul class="case-credits" data-case-credits="danzai" aria-label="项目署名"></ul>
+      <section class="case-metrics" aria-label="赛事数据">
+        <h1 class="case-hero-title">
+          <img class="case-hero-logo" src="../assets/danzai-eggylogo.webp" alt="蛋仔派对" data-i18n-alt="logoAlt" width="480" height="222" decoding="async">
+          <img class="case-hero-wordmark" src="../assets/danzai-title.webp" alt="全国总决赛" data-i18n-alt="titleAlt" width="1200" height="272" decoding="async">
+        </h1>
+        <dl class="case-metrics-grid">
+          <div class="case-metric">
+            <dt data-i18n-key="figParticipantsLabel">全年参与人次</dt>
+            <dd><span class="case-metric-num" data-i18n-key="figParticipants">1,300</span><span class="case-metric-unit" data-i18n-key="figParticipantsUnit">万+</span></dd>
+          </div>
+          <div class="case-metric">
+            <dt data-i18n-key="figViewsLabel">抖音话题浏览</dt>
+            <dd><span class="case-metric-num" data-i18n-key="figViews">11</span><span class="case-metric-unit" data-i18n-key="figViewsUnit">亿+</span></dd>
+          </div>
+          <div class="case-metric">
+            <dt data-i18n-key="figLiveLabel">全网直播峰值</dt>
+            <dd><span class="case-metric-num" data-i18n-key="figLive">2,800</span><span class="case-metric-unit" data-i18n-key="figLiveUnit">万</span></dd>
+          </div>
+          <div class="case-metric">
+            <dt data-i18n-key="figAudienceLabel">现场观众</dt>
+            <dd><span class="case-metric-num" data-i18n-key="figAudience">3.2</span><span class="case-metric-unit" data-i18n-key="figAudienceUnit">万+</span></dd>
+          </div>
+          <div class="case-metric">
+            <dt data-i18n-key="figSoldOutLabel">线下门票售罄</dt>
+            <dd><span class="case-metric-num" data-i18n-key="figSoldOut">1</span><span class="case-metric-unit" data-i18n-key="figSoldOutUnit">分钟</span></dd>
+          </div>
+        </dl>
+      </section>
 
       <section class="case-section case-intro" id="case-intro" aria-labelledby="case-intro-title">
         <h2 id="case-intro-title"><span data-i18n-key="introTitle">关于</span></h2>
-        <p data-i18n-key="introP1">《蛋仔派对》全国总决赛是蛋仔派对赛事体系中的最高级别年度赛事，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。</p>
+        <p><span data-i18n-key="introP0a">蛋仔派对是网易出品的注册用户超 5 亿的</span><span class="case-highlight" data-i18n-key="introP0b">国民级潮玩休闲竞技派对手游</span><span data-i18n-key="introP0c">。</span><span data-i18n-key="introP1a">全国总决赛是蛋仔派对赛事体系中的</span><span class="case-highlight" data-i18n-key="introP1b">最高级别年度赛事</span><span data-i18n-key="introP1c">，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。</span></p>
         <p data-i18n-key="introP2">我们为这个系列赛事建立可延续的视觉系统：从主 KV、赛事 VI 手册，到宣发、直播与节目包装、大屏和周边。在轻松派对游戏与硬核电竞赛事之间取得平衡，打造令人难忘的线上线下电竞盛宴。</p>
         <p data-i18n-key="introP3">全网直播峰值突破 2800 万，线下门票 1 分钟售罄，吸引超 3.2 万观众入场。</p>
+      </section>
+
+      <!-- From Uiverse.io by Gidarx - https://uiverse.io/Gidarx/clever-panther-6
+           MIT License, Copyright (c) Gidarx (Gidarx) -->
+            <section class="case-section case-audience" aria-label="用户画像分析">
+        <div class="case-aud-inner">
+          <header class="case-aud-head">
+            <div class="case-aud-id">
+              <span class="case-aud-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 20h16"></path>
+                  <path d="M4 15h4v5H4z"></path>
+                  <path d="M10 10h4v10h-4z"></path>
+                  <path d="M16 5h4v15h-4z"></path>
+                </svg>
+              </span>
+              <div>
+                <p class="case-aud-name" data-i18n-key="audKicker">用户画像分析</p>
+              </div>
+            </div>
+          </header>
+          <div class="case-aud-body">
+            <div class="case-aud-chart">
+              <div class="case-aud-spark">
+                <svg viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="caseAudFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" style="stop-color: var(--aud-yellow); stop-opacity: 0.22"></stop>
+                      <stop offset="100%" style="stop-color: var(--aud-yellow); stop-opacity: 0"></stop>
+                    </linearGradient>
+                  </defs>
+                  <path class="case-aud-spark-area" d="M37.5,45.2 C62.5,45.2 87.5,70.8 112.5,70.8 C137.5,70.8 162.5,22.8 187.5,22.8 C212.5,22.8 237.5,61.2 262.5,61.2 L262.5,100 L37.5,100 Z" style="fill: url(#caseAudFill)"></path>
+                  <path class="case-aud-spark-line" d="M37.5,45.2 C62.5,45.2 87.5,70.8 112.5,70.8 C137.5,70.8 162.5,22.8 187.5,22.8 C212.5,22.8 237.5,61.2 262.5,61.2"></path>
+                </svg>
+                <span class="case-aud-dot" aria-hidden="true"></span>
+              </div>
+              <ul class="case-aud-axis">
+                <li><span data-i18n-key="audAge1">23 岁以下</span><b>28%</b></li>
+                <li><span data-i18n-key="audAge2">24-30 岁</span><b>12%</b></li>
+                <li><span data-i18n-key="audAge3">31-40 岁</span><b>42%</b></li>
+                <li><span data-i18n-key="audAge4">41 岁以上</span><b>18%</b></li>
+              </ul>
+            </div>
+            <div class="case-aud-stats">
+              <div class="case-aud-stat">
+                <p class="case-aud-stat-label" data-i18n-key="audStatAgeLabel">核心年龄</p>
+                <p class="case-aud-stat-value" data-i18n-key="audStatAgeValue">31-40 岁</p>
+              </div>
+              <div class="case-aud-stat">
+                <p class="case-aud-stat-label" data-i18n-key="audGenderLabel">性别占比</p>
+                <div class="case-aud-gender-row">
+                  <span class="case-aud-gender-side">
+                    <em data-i18n-key="audFemaleShort">女性</em>
+                    <b data-i18n-key="audStatFemaleValue">57%</b>
+                  </span>
+                  <div class="case-aud-wake" data-wake-bar data-value="57" aria-hidden="true"></div>
+                  <span class="case-aud-gender-side">
+                    <em data-i18n-key="audStatMaleShort">男性</em>
+                    <b data-i18n-key="audStatMaleValue">43%</b>
+                  </span>
+                </div>
+              </div>
+              <div class="case-aud-stat case-aud-demand">
+                <p class="case-aud-stat-label" data-i18n-key="audDemandTitle">需求分布</p>
+                <ul class="case-aud-tags">
+                  <li data-i18n-key="audDemand1">直播平台</li>
+                  <li data-i18n-key="audDemand2">游戏内</li>
+                  <li data-i18n-key="audDemand3">线下</li>
+                  <li data-i18n-key="audDemand4">私域</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-analysis" id="case-analysis" aria-label="综合分析">
+        <h3 data-i18n-key="analysisTitle">综合分析</h3>
+        <p data-i18n-key="analysisLead">主要分布人群在 18-23 岁（占比超 50%），用户中女性比男性高出约 14%（女性占比约 57%），目标人群是以休闲竞技玩家、UGC 创作者和社交需求用户为核心，因此要考虑到 Q 萌画风与强社交、UGC 生态元素相互结合。</p>
+        <ul class="case-analysis-groups">
+          <li class="case-group">
+            <span class="case-group-index">01</span>
+            <strong data-i18n-key="analysisGroup1">电竞爱好群体</strong>
+            <em data-i18n-key="analysisGroup1en">ESPORTS ENTHUSIAST COMMUNITY</em>
+          </li>
+          <li class="case-group">
+            <span class="case-group-index">02</span>
+            <strong data-i18n-key="analysisGroup2">潮玩盲盒爱好群体</strong>
+            <em data-i18n-key="analysisGroup2en">DESIGNER TOY &amp; BLIND BOX COMMUNITY</em>
+          </li>
+          <li class="case-group">
+            <span class="case-group-index">03</span>
+            <strong data-i18n-key="analysisGroup3">UGC 创作爱好群体</strong>
+            <em data-i18n-key="analysisGroup3en">UGC CREATOR COMMUNITY</em>
+          </li>
+        </ul>
+        <p class="case-analysis-strategy" data-i18n-key="analysisStrategy">针对目标用户群体，赛事延续融合《蛋仔派对》的 Q 萌美学与强社交场景，打造轻松欢乐又热血的电竞氛围。通过赛事期间的持续曝光和媒体互动，吸引粉丝群体与潜在用户的关注，提高明星选手与俱乐部战队的影响力，加深双方的情感联系，为《蛋仔派对》带来持续的用户增长和市场关注，塑造一个连接休闲与竞技、虚拟与线下的全新派对电竞文化桥梁。并通过赛程赛制优化、观赛视效升级、跨界品牌联动等多维度推动巅峰赛事生态进一步发展。</p>
       </section>
 
       <section class="case-section case-gallery" id="case-gallery-quickcut" aria-label="项目快剪">
@@ -327,18 +1218,24 @@
       </section>
 
       <section class="case-section case-gallery" id="case-gallery" aria-label="KV">
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
+        <div class="case-row case-kv-split" data-layout="main">
+          <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">
+          </figure>
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
+            <img src="../assets/danzai-kv-cover.webp" alt="" width="1464" height="825" decoding="async">
             <video muted playsinline preload="none" aria-label="第三届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
             </button>
           </figure>
         </div>
-        <div class="case-row" data-layout="main">
-          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-mobile-video="../assets/danzai-kv-process-mobile.mp4" data-play="enter">
+        <div class="case-row case-kv-split" data-layout="main">
+          <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-s2-kv.webp" alt="第二届《蛋仔派对》全国总决赛主视觉：星城共聚，再战巅峰（湖南长沙）" width="2400" height="1350" loading="lazy" decoding="async">
+          </figure>
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-mobile-video="../assets/danzai-kv-process-mobile.mp4" data-play="enter">
+            <img src="../assets/danzai-kv-s2-cover.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="第二届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
@@ -509,6 +1406,8 @@
         </div>
       </section>
 
+      <ul class="case-credits case-credits--end" data-case-credits="danzai" aria-label="项目署名"></ul>
+
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
 
       <section class="case-section case-echo" data-case-echo aria-labelledby="echo-sign"></section>
@@ -524,7 +1423,7 @@
 
   <footer class="case-footer">
     <span class="case-copyright">© <span id="case-year">2026</span> <span data-i18n-key="footerNote">影子 · 视觉设计作品集</span></span>
-    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog"><span data-i18n-key="contactMe">联系我</span></button>
+    <button class="sidebar-contact" id="case-contact" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog" data-contact-trigger><span data-i18n-key="contactMe">联系我</span></button>
   </footer>
 
   <div class="contact-dialog" id="case-contact-dialog" role="dialog" aria-modal="true" aria-label="微信二维码" tabindex="-1" hidden>
@@ -548,14 +1447,80 @@
           navAbout: "关于我",
 
           introTitle: "关于",
-          introP1: "《蛋仔派对》全国总决赛是蛋仔派对赛事体系中的最高级别年度赛事，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。",
+          introP0a: "蛋仔派对是网易出品的注册用户超 5 亿的",
+          introP0b: "国民级潮玩休闲竞技派对手游",
+          introP0c: "。",
+          introP1a: "全国总决赛是蛋仔派对赛事体系中的",
+          introP1b: "最高级别年度赛事",
+          introP1c: "，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。",
           introP2: "我们为这个系列赛事建立可延续的视觉系统：从主 KV、赛事 VI 手册，到宣发、直播与节目包装、大屏和周边。在轻松派对游戏与硬核电竞赛事之间取得平衡，打造令人难忘的线上线下电竞盛宴。",
           introP3: "全网直播峰值突破 2800 万，线下门票 1 分钟售罄，吸引超 3.2 万观众入场。",
+
+          audAgeTitle: "年龄分布",
+          audColGroup: "分组",
+          audColShare: "占比",
+          audKicker: "用户画像分析",
+          audSubtitle: "赛事受众 · 年龄与性别",
+          audStatAgeLabel: "核心年龄",
+          audStatAgeValue: "31-40 岁",
+          audStatAgeNote: "占比 42%",
+          audStatFemaleLabel: "女性占比",
+          audStatFemaleValue: "57%",
+          audStatFemaleNote: "高于男性 14 个百分点",
+          audGenderLabel: "性别占比",
+          audStatMaleShort: "男性",
+          audStatMaleValue: "43%",
+          audReport: "查看综合分析",
+          audAge1: "23 岁以下",
+          audAge2: "24-30 岁",
+          audAge3: "31-40 岁",
+          audAge4: "41 岁以上",
+          audGenderTitle: "性别分布",
+          audMale: "男性比例",
+          audFemale: "女性比例",
+          audFemaleShort: "女性",
+          audGenderMeta: "女性 57% · 男性 43%",
+          audDemandTitle: "需求分布",
+          audDemand1: "直播平台",
+          audDemand2: "游戏内",
+          audDemand3: "线下",
+          audDemand4: "私域",
+
+          analysisTitle: "综合分析",
+          analysisLead: "主要分布人群在 18-23 岁（占比超 50%），用户中女性比男性高出约 14%（女性占比约 57%），目标人群是以休闲竞技玩家、UGC 创作者和社交需求用户为核心，因此要考虑到 Q 萌画风与强社交、UGC 生态元素相互结合。",
+          analysisGroupsLabel: "核心群体标签",
+          analysisGroup1: "电竞爱好群体",
+          analysisGroup1en: "ESPORTS ENTHUSIAST COMMUNITY",
+          analysisGroup2: "潮玩盲盒爱好群体",
+          analysisGroup2en: "DESIGNER TOY & BLIND BOX COMMUNITY",
+          analysisGroup3: "UGC 创作爱好群体",
+          analysisGroup3en: "UGC CREATOR COMMUNITY",
+          analysisStrategyLabel: "综合策略",
+          analysisStrategy: "针对目标用户群体，赛事延续融合《蛋仔派对》的 Q 萌美学与强社交场景，打造轻松欢乐又热血的电竞氛围。通过赛事期间的持续曝光和媒体互动，吸引粉丝群体与潜在用户的关注，提高明星选手与俱乐部战队的影响力，加深双方的情感联系，为《蛋仔派对》带来持续的用户增长和市场关注，塑造一个连接休闲与竞技、虚拟与线下的全新派对电竞文化桥梁。并通过赛程赛制优化、观赛视效升级、跨界品牌联动等多维度推动巅峰赛事生态进一步发展。",
+
+          figuresTitle: "《蛋仔派对》全国总决赛 · 赛事数据",
+          figSoldOutLabel: "线下门票售罄",
+          figSoldOut: "1",
+          figSoldOutUnit: "分钟",
+          figParticipantsLabel: "全年参与人次",
+          figParticipants: "1,300",
+          figParticipantsUnit: "万+",
+          figViewsLabel: "抖音话题浏览",
+          figViews: "11",
+          figViewsUnit: "亿+",
+          figLiveLabel: "全网直播峰值",
+          figLive: "2,800",
+          figLiveUnit: "万",
+          figAudienceLabel: "现场观众",
+          figAudience: "3.2",
+          figAudienceUnit: "万+",
           soundOn: "声音",
           soundOff: "静音",
           playAll: "一键播放",
           mirindaAlt: "美年达主宣转场动效静帧：橙色果肉切片上，蛋仔角色手持美年达饮品",
           kvAlt: "第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像",
+          titleAlt: "全国总决赛",
+          logoAlt: "蛋仔派对",
           footerNote: "影子 · 视觉设计作品集",
           pageTitle: "《蛋仔派对》全国总决赛 · 主视觉与视频包装 | Shadowyli",
           metaDescription: "《蛋仔派对》全国总决赛赛事主视觉与美年达视频包装案例：主 KV、品牌转场动画与社交媒体反响。"
@@ -568,14 +1533,80 @@
           navAbout: "About Me",
 
           introTitle: "About",
-          introP1: "The Eggy Party National Finals is the highest-tier annual event in the Eggy Party esports system, drawing more than 13 million participants a year, with over 1.1 billion views on its Douyin hashtag.",
+          introP0a: "Eggy Party is a ",
+          introP0b: "casual competitive party game",
+          introP0c: " published by NetEase, with more than 500 million registered users across China. ",
+          introP1a: "The Eggy Party National Finals is the ",
+          introP1b: "highest-tier annual event",
+          introP1c: " in the Eggy Party esports system, drawing more than 13 million participants a year, with over 1.1 billion views on its Douyin hashtag.",
           introP2: "For this series we built a visual system designed to carry forward: from the key visual and event VI manual to campaign artwork, broadcast and program packaging, LED screens and merchandise. Balancing the lightness of a party game with the intensity of hardcore esports, it creates an unforgettable esports celebration on site and online.",
           introP3: "Peak live viewership across platforms exceeded 28 million, tickets sold out within one minute, and more than 32,000 people attended in person.",
+
+          audAgeTitle: "Age",
+          audColGroup: "Group",
+          audColShare: "Share",
+          audKicker: "Audience analysis",
+          audSubtitle: "Event audience · age & gender",
+          audStatAgeLabel: "Core age",
+          audStatAgeValue: "31-40",
+          audStatAgeNote: "42% of total",
+          audStatFemaleLabel: "Female share",
+          audStatFemaleValue: "57%",
+          audStatFemaleNote: "14 pts above male",
+          audGenderLabel: "Gender split",
+          audStatMaleShort: "Men",
+          audStatMaleValue: "43%",
+          audReport: "See full analysis",
+          audAge1: "Under 23",
+          audAge2: "24-30",
+          audAge3: "31-40",
+          audAge4: "41+",
+          audGenderTitle: "Gender",
+          audMale: "Male",
+          audFemale: "Female",
+          audFemaleShort: "Women",
+          audGenderMeta: "Women 57% · Men 43%",
+          audDemandTitle: "Demand by channel",
+          audDemand1: "Live streaming",
+          audDemand2: "In-game",
+          audDemand3: "On-site",
+          audDemand4: "Private channels",
+
+          analysisTitle: "Analysis",
+          analysisLead: "Most of the audience is 18-23 (over 50%), and women outnumber men by about 14 points (roughly 57% female). The core audience is casual competitive players, UGC creators and socially driven users, so the Q-style art direction needs to work together with strong social and UGC elements.",
+          analysisGroupsLabel: "Core audience groups",
+          analysisGroup1: "Esports fans",
+          analysisGroup1en: "ESPORTS ENTHUSIAST COMMUNITY",
+          analysisGroup2: "Designer toy & blind box fans",
+          analysisGroup2en: "DESIGNER TOY & BLIND BOX COMMUNITY",
+          analysisGroup3: "UGC creators",
+          analysisGroup3en: "UGC CREATOR COMMUNITY",
+          analysisStrategyLabel: "Strategy",
+          analysisStrategy: "For this audience, the event pairs Eggy Party's Q-style aesthetic with strong social scenarios to create an esports atmosphere that is both playful and competitive. Sustained exposure and media interaction during the event draw in fans and new users, strengthen the influence of star players and clubs and deepen the emotional connection with the game, driving continued user growth and market attention. Schedule and format refinements, upgraded broadcast visuals and cross-brand collaborations push the finals ecosystem further.",
+
+          figuresTitle: "Eggy Party National Finals · Event figures",
+          figSoldOutLabel: "Tickets sold out",
+          figSoldOut: "1",
+          figSoldOutUnit: "min",
+          figParticipantsLabel: "Participants a year",
+          figParticipants: "13",
+          figParticipantsUnit: "M+",
+          figViewsLabel: "Douyin hashtag views",
+          figViews: "1.1",
+          figViewsUnit: "B+",
+          figLiveLabel: "Peak live viewership",
+          figLive: "28",
+          figLiveUnit: "M",
+          figAudienceLabel: "In-person audience",
+          figAudience: "32",
+          figAudienceUnit: "K+",
           soundOn: "Sound",
           soundOff: "Mute",
           playAll: "Play all",
           mirindaAlt: "Mirinda brand promo still: the Eggy character holding a Mirinda can on a slice of orange",
           kvAlt: "Eggy Party National Finals key visual: gold trophy, Chengdu city diorama and the Eggy cast",
+          titleAlt: "National Finals",
+          logoAlt: "Eggy Party",
           footerNote: "Shadow · Visual Design Portfolio",
           pageTitle: "Eggy Party National Finals · Key Visual & Video Packaging | Shadowyli",
           metaDescription: "Eggy Party National Finals key visual and Mirinda video packaging case study: key art, brand transition animation and social response."
@@ -669,37 +1700,14 @@
   </script>
   <script>
     (function () {
-      var bar = document.querySelector(".case-progress");
-      if (!bar) return;
-      var ticking = false;
-
-      function render() {
-        ticking = false;
-        var doc = document.documentElement;
-        var max = doc.scrollHeight - window.innerHeight;
-        var progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        bar.style.setProperty("--progress", (progress * 100).toFixed(2) + "%");
-      }
-
-      function request() {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(render);
-      }
-
-      window.addEventListener("scroll", request, { passive: true });
-      window.addEventListener("resize", request);
-      render();
-    })();
-  </script>
-  <script>
-    (function () {
-      var trigger = document.querySelector("#case-contact");
+      var triggers = document.querySelectorAll("[data-contact-trigger]");
       var dialog = document.querySelector("#case-contact-dialog");
-      if (!trigger || !dialog) return;
+      if (!triggers.length || !dialog) return;
       var closeButton = dialog.querySelector(".dialog-close");
+      var lastTrigger = null;
 
-      function openDialog() {
+      function openDialog(event) {
+        lastTrigger = event && event.currentTarget ? event.currentTarget : triggers[0];
         dialog.hidden = false;
         document.body.classList.add("dialog-open");
         dialog.focus();
@@ -708,10 +1716,12 @@
       function closeDialog() {
         dialog.hidden = true;
         document.body.classList.remove("dialog-open");
-        trigger.focus();
+        if (lastTrigger) lastTrigger.focus();
       }
 
-      trigger.addEventListener("click", openDialog);
+      for (var i = 0; i < triggers.length; i++) {
+        triggers[i].addEventListener("click", openDialog);
+      }
       if (closeButton) closeButton.addEventListener("click", closeDialog);
       dialog.addEventListener("click", closeDialog);
       document.addEventListener("keydown", function (event) {
@@ -875,5 +1885,267 @@
   <script src="../assets/case-credits.js?v=20261117-3" defer></script>
   <script src="../assets/case-tabs.js?v=20261118-2" defer></script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
+  <script>
+    (function () {
+      var nums = Array.prototype.slice.call(document.querySelectorAll(".case-metric-num"));
+      if (!nums.length) return;
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var started = false;
+
+      function parse(text) {
+        var raw = text.replace(/,/g, "").trim();
+        var dot = raw.indexOf(".");
+        return {
+          value: parseFloat(raw) || 0,
+          dec: dot > -1 ? (raw.split(".")[1] || "").length : 0
+        };
+      }
+
+      function format(value, dec) {
+        var parts = (dec ? value.toFixed(dec) : String(Math.round(value))).split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+      }
+
+      function run() {
+        nums.forEach(function (el, index) {
+          var target = parse(el.textContent);
+          if (!target.value || reduce) return;
+          var begin = null;
+          var duration = 1200 + index * 110;
+          el.textContent = format(0, target.dec);
+          function step(ts) {
+            if (begin === null) begin = ts;
+            var progress = Math.min(1, (ts - begin) / duration);
+            var eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = format(target.value * eased, target.dec);
+            if (progress < 1) window.requestAnimationFrame(step);
+            else el.textContent = format(target.value, target.dec);
+          }
+          window.requestAnimationFrame(step);
+        });
+      }
+
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && !started) {
+              started = true;
+              run();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.3 });
+        observer.observe(nums[0]);
+      } else {
+        run();
+      }
+
+      var langButton = document.querySelector(".case-lang");
+      if (langButton) {
+        langButton.addEventListener("click", function () {
+          window.setTimeout(run, 0);
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var host = document.querySelector("[data-wake-bar]");
+      if (!host) return;
+      var BARS = Math.max(22, Math.min(56, Math.round(host.clientWidth / 7)));
+      var share = Math.min(1, Math.max(0, (parseFloat(host.getAttribute("data-value")) || 0) / 100));
+      var lit = Math.round(BARS * share);
+      var rest = 0.26;
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var bars = [];
+
+      for (var i = 0; i < BARS; i++) {
+        var bar = document.createElement("span");
+        bar.className = "case-aud-wake-bar" + (i < lit ? " is-female" : "");
+        bar.style.transform = "scaleY(" + rest + ")";
+        host.appendChild(bar);
+        bars.push(bar);
+      }
+      if (reduced) return;
+
+      var sweep = -1;
+      var sweepAmp = 0;
+      var hoverPos = -1;
+      var hoverAmp = 0;
+      var lastX = null;
+      var raf = 0;
+
+      function paint() {
+        for (var i = 0; i < BARS; i++) {
+          var lift = 0;
+          if (sweepAmp > 0.004) {
+            var d = i - sweep;
+            if (Math.abs(d) < 9) {
+              var k = Math.cos((Math.PI * d) / 18);
+              lift = Math.max(lift, sweepAmp * k * k);
+            }
+          }
+          if (hoverAmp > 0.004 && hoverPos > -1) {
+            var dh = i - hoverPos;
+            if (Math.abs(dh) < 7) {
+              var kh = Math.cos((Math.PI * dh) / 14);
+              lift = Math.max(lift, hoverAmp * kh * kh);
+            }
+          }
+          bars[i].style.transform = "scaleY(" + (rest + lift * (1 - rest)).toFixed(3) + ")";
+        }
+      }
+
+      function step() {
+        raf = 0;
+        var active = false;
+        if (sweep > -1) {
+          sweep += 1.5;
+          sweepAmp *= 0.94;
+          if (sweep > BARS + 10) {
+            sweep = -1;
+            sweepAmp = 0;
+          } else {
+            active = true;
+          }
+        }
+        if (hoverAmp > 0.004) {
+          hoverAmp *= 0.9;
+          active = true;
+        } else {
+          hoverAmp = 0;
+        }
+        paint();
+        if (active) raf = window.requestAnimationFrame(step);
+      }
+
+      function wake() {
+        if (!raf) raf = window.requestAnimationFrame(step);
+      }
+
+      function start() {
+        sweep = -9;
+        sweepAmp = 0.72;
+        paint();
+        wake();
+      }
+
+      host.addEventListener("pointermove", function (event) {
+        var rect = host.getBoundingClientRect();
+        if (!rect.width) return;
+        var speed = lastX === null ? 0 : Math.abs(event.clientX - lastX);
+        lastX = event.clientX;
+        hoverPos = ((event.clientX - rect.left) / rect.width) * BARS;
+        hoverAmp = Math.min(0.85, 0.18 + speed / 26);
+        wake();
+      });
+      host.addEventListener("pointerleave", function () {
+        lastX = null;
+        hoverAmp = 0;
+        wake();
+      });
+
+      if ("IntersectionObserver" in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              start();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        observer.observe(host);
+      } else {
+        start();
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var cards = document.querySelectorAll(".case-audience, .case-analysis");
+      if (!cards.length) return;
+      var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      Array.prototype.forEach.call(cards, function (card) {
+        card.addEventListener("pointermove", function (event) {
+          var rect = card.getBoundingClientRect();
+          card.style.setProperty("--bento-x", (event.clientX - rect.left).toFixed(1) + "px");
+          card.style.setProperty("--bento-y", (event.clientY - rect.top).toFixed(1) + "px");
+          card.classList.add("is-bento-near", "is-bento-hot");
+        });
+
+        card.addEventListener("pointerleave", function () {
+          card.classList.remove("is-bento-near", "is-bento-hot");
+        });
+
+        if (reduced) return;
+
+        card.addEventListener("pointerdown", function (event) {
+          if (event.button !== undefined && event.button !== 0) return;
+          var rect = card.getBoundingClientRect();
+          var ripple = document.createElement("span");
+          ripple.className = "bento-ripple";
+          ripple.style.left = (event.clientX - rect.left).toFixed(1) + "px";
+          ripple.style.top = (event.clientY - rect.top).toFixed(1) + "px";
+          card.appendChild(ripple);
+          ripple.addEventListener("animationend", function () {
+            ripple.remove();
+          });
+        });
+      });
+
+      if (!reduced && "IntersectionObserver" in window) {
+        Array.prototype.forEach.call(cards, function (card) {
+          card.classList.add("bento-intro");
+        });
+        var gate = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("bento-in");
+            gate.unobserve(entry.target);
+          });
+        }, { threshold: 0.15 });
+        Array.prototype.forEach.call(cards, function (card) {
+          gate.observe(card);
+        });
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var btn = document.querySelector(".case-header .case-back");
+      if (!btn) return;
+      var frame = 0;
+      var pointer = null;
+
+      function apply() {
+        frame = 0;
+        if (!pointer) return;
+        var rect = btn.getBoundingClientRect();
+        var dx = pointer.x - (rect.left + rect.width / 2);
+        var dy = pointer.y - (rect.top + rect.height / 2);
+        var angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
+        var dist = Math.hypot(
+          Math.max(Math.abs(dx) - rect.width / 2, 0),
+          Math.max(Math.abs(dy) - rect.height / 2, 0)
+        );
+        var near = Math.max(0, 1 - dist / 250);
+        btn.style.setProperty("--sb-angle", angle.toFixed(1) + "deg");
+        btn.style.setProperty("--sb-level", (0.35 + 0.65 * near).toFixed(3));
+      }
+
+      function queue() {
+        if (!frame) frame = window.requestAnimationFrame(apply);
+      }
+
+      window.addEventListener("pointermove", function (event) {
+        pointer = { x: event.clientX, y: event.clientY };
+        queue();
+      }, { passive: true });
+
+      window.addEventListener("scroll", queue, { passive: true });
+    })();
+  </script>
 </body>
 </html>

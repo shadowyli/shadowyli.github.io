@@ -149,7 +149,7 @@ img { display: block; max-width: 100%; }
   transform: translateY(-150%);
   background: var(--text);
   color: var(--bg);
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .skip-link:focus { transform: translateY(0); }
@@ -1090,7 +1090,7 @@ body.dialog-open { overflow: hidden; }
   .about-list li { grid-template-columns: 1.6em minmax(0, 1fr); }
 }
 
-/* 桌面/平板上让 hero 文案在封面色带内垂直居中，去掉标题下方的大片空底 */
+/* 桌面/平板上 hero 文案压到底部，标题贴近头像与版块分界 */
 @media (min-width: 821px) {
   .hero-copy {
     display: flex;
@@ -1903,31 +1903,6 @@ body.case-page.is-leaving {
 .case-body .case-caption--below { margin: 0 0 22px; }
 .case-body .case-credit-top { font-family: var(--font-cjk); }
 
-.case-progress {
-  position: fixed;
-  left: clamp(12px, 2.2vw, 28px);
-  top: 50%;
-  z-index: 40;
-  width: 2px;
-  height: min(38vh, 320px);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--text) 22%, transparent);
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.case-progress-fill {
-  position: absolute;
-  right: 0;
-  top: 0;
-  left: 0;
-  height: var(--progress, 0%);
-  border-radius: inherit;
-  background: linear-gradient(to bottom, var(--yellow), var(--accent));
-  box-shadow: 0 0 12px rgba(255, 220, 25, 0.35);
-  transition: height 120ms linear;
-}
-
 @media (max-width: 720px) {
   .case-main::before { display: none; }
 
@@ -1946,27 +1921,6 @@ body.case-page.is-leaving {
     padding-bottom: 24px;
   }
 
-  .case-progress {
-    top: var(--header-height);
-    right: 0;
-    left: 0;
-    width: auto;
-    height: 2px;
-    border-radius: 0;
-    background: color-mix(in srgb, var(--text) 18%, transparent);
-    transform: none;
-  }
-
-  .case-progress-fill {
-    top: 0;
-    right: auto;
-    left: 0;
-    width: var(--progress, 0%);
-    height: 100%;
-    border-radius: 0;
-    background: linear-gradient(to right, var(--yellow), var(--accent));
-    transition: width 120ms linear;
-  }
 }
 
 .case-body p {
@@ -1980,7 +1934,12 @@ body.case-page.is-leaving {
 .case-body p:last-child { margin-bottom: 0; }
 
 /* 项目背景只有一段短文案，铺满内容栏，避免右侧留下大片空白 */
-.case-body .case-intro p { max-width: none; }
+.case-body .case-intro p {
+  max-width: none;
+  font-size: clamp(16px, 0.15vw + 15px, 18px);
+  line-height: 1.9;
+  font-weight: 500;
+}
 
 .case-section + .case-section { margin-top: var(--case-gap); }
 
