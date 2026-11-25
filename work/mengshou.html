@@ -449,9 +449,10 @@
 
     @media (max-width: 720px) {
       .case-metrics {
-        min-height: 450px;
+        /* 比蛋仔少一行数据：底图改为随内容收高，标题顶端与蛋仔对齐 */
+        min-height: 0;
         margin-bottom: 20px;
-        padding: 16px var(--figures-inset) 18px;
+        padding: 132px var(--figures-inset) 18px;
       }
       .case-metrics::before { background-position: center 34%; }
       .case-metrics .case-hero-title { margin-bottom: 18px; }
