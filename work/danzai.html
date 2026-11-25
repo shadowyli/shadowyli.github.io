@@ -636,16 +636,56 @@
     /* 主 KV 右上角：角色署名胶囊（参考 Inspira UI 通知卡片） */
     .case-credit-chip {
       position: relative;
+      top: 5px;
       margin-left: clamp(4px, 1vw, 12px);
       flex: none;
       display: flex;
       align-items: center;
       gap: 12px;
       padding: 8px 16px 8px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      border: 0;
       border-radius: 16px;
       background: #141416;
       box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
+    }
+    /* 炫彩描边：旋转的 conic-gradient 环 */
+    .case-credit-chip::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      aspect-ratio: 1;
+      z-index: 0;
+      background: conic-gradient(
+        from 0deg,
+        #e2cbff,
+        #393bb2 30%,
+        #7dd3fc 55%,
+        #e2cbff 75%,
+        #e2cbff
+      );
+      transform: translate(-50%, -50%);
+      animation: case-chip-spin 5s linear infinite;
+    }
+    .case-credit-chip::after {
+      content: "";
+      position: absolute;
+      inset: 1.5px;
+      z-index: 0;
+      border-radius: inherit;
+      background: #141416;
+    }
+    .case-credit-chip > * {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes case-chip-spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-credit-chip::before { animation: none; }
     }
     .case-credit-chip img {
       width: 40px;
