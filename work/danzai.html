@@ -629,6 +629,63 @@
     }
     .case-metrics .case-hero-title .case-hero-logo { width: clamp(74px, 8.8vw, 126px); }
     .case-metrics .case-hero-title .case-hero-wordmark { width: clamp(240px, 30vw, 430px); }
+    /* 主 KV 右上角：角色署名胶囊（参考 Inspira UI 通知卡片） */
+    .case-credit-chip {
+      position: absolute;
+      top: clamp(16px, 2.4vw, 28px);
+      right: var(--figures-inset);
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 16px 8px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      background: rgba(10, 10, 12, 0.55);
+      box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+    }
+    .case-credit-chip img {
+      width: 40px;
+      height: 40px;
+      flex: none;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #f7f3ee;
+    }
+    .case-credit-chip span {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .case-credit-chip strong {
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .case-credit-chip em {
+      color: #9a9a9f;
+      font-size: 12px;
+      font-style: normal;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    @media (max-width: 720px) {
+      .case-credit-chip {
+        top: 12px;
+        right: 12px;
+        gap: 8px;
+        padding: 6px 10px 6px 6px;
+        border-radius: 12px;
+      }
+      .case-credit-chip img { width: 30px; height: 30px; }
+      .case-credit-chip strong { font-size: 11px; }
+      .case-credit-chip em { font-size: 10px; }
+    }
     /* 浅色主题底图会被提亮，描边外加一层阴影保证标题不糊 */
     html[data-theme="light"] .case-metrics .case-hero-title img {
       filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.42));
@@ -1219,6 +1276,13 @@
           <img class="case-hero-logo" src="../assets/danzai-eggylogo.webp" alt="蛋仔派对" data-i18n-alt="logoAlt" width="480" height="222" decoding="async">
           <img class="case-hero-wordmark" src="../assets/danzai-title.webp" alt="全国总决赛" data-i18n-alt="titleAlt" width="1200" height="272" decoding="async">
         </h1>
+        <div class="case-credit-chip">
+          <img src="../assets/avatar.webp" alt="李颖 LI YING" width="80" height="80" loading="lazy" decoding="async">
+          <span>
+            <strong data-i18n-key="heroCreditMain">主视觉设计 · 美术监修</strong>
+            <em data-i18n-key="heroCreditRole">负责角色</em>
+          </span>
+        </div>
         <dl class="case-metrics-grid">
           <div class="case-metric">
             <dt data-i18n-key="figParticipantsLabel">全年参与人次</dt>
@@ -1584,6 +1648,8 @@
           navWork: "作品",
           navAbout: "关于我",
 
+          heroCreditMain: "主视觉设计 · 美术监修",
+          heroCreditRole: "负责角色",
           introTitle: "关于",
           introP0a: "蛋仔派对是网易出品的注册用户超 5 亿的",
           introP0b: "国民级潮玩休闲竞技派对手游",
@@ -1670,6 +1736,8 @@
           navWork: "Work",
           navAbout: "About Me",
 
+          heroCreditMain: "Key visual & art supervision",
+          heroCreditRole: "Role",
           introTitle: "About",
           introP0a: "Eggy Party is a ",
           introP0b: "casual competitive party game",
