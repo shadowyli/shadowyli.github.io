@@ -105,14 +105,14 @@
 @media (max-width: 720px) {
   .case-credit-chip {
     --chip-avatar: 20px;
-    --chip-gap: 4px;
-    --chip-pad-y: 3px;
-    --chip-pad-x: 7px;
+    --chip-gap: 5px;
+    --chip-pad-y: 5px;
+    --chip-pad-x: 9px;
     margin-left: 4px;
-    border-radius: 10px;
+    border-radius: 11px;
   }
   /* 手机上文字原本只有 7.5–8.5px：把字号提上去、同时收紧行距，
-     让两行字抱成一块，避免卡片中段空、文字又挤 */
+     外圈留白再撑开一点，避免文字贴着描边 */
   .case-credit-chip span { gap: 1px; }
   .case-credit-chip strong { font-size: 9.5px; line-height: 1.25; }
   .case-credit-chip em { font-size: 8.5px; line-height: 1.25; }
