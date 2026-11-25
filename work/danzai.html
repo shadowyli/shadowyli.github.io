@@ -616,11 +616,15 @@
 
     /* 主标题：跟随内容压在数据行上方，不额外撑高首屏 */
     .case-metrics .case-hero-title {
-      display: flex;
-      align-items: center;
-      gap: clamp(10px, 1.2vw, 18px);
       margin: 0 0 clamp(18px, 1.8vw, 26px);
       line-height: 0;
+    }
+    .hero-title-row {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      gap: clamp(10px, 1.2vw, 18px);
+      transform-origin: left center;
     }
     .case-metrics .case-hero-title img {
       display: block;
@@ -674,7 +678,6 @@
       white-space: nowrap;
     }
     @media (max-width: 720px) {
-      .case-metrics .case-hero-title { flex-wrap: wrap; row-gap: 10px; }
       .case-credit-chip {
         gap: 8px;
         padding: 6px 10px 6px 6px;
@@ -1290,13 +1293,15 @@
     <div class="case-body case-body--flush">
       <section class="case-metrics" aria-label="赛事数据">
         <h1 class="case-hero-title">
-          <img class="case-hero-logo" src="../assets/danzai-eggylogo.webp" alt="蛋仔派对" data-i18n-alt="logoAlt" width="480" height="222" decoding="async">
-          <img class="case-hero-wordmark" src="../assets/danzai-title.webp" alt="全国总决赛" data-i18n-alt="titleAlt" width="1200" height="272" decoding="async">
-          <span class="case-credit-chip">
-            <img src="../assets/avatar.webp" alt="李颖 LI YING" width="80" height="80" loading="lazy" decoding="async">
-            <span>
-              <strong data-i18n-key="heroCreditMain">主视觉设计 · 美术监修</strong>
-              <em data-i18n-key="heroCreditRole">负责角色</em>
+          <span class="hero-title-row">
+            <img class="case-hero-logo" src="../assets/danzai-eggylogo.webp" alt="蛋仔派对" data-i18n-alt="logoAlt" width="480" height="222" decoding="async">
+            <img class="case-hero-wordmark" src="../assets/danzai-title.webp" alt="全国总决赛" data-i18n-alt="titleAlt" width="1200" height="272" decoding="async">
+            <span class="case-credit-chip">
+              <img src="../assets/avatar.webp" alt="李颖 LI YING" width="80" height="80" loading="lazy" decoding="async">
+              <span>
+                <strong data-i18n-key="heroCreditMain">主视觉设计 · 美术监修</strong>
+                <em data-i18n-key="heroCreditRole">负责角色</em>
+              </span>
             </span>
           </span>
         </h1>
@@ -2578,6 +2583,38 @@
       paragraphs.forEach(function (paragraph) {
         gate.observe(paragraph);
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var title = document.querySelector(".case-hero-title");
+      var row = title && title.querySelector(".hero-title-row");
+      if (!title || !row) return;
+      var lastWidth = 0;
+      var frame = 0;
+
+      function fit() {
+        frame = 0;
+        var available = title.clientWidth;
+        if (!available || available === lastWidth) return;
+        lastWidth = available;
+        row.style.transform = "none";
+        title.style.height = "";
+        var natural = row.scrollWidth;
+        if (!natural) return;
+        var scale = Math.min(1, available / natural);
+        if (scale < 0.999) {
+          row.style.transform = "scale(" + scale.toFixed(4) + ")";
+          title.style.height = (row.offsetHeight * scale).toFixed(1) + "px";
+        }
+      }
+
+      function schedule() {
+        if (!frame) frame = window.requestAnimationFrame(fit);
+      }
+
+      window.addEventListener("resize", schedule, { passive: true });
+      fit();
     })();
   </script>
 </body>
