@@ -24,6 +24,7 @@
       document.documentElement.dataset.theme = theme;
     })();
   </script>
+    <script src="../assets/case-header.js?v=20261125-1"></script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
@@ -32,6 +33,7 @@
   <link rel="stylesheet" href="../styles.css?v=20261124-3">
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
+  <link rel="stylesheet" href="../assets/case-header.css?v=20261125-1">
   <style>
 
     .merch-gallery { margin-top: 0; }
@@ -186,7 +188,7 @@
       <a href="../index.html#about" data-i18n-key="navAbout">关于我</a>
     </nav>
     <div class="case-header-actions">
-      <a class="case-back" href="../index.html#portfolio" data-i18n-key="back">← 返回作品集</a>
+      <button class="case-back" type="button" aria-haspopup="dialog" aria-controls="case-contact-dialog" data-contact-trigger data-i18n-key="contactMe">联系我</button>
       <button class="theme-toggle icon-button case-theme" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
       </button>

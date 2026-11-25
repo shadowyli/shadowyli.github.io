@@ -166,7 +166,7 @@ const translations = {
 };
 
 let currentLanguage = localStorage.getItem("portfolio-language") === "en" ? "en" : "zh";
-let currentTheme = localStorage.getItem("portfolio-theme") === "light" ? "light" : "dark";
+let currentTheme = "dark";
 
 const translate = (key) => translations[currentLanguage][key] || key;
 

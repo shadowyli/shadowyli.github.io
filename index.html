@@ -21,6 +21,7 @@
       document.documentElement.dataset.theme = theme;
     })();
   </script>
+  <script src="assets/case-header.js?v=20261125-1"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Shadowyli 的个人作品集。">
   <title>Shadowyli - 个人作品集</title>
@@ -32,6 +33,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20261124-3">
   <link rel="stylesheet" href="assets/site-wide.css?v=20261115-1">
+  <link rel="stylesheet" href="assets/case-header.css?v=20261125-1">
   <style>
     /* 首页底部：与案例页一致的弧形自动播放回声 */
     .home-echo {
@@ -175,6 +177,7 @@
       <a href="#about" data-i18n="about">关于</a>
     </nav>
     <div class="header-actions">
+      <button class="header-contact" type="button" aria-haspopup="dialog" aria-controls="contact-dialog" data-contact-trigger data-i18n="contactMe">联系我</button>
       <button class="theme-toggle icon-button" type="button" aria-label="切换到浅色模式" title="切换到浅色模式">
         <i data-lucide="sun" aria-hidden="true"></i>
       </button>
