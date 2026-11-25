@@ -532,6 +532,11 @@
     /* 顶栏「联系我」：镜面玻璃按钮，描边光跟随指针（参考 Vue Bits SpecularButton） */
     /* 本页固定暗色，隐藏主题切换 */
     body.case-page .case-header .case-theme { display: none; }
+    @property --sb-angle {
+      syntax: "<angle>";
+      inherits: false;
+      initial-value: 0deg;
+    }
     .case-header .case-back {
       position: relative;
       isolation: isolate;
@@ -559,19 +564,26 @@
       padding: 1.2px;
       border-radius: inherit;
       background: conic-gradient(
-        from calc(var(--sb-angle, 0deg) - 26deg),
+        from var(--sb-angle),
         rgba(255, 255, 255, 0) 0deg,
-        rgba(255, 255, 255, 0.12) 12deg,
-        rgba(255, 255, 255, 0.95) 26deg,
-        rgba(255, 255, 255, 0.12) 40deg,
-        rgba(255, 255, 255, 0) 62deg
+        rgba(255, 255, 255, 0.08) 50deg,
+        rgba(255, 255, 255, 0.9) 120deg,
+        rgba(255, 255, 255, 0.08) 190deg,
+        rgba(255, 255, 255, 0) 250deg,
+        rgba(255, 255, 255, 0) 360deg
       );
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-      opacity: var(--sb-level, 0.35);
-      transition: opacity 260ms ease;
+      opacity: 0.95;
+      animation: case-back-sheen 5s linear infinite;
       pointer-events: none;
+    }
+    @keyframes case-back-sheen {
+      to { --sb-angle: 360deg; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .case-header .case-back::before { animation: none; }
     }
     .case-header .case-back:hover { transform: translateY(-1px); }
     .case-header .case-back:active { transform: scale(0.97); }
@@ -582,12 +594,13 @@
     }
     html[data-theme="light"] .case-header .case-back::before {
       background: conic-gradient(
-        from calc(var(--sb-angle, 0deg) - 26deg),
+        from var(--sb-angle),
         rgba(0, 0, 0, 0) 0deg,
-        rgba(0, 0, 0, 0.12) 12deg,
-        rgba(0, 0, 0, 0.8) 26deg,
-        rgba(0, 0, 0, 0.12) 40deg,
-        rgba(0, 0, 0, 0) 62deg
+        rgba(0, 0, 0, 0.06) 50deg,
+        rgba(0, 0, 0, 0.62) 120deg,
+        rgba(0, 0, 0, 0.06) 190deg,
+        rgba(0, 0, 0, 0) 250deg,
+        rgba(0, 0, 0, 0) 360deg
       );
     }
     @media (max-width: 720px) {
@@ -1463,10 +1476,10 @@
       <section class="case-section case-analysis" id="case-analysis" aria-label="综合分析">
         <h3 class="case-analysis-title">
           <span class="case-aud-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3.5" y="13" width="4.4" height="7.5" rx="1.4" fill="currentColor"></rect>
-              <rect x="9.8" y="8" width="4.4" height="12.5" rx="1.4" fill="currentColor"></rect>
-              <rect x="16.1" y="3.5" width="4.4" height="17" rx="1.4" fill="currentColor"></rect>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="4.5"></circle>
+              <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"></circle>
             </svg>
           </span>
           <span data-i18n-key="analysisTitle">综合分析</span>
@@ -2389,41 +2402,6 @@
           gate.observe(card);
         });
       }
-    })();
-  </script>
-  <script>
-    (function () {
-      var btn = document.querySelector(".case-header .case-back");
-      if (!btn) return;
-      var frame = 0;
-      var pointer = null;
-
-      function apply() {
-        frame = 0;
-        if (!pointer) return;
-        var rect = btn.getBoundingClientRect();
-        var dx = pointer.x - (rect.left + rect.width / 2);
-        var dy = pointer.y - (rect.top + rect.height / 2);
-        var angle = (Math.atan2(dx, -dy) * 180) / Math.PI;
-        var dist = Math.hypot(
-          Math.max(Math.abs(dx) - rect.width / 2, 0),
-          Math.max(Math.abs(dy) - rect.height / 2, 0)
-        );
-        var near = Math.max(0, 1 - dist / 250);
-        btn.style.setProperty("--sb-angle", angle.toFixed(1) + "deg");
-        btn.style.setProperty("--sb-level", (0.35 + 0.65 * near).toFixed(3));
-      }
-
-      function queue() {
-        if (!frame) frame = window.requestAnimationFrame(apply);
-      }
-
-      window.addEventListener("pointermove", function (event) {
-        pointer = { x: event.clientX, y: event.clientY };
-        queue();
-      }, { passive: true });
-
-      window.addEventListener("scroll", queue, { passive: true });
     })();
   </script>
   <script>
