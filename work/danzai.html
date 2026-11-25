@@ -720,6 +720,7 @@
     }
     @media (max-width: 720px) {
       .case-credit-chip {
+        top: 0;
         gap: 8px;
         padding: 6px 10px 6px 6px;
         border-radius: 12px;
@@ -853,7 +854,7 @@
       display: grid;
       align-content: center;
       gap: clamp(14px, 1.8vw, 20px);
-      padding-left: clamp(20px, 2.6vw, 36px);
+      padding-left: clamp(20px, 2.2vw, 32px);
       border-left: 1px solid var(--aud-line);
     }
     .case-aud-stat { padding: 0; }
@@ -1080,6 +1081,16 @@
       font-size: clamp(17px, 1.4vw, 20px);
       font-weight: 700;
       letter-spacing: 0.04em;
+    }
+    /* 与「用户画像分析」同款：左图标右文字 */
+    .case-analysis h3.case-analysis-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.4;
     }
     .case-analysis p {
       margin: 0;
@@ -1450,7 +1461,16 @@
       </section>
 
       <section class="case-section case-analysis" id="case-analysis" aria-label="综合分析">
-        <h3 data-i18n-key="analysisTitle">综合分析</h3>
+        <h3 class="case-analysis-title">
+          <span class="case-aud-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3.5" y="13" width="4.4" height="7.5" rx="1.4" fill="currentColor"></rect>
+              <rect x="9.8" y="8" width="4.4" height="12.5" rx="1.4" fill="currentColor"></rect>
+              <rect x="16.1" y="3.5" width="4.4" height="17" rx="1.4" fill="currentColor"></rect>
+            </svg>
+          </span>
+          <span data-i18n-key="analysisTitle">综合分析</span>
+        </h3>
         <p data-i18n-key="analysisLead">受众以 31-40 岁为主（占比 42%），其次为 23 岁以下（28%）；女性占比 57%，比男性高出 14 个百分点。目标人群以休闲竞技玩家、UGC 创作者和社交需求用户为核心，因此要考虑到 Q 萌画风与强社交、UGC 生态元素相互结合。</p>
         <ul class="case-analysis-groups">
           <li class="case-group">
