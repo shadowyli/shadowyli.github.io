@@ -106,6 +106,18 @@
     .case-gallery .case-media-grid .case-frame + .case-frame { margin-top: 0; }
     /* 网格后面紧跟的整幅图（品牌视觉末尾那张）：补上和网格同样的缝 */
     .case-gallery .case-media-grid + .case-frame { margin-top: 6px; }
+    /* 媒体灯箱统一圆角（与蛋仔案例页一致） */
+    .case-body .case-frame,
+    .case-body .case-media-slot {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .case-body .case-frame img,
+    .case-body .case-frame video,
+    .case-body .case-media-slot img,
+    .case-body .case-media-slot video {
+      border-radius: inherit;
+    }
     /* 手机端：站内 site-wide.css 用 !important 把 figure 缝压到 4px，
        网格内单元格会被一起顶下去 4px（第 2、3 张比第 1 张低），
        网格与上图的缝也会比列缝宽 2px——这里按手机端 4px 统一回来 */
