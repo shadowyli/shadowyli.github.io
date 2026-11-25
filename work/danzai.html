@@ -629,6 +629,7 @@
     }
     .case-aud-stat-label { margin: 0; white-space: nowrap; }
     .case-aud-stat-value { margin: 0; }
+    .case-aud-stat-label--ghost { visibility: hidden; }
     .case-aud-stat--gender .case-aud-gender-row { margin-top: 0; }
     .case-aud-demand .case-aud-tags { margin-top: 0; }
     .case-aud-stat-note {
@@ -848,15 +849,15 @@
       transform: translateY(-2px);
     }
     .case-group-index {
-      display: block;
-      margin-bottom: 10px;
+      display: inline-block;
+      margin: 0 8px 0 0;
       color: var(--aud-yellow);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.1em;
     }
     .case-group strong {
-      display: block;
+      display: inline;
       color: var(--text);
       font-size: 14px;
       font-weight: 700;
@@ -1149,7 +1150,7 @@
                 <p class="case-aud-stat-value" data-i18n-key="audStatAgeValue">31-40 岁</p>
               </div>
               <div class="case-aud-stat case-aud-stat--gender">
-                <p class="case-aud-stat-label" data-i18n-key="audGenderLabel">性别占比</p>
+                <p class="case-aud-stat-label case-aud-stat-label--ghost" data-i18n-key="audGenderLabel" aria-hidden="true">性别占比</p>
                 <div class="case-aud-gender-row">
                   <span class="case-aud-gender-side">
                     <em data-i18n-key="audFemaleShort">女性</em>
@@ -1214,7 +1215,7 @@
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-kv.webp" alt="第三届《蛋仔派对》全国总决赛主 KV：金色奖杯、成都城市沙盘与蛋仔角色群像" data-i18n-alt="kvAlt" width="1920" height="1080" decoding="async">
           </figure>
-          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter">
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process-s3.mp4" data-play="enter" data-loop="true">
             <img src="../assets/danzai-kv-cover.webp" alt="" width="1464" height="825" decoding="async">
             <video muted playsinline preload="none" aria-label="第三届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
@@ -1226,7 +1227,7 @@
           <figure class="case-frame case-frame--image">
             <img src="../assets/danzai-s2-kv.webp" alt="第二届《蛋仔派对》全国总决赛主视觉：星城共聚，再战巅峰（湖南长沙）" width="2400" height="1350" loading="lazy" decoding="async">
           </figure>
-          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-mobile-video="../assets/danzai-kv-process-mobile.mp4" data-play="enter">
+          <figure class="case-frame case-media-slot kv-slot" data-video="../assets/danzai-kv-process.mp4" data-mobile-video="../assets/danzai-kv-process-mobile.mp4" data-play="enter" data-loop="true">
             <img src="../assets/danzai-kv-s2-cover.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
             <video muted playsinline preload="none" aria-label="第二届《蛋仔派对》全国总决赛主视觉 KV 制作过程动画"></video>
             <button class="slot-play" type="button" aria-label="播放动画">
@@ -1735,7 +1736,8 @@
         var mobileSrc = slot.getAttribute("data-mobile-video");
         if (mobileSrc && mobileQuery.matches) src = mobileSrc;
         if (!video || !src) return null;
-        video.loop = false; // 只播一次：结束后停在末帧，末帧与静图呼应
+        // 默认只播一次并停在末帧；标注 data-loop 的（左静右动 KV）循环播放
+        video.loop = slot.getAttribute("data-loop") === "true";
         if (video.getAttribute("src") !== src) {
           video.setAttribute("src", src);
           try { video.load(); } catch (error) {}
@@ -1827,8 +1829,12 @@
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           var slot = entry.target;
+          var looping = slot.getAttribute("data-loop") === "true";
           if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
-            if (slot.getAttribute("data-replay") === "enter") {
+            if (looping) {
+              // 循环 KV：进视野就播，离开暂停（回来后继续）
+              play(slot);
+            } else if (slot.getAttribute("data-replay") === "enter") {
               // 快剪：每次入场自动播放；播完后再次入场从头重播
               play(slot);
             } else if (!mobileQuery.matches && slot.dataset.autoplayed !== "1") {
@@ -1837,8 +1843,8 @@
               play(slot);
             }
           } else if (!entry.isIntersecting) {
-            // 手机端已开始的动画继续播完，不因滚动离开视口而中断
-            if (!mobileQuery.matches) stop(slot);
+            // 循环 KV 离开即暂停；其它视频在手机端继续播完
+            if (looping || !mobileQuery.matches) stop(slot);
           }
         });
       }, { threshold: [0, 0.35] });
