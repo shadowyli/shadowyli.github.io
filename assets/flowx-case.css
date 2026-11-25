@@ -95,6 +95,8 @@
   line-height: var(--fx-lh-body);
 }
 .flowx-page .fx-intro-copy .fx-lead { margin-bottom: 12px; }
+/* 数据行已提到正文前：给正文补回与统计脚注的间距 */
+.flowx-page .fx-intro-copy .fx-caption + .fx-lead { margin-top: clamp(16px, 1.8vw, 24px); }
 .flowx-page .fx-responsibility { margin: 0; font-size: var(--fx-type-body); line-height: var(--fx-lh-body); color: var(--fx-muted); }
 /* 结构：问题四列 + 方案总结带 */
 .flowx-page .case-body .fx-brief {
@@ -423,8 +425,8 @@
 .fx-intro-copy .fx-metrics {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
-  margin: clamp(22px, 2.4vw, 32px) 0 0;
-  padding-top: 18px;
+  margin: clamp(14px, 1.6vw, 20px) 0 0;
+  padding-top: 16px;
   border-top: 1px solid var(--line);
 }
 .fx-intro-copy .fx-metrics > div { padding: 0 8px 0 0; }
