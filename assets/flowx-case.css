@@ -334,6 +334,8 @@
   line-height: var(--fx-lh-meta);
   color: var(--fx-muted);
 }
+/* 首屏数据脚注压深一档，让正文更靠前 */
+.flowx-page .fx-intro-copy .fx-caption { color: #75717c; }
 .flowx-page figure { margin: 0; min-width: 0; }
 .flowx-page [data-fx-image] { display: block; min-width: 0; cursor: zoom-in; }
 .flowx-page [data-fx-image] img { display: block; width: 100%; height: auto; }
@@ -617,6 +619,12 @@
   .fx-gate + .fx-gate, .fx-contribution { border-top: 1px solid var(--line); }
   .fx-intro-grid .case-frame { order: 2; }
   .fx-intro-grid .fx-intro-copy { order: 1; }
+  /* 手机端：数据块与正文之间补一条分隔线 */
+  .flowx-page .fx-intro-copy .fx-caption + .fx-lead {
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
   .flowx-page .fx-hero {
     margin-top: 10px;
     padding: 14px 0 24px;

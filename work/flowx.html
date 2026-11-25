@@ -296,6 +296,8 @@
       flex-wrap: wrap;
       margin: 0 0 14px;
     }
+    .fx-title-lockup { display: flex; align-items: center; gap: clamp(10px, 1.1vw, 15px); min-width: 0; }
+    .fx-title-mark { display: block; width: clamp(32px, 3.1vw, 44px); height: auto; flex: none; }
     .flowx-page .fx-intro-copy .fx-title-row h1 { margin: 0; }
     /* 首屏平台介绍：灯箱圆角，与其它案例页一致 */
     .flowx-page .flowx-intro .case-frame {
@@ -321,7 +323,7 @@
 
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261125-1">
+  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261125-2">
 </head>
 <body class="case-page flowx-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -359,7 +361,10 @@
           <div class="fx-intro-copy">
             <p class="fx-kicker">AI CONTENT PRODUCTION</p>
             <div class="fx-title-row">
-              <h1 id="fx-title">FlowX</h1>
+              <div class="fx-title-lockup">
+                <img class="fx-title-mark" src="../assets/flowx-mark.webp" alt="" width="132" height="132" decoding="async">
+                <h1 id="fx-title">FlowX</h1>
+              </div>
               <span class="case-credit-chip">
                 <img src="../assets/avatar.webp" alt="李颖 LI YING" width="80" height="80" loading="lazy" decoding="async">
                 <span>
