@@ -34,6 +34,7 @@
   <link rel="stylesheet" href="../assets/site-wide.css?v=20261115-1">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/case-header.css?v=20261125-1">
+  <link rel="stylesheet" href="../assets/case-credit-chip.css?v=20261125-1">
   <style>
     /* 内容留空时让页脚落在视口底部 */
     main.case-main { min-height: calc(100vh - var(--header-height) - 180px); }
@@ -296,94 +297,28 @@
       margin: 0 0 14px;
     }
     .flowx-page .fx-intro-copy .fx-title-row h1 { margin: 0; }
-
-    .case-credit-chip {
-      position: relative;
-      flex: none;
-      display: flex;
-      align-items: center;
-      gap: clamp(6px, 0.8vw, 12px);
-      padding: clamp(5px, 0.6vw, 8px) clamp(10px, 1.1vw, 16px) clamp(5px, 0.6vw, 8px) clamp(5px, 0.6vw, 8px);
+    /* 首屏平台介绍：灯箱圆角，与其它案例页一致 */
+    .flowx-page .flowx-intro .case-frame {
+      border-radius: 12px;
       overflow: hidden;
-      border-radius: 16px;
-      background: #141416;
-      box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
     }
-    .case-credit-chip::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 300%;
-      aspect-ratio: 1;
-      z-index: 0;
-      background: conic-gradient(
-        from 90deg at 50% 50%,
-        #f9edd2 0%,
-        #e8c98c 16%,
-        #d2b080 34%,
-        #8f6f3f 50%,
-        #d2b080 66%,
-        #e8c98c 84%,
-        #f9edd2 100%
-      );
-      transform: translate(-50%, -50%);
-      will-change: transform;
-      animation: case-chip-spin 5s linear infinite;
-    }
-    .case-credit-chip::after {
-      content: "";
-      position: absolute;
-      inset: 1px;
-      z-index: 0;
+    .flowx-page .flowx-intro .case-frame-video {
+      display: block;
       border-radius: inherit;
-      background: #141416;
     }
-    .case-credit-chip > * {
-      position: relative;
-      z-index: 1;
+
+    /* 署名胶囊沿用本页绿色描边 */
+    .case-credit-chip {
+      --chip-ring: conic-gradient(
+        from 90deg at 50% 50%,
+        #f2ffcf 0%,
+        #d4f36a 28%,
+        #8dbb32 50%,
+        #d4f36a 72%,
+        #f2ffcf 100%
+      );
     }
-    @keyframes case-chip-spin {
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .case-credit-chip::before { animation: none; }
-    }
-    .case-credit-chip img {
-      width: clamp(24px, 2.4vw, 34px);
-      height: clamp(24px, 2.4vw, 34px);
-      flex: none;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #f7f3ee;
-    }
-    .case-credit-chip span {
-      display: flex;
-      min-width: 0;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .case-credit-chip strong {
-      color: #ffffff;
-      font-size: clamp(11px, 0.9vw, 13px);
-      font-weight: 600;
-      line-height: 1.35;
-      white-space: nowrap;
-    }
-    .case-credit-chip em {
-      color: #9a9a9f;
-      font-size: clamp(10px, 0.83vw, 12px);
-      font-style: normal;
-      line-height: 1.35;
-      white-space: nowrap;
-    }
-    @media (max-width: 720px) {
-      .fx-title-row { justify-content: flex-start; gap: 10px; }
-      .case-credit-chip { gap: 8px; padding: 6px 10px 6px 6px; border-radius: 12px; }
-      .case-credit-chip img { width: 26px; height: 26px; }
-      .case-credit-chip strong { font-size: 11px; }
-      .case-credit-chip em { font-size: 10px; }
-    }
+
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/flowx-case.css?v=20261120-8">
@@ -436,10 +371,10 @@
             <p class="fx-lead" data-fx-zh="FlowX 是面向美术、运营与策划使用，将制作工具、业务模板和 AI 能力整合成枢纽的 AI 应用平台。用户可以选择 AI 管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。" data-fx-en="FlowX is an AI application platform for artists, operations teams and planners, bringing production tools, business templates and AI capabilities together as a hub. Submit assets through a pipeline, or describe a request to Agent Xiaonai to produce images, motion content and marketing assets.">FlowX 是面向美术、运营与策划使用，将制作工具、业务模板和 AI 能力整合成枢纽的 AI 应用平台。用户可以选择 AI 管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。</p>
             <p class="fx-intro-note" data-fx-zh="我发起并持续推进这个项目，参与产品设计、开发与 AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。" data-fx-en="I initiated and continue to lead this project, contributing to product design, development and AI pipelines so more teams can use the methods our production team has built.">我发起并持续推进这个项目，参与产品设计、开发与 AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。</p>
             <dl class="fx-metrics">
-              <div><dt>55+</dt><dd data-fx-zh="AI 管线" data-fx-en="AI pipelines">AI 管线</dd></div>
-              <div><dt>58</dt><dd data-fx-zh="覆盖游戏" data-fx-en="Games supported">覆盖游戏</dd></div>
+              <div><dt>55<span>+</span></dt><dd data-fx-zh="AI 管线" data-fx-en="AI pipelines">AI 管线</dd></div>
+              <div><dt>140<span>+</span></dt><dd data-fx-zh="用户" data-fx-en="Users">用户</dd></div>
               <div><dt>54,986</dt><dd data-fx-zh="素材生产（套）" data-fx-en="Assets produced (sets)">素材生产（套）</dd></div>
-              <div><dt>54.3<span>%</span></dt><dd data-fx-zh="渠道单素材成本下降" data-fx-en="Lower cost per channel asset">渠道单素材成本下降</dd></div>
+              <div><dt>5300<span>+</span></dt><dd data-fx-zh="月素材产量" data-fx-en="Monthly asset output">月素材产量</dd></div>
             </dl>
             <p class="fx-caption" data-fx-zh="数据统计截至 2026.11" data-fx-en="Data as of November 2026">数据统计截至 2026.11</p>
           </div>

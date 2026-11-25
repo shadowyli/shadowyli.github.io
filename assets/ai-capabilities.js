@@ -6,7 +6,7 @@
     intro: "Tools are the lever; problem-solving is the fulcrum.",
     toolsTitle: "Pipeline toolchain",
     loraLabel: "LoRA training", coreLabel: "My creative tech stack", docLabel: "Doc writing",
-    module1: "50+ AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
+  module1: "AI pipeline building", module3: "AI applications & agents", module4: "VFX pipeline",
     vfxLead: "Blender toon shading",
     upscaleTitle: "Tiled HD upscaling and restoration, up to 16K",
     characterVideoTitle: "One-click audio-visual video for game characters",

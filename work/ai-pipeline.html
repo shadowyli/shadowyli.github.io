@@ -21,6 +21,108 @@
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261117-2">
   <script src="../assets/ai-capabilities.js?v=20261120-15" defer></script>
   <link rel="stylesheet" href="../assets/case-header.css?v=20261125-1">
+  <style>
+    /* 数据条：复用蛋仔案例页的数据样式 */
+    .capability-metrics {
+      margin: clamp(20px, 2.6vw, 32px) var(--gutter) 0;
+      padding: clamp(18px, 2vw, 24px) 0;
+    }
+    .capability-metrics .case-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin: 0;
+    }
+    .capability-metrics .case-metric {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      padding: 0 clamp(12px, 1.6vw, 24px);
+      border-left: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    }
+    .capability-metrics .case-metric:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+    .capability-metrics .case-metric:last-child { padding-right: 0; }
+    .capability-metrics dd {
+      order: 1;
+      display: flex;
+      align-items: baseline;
+      margin: 0 0 10px;
+      color: var(--text);
+      font-family: "Archivo", var(--font-cjk);
+      font-variant-numeric: tabular-nums;
+      line-height: 0.88;
+    }
+    .capability-metrics .case-metric-num {
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .capability-metrics .case-metric-unit {
+      margin-left: 3px;
+      color: var(--text-muted);
+      font-size: clamp(13px, 1.15vw, 17px);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+    .capability-metrics dt {
+      order: 2;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+    }
+    @media (max-width: 720px) {
+      .capability-metrics .case-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 14px;
+      }
+      .capability-metrics .case-metric { padding: 0 12px; }
+      .capability-metrics .case-metric:nth-child(odd) {
+        padding-left: 0;
+        border-left: 0;
+      }
+      .capability-metrics .case-metric:nth-child(even) { padding-right: 0; }
+      .capability-metrics .case-metric:nth-child(n + 3) {
+        padding-top: 14px;
+        border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+      }
+      .capability-metrics .case-metric:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: baseline;
+        gap: 10px;
+        padding-top: 14px;
+      }
+      .capability-metrics .case-metric:last-child:nth-child(odd) dd { margin: 0; }
+      .capability-metrics .case-metric-num { font-size: clamp(26px, 7.6vw, 34px); }
+      .capability-metrics .case-metric-unit { font-size: 12px; }
+      .capability-metrics dt { font-size: 12px; }
+    }
+    /* 入场：进入视口时每列依次上浮 */
+    @keyframes pipe-metric-drop {
+      from {
+        opacity: 0;
+        transform: translate3d(0, -16px, 0);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+    .capability-metrics.is-in .case-metric {
+      animation: pipe-metric-drop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .capability-metrics.is-in .case-metric:nth-child(1) { animation-delay: 60ms; }
+    .capability-metrics.is-in .case-metric:nth-child(2) { animation-delay: 120ms; }
+    .capability-metrics.is-in .case-metric:nth-child(3) { animation-delay: 180ms; }
+    .capability-metrics.is-in .case-metric:nth-child(4) { animation-delay: 240ms; }
+    .capability-metrics.is-in .case-metric:nth-child(5) { animation-delay: 300ms; }
+    @media (prefers-reduced-motion: reduce) {
+      .capability-metrics.is-in .case-metric { animation: none; }
+    }
+  </style>
 </head>
 <body class="case-page pipeline-page">
   <a class="skip-link" href="#pipeline-main" data-copy="skip">跳到正文</a>
@@ -182,9 +284,34 @@
       </div>
     </figure>
 
+    <section class="capability-metrics" aria-label="数据">
+      <dl class="case-metrics-grid">
+        <div class="case-metric">
+          <dt>自动化 / AI 管线搭建</dt>
+          <dd><span class="case-metric-num">50</span><span class="case-metric-unit">+</span></dd>
+        </div>
+        <div class="case-metric">
+          <dt>团队成员使用过</dt>
+          <dd><span class="case-metric-num">140</span><span class="case-metric-unit">+</span></dd>
+        </div>
+        <div class="case-metric">
+          <dt>AI 自动化提效</dt>
+          <dd><span class="case-metric-num">208</span><span class="case-metric-unit">%</span></dd>
+        </div>
+        <div class="case-metric">
+          <dt>员工 / 实习生带教经验</dt>
+          <dd><span class="case-metric-num">20</span><span class="case-metric-unit">+人次</span></dd>
+        </div>
+        <div class="case-metric">
+          <dt>经验文章沉淀</dt>
+          <dd><span class="case-metric-num">54,000</span><span class="case-metric-unit">+字</span></dd>
+        </div>
+      </dl>
+    </section>
+
     <section class="capability-section" id="pipelines" aria-labelledby="pipelines-title">
       <div class="capability-heading">
-        <div><h2 id="pipelines-title" data-copy="module1">50+AI 管线搭建</h2></div>
+        <div><h2 id="pipelines-title" data-copy="module1">AI 管线搭建</h2></div>
         <ul class="skill-tags" aria-label="管线技术与能力"><li>ComfyUI</li><li>n8n</li><li data-copy="custom">业务定制</li><li data-copy="batch">批量处理</li></ul>
       </div>
 
@@ -637,5 +764,66 @@
     })();
   </script>
   <script src="../assets/tap-ripple.js?v=20261120-1" defer></script>
+  <script>
+    (function () {
+      var section = document.querySelector(".capability-metrics");
+      if (!section || !("IntersectionObserver" in window)) return;
+      var nums = Array.prototype.slice.call(section.querySelectorAll(".case-metric-num"));
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function parse(text) {
+        var raw = text.replace(/,/g, "").trim();
+        var dot = raw.indexOf(".");
+        return {
+          value: parseFloat(raw) || 0,
+          dec: dot > -1 ? (raw.split(".")[1] || "").length : 0
+        };
+      }
+
+      function format(value, dec) {
+        var parts = (dec ? value.toFixed(dec) : String(Math.round(value))).split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+      }
+
+      var targets = nums.map(function (el) { return parse(el.textContent); });
+      var token = 0;
+
+      function run() {
+        token += 1;
+        var current = token;
+        nums.forEach(function (el, index) {
+          var target = targets[index] || { value: 0, dec: 0 };
+          if (!target.value) return;
+          var begin = null;
+          var duration = 1200 + index * 100;
+          el.textContent = format(0, target.dec);
+          function step(ts) {
+            if (current !== token) return;
+            if (begin === null) begin = ts;
+            var progress = Math.min(1, (ts - begin) / duration);
+            var eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = format(target.value * eased, target.dec);
+            if (progress < 1) window.requestAnimationFrame(step);
+            else el.textContent = format(target.value, target.dec);
+          }
+          window.requestAnimationFrame(step);
+        });
+      }
+
+      var gate = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            // 每次进入视口重新播放上浮与数字滚动
+            section.classList.add("is-in");
+            if (!reduce) run();
+          } else {
+            section.classList.remove("is-in");
+          }
+        });
+      }, { threshold: 0.35 });
+      gate.observe(section);
+    })();
+  </script>
 </body>
 </html>

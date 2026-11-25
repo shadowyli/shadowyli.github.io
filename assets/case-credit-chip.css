@@ -1,0 +1,116 @@
+/* 负责角色胶囊（全站公用组件）
+   用法：
+   <span class="case-credit-chip">
+     <img src="avatar.webp" alt="">
+     <span><strong>角色</strong><em>负责角色</em></span>
+   </span>
+   通过 --chip-ring 可替换描边渐变，默认香槟金。 */
+
+.case-credit-chip {
+  --chip-avatar: clamp(26px, 2.6vw, 33px);
+  --chip-gap: clamp(8px, 0.9vw, 11px);
+  --chip-pad-y: clamp(6px, 0.7vw, 7px);
+  --chip-pad-x: clamp(12px, 1.2vw, 16px);
+  --chip-ring: conic-gradient(
+    from 90deg at 50% 50%,
+    #f9edd2 0%,
+    #e8c98c 16%,
+    #d2b080 34%,
+    #8f6f3f 50%,
+    #d2b080 66%,
+    #e8c98c 84%,
+    #f9edd2 100%
+  );
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  margin-left: clamp(4px, 0.8vw, 10px);
+  padding: var(--chip-pad-y) var(--chip-pad-x) var(--chip-pad-y) calc(var(--chip-pad-y) + 1px);
+  overflow: hidden;
+  border-radius: 16px;
+  background: #141416;
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.7);
+}
+
+.case-credit-chip::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  aspect-ratio: 1;
+  z-index: 0;
+  background: var(--chip-ring);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  animation: case-chip-spin 5s linear infinite;
+}
+
+.case-credit-chip::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  border-radius: inherit;
+  background: #141416;
+}
+
+.case-credit-chip > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes case-chip-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-credit-chip::before { animation: none; }
+}
+
+.case-credit-chip img {
+  width: var(--chip-avatar);
+  height: var(--chip-avatar);
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #f7f3ee;
+}
+
+.case-credit-chip span {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.case-credit-chip strong {
+  color: #ffffff;
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.case-credit-chip em {
+  color: #9a9a9f;
+  font-size: clamp(10px, 0.83vw, 12px);
+  font-style: normal;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .case-credit-chip {
+    --chip-avatar: 20px;
+    --chip-gap: 5px;
+    --chip-pad-y: 3px;
+    --chip-pad-x: 8px;
+    margin-left: 4px;
+    border-radius: 10px;
+  }
+  .case-credit-chip strong { font-size: 8.5px; }
+  .case-credit-chip em { font-size: 7.5px; }
+}
