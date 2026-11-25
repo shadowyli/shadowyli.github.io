@@ -660,11 +660,15 @@
       z-index: 0;
       background: conic-gradient(
         from 0deg,
-        #e2cbff,
-        #393bb2 30%,
-        #7dd3fc 55%,
-        #e2cbff 75%,
-        #e2cbff
+        #f8ce0f 0%,
+        #22d3ee 10%,
+        #3cbafd 18%,
+        #3cbafd 42%,
+        #22d3ee 50%,
+        #3cbafd 58%,
+        #3cbafd 82%,
+        #22d3ee 90%,
+        #f8ce0f 100%
       );
       transform: translate(-50%, -50%);
       animation: case-chip-spin 5s linear infinite;
@@ -672,7 +676,7 @@
     .case-credit-chip::after {
       content: "";
       position: absolute;
-      inset: 1.5px;
+      inset: 1px;
       z-index: 0;
       border-radius: inherit;
       background: #141416;
@@ -688,8 +692,8 @@
       .case-credit-chip::before { animation: none; }
     }
     .case-credit-chip img {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       flex: none;
       border-radius: 50%;
       object-fit: cover;
@@ -721,7 +725,7 @@
         padding: 6px 10px 6px 6px;
         border-radius: 12px;
       }
-      .case-credit-chip img { width: 30px; height: 30px; }
+      .case-credit-chip img { width: 26px; height: 26px; }
       .case-credit-chip strong { font-size: 11px; }
       .case-credit-chip em { font-size: 10px; }
     }
