@@ -494,7 +494,7 @@
     .case-metrics .case-hero-title {
       animation: case-hero-drop 820ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
     }
-    .case-metrics .case-metric {
+    .case-metrics-grid.is-in .case-metric {
       animation: case-hero-drop 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     .case-metrics .case-metric:nth-child(1) { animation-delay: 260ms; }
@@ -2198,7 +2198,8 @@
       var nums = Array.prototype.slice.call(document.querySelectorAll(".case-metric-num"));
       if (!nums.length) return;
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      var started = false;
+      var targets = [];
+      var token = 0;
 
       function parse(text) {
         var raw = text.replace(/,/g, "").trim();
@@ -2215,14 +2216,21 @@
         return parts.join(".");
       }
 
+      function syncTargets() {
+        targets = nums.map(function (el) { return parse(el.textContent); });
+      }
+
       function run() {
+        token += 1;
+        var current = token;
         nums.forEach(function (el, index) {
-          var target = parse(el.textContent);
+          var target = targets[index] || { value: 0, dec: 0 };
           if (!target.value || reduce) return;
           var begin = null;
           var duration = 1200 + index * 110;
           el.textContent = format(0, target.dec);
           function step(ts) {
+            if (current !== token) return;
             if (begin === null) begin = ts;
             var progress = Math.min(1, (ts - begin) / duration);
             var eased = 1 - Math.pow(1 - progress, 4);
@@ -2234,14 +2242,13 @@
         });
       }
 
+      syncTargets();
+
       if ("IntersectionObserver" in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
-            if (entry.isIntersecting && !started) {
-              started = true;
-              run();
-              observer.disconnect();
-            }
+            // 每次进入视口重新滚动计数
+            if (entry.isIntersecting) run();
           });
         }, { threshold: 0.3 });
         observer.observe(nums[0]);
@@ -2252,7 +2259,10 @@
       var langButton = document.querySelector(".case-lang");
       if (langButton) {
         langButton.addEventListener("click", function () {
-          window.setTimeout(run, 0);
+          window.setTimeout(function () {
+            syncTargets();
+            run();
+          }, 0);
         });
       }
     })();
@@ -2655,6 +2665,20 @@
 
       window.addEventListener("resize", schedule, { passive: true });
       fit();
+    })();
+  </script>
+  <script>
+    (function () {
+      var grid = document.querySelector(".case-metrics-grid");
+      if (!grid || !("IntersectionObserver" in window)) return;
+      var gate = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          // 每次进入视口重新播放数据行上浮，离开视口复位
+          if (entry.isIntersecting) grid.classList.add("is-in");
+          else grid.classList.remove("is-in");
+        });
+      }, { threshold: 0.35 });
+      gate.observe(grid);
     })();
   </script>
 </body>
