@@ -636,7 +636,7 @@
     /* 主 KV 右上角：角色署名胶囊（参考 Inspira UI 通知卡片） */
     .case-credit-chip {
       position: relative;
-      top: 5px;
+      top: 10px;
       margin-left: clamp(4px, 1vw, 12px);
       flex: none;
       display: flex;
@@ -661,17 +661,15 @@
       background: conic-gradient(
         from 0deg,
         #f8ce0f 0%,
-        #f8ce0f 18%,
-        #22d3ee 26%,
-        #3cbafd 34%,
-        #3cbafd 56%,
-        #22d3ee 64%,
-        #f8ce0f 74%,
-        #f8ce0f 88%,
-        #22d3ee 94%,
+        #22d3ee 22%,
+        #3cbafd 40%,
+        #3cbafd 55%,
+        #22d3ee 72%,
+        #f8ce0f 90%,
         #f8ce0f 100%
       );
       transform: translate(-50%, -50%);
+      will-change: transform;
       animation: case-chip-spin 5s linear infinite;
     }
     .case-credit-chip::after {
