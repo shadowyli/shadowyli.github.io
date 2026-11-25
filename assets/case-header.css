@@ -1,6 +1,48 @@
 /* 全站统一顶栏：品牌 + 作品 / 关于我 + 联系我 + EN
    联系我为镜面玻璃按钮，描边光自动旋转（参考 Vue Bits SpecularButton） */
 
+/* 顶栏尺寸唯一来源：首页与案例页共用同一组数值，页面内不再覆写 */
+.case-header,
+.site-header {
+  box-sizing: border-box;
+  height: var(--header-height);
+  min-height: var(--header-height);
+}
+
+/* 品牌字标：两种顶栏保持同一字号/行高/占位高度 */
+.case-header .brand,
+.site-header .brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  width: auto;
+  height: auto;
+  font-family: "Space Grotesk", "Archivo", system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: var(--text);
+  text-decoration: none;
+  overflow: visible;
+}
+
+/* 手机端首页旧的 ::after 写字方案与案例页不一致，统一回真实文本 */
+.site-header .brand::after,
+.case-header .brand::after { content: none; }
+
+.brand-metal-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+header .brand.is-metal { color: transparent; }
+
 /* 固定暗色：隐藏主题切换 */
 body.case-page .case-header .case-theme,
 .site-header .theme-toggle { display: none; }
@@ -119,4 +161,15 @@ html[data-theme="light"] .site-header .header-contact::before {
     background: rgba(0, 0, 0, 0.04) !important;
     color: #111111;
   }
+}
+
+/* 窄屏：首页与案例页共用同一套栅格/内边距，首页不再放汉堡菜单 */
+@media (max-width: 820px) {
+  .case-header,
+  .site-header {
+    grid-template-columns: max-content 1fr max-content;
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .site-header .menu-button { display: none; }
 }

@@ -23,3 +23,16 @@
     bind();
   }
 })();
+
+/* 品牌字标的金属流动效果（WebGL）；静态偏好或加载失败时保留纯文字 */
+(function () {
+  "use strict";
+  var script = document.currentScript;
+  if (!script || !script.src) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var version = (script.src.match(/\?v=[^&#]+/) || [""])[0];
+  var tag = document.createElement("script");
+  tag.src = script.src.replace(/case-header\.js[^/]*$/, "brand-metal.js") + version;
+  tag.defer = true;
+  document.head.appendChild(tag);
+})();

@@ -21,7 +21,7 @@
       document.documentElement.dataset.theme = "dark";
     })();
   </script>
-    <script src="../assets/case-header.js?v=20261125-1"></script>
+    <script src="../assets/case-header.js?v=20261125-2"></script>
   <link rel="preload" href="../assets/fonts/ArchivoLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SpaceGroteskLatin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="../assets/fonts/SourceHanSansCN-Regular.woff2?v=20261120-4" as="font" type="font/woff2" crossorigin>
@@ -32,8 +32,8 @@
   <link rel="stylesheet" href="../assets/case-echo.css?v=20261118-7">
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/vi-collage.css?v=20261118-2">
-  <link rel="stylesheet" href="../assets/case-header.css?v=20261125-1">
-  <link rel="stylesheet" href="../assets/case-credit-chip.css?v=20261125-1">
+  <link rel="stylesheet" href="../assets/case-header.css?v=20261125-2">
+  <link rel="stylesheet" href="../assets/case-credit-chip.css?v=20261125-2">
   <style>
     /* 顶部主 KV 满幅：上贴顶栏，左右到视口边缘 */
     main.case-main { padding-top: 0; padding-bottom: clamp(16px, 2vw, 24px); }
@@ -532,103 +532,7 @@
       .case-metrics .case-metric { animation: none; }
     }
 
-    /* 顶栏「联系我」：镜面玻璃按钮，描边光跟随指针（参考 Vue Bits SpecularButton） */
-    /* 本页固定暗色，隐藏主题切换 */
-    body.case-page .case-header .case-theme { display: none; }
-    @property --sb-angle {
-      syntax: "<angle>";
-      inherits: false;
-      initial-value: 0deg;
-    }
-    .case-header .case-back {
-      position: relative;
-      isolation: isolate;
-      padding: 8px 22px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.045);
-      color: #f5f5f5;
-      box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.6);
-      font-family: inherit;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.2;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      transition: transform 250ms cubic-bezier(0.2, 0.8, 0.2, 1), border-color 250ms ease;
-    }
-    .case-header .case-back::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      z-index: -1;
-      box-sizing: border-box;
-      padding: 1.2px;
-      border-radius: inherit;
-      background: conic-gradient(
-        from var(--sb-angle),
-        rgba(255, 255, 255, 0) 0deg,
-        rgba(255, 255, 255, 0.08) 50deg,
-        rgba(255, 255, 255, 0.9) 120deg,
-        rgba(255, 255, 255, 0.08) 190deg,
-        rgba(255, 255, 255, 0) 250deg,
-        rgba(255, 255, 255, 0) 360deg
-      );
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor;
-      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-      opacity: 0.95;
-      animation: case-back-sheen 5s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes case-back-sheen {
-      to { --sb-angle: 360deg; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .case-header .case-back::before { animation: none; }
-    }
-    .case-header .case-back:hover { transform: translateY(-1px); }
-    .case-header .case-back:active { transform: scale(0.97); }
-    html[data-theme="light"] .case-header .case-back {
-      border-color: rgba(0, 0, 0, 0.16);
-      background: rgba(0, 0, 0, 0.04);
-      color: #111111;
-    }
-    html[data-theme="light"] .case-header .case-back::before {
-      background: conic-gradient(
-        from var(--sb-angle),
-        rgba(0, 0, 0, 0) 0deg,
-        rgba(0, 0, 0, 0.06) 50deg,
-        rgba(0, 0, 0, 0.62) 120deg,
-        rgba(0, 0, 0, 0.06) 190deg,
-        rgba(0, 0, 0, 0) 250deg,
-        rgba(0, 0, 0, 0) 360deg
-      );
-    }
-    @media (max-width: 720px) {
-      .case-header .case-back {
-        padding: 6px 14px;
-        font-size: 13px;
-      }
-      /* 手机端顶栏的联系我：与桌面同款细边玻璃按钮 */
-      body.case-page .case-header .is-header-contact.sidebar-contact {
-        padding: 6px 14px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.06) !important;
-        box-shadow: none;
-        color: #f5f5f5;
-        min-height: 0;
-        font-size: 13px;
-        font-weight: 500;
-      }
-      :root[data-theme="light"] body.case-page .case-header .is-header-contact.sidebar-contact {
-        border-color: rgba(0, 0, 0, 0.2);
-        background: rgba(0, 0, 0, 0.04) !important;
-        color: #111111;
-      }
-    }
+    /* 顶栏「联系我」样式统一由 assets/case-header.css 提供 */
 
     /* 主标题：跟随内容压在数据行上方，不额外撑高首屏 */
     .case-metrics .case-hero-title {
