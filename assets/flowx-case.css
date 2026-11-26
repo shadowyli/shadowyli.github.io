@@ -335,7 +335,49 @@
   color: var(--fx-muted);
 }
 /* 首屏数据脚注压深一档，让正文更靠前 */
-.flowx-page .fx-intro-copy .fx-caption { color: #75717c; }
+.flowx-page .fx-stats .fx-caption { color: #75717c; }
+
+/* ---------- 首屏数据条（署名下方 / 平台介绍上方） ---------- */
+.fx-stats { margin: var(--fx-gap-head) 0 var(--fx-gap-section); }
+.fx-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+}
+.fx-stat {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 0 clamp(14px, 1.8vw, 30px);
+  border-left: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+.fx-stat:first-child { padding-left: 0; border-left: 0; }
+.fx-stat:last-child { padding-right: 0; }
+.fx-stat dd {
+  order: 1;
+  display: flex;
+  align-items: baseline;
+  margin: 0 0 10px;
+  color: var(--text);
+  font-family: "Archivo", var(--font-cjk);
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+}
+.fx-stat-num { font-size: clamp(30px, 3.2vw, 48px); font-weight: 700; letter-spacing: -0.02em; }
+.fx-stat-unit { margin-left: 3px; color: var(--fx-muted); font-size: clamp(13px, 1.1vw, 16px); font-weight: 500; }
+.fx-stat dt { order: 2; color: var(--fx-muted); font-size: 13px; line-height: 1.4; letter-spacing: 0.04em; }
+.fx-stats-caption { margin-top: 14px; }
+
+/* 入场：进入视口时每列依次上浮（每次进入都重播） */
+@keyframes fx-stat-drop {
+  from { opacity: 0; transform: translate3d(0, -16px, 0); }
+  to { opacity: 1; transform: none; }
+}
+.fx-stats.is-in .fx-stat { animation: fx-stat-drop 760ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fx-stats.is-in .fx-stat:nth-child(1) { animation-delay: 60ms; }
+.fx-stats.is-in .fx-stat:nth-child(2) { animation-delay: 120ms; }
+.fx-stats.is-in .fx-stat:nth-child(3) { animation-delay: 180ms; }
+.fx-stats.is-in .fx-stat:nth-child(4) { animation-delay: 240ms; }
 .flowx-page figure { margin: 0; min-width: 0; }
 .flowx-page [data-fx-image] { display: block; min-width: 0; cursor: zoom-in; }
 .flowx-page [data-fx-image] img { display: block; width: 100%; height: auto; }
@@ -619,12 +661,18 @@
   .fx-gate + .fx-gate, .fx-contribution { border-top: 1px solid var(--line); }
   .fx-intro-grid .case-frame { order: 2; }
   .fx-intro-grid .fx-intro-copy { order: 1; }
-  /* 手机端：数据块与正文之间补一条分隔线 */
-  .flowx-page .fx-intro-copy .fx-caption + .fx-lead {
-    margin-top: 14px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
+  /* 手机端数据条：2 × 2，与蛋仔页同一套分隔线规则 */
+  .fx-stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+  .fx-stat { padding: 0 12px; }
+  .fx-stat:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .fx-stat:nth-child(even) { padding-right: 0; }
+  .fx-stat:nth-child(n+3) {
+    padding-top: 14px;
+    border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   }
+  .fx-stat-num { font-size: clamp(28px, 7.6vw, 36px); }
+  .fx-stat-unit { font-size: 12px; }
+  .fx-stat dt { font-size: 12px; }
   .flowx-page .fx-hero {
     margin-top: 10px;
     padding: 14px 0 24px;

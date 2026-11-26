@@ -323,7 +323,7 @@
 
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
-  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261125-2">
+  <link rel="stylesheet" href="../assets/flowx-case.css?v=20261125-4">
 </head>
 <body class="case-page flowx-page">
   <a class="skip-link" href="#case-main" data-i18n-key="skip">跳到正文</a>
@@ -347,6 +347,28 @@
   <main class="case-main" id="case-main" tabindex="-1">
     <div class="case-body case-body--flush">
       <ul class="case-credits" data-case-credits="flowx" aria-label="项目署名"></ul>
+
+      <section class="fx-stats" aria-label="数据">
+        <dl class="fx-stats-grid">
+          <div class="fx-stat">
+            <dt data-fx-zh="AI 管线" data-fx-en="AI pipelines">AI 管线</dt>
+            <dd><span class="fx-stat-num">55</span><span class="fx-stat-unit">+</span></dd>
+          </div>
+          <div class="fx-stat">
+            <dt data-fx-zh="用户" data-fx-en="Users">用户</dt>
+            <dd><span class="fx-stat-num">140</span><span class="fx-stat-unit">+</span></dd>
+          </div>
+          <div class="fx-stat">
+            <dt data-fx-zh="素材生产（套）" data-fx-en="Assets produced (sets)">素材生产（套）</dt>
+            <dd><span class="fx-stat-num">54,986</span></dd>
+          </div>
+          <div class="fx-stat">
+            <dt data-fx-zh="月素材产量" data-fx-en="Monthly asset output">月素材产量</dt>
+            <dd><span class="fx-stat-num">5300</span><span class="fx-stat-unit">+</span></dd>
+          </div>
+        </dl>
+        <p class="fx-caption fx-stats-caption" data-fx-zh="数据统计截至 2026.11" data-fx-en="Data as of November 2026">数据统计截至 2026.11</p>
+      </section>
 
       <section class="case-section fx-section flowx-intro" aria-labelledby="fx-title">
         <div class="fx-intro-grid">
@@ -373,13 +395,6 @@
                 </span>
               </span>
             </div>
-            <dl class="fx-metrics">
-              <div><dt>55<span>+</span></dt><dd data-fx-zh="AI 管线" data-fx-en="AI pipelines">AI 管线</dd></div>
-              <div><dt>140<span>+</span></dt><dd data-fx-zh="用户" data-fx-en="Users">用户</dd></div>
-              <div><dt>54,986</dt><dd data-fx-zh="素材生产（套）" data-fx-en="Assets produced (sets)">素材生产（套）</dd></div>
-              <div><dt>5300<span>+</span></dt><dd data-fx-zh="月素材产量" data-fx-en="Monthly asset output">月素材产量</dd></div>
-            </dl>
-            <p class="fx-caption" data-fx-zh="数据统计截至 2026.11" data-fx-en="Data as of November 2026">数据统计截至 2026.11</p>
             <p class="fx-lead" data-fx-zh="FlowX 是面向美术、运营与策划使用，将制作工具、业务模板和 AI 能力整合成枢纽的 AI 应用平台。用户可以选择 AI 管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。" data-fx-en="FlowX is an AI application platform for artists, operations teams and planners, bringing production tools, business templates and AI capabilities together as a hub. Submit assets through a pipeline, or describe a request to Agent Xiaonai to produce images, motion content and marketing assets.">FlowX 是面向美术、运营与策划使用，将制作工具、业务模板和 AI 能力整合成枢纽的 AI 应用平台。用户可以选择 AI 管线提交素材，或通过 Agent 小奈描述需求，完成图像、动态内容与营销物料的制作。</p>
             <p class="fx-intro-note" data-fx-zh="我发起并持续推进这个项目，参与产品设计、开发与 AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。" data-fx-en="I initiated and continue to lead this project, contributing to product design, development and AI pipelines so more teams can use the methods our production team has built.">我发起并持续推进这个项目，参与产品设计、开发与 AI 管线搭建，让制作团队积累的方法能够被更多业务同事使用。</p>
           </div>
@@ -939,5 +954,67 @@
   </script>
   <script src="../assets/case-flow.js?v=20261117-5" defer></script>
   <script src="../assets/flowx-case.js?v=20261118-2" defer></script>
+  <script>
+    (function () {
+      var section = document.querySelector(".fx-stats");
+      if (!section || !("IntersectionObserver" in window)) return;
+      var nums = Array.prototype.slice.call(section.querySelectorAll(".fx-stat-num"));
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      function parse(text) {
+        var raw = text.replace(/,/g, "").trim();
+        var dot = raw.indexOf(".");
+        return {
+          value: parseFloat(raw) || 0,
+          dec: dot > -1 ? (raw.split(".")[1] || "").length : 0,
+          group: text.indexOf(",") > -1
+        };
+      }
+
+      function format(value, dec, group) {
+        var parts = (dec ? value.toFixed(dec) : String(Math.round(value))).split(".");
+        if (group) parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return parts.join(".");
+      }
+
+      var targets = nums.map(function (el) { return parse(el.textContent); });
+      var token = 0;
+
+      function run() {
+        token += 1;
+        var current = token;
+        nums.forEach(function (el, index) {
+          var target = targets[index] || { value: 0, dec: 0, group: false };
+          if (!target.value) return;
+          var begin = null;
+          var duration = 1200 + index * 100;
+          el.textContent = format(0, target.dec, target.group);
+          function step(ts) {
+            if (current !== token) return;
+            if (begin === null) begin = ts;
+            var progress = Math.min(1, (ts - begin) / duration);
+            var eased = 1 - Math.pow(1 - progress, 4);
+            el.textContent = format(target.value * eased, target.dec, target.group);
+            if (progress < 1) window.requestAnimationFrame(step);
+            else el.textContent = format(target.value, target.dec, target.group);
+          }
+          window.requestAnimationFrame(step);
+        });
+      }
+
+      var gate = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            /* 每次进入视口都重播上浮与数字滚动 */
+            section.classList.add("is-in");
+            if (!reduce) run();
+          } else {
+            section.classList.remove("is-in");
+          }
+        });
+      }, { threshold: 0.35 });
+      gate.observe(section);
+    })();
+  </script>
 </body>
 </html>
