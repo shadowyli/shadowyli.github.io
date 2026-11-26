@@ -775,16 +775,16 @@
       will-change: transform;
     }
     .case-aud-wake-bar.is-female {
-      background: #f4f4f4;
+      background: var(--aud-yellow);
       opacity: 1;
     }
-    /* 浅色卡片上白色条会消失，改成深色/浅灰 */
+    /* 浅色卡片上未点亮条用浅灰，点亮条沿用主题强调色 */
     html[data-theme="light"] .case-aud-wake-bar {
       background: #c9ccce;
       opacity: 1;
     }
     html[data-theme="light"] .case-aud-wake-bar.is-female {
-      background: #1b1d1f;
+      background: var(--aud-yellow);
     }
     .case-aud-spark {
       position: relative;
@@ -1161,6 +1161,38 @@
       .case-metric dt { font-size: 12px; }
     }
 
+    .case-review {
+      --rev-accent-text: #f8ce0f;
+      margin-top: clamp(48px, 6vw, 88px);
+      padding-top: clamp(24px, 3vw, 44px);
+      border-top: 1px solid var(--line);
+    }
+    html[data-theme="light"] .case-review { --rev-accent-text: #735900; }
+    .case-body .case-review-title {
+      display: block;
+      margin: 0;
+      font-size: clamp(26px, 3.25vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+    .case-review .case-review-subtitle {
+      margin: 10px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .case-review .case-review-summary {
+      max-width: none;
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
@@ -1532,6 +1564,12 @@
         </div>
       </section>
 
+      <section class="case-review" id="case-review" aria-labelledby="case-review-title">
+        <h2 class="case-review-title" id="case-review-title" data-i18n-key="revTitle">从玩家活动到休闲电竞破圈</h2>
+        <p class="case-review-subtitle" data-i18n-key="revSubtitle">个人思考与复盘</p>
+        <p class="case-review-summary"><span data-i18n-key="revLead">作为视觉设计师，复盘蛋仔派对全国总决赛的破圈之路，核心在于我们为其建立了专属品牌VI系统，全面规范设计调性与统一视觉，以一流标准打造专业赛事品牌。我们打破了传统电竞的暗黑硬核风，用“</span><span class="case-highlight" data-i18n-key="revStyle">休闲可爱+专业竞技</span><span data-i18n-key="revFlow">”的视觉反差重构赛事视觉锤，将线上IP资产</span><span class="case-highlight" data-i18n-key="revFloor">无缝延伸至线下</span><span data-i18n-key="revWork">空间。从早期的基础直播包装，到第三届引入AI数据可视化与真人蛋仔大屏实时联动，再到线下美陈打造“实景游戏关卡”的沉浸感，视觉设计不再只是美化，而是深度</span><span class="case-highlight" data-i18n-key="revReach">介入运营与交互</span><span data-i18n-key="revClose">。我们让视觉成为连接玩家情感与线下流量的超级触点，不仅提升了赛事的专业度与观赏性，更用极具松弛感和社交属性的视觉体验，成功将一场玩家活动升级为现象级的国民休闲电竞IP。</span></p>
+      </section>
+
       <ul class="case-credits case-credits--end" data-case-credits="danzai" aria-label="项目署名"></ul>
 
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
@@ -1582,6 +1620,16 @@
           introP1b: "最高级别年度赛事",
           introP1c: "，全年参与人次超过 1,300 万，抖音话题浏览量超 11 亿。",
           introP2: "我们为这个系列赛事建立可延续的视觉系统：从主 KV、赛事 VI 手册，到宣发、直播与节目包装、大屏和周边。在轻松派对游戏与硬核电竞赛事之间取得平衡，打造令人难忘的线上线下电竞盛宴。",
+
+          revTitle: "从玩家活动到休闲电竞破圈",
+          revSubtitle: "个人思考与复盘",
+          revLead: "作为视觉设计师，复盘蛋仔派对全国总决赛的破圈之路，核心在于我们为其建立了专属品牌VI系统，全面规范设计调性与统一视觉，以一流标准打造专业赛事品牌。我们打破了传统电竞的暗黑硬核风，用“",
+          revStyle: "休闲可爱+专业竞技",
+          revFlow: "”的视觉反差重构赛事视觉锤，将线上IP资产",
+          revFloor: "无缝延伸至线下",
+          revWork: "空间。从早期的基础直播包装，到第三届引入AI数据可视化与真人蛋仔大屏实时联动，再到线下美陈打造“实景游戏关卡”的沉浸感，视觉设计不再只是美化，而是深度",
+          revReach: "介入运营与交互",
+          revClose: "。我们让视觉成为连接玩家情感与线下流量的超级触点，不仅提升了赛事的专业度与观赏性，更用极具松弛感和社交属性的视觉体验，成功将一场玩家活动升级为现象级的国民休闲电竞IP。",
           introP3: "全网直播峰值突破 2800 万，线下门票 1 分钟售罄，吸引超 3.2 万观众入场。",
 
           audAgeTitle: "年龄分布",
@@ -1670,6 +1718,16 @@
           introP1b: "highest-tier annual event",
           introP1c: " in the Eggy Party esports system, drawing more than 13 million participants a year, with over 1.1 billion views on its Douyin hashtag.",
           introP2: "For this series we built a visual system designed to carry forward: from the key visual and event VI manual to campaign artwork, broadcast and program packaging, LED screens and merchandise. Balancing the lightness of a party game with the intensity of hardcore esports, it creates an unforgettable esports celebration on site and online.",
+
+          revTitle: "From a player event to a breakout esports series",
+          revSubtitle: "Personal reflections",
+          revLead: "As a visual designer, my retrospective on the Eggy Party National Finals’ breakout journey centers on the dedicated brand identity system we built, bringing a consistent visual direction to a professional esports event. We moved away from traditional esports’ dark, hardcore aesthetic with a contrast of ",
+          revStyle: "casual fun and pro competition",
+          revFlow: " as a clear visual signature, carrying online IP into the physical venue ",
+          revFloor: "seamlessly",
+          revWork: ". The system grew from broadcast graphics into AI data visualizations, live player interactions with Eggy characters on venue screens, and immersive installations styled as playable levels. Visual design became part of ",
+          revReach: "operations and interaction",
+          revClose: ". It connected player emotion to in-person engagement, strengthening professionalism and watchability and helping turn a player event into a nationally recognized casual esports IP with a relaxed, social appeal.",
           introP3: "Peak live viewership across platforms exceeded 28 million, tickets sold out within one minute, and more than 32,000 people attended in person.",
 
           audAgeTitle: "Age",

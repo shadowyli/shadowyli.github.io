@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="../assets/case-credits.css?v=20261118-1">
   <link rel="stylesheet" href="../assets/case-header.css?v=20261125-2">
   <link rel="stylesheet" href="../assets/case-credit-chip.css?v=20261125-3">
+  <link rel="stylesheet" href="../assets/mengshou-logo-wall.css?v=20261126-3">
   <style>
     /* 内容留空时让页脚落在视口底部；首屏主 KV 上贴顶栏 */
     main.case-main {
@@ -193,7 +194,8 @@
       color: #a3a3a3;
     }
     /* 关于正文：红色重点高亮 */
-    .case-body .case-intro .case-highlight {
+    .case-body .case-intro .case-highlight,
+    .case-body .case-review .case-highlight {
       color: #d2b080;
       font-weight: 500;
       animation: case-highlight-in 900ms ease both;
@@ -203,7 +205,8 @@
       to { color: #d2b080; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .case-body .case-intro .case-highlight { animation: none; }
+      .case-body .case-intro .case-highlight,
+      .case-body .case-review .case-highlight { animation: none; }
     }
     /* 关于正文：shift-in-up 入场（与蛋仔案例页一致） */
     .shift-mask {
@@ -721,7 +724,7 @@
       will-change: transform;
     }
     .case-aud-wake-bar.is-female {
-      background: #f4f4f4;
+      background: var(--aud-accent);
       opacity: 1;
     }
     html[data-theme="light"] .case-aud-wake-bar {
@@ -729,7 +732,7 @@
       opacity: 1;
     }
     html[data-theme="light"] .case-aud-wake-bar.is-female {
-      background: #1b1d1f;
+      background: var(--aud-accent);
     }
     .case-aud-spark {
       position: relative;
@@ -1089,6 +1092,34 @@
       }
     }
 
+    .case-review {
+      margin-top: clamp(48px, 6vw, 88px);
+      padding-top: clamp(24px, 3vw, 44px);
+      border-top: 1px solid var(--line);
+    }
+    .case-body .case-review-title {
+      display: block;
+      margin: 0;
+      font-size: clamp(26px, 3.25vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+    .case-review .case-review-subtitle {
+      margin: 10px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .case-review .case-review-summary {
+      max-width: none;
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
   </style>
   <link rel="stylesheet" href="../assets/case-flow.css?v=20261118-1">
 </head>
@@ -1402,6 +1433,56 @@
         </figure>
       </section>
 
+      <section class="case-logo-wall" id="case-logo-wall" aria-label="S13 战队 Logo">
+        <div class="case-logo-wall__viewport" data-grid-motion>
+          <div class="case-logo-wall__fallback" aria-hidden="true">
+            <img src="../assets/mengshou-logos/jingrui-01.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-01.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-01.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-02.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-02.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-02.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-03.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-03.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-03.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-04.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-04.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-04.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-05.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-05.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-05.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-06.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-06.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-06.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-07.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-07.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-07.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-08.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-08.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-08.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-09.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-09.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-09.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-10.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-10.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-10.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-11.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-11.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-11.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/jingrui-12.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/shenwei-12.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+            <img src="../assets/mengshou-logos/yongwu-12.webp" alt="" width="480" height="480" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <p class="case-logo-wall__catalog">精锐组：2020、2022、2023、大美神州、情有独钟（精锐）、三界乐园、生日快乐、时空之隙（精锐）、四海欢腾、一吻天荒、再续前缘、纵横天下；神威组：2018、彩云追月、东海湾、桂花醉、山清水秀、时空之隙（神威）、双生梦、似水流年、天下无双（神威）、永结同心、紫禁之巅、紫气东来；勇武组：#18、2019、贝壳女孩、虎虎生威、倾国倾城、情有独钟（勇武）、盛世丰年、盛世长歌、双面伊人、天下无双（勇武）、瑶池圣地、一见钟情。</p>
+      </section>
+
+      <section class="case-review" id="case-review" aria-labelledby="case-review-title">
+        <h2 class="case-review-title" id="case-review-title" data-i18n-key="revTitle">书写MMO电竞的不可能 - 铸造标杆性国风赛事品牌</h2>
+        <p class="case-review-subtitle" data-i18n-key="revSubtitle">个人思考与复盘</p>
+        <p class="case-review-summary"><span data-i18n-key="revLead">作为视觉设计师，对《梦幻西游》手游巅峰联赛的思考，真正的难题在于：在一个被普遍判定“做不成电竞”的 MMO 品类里，为它立起一套能被识别、被延展、被传承的国风赛事品牌，而非单纯把比赛做漂亮。我们没有沿用 MOBA 的暗黑科幻与赛博硬核，而是把游戏自带的</span><span class="case-highlight" data-i18n-key="revAesthetics">东方美学</span><span data-i18n-key="revIdentity">提炼成赛事专属 VI：纹样、色彩、字体、舞台材质与动效节奏统一规范，让“国风”从美术风格升级为</span><span class="case-highlight" data-i18n-key="revBrand">品牌资产</span><span data-i18n-key="revMid">。把信息密度极高、节奏极慢的战斗翻译成看得懂的画面，借助电竞直播包装系统，以及 AR 颁奖、实时 AI 战报与数据可视化，让视觉成为解说之外的</span><span data-i18n-key="revTranslator">第二解说</span><span data-i18n-key="revEnd">；把一次性的胜负沉淀成长期荣誉，为战队设计专属logo，将联赛与地方文化相结合，结合游戏版本与非遗传承企划让赛事长出文化纵深。视觉不只是美化：它既是降低门槛的翻译器，也是放大荣誉的放大器，更是这个品类最难被复制的壁垒。我们还为内容创作者提供AI素材库与低门槛内容生产管线，延伸出内容生态和玩家社区讨论，确保赛事长久火热。</span></p>
+      </section>
+
       <ul class="case-credits case-credits--end" data-case-credits="mengshou" aria-label="项目署名"></ul>
 
       <div class="case-divider case-echo-divider" aria-hidden="true"></div>
@@ -1500,6 +1581,15 @@
           introP2b: "最高等级竞技赛事",
           introP2c: "，历经六年十三届的长线运营，已成长为 MMO 品类中极具影响力的顶级电竞赛事。赛事围绕精锐、勇武、神威三大组别展开激烈角逐，吸引了超 58 万玩家参与报名与观赛，总冠军奖金高达 500 万。赛事通过竞技联动，将硬核 PK 内容与大众趣味整合打通，提供线下可触达、低门槛的互动体验。通过赛事冠名新服拉新、赛事配套版本减负更新、全民竞猜换永久外观等机制，深度反哺游戏生态，有效拉动新服注册与老玩家回流，持续刺激游戏内消费与活跃度。",
           pageTitle: "《梦幻西游》手游巅峰联赛 | Shadowyli",
+          revTitle: "书写MMO电竞的不可能 - 铸造标杆性国风赛事品牌",
+          revSubtitle: "个人思考与复盘",
+          revLead: "作为视觉设计师，对《梦幻西游》手游巅峰联赛的思考，真正的难题在于：在一个被普遍判定“做不成电竞”的 MMO 品类里，为它立起一套能被识别、被延展、被传承的国风赛事品牌，而非单纯把比赛做漂亮。我们没有沿用 MOBA 的暗黑科幻与赛博硬核，而是把游戏自带的",
+          revAesthetics: "东方美学",
+          revIdentity: "提炼成赛事专属 VI：纹样、色彩、字体、舞台材质与动效节奏统一规范，让“国风”从美术风格升级为",
+          revBrand: "品牌资产",
+          revMid: "。把信息密度极高、节奏极慢的战斗翻译成看得懂的画面，借助电竞直播包装系统，以及 AR 颁奖、实时 AI 战报与数据可视化，让视觉成为解说之外的",
+          revTranslator: "第二解说",
+          revEnd: "；把一次性的胜负沉淀成长期荣誉，为战队设计专属logo，将联赛与地方文化相结合，结合游戏版本与非遗传承企划让赛事长出文化纵深。视觉不只是美化：它既是降低门槛的翻译器，也是放大荣誉的放大器，更是这个品类最难被复制的壁垒。我们还为内容创作者提供AI素材库与低门槛内容生产管线，延伸出内容生态和玩家社区讨论，确保赛事长久火热。",
           metaDescription: "《梦幻西游》手游巅峰联赛项目案例。"
         },
         en: {
@@ -1567,6 +1657,15 @@
           introP2b: "highest-tier competitive event",
           introP2c: " in the game's esports system. After six years and thirteen seasons, it has grown into one of the most influential esports events in the MMO category. The competition runs across three divisions — Jingrui, Shenwei and Yongwu — drawing more than 580,000 players to register and watch, with a champion prize of RMB 5 million. By connecting hardcore PvP with mass-market fun, the event offers accessible offline interaction. Mechanisms such as naming new servers after the event, easing the grind in companion updates, and exchanging predictions for permanent cosmetics feed back into the game ecosystem, driving new-server registrations, returning players, in-game spending and activity.",
           pageTitle: "Fantasy Westward Journey Mobile Peak League | Shadowyli",
+          revTitle: "Making the impossible possible in MMO esports - Building a landmark Chinese-style esports brand",
+          revSubtitle: "Personal reflections",
+          revLead: "As a visual designer reflecting on Fantasy Westward Journey Mobile Peak League, the real challenge was to establish a recognizable, adaptable and enduring Chinese-style event brand in an MMO category widely considered unsuitable for esports, rather than simply make the matches look polished. We moved away from MOBA’s dark sci-fi and cyber-hardcore aesthetic and distilled the game’s ",
+          revAesthetics: "Eastern visual language",
+          revIdentity: " into a dedicated event identity. Unified standards for motifs, colors, typography, stage materials and motion rhythm elevated Chinese style from an artistic treatment into a ",
+          revBrand: "brand asset",
+          revMid: ". We translated information-dense, slow-paced battles into visuals audiences could follow. Broadcast graphics, AR award ceremonies, real-time AI match reports and data visualization made the visuals a ",
+          revTranslator: "second commentator",
+          revEnd: " alongside the casters. To turn individual wins and losses into lasting honors, we designed team logos, connected the league with local culture, and worked with game updates and intangible cultural heritage initiatives to give the event cultural depth. Visual design became a translator that lowered the barrier to entry, an amplifier of achievement, and a distinctive advantage that is difficult to replicate in this category. We also provided creators with an AI asset library and an accessible content production pipeline, expanding the content ecosystem and player discussions to sustain interest in the league.",
           metaDescription: "Fantasy Westward Journey Mobile Peak League case study."
         }
       };
@@ -2155,5 +2254,6 @@
       });
     })();
   </script>
+  <script type="module" src="../assets/mengshou-logo-wall.js?v=20261126-3"></script>
 </body>
 </html>

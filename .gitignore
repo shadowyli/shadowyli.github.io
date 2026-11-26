@@ -3,3 +3,4 @@ work/_*.html
 _tmp_*
 # 设计标注（本地工作稿，不发布）
 .impeccable/
+node_modules/
