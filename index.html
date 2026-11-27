@@ -141,6 +141,10 @@
     }
 
     @media (max-width: 720px) {
+      .profile-meta .profile-meta-email {
+        order: 1;
+        grid-column: 1 / -1;
+      }
       .home-echo .echo-sign { font-size: 32px; }
       .home-echo .echo-reel { height: clamp(135px, 39vw, 175px); }
       .home-echo .echo-canvas {
@@ -222,7 +226,7 @@
           <li><i data-lucide="map-pin" aria-hidden="true"></i><span data-i18n="location">中国 广州</span></li>
           <li><i data-lucide="graduation-cap" aria-hidden="true"></i><span data-i18n="education">深圳大学本科 美术学</span></li>
           <li><i data-lucide="phone" aria-hidden="true"></i><span>19520523543</span></li>
-          <li><i data-lucide="mail" aria-hidden="true"></i><span>liv.shadow.ying.li@gmail.com</span></li>
+          <li class="profile-meta-email"><i data-lucide="mail" aria-hidden="true"></i><span>liv.shadow.ying.li@gmail.com</span></li>
           <li><i data-lucide="cake-slice" aria-hidden="true"></i><span class="age" data-birth-year="2001"></span></li>
         </ul>
       </aside>
